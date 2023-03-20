@@ -8,7 +8,7 @@
         <version>3.0.4</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.example</groupId>
+    <groupId>com</groupId>
     <artifactId>after-end</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>after-end</name>

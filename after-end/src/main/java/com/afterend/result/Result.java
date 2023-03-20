@@ -1,4 +1,4 @@
-package com.example.afterend.result;
+package com.afterend.result;
 
 public class Result {
     //响应码

@@ -1,4 +1,4 @@
-package com.example.afterend.pojo;
+package com.afterend.pojo;
 
 public class User {
     int id;

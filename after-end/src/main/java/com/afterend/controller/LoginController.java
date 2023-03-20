@@ -1,15 +1,16 @@
-package com.example.afterend.controller;
+package com.afterend.controller;
 
-
-import com.example.afterend.result.Result;
+import com.afterend.pojo.User;
+import com.afterend.result.Result;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.HtmlUtils;
 
-import com.example.afterend.pojo.User;
-
 import java.util.Objects;
 
+@Controller
 public class LoginController {
+
     @CrossOrigin
     @PostMapping(value = "api/login")
     @ResponseBody
