@@ -8,22 +8,18 @@ import org.springframework.stereotype.Service;
 public class UserService {
     @Autowired
     UserDAO userDAO;
-
-//    public boolean isExist(String username) {
-//        User user = getByName(username);
-//        return null!=user;
-//    }
-
-//    public User getByName(String username) {
-//        return userDAO.findByUsername(username);
-//    }
-
     public User get(String username, String password){
         return userDAO.getByUsernameAndPassword(username, password);
     }
-
-//    public void add(User user) {
-//        userDAO.save(user);
-//    }
+    public User register(User user){
+        if(userDAO.getByUsernameAndPassword(user.getUsername(), user.getPassword())!=null)return null;
+        return userDAO.insert(user);
+    }
+    public User update(User user){
+        User temp=userDAO.getByUsernameAndPassword(user.getUsername(), user.getPassword());
+        if(temp!=null)
+            if(temp.getId()!=user.getId())return null;
+        return userDAO.update(user);
+    }
 }
 

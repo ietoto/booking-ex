@@ -36,7 +36,7 @@ export default {
       var _this = this
       console.log(this.$store.state)
       this.$axios
-        .post('/login', {
+        .post('/user/login', {
           username: this.loginForm.username,
           password: this.loginForm.password
         })
