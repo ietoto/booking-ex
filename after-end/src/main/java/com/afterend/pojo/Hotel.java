@@ -11,7 +11,7 @@ import javax.persistence.*;
 public class Hotel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "hotel_id")
     int id;
 
     String name;
@@ -38,7 +38,7 @@ public class Hotel {
 
     public double getScore(){return score;}
 
-    public void setScore(){this.score=score;}
+    public void setScore(double hotel_score){this.score=score;}
 
     public String getImg(){return img;}
 
