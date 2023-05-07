@@ -1,6 +1,7 @@
 package com.afterend.dao;
 
 import com.afterend.dao.utils.JDBCUtils;
+import com.afterend.pojo.Order;
 import com.afterend.pojo.User;
 import org.springframework.stereotype.Service;
 
@@ -172,5 +173,28 @@ public class UserDAO {
             }
         }
         return list;
+    }
+    public static User delete(User user) {
+        Connection con=null;
+        try{
+            con= JDBCUtils.getConnect();
+            String sql="DELETE FROM `HotelSystem`.`user` WHERE `id` = ?";
+            PreparedStatement pstate = con.prepareStatement(sql);
+            pstate.setInt(1,user.getId());
+            pstate.executeUpdate();
+        } catch (SQLException e) {
+            return null;
+//            e.printStackTrace();
+        }finally {
+            try {
+                if(con==null){
+                    System.out.println("test");
+                }
+                con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return user;
     }
 }
