@@ -24,6 +24,8 @@ public class Room {
     @Transient
     List<String> facilities;
 
+    int state;
+
     public int getId() {
         return id;
     }
@@ -86,5 +88,13 @@ public class Room {
 
     public void setFacilities(List<String> facilities) {
         this.facilities = facilities;
+    }
+
+    public int getState() {
+        return state;
+    }
+
+    public void setState(int state) {
+        this.state = state;
     }
 }
