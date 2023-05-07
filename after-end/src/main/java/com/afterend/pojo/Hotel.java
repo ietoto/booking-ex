@@ -22,6 +22,8 @@ public class Hotel {
     int star;
     String img;
     @Transient
+    List<String> imgList;
+    @Transient
     List<Room> rooms;
     @Transient
     List<String> facilities;
@@ -96,5 +98,13 @@ public class Hotel {
 
     public void setFacilities(List<String> facilities) {
         this.facilities = facilities;
+    }
+
+    public List<String> getImgList() {
+        return imgList;
+    }
+
+    public void setImgList(List<String> imgList) {
+        this.imgList = imgList;
     }
 }

@@ -21,6 +21,6 @@ public class SearchController {
     @PostMapping(value = "/api/user/searchSimple")
     @ResponseBody
     public List<Hotel> showall(HttpSession session) {
-        return userService.showall();
+        return searchService.showall();
     }
 }
