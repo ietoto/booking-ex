@@ -21,6 +21,7 @@ public class Order {
     int money;
     String startdate;
     String enddate;
+    int state;
 
     public int getId() {
         return id;
@@ -84,5 +85,13 @@ public class Order {
 
     public void setEnddate(String enddate) {
         this.enddate = enddate;
+    }
+
+    public int getState() {
+        return state;
+    }
+
+    public void setState(int state) {
+        this.state = state;
     }
 }
