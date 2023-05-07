@@ -14,7 +14,7 @@ public class Order {
     @Column(name = "orderid")
     int id;
 
-    int username;
+    int userid;
     int hotelid;
     int roomid;
     int num;
@@ -31,12 +31,12 @@ public class Order {
         this.id = id;
     }
 
-    public int getUsername() {
-        return username;
+    public int getUserid() {
+        return userid;
     }
 
-    public void setUsername(int username) {
-        this.username = username;
+    public void setUserid(int userid) {
+        this.userid = userid;
     }
 
     public int getHotelid() {
