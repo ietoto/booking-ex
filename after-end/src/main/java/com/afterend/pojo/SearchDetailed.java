@@ -1,6 +1,6 @@
 package com.afterend.pojo;
 
-import java.util.*;
+import java.util.List;
 
 public class SearchDetailed {
 
