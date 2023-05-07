@@ -1,19 +1,6 @@
 package com.afterend.pojo;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
-import javax.persistence.*;
-
-@Entity
-@Table(name = "search")
-@JsonIgnoreProperties({"handler","hibernateLazyInitializer"})
-
 public class Search {
-
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
     int id;
 
     String location;

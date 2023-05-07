@@ -1,23 +1,9 @@
 package com.afterend.pojo;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
-import javax.persistence.*;
-
-import com.afterend.pojo.HotelFac;
-
-import  com.afterend.pojo.RoomFac;
-
-@Entity
-@Table(name = "searchdetailed")
-@JsonIgnoreProperties({"handler","hibernateLazyInitializer"})
+import java.util.*;
 
 public class SearchDetailed {
 
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
     int id;
 
     String location;
@@ -29,5 +15,102 @@ public class SearchDetailed {
     double distance;
     double score;
     int star;
-    List<HotelFac> hotelFacList
+    List<HotelFac> hotelFacList;
+    List<RoomFac>   roomFacList;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public String getHotel() {
+        return hotel;
+    }
+
+    public void setHotel(String hotel) {
+        this.hotel = hotel;
+    }
+
+    public String getStartdate() {
+        return startdate;
+    }
+
+    public void setStartdate(String startdate) {
+        this.startdate = startdate;
+    }
+
+    public String getEnddate() {
+        return enddate;
+    }
+
+    public void setEnddate(String enddate) {
+        this.enddate = enddate;
+    }
+
+    public int getAdult() {
+        return adult;
+    }
+
+    public void setAdult(int adult) {
+        this.adult = adult;
+    }
+
+    public int getChild() {
+        return child;
+    }
+
+    public void setChild(int child) {
+        this.child = child;
+    }
+
+    public double getDistance() {
+        return distance;
+    }
+
+    public void setDistance(double distance) {
+        this.distance = distance;
+    }
+
+    public double getScore() {
+        return score;
+    }
+
+    public void setScore(double score) {
+        this.score = score;
+    }
+
+    public int getStar() {
+        return star;
+    }
+
+    public void setStar(int star) {
+        this.star = star;
+    }
+
+    public List<HotelFac> getHotelFacList() {
+        return hotelFacList;
+    }
+
+    public void setHotelFacList(List<HotelFac> hotelFacList) {
+        this.hotelFacList = hotelFacList;
+    }
+
+    public List<RoomFac> getRoomFacList() {
+        return roomFacList;
+    }
+
+    public void setRoomFacList(List<RoomFac> roomFacList) {
+        this.roomFacList = roomFacList;
+    }
 }
