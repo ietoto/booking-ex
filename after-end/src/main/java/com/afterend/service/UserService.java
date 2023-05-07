@@ -1,6 +1,7 @@
 package com.afterend.service;
 
 import com.afterend.dao.UserDAO;
+import com.afterend.pojo.Order;
 import com.afterend.pojo.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,6 +27,10 @@ public class UserService {
     }
     public List<User> showall(){
         return userDAO.showall();
+    }
+    //删除用户 根据id来删除
+    public User delete(User user){
+        return userDAO.delete(user);
     }
 }
 
