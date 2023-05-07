@@ -8,6 +8,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class UserDAO {
     public static User getByUsernameAndPassword(String username, String password) {
@@ -135,5 +138,39 @@ public class UserDAO {
             }
         }
         return s;
+    }
+    public static List<User> showall() {
+        Connection con=null;
+        List<User> list=new ArrayList<>();
+        try{
+            con= JDBCUtils.getConnect();
+            String sql="select * from user";
+            PreparedStatement pstate = con.prepareStatement(sql);
+            ResultSet resultSet = pstate.executeQuery();
+            while (resultSet.next()){
+                User s=new User();
+                s.setId(resultSet.getInt("id"));
+                s.setUsername(resultSet.getString("username"));
+                s.setPassword(resultSet.getString("password"));
+                s.setName(resultSet.getString("name"));
+                s.setPostbox(resultSet.getString("postbox"));
+                s.setPhone(resultSet.getString("phone"));
+                s.setState(resultSet.getInt("state"));
+                s.setHotel_id(resultSet.getInt("hotel_id"));
+                list.add(s);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            try {
+                if(con==null){
+                    System.out.println("test ");
+                }
+                con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return list;
     }
 }

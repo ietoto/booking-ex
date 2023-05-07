@@ -9,6 +9,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.HtmlUtils;
 
+import java.util.List;
+
 @Controller
 public class UserController {
 
@@ -70,4 +72,12 @@ public class UserController {
             return new Result(200);
         }
     }
+//    显示所有用户信息
+    @CrossOrigin
+    @PostMapping(value = "/api/user/showall")
+    @ResponseBody
+    public List<User> showall(HttpSession session) {
+        return userService.showall();
+    }
+
 }

@@ -4,6 +4,9 @@ import com.afterend.dao.UserDAO;
 import com.afterend.pojo.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+
 @Service
 public class UserService {
     @Autowired
@@ -20,6 +23,9 @@ public class UserService {
         if(temp!=null)
             if(temp.getId()!=user.getId())return null;
         return userDAO.update(user);
+    }
+    public List<User> showall(){
+        return userDAO.showall();
     }
 }
 
