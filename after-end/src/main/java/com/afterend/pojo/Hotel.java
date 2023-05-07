@@ -1,5 +1,6 @@
 package com.afterend.pojo;
 
+import java.util.List;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
@@ -18,31 +19,82 @@ public class Hotel {
     String desciption;
     String location;
     double score;
+    int star;
     String img;
+    @Transient
+    List<Room> rooms;
+    @Transient
+    List<String> facilities;
 
-    public int getId(){return id;}
+    public int getId() {
+        return id;
+    }
 
-    public void setId(int id){this.id=id;}
+    public void setId(int id) {
+        this.id = id;
+    }
 
-    public String getName(){return name;}
+    public String getName() {
+        return name;
+    }
 
-    public void setName(String name){this.name=name;}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-    public String getDesciption(){return desciption;}
+    public String getDesciption() {
+        return desciption;
+    }
 
-    public void setDesciption(String desciption){this.desciption=desciption;}
+    public void setDesciption(String desciption) {
+        this.desciption = desciption;
+    }
 
-    public String getLocation(){return location;}
+    public String getLocation() {
+        return location;
+    }
 
-    public void setLocation(String location){this.location=location;}
+    public void setLocation(String location) {
+        this.location = location;
+    }
 
-    public double getScore(){return score;}
+    public double getScore() {
+        return score;
+    }
 
-    public void setScore(){this.score=score;}
+    public void setScore(double score) {
+        this.score = score;
+    }
 
-    public String getImg(){return img;}
+    public int getStar() {
+        return star;
+    }
 
-    public void setImg(String img){this.img=img;}
+    public void setStar(int star) {
+        this.star = star;
+    }
 
+    public String getImg() {
+        return img;
+    }
 
+    public void setImg(String img) {
+        this.img = img;
+    }
+
+    public List<Room> getRooms() {
+        return rooms;
+    }
+
+    public void setRooms(List<Room> rooms) {
+        this.rooms = rooms;
+    }
+
+    public List<String> getFacilities() {
+        return facilities;
+    }
+
+    public void setFacilities(List<String> facilities) {
+        this.facilities = facilities;
+    }
 }
