@@ -17,6 +17,7 @@ public class Hotel {
 
     String name;
     String desciption;
+    double distance;
     String city;
     String location;
     String address;
@@ -133,5 +134,13 @@ public class Hotel {
 
     public void setImg_num(int img_num) {
         this.img_num = img_num;
+    }
+
+    public double getDistance() {
+        return distance;
+    }
+
+    public void setDistance(double distance) {
+        this.distance = distance;
     }
 }
