@@ -17,10 +17,13 @@ public class Hotel {
 
     String name;
     String desciption;
+    String city;
     String location;
+    String address;
     double score;
     int star;
     String img;
+    int img_num;
     @Transient
     List<String> imgList;
     @Transient
@@ -106,5 +109,29 @@ public class Hotel {
 
     public void setImgList(List<String> imgList) {
         this.imgList = imgList;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public int getImg_num() {
+        return img_num;
+    }
+
+    public void setImg_num(int img_num) {
+        this.img_num = img_num;
     }
 }
