@@ -27,4 +27,8 @@ public class OrderService {
     public Order delete(Order order){
         return orderDAO.delete(order);
     }
+    //更新订单 根据id来删除
+    public Order update(Order order){
+        return orderDAO.update(order);
+    }
 }

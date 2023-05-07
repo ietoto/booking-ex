@@ -103,4 +103,35 @@ public class OrderDAO {
         }
         return order;
     }
+    public static Order update(Order order) {
+        Connection con=null;
+        try{
+            con= JDBCUtils.getConnect();
+            String sql="UPDATE `HotelSystem`.`order` SET `userid` = ?, `hotelid` = ?, `roomid` = ?, `num` = ?, `money` = ?, `startdate` = ?, `enddate` = ?, `state` = ? WHERE `orderid` = ?";
+            PreparedStatement pstate = con.prepareStatement(sql);
+            pstate.setInt(1,order.getUserid());
+            pstate.setInt(2,order.getHotelid());
+            pstate.setInt(3,order.getRoomid());
+            pstate.setInt(4,order.getNum());
+            pstate.setInt(5,order.getMoney());
+            pstate.setString(6,order.getStartdate());
+            pstate.setString(7,order.getEnddate());
+            pstate.setInt(8,order.getState());
+            pstate.setInt(9,order.getId());
+            pstate.executeUpdate();
+        } catch (SQLException e) {
+            return null;
+//            e.printStackTrace();
+        }finally {
+            try {
+                if(con==null){
+                    System.out.println("test");
+                }
+                con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return order;
+    }
 }

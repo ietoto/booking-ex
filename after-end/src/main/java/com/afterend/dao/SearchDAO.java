@@ -55,6 +55,11 @@ public class SearchDAO {
                 s.setDesciption(resultSet.getString("hotel_description"));
                 s.setScore(resultSet.getDouble("hotel_score"));
                 s.setLocation(resultSet.getString("hotel_location"));
+                s.setStar(resultSet.getInt("hotel_star"));
+                s.setDistance(resultSet.getDouble("hotel_distance"));
+                s.setImg_num(resultSet.getInt("hotel_imgnum"));
+                s.setCity(resultSet.getString("hotel_city"));
+                s.setAddress(resultSet.getString("hotel_address"));
                 list.add(s);
             }
         } catch (SQLException e) {
