@@ -14,7 +14,7 @@ import java.util.List;
 public class SearchService {
     @Autowired
     SearchDAO searchDAO;
-    //通过酒店名和酒店地区查找酒店
+    //通过酒店名和酒店地区查找酒店RoomFac
     public List<Hotel> SearchbyLocationAndHotel(Search search){
         return searchDAO.SearchbyLocationAndHotel(search);
     }
