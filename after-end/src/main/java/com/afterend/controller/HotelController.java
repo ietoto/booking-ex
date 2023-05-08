@@ -23,8 +23,10 @@ public class HotelController {
     @PostMapping(value = "/api/hotel/showall")
     @ResponseBody
     public List<Hotel> showall(HttpSession session) {
+        List<Hotel> hotels = hotelService.showall();
+        Hotel hotel = hotels.get(1);
+        System.out.println(hotel.getName());
         return (hotelService.showall());
-
     }
 
     @CrossOrigin
