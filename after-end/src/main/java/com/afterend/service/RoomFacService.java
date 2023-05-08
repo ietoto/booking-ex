@@ -19,7 +19,7 @@ public class RoomFacService {
         return roomFacDAO.getByHotelid(hotel);
     }
     //添加对应酒店客房的设施信息
-    public RoomFac add(RoomFac roomFac){
+    public static RoomFac add(RoomFac roomFac){
         return roomFacDAO.add(roomFac);
     }
     //删除对应酒店客房的设施信息
