@@ -2,6 +2,7 @@ package com.afterend.dao;
 
 import com.afterend.dao.utils.JDBCUtils;
 import com.afterend.pojo.Hotel;
+import com.afterend.pojo.Room;
 import com.afterend.pojo.Search;
 import com.afterend.pojo.User;
 import org.springframework.stereotype.Service;
@@ -20,11 +21,6 @@ public class SearchDAO {
         List<Hotel> list=new ArrayList<>();
         try{
             con= JDBCUtils.getConnect();
-//            String sql="select * from hotel where hotel_location=? and hotel_name=?";
-//            PreparedStatement pstate = con.prepareStatement(sql);
-//            pstate.setString(1,search.getLocation());
-//            pstate.setString(2,search.getHotel());
-//            ResultSet resultSet = pstate.executeQuery();
             int i=0;
             List<String> attribute=new ArrayList<>();
             String sql="select * from hotel where ";
@@ -68,6 +64,39 @@ public class SearchDAO {
             try {
                 if(con==null){
                     System.out.println("test ");
+                }
+                con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return list;
+    }
+    public static List<Room> SearchForHotelRoomNum(Search search) {
+        Connection con=null;
+        List<Room> list=new ArrayList<>();
+        try{
+            con= JDBCUtils.getConnect();
+            String sql="select a.hotel_id,a.room_id,a.room_num-b.num as num_ava from (select hotel_id,room_id,room_num from room where hotel_id=?) as a join (select hotelid,roomid,count(*) num from `order` where hotelid=? and state=1 and startdate<=? and enddate >=? GROUP BY hotelid,roomid) as b on a.hotel_id=b.hotelid and a.room_id=b.roomid;";
+            PreparedStatement pstate = con.prepareStatement(sql);
+            pstate.setInt(1,search.getId());
+            pstate.setInt(2,search.getId());
+            pstate.setString(3,search.getStartdate());
+            pstate.setString(4,search.getEnddate());
+            ResultSet resultSet = pstate.executeQuery();
+            while (resultSet.next()){
+                Room s=new Room();
+                s.setId(resultSet.getInt("room_id"));
+                s.setHotelid(resultSet.getInt("hotel_id"));
+                s.setNum_ava(resultSet.getInt("num_ava"));
+                list.add(s);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            try {
+                if(con==null){
+                    System.out.println("test");
                 }
                 con.close();
             } catch (SQLException e) {

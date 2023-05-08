@@ -1,35 +1,33 @@
 <template>
   <body id="poster">
-  <el-form class="login-container" label-position="left" label-width="0px">
-          <el-form-item style="width: 100%">
-                <el-button type="primary" style="width: 100%;
-                background: rgba(107,167,238,0.60);
-                border: none" v-on:click="test1">
-                更新测试
-                </el-button>
-          </el-form-item>
-          <el-form-item style="width: 100%">
-                <el-button type="primary" style="width: 100%;
-                background: rgb(122,122,207);
-                border: none" v-on:click="test2">
-                注册测试
-                </el-button>
-          </el-form-item>
-          <el-form-item>
-             <el-input type="text" v-model="loginForm.id" auto-complete="off" placeholder="用户id"></el-input>
-          </el-form-item>
-          <el-form-item>
-             <el-input type="text" v-model="loginForm.username" auto-complete="off" placeholder="账号"></el-input>
-          </el-form-item>
-          <el-form-item>
-             <el-input type="text" v-model="loginForm.password" auto-complete="off" placeholder="密码"></el-input>
-          </el-form-item>
-          <el-form-item>
-             <el-input type="text" v-model="loginForm.name" auto-complete="off" placeholder="用户姓名"></el-input>
-          </el-form-item>
-          <el-form-item>
-             <el-input type="text" v-model="loginForm.postbox" auto-complete="off" placeholder="邮箱"></el-input>
-          </el-form-item>
+  <el-form class="login-container" label-position="left"
+           label-width="0px">
+    <el-form-item style="width: 100%">
+      <el-button type="primary" style="width: 100%;background: rgba(107,167,238,0.60);border: none" v-on:click="test1">更新测试</el-button>
+    </el-form-item>
+    <el-form-item style="width: 100%">
+      <el-button type="primary" style="width: 100%;background: rgb(122,122,207);border: none" v-on:click="test2">注册测试</el-button>
+    </el-form-item>
+    <el-form-item>
+      <el-input type="text" v-model="loginForm.id"
+                auto-complete="off" placeholder="用户id"></el-input>
+    </el-form-item>
+    <el-form-item>
+      <el-input type="text" v-model="loginForm.username"
+                auto-complete="off" placeholder="账号"></el-input>
+    </el-form-item>
+    <el-form-item>
+      <el-input type="text" v-model="loginForm.password"
+                auto-complete="off" placeholder="密码"></el-input>
+    </el-form-item>
+    <el-form-item>
+      <el-input type="text" v-model="loginForm.name"
+                auto-complete="off" placeholder="用户姓名"></el-input>
+    </el-form-item>
+    <el-form-item>
+      <el-input type="text" v-model="loginForm.postbox"
+                auto-complete="off" placeholder="邮箱"></el-input>
+    </el-form-item>
   </el-form>
   </body>
 </template>
@@ -53,13 +51,23 @@ export default {
   },
   methods: {
     test1 () {
-      // var _this = this
+      var _this = this
       console.log(this.$store.state)
       this.$axios
-        .post('/hotel/showall', {
+        .post('/user/update', {
+          id: this.loginForm.id,
+          username: this.loginForm.username,
+          password: this.loginForm.password,
+          name: this.loginForm.name,
+          postbox: this.loginForm.postbox
         })
         .then(successResponse => {
-
+          if (successResponse.data.code === 200) {
+            // var data = this.loginForm
+            _this.$store.commit('login', _this.loginForm)
+            var path = this.$route.query.redirect
+            this.$router.replace({path: path === '/' || path === undefined ? '/index' : path})
+          }
         })
         .catch(failResponse => {
         })

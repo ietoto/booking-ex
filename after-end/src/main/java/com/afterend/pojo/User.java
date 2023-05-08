@@ -19,7 +19,7 @@ public class User {
     String name;//人名
     String postbox;//邮箱
     String phone;//电话
-    int state;//类型（0-为系统管理员 1-为酒店管理员 2-为用户）
+    int state;//类型（0-为系统管理员admin 1-为酒店管理员mgr 2-为用户user）
     int hotel_id;//负责的酒店 id，若不是酒店管理员则为 0
     public int getId() {
         return id;
