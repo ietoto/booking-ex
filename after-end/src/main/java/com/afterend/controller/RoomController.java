@@ -18,9 +18,11 @@ public class RoomController {
     @Autowired
     RoomService roomService;
 
-//    public List<Room> getRoom(Room room) {
-//        return hotelFacService.get(hotel);
-//    }
+    public List<Room> getRoomList(Hotel hotel) {
+        Room room =new Room();
+        room.setHotelid(hotel.getId());
+        return roomService.getRoomList(room);
+    }
 
     @CrossOrigin
     @PostMapping(value = "/api/room/add")
