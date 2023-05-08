@@ -18,9 +18,17 @@ public class SearchController {
     SearchService searchService;
 
     @CrossOrigin
-    @PostMapping(value = "/api/user/searchSimple")
+    @PostMapping(value = "/api/search/searchSimple")
     @ResponseBody
-    public List<Hotel> showall(HttpSession session) {
-        return searchService.showall();
+    public List<Hotel> searchWithLocation(@RequestBody Search requestSearch, HttpSession session) {
+        String location = requestSearch.getLocation();
+        String hotel = requestSearch.getHotel();
+        location = HtmlUtils.htmlEscape(location);
+        hotel = HtmlUtils.htmlEscape(hotel);
+        System.out.println("searching: " + location + hotel+"...");
+
+        List<Hotel> hotels = searchService.SearchbyLocationAndHotel(requestSearch);
+        return hotels;
     }
+
 }
