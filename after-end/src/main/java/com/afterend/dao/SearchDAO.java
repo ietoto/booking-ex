@@ -2,6 +2,7 @@ package com.afterend.dao;
 
 import com.afterend.dao.utils.JDBCUtils;
 import com.afterend.pojo.Hotel;
+import com.afterend.pojo.Room;
 import com.afterend.pojo.Search;
 import com.afterend.pojo.User;
 import org.springframework.stereotype.Service;
@@ -20,11 +21,6 @@ public class SearchDAO {
         List<Hotel> list=new ArrayList<>();
         try{
             con= JDBCUtils.getConnect();
-//            String sql="select * from hotel where hotel_location=? and hotel_name=?";
-//            PreparedStatement pstate = con.prepareStatement(sql);
-//            pstate.setString(1,search.getLocation());
-//            pstate.setString(2,search.getHotel());
-//            ResultSet resultSet = pstate.executeQuery();
             int i=0;
             List<String> attribute=new ArrayList<>();
             String sql="select * from hotel where ";
@@ -68,6 +64,42 @@ public class SearchDAO {
             try {
                 if(con==null){
                     System.out.println("test ");
+                }
+                con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return list;
+    }
+    public static List<Room> SearchForHotelRoomNum(Search search) {
+        Connection con=null;
+        List<Room> list=new ArrayList<>();
+        try{
+            con= JDBCUtils.getConnect();
+            String sql="select * from hotel";
+            PreparedStatement pstate = con.prepareStatement(sql);
+            ResultSet resultSet = pstate.executeQuery();
+            while (resultSet.next()){
+                Hotel s=new Hotel();
+                s.setId(resultSet.getInt("hotel_id"));
+                s.setName(resultSet.getString("hotel_name"));
+                s.setDesciption(resultSet.getString("hotel_description"));
+                s.setScore(resultSet.getDouble("hotel_score"));
+                s.setLocation(resultSet.getString("hotel_location"));
+                s.setStar(resultSet.getInt("hotel_star"));
+                s.setDistance(resultSet.getDouble("hotel_distance"));
+                s.setImg_num(resultSet.getInt("hotel_imgnum"));
+                s.setCity(resultSet.getString("hotel_city"));
+                s.setAddress(resultSet.getString("hotel_address"));
+                list.add(s);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            try {
+                if(con==null){
+                    System.out.println("test");
                 }
                 con.close();
             } catch (SQLException e) {
