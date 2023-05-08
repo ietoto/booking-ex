@@ -77,21 +77,18 @@ public class SearchDAO {
         List<Room> list=new ArrayList<>();
         try{
             con= JDBCUtils.getConnect();
-            String sql="select * from hotel";
+            String sql="select a.hotel_id,a.room_id,a.room_num-b.num as num_ava from (select hotel_id,room_id,room_num from room where hotel_id=?) as a join (select hotelid,roomid,count(*) num from `order` where hotelid=? and state=1 and startdate<=? and enddate >=? GROUP BY hotelid,roomid) as b on a.hotel_id=b.hotelid and a.room_id=b.roomid;";
             PreparedStatement pstate = con.prepareStatement(sql);
+            pstate.setInt(1,search.getId());
+            pstate.setInt(2,search.getId());
+            pstate.setString(3,search.getStartdate());
+            pstate.setString(4,search.getEnddate());
             ResultSet resultSet = pstate.executeQuery();
             while (resultSet.next()){
-                Hotel s=new Hotel();
-                s.setId(resultSet.getInt("hotel_id"));
-                s.setName(resultSet.getString("hotel_name"));
-                s.setDesciption(resultSet.getString("hotel_description"));
-                s.setScore(resultSet.getDouble("hotel_score"));
-                s.setLocation(resultSet.getString("hotel_location"));
-                s.setStar(resultSet.getInt("hotel_star"));
-                s.setDistance(resultSet.getDouble("hotel_distance"));
-                s.setImg_num(resultSet.getInt("hotel_imgnum"));
-                s.setCity(resultSet.getString("hotel_city"));
-                s.setAddress(resultSet.getString("hotel_address"));
+                Room s=new Room();
+                s.setId(resultSet.getInt("room_id"));
+                s.setHotelid(resultSet.getInt("hotel_id"));
+                s.setNum_ava(resultSet.getInt("num_ava"));
                 list.add(s);
             }
         } catch (SQLException e) {

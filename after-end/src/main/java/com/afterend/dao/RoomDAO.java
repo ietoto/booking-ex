@@ -9,6 +9,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class RoomDAO {
@@ -47,6 +49,42 @@ public class RoomDAO {
             }
         }
         return s;
+    }
+    public static List<Room> getRoomList(Room room) {
+        Connection con=null;
+        List<Room> list=new ArrayList<>();
+        try{
+            con= JDBCUtils.getConnect();
+            String sql="select * from room where hotel_id=?";
+            PreparedStatement pstate = con.prepareStatement(sql);
+            pstate.setInt(1,room.getHotelid());
+            ResultSet resultSet = pstate.executeQuery();
+            while (resultSet.next()){
+                Room s=new Room();
+                s.setId(resultSet.getInt("room_id"));
+                s.setHotelid(resultSet.getInt("hotel_id"));
+                s.setName(resultSet.getString("room_name"));
+                s.setSize(resultSet.getInt("room_size"));
+                s.setPrice_b(resultSet.getInt("room_breakfast"));
+                s.setPrice_r(resultSet.getInt("room_price"));
+                s.setIfFreeCancle(resultSet.getInt("room_isfreecancel"));
+                s.setIfNoRequire(resultSet.getInt("room_isnorequire"));
+                s.setNum_max(resultSet.getInt("room_num"));
+                list.add(s);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            try {
+                if(con==null){
+                    System.out.println("test ");
+                }
+                con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return list;
     }
     public static Room add(Room room) {
         Connection con=null;
