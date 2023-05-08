@@ -15,6 +15,7 @@ public class RoomFac {
     int id;
 
     String name;
+    int hotelid;
     int num;
 
     public int getId() {
@@ -39,5 +40,13 @@ public class RoomFac {
 
     public void setNum(int num) {
         this.num = num;
+    }
+
+    public int getHotelid() {
+        return hotelid;
+    }
+
+    public void setHotelid(int hotelid) {
+        this.hotelid = hotelid;
     }
 }
