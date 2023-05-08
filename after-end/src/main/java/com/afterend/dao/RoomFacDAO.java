@@ -3,6 +3,7 @@ package com.afterend.dao;
 import com.afterend.dao.utils.JDBCUtils;
 import com.afterend.pojo.Hotel;
 import com.afterend.pojo.HotelFac;
+import com.afterend.pojo.Room;
 import com.afterend.pojo.RoomFac;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +23,37 @@ public class RoomFacDAO {
             String sql="select * from fac_room where hotel_id=?";
             PreparedStatement pstate = con.prepareStatement(sql);
             pstate.setInt(1,hotel.getId());
+            ResultSet resultSet = pstate.executeQuery();
+            while (resultSet.next()){
+                RoomFac s=new RoomFac();
+                s.setId(resultSet.getInt("room_id"));
+                s.setHotelid(resultSet.getInt("hotel_id"));
+                s.setName(resultSet.getString("room_facname"));
+                list.add(s);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            try {
+                if(con==null){
+                    System.out.println("test ");
+                }
+                con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return list;
+    }
+    public static List<RoomFac> getByHotelIDAndRoomID(Room room) {
+        Connection con=null;
+        List<RoomFac> list=new ArrayList<>();
+        try{
+            con= JDBCUtils.getConnect();
+            String sql="select * from fac_room where hotel_id=? and room_id=?";
+            PreparedStatement pstate = con.prepareStatement(sql);
+            pstate.setInt(1,room.getHotelid());
+            pstate.setInt(2,room.getId());
             ResultSet resultSet = pstate.executeQuery();
             while (resultSet.next()){
                 RoomFac s=new RoomFac();
