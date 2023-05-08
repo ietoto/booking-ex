@@ -61,9 +61,64 @@ public class RoomDAO {
             pstate.setInt(5,room.getPrice_r());
             pstate.setInt(6,room.getPrice_b());
             pstate.setInt(7,room.isIfFreeCancle());
-            pstate.setInt(8,room.getId());
+            pstate.setInt(8,room.isIfNoRequire());
             pstate.setInt(9,room.getNum_max());
-            ResultSet resultSet = pstate.executeQuery();
+            pstate.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            try {
+                if(con==null){
+                    System.out.println("test ");
+                }
+                con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return room;
+    }
+    public static Room delete(Room room) {
+        Connection con=null;
+        try{
+            con= JDBCUtils.getConnect();
+            String sql="DELETE FROM `HotelSystem`.`room` WHERE `hotel_id` = ? AND `room_id` = ?";
+            PreparedStatement pstate = con.prepareStatement(sql);
+            pstate.setInt(1,room.getHotelid());
+            pstate.setInt(2,room.getId());
+            pstate.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            try {
+                if(con==null){
+                    System.out.println("test ");
+                }
+                con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return room;
+    }
+    public static Room update(Room room) {
+        Connection con=null;
+        try{
+            con= JDBCUtils.getConnect();
+            String sql="UPDATE `HotelSystem`.`room` SET `room_name` = ?, `room_size` = ?, `room_price` = ?, `room_breakfast` = ?, `room_isfreecancel` = ?, `room_isnorequire` = ?, `room_num` = ? WHERE `hotel_id` = ? AND `room_id` = ?";
+            PreparedStatement pstate = con.prepareStatement(sql);
+            pstate.setString(1,room.getName());
+            pstate.setInt(2,room.getSize());
+            pstate.setInt(3,room.getPrice_r());
+            pstate.setInt(4,room.getPrice_b());
+            pstate.setInt(5,room.isIfFreeCancle());
+            pstate.setInt(6,room.isIfNoRequire());
+            pstate.setInt(7,room.getNum_max());
+            pstate.setInt(8,room.getHotelid());
+            pstate.setInt(9,room.getId());
+            pstate.executeUpdate();
 
         } catch (SQLException e) {
             e.printStackTrace();

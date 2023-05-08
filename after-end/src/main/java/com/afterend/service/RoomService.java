@@ -19,5 +19,13 @@ public class RoomService {
     public Room add(Room room){
         return roomDAO.add(room);
     }
+    //根据对应酒店id和客房id删除客房
+    public Room delete(Room room){
+        return roomDAO.delete(room);
+    }
+    //根据对应酒店id和客房id修改客房
+    public Room update(Room room){
+        return roomDAO.update(room);
+    }
 
 }
