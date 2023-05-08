@@ -51,23 +51,13 @@ export default {
   },
   methods: {
     test1 () {
-      var _this = this
+      // var _this = this
       console.log(this.$store.state)
       this.$axios
-        .post('/user/update', {
-          id: this.loginForm.id,
-          username: this.loginForm.username,
-          password: this.loginForm.password,
-          name: this.loginForm.name,
-          postbox: this.loginForm.postbox
+        .post('/hotel/showall', {
         })
         .then(successResponse => {
-          if (successResponse.data.code === 200) {
-            // var data = this.loginForm
-            _this.$store.commit('login', _this.loginForm)
-            var path = this.$route.query.redirect
-            this.$router.replace({path: path === '/' || path === undefined ? '/index' : path})
-          }
+
         })
         .catch(failResponse => {
         })

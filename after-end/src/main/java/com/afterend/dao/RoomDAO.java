@@ -1,0 +1,82 @@
+package com.afterend.dao;
+
+import com.afterend.dao.utils.JDBCUtils;
+import com.afterend.pojo.Room;
+import com.afterend.pojo.User;
+import org.springframework.stereotype.Service;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+@Service
+public class RoomDAO {
+    public static Room getByHotelidAndRoomid(Room room) {
+        Connection con=null;
+        Room s = null;
+        try{
+            con= JDBCUtils.getConnect();
+            String sql="select * from room where hotel_id=? and room_id=?";
+            PreparedStatement pstate = con.prepareStatement(sql);
+            pstate.setInt(1,room.getHotelid());
+            pstate.setInt(2,room.getId());
+            ResultSet resultSet = pstate.executeQuery();
+            while (resultSet.next()){
+                s=new Room();
+                s.setId(resultSet.getInt("room_id"));
+                s.setHotelid(resultSet.getInt("hotel_id"));
+                s.setName(resultSet.getString("room_name"));
+                s.setSize(resultSet.getInt("room_size"));
+                s.setPrice_b(resultSet.getInt("room_breakfast"));
+                s.setPrice_r(resultSet.getInt("room_price"));
+                s.setIfFreeCancle(resultSet.getInt("room_isfreecancel"));
+                s.setIfNoRequire(resultSet.getInt("room_isnorequire"));
+                s.setNum_max(resultSet.getInt("room_num"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            try {
+                if(con==null){
+                    System.out.println("test ");
+                }
+                con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return s;
+    }
+    public static Room add(Room room) {
+        Connection con=null;
+        try{
+            con= JDBCUtils.getConnect();
+            String sql="INSERT INTO `HotelSystem`.`room`(`hotel_id`, `room_id`, `room_name`, `room_size`, `room_price`, `room_breakfast`, `room_isfreecancel`, `room_isnorequire`, `room_num`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            PreparedStatement pstate = con.prepareStatement(sql);
+            pstate.setInt(1,room.getHotelid());
+            pstate.setInt(2,room.getId());
+            pstate.setString(3,room.getName());
+            pstate.setInt(4,room.getSize());
+            pstate.setInt(5,room.getPrice_r());
+            pstate.setInt(6,room.getPrice_b());
+            pstate.setInt(7,room.isIfFreeCancle());
+            pstate.setInt(8,room.getId());
+            pstate.setInt(9,room.getNum_max());
+            ResultSet resultSet = pstate.executeQuery();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            try {
+                if(con==null){
+                    System.out.println("test ");
+                }
+                con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return room;
+    }
+}

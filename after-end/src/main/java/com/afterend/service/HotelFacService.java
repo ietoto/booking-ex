@@ -17,7 +17,7 @@ public class HotelFacService {
         return hotelFacDAO.getByHotelid(hotel);
     }
     //添加对应酒店的设施信息
-    public HotelFac get(HotelFac hotelFac){
+    public HotelFac add(HotelFac hotelFac){
         return hotelFacDAO.add(hotelFac);
     }
     //删除对应酒店的设施信息

@@ -18,11 +18,11 @@ public class RoomFacService {
     public List<RoomFac> get(Hotel hotel){
         return roomFacDAO.getByHotelid(hotel);
     }
-    //添加对应酒店的设施信息
+    //添加对应酒店客房的设施信息
     public RoomFac get(RoomFac roomFac){
         return roomFacDAO.add(roomFac);
     }
-    //删除对应酒店的设施信息
+    //删除对应酒店客房的设施信息
     public RoomFac delete(RoomFac roomFac){
         return roomFacDAO.delete(roomFac);
     }

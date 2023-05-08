@@ -23,8 +23,8 @@ public class Room {
     int size;
     int price_r;
     int price_b;
-    boolean ifFreeCancle;   //免费取消
-    boolean ifNoRequire;    //免费预订
+    int ifFreeCancle;   //免费取消
+    int ifNoRequire;    //免费预订
     @Transient
     List<String> facilities;
 
@@ -93,19 +93,19 @@ public class Room {
         this.facilities = facilities;
     }
 
-    public boolean isIfFreeCancle() {
+    public int isIfFreeCancle() {
         return ifFreeCancle;
     }
 
-    public void setIfFreeCancle(boolean ifFreeCancle) {
+    public void setIfFreeCancle(int ifFreeCancle) {
         this.ifFreeCancle = ifFreeCancle;
     }
 
-    public boolean isIfNoRequire() {
+    public int isIfNoRequire() {
         return ifNoRequire;
     }
 
-    public void setIfNoRequire(boolean ifNoRequire) {
+    public void setIfNoRequire(int ifNoRequire) {
         this.ifNoRequire = ifNoRequire;
     }
 

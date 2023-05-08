@@ -18,4 +18,6 @@ public class SearchService {
     public List<Hotel> SearchbyLocationAndHotel(Search search){
         return searchDAO.SearchbyLocationAndHotel(search);
     }
+    //根据日期来查询酒店
+
 }
