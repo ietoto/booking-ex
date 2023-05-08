@@ -16,15 +16,16 @@ public class Room {
     int id;
 
     String name;
-    int num_rec;
-    int num_ava;
+    int num_rec;    //推荐订房数
+    int num_ava;    //剩余空房数
     int size;
     int price_r;
     int price_b;
+    boolean ifFreeCancle;   //免费取消
+    boolean ifNoRequire;    //免费预订
     @Transient
     List<String> facilities;
 
-    int state;
 
     public int getId() {
         return id;
@@ -90,11 +91,19 @@ public class Room {
         this.facilities = facilities;
     }
 
-    public int getState() {
-        return state;
+    public boolean isIfFreeCancle() {
+        return ifFreeCancle;
     }
 
-    public void setState(int state) {
-        this.state = state;
+    public void setIfFreeCancle(boolean ifFreeCancle) {
+        this.ifFreeCancle = ifFreeCancle;
+    }
+
+    public boolean isIfNoRequire() {
+        return ifNoRequire;
+    }
+
+    public void setIfNoRequire(boolean ifNoRequire) {
+        this.ifNoRequire = ifNoRequire;
     }
 }
