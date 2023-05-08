@@ -16,6 +16,7 @@ public class Room {
     int id;
 
     String name;
+    int hotelid;
     int num_rec;    //推荐订房数
     int num_ava;    //剩余空房数
     int size;
@@ -105,5 +106,13 @@ public class Room {
 
     public void setIfNoRequire(boolean ifNoRequire) {
         this.ifNoRequire = ifNoRequire;
+    }
+
+    public int getHotelid() {
+        return hotelid;
+    }
+
+    public void setHotelid(int hotelid) {
+        this.hotelid = hotelid;
     }
 }
