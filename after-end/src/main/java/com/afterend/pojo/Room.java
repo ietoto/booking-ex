@@ -17,6 +17,7 @@ public class Room {
 
     String name;
     int hotelid;
+    int num_max;    //客房总数
     int num_rec;    //推荐订房数
     int num_ava;    //剩余空房数
     int size;
@@ -114,5 +115,13 @@ public class Room {
 
     public void setHotelid(int hotelid) {
         this.hotelid = hotelid;
+    }
+
+    public int getNum_max() {
+        return num_max;
+    }
+
+    public void setNum_max(int num_max) {
+        this.num_max = num_max;
     }
 }

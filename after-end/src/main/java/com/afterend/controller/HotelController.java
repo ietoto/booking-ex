@@ -3,6 +3,7 @@ package com.afterend.controller;
 import com.afterend.pojo.*;
 import com.afterend.result.Result;
 import com.afterend.service.HotelService;
+import com.afterend.service.HotelFacService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,12 +18,19 @@ public class HotelController {
 
     @Autowired
     HotelService hotelService;
-
-
     @CrossOrigin
     @PostMapping(value = "/api/hotel/showall")
     @ResponseBody
     public List<Hotel> showall(HttpSession session) {
+        return (hotelService.showall());
+    }
+
+    @CrossOrigin
+    @PostMapping(value = "/api/hotel/info")
+    @ResponseBody
+    public List<Hotel> hotelInfo(@RequestBody Hotel requestHotel, HttpSession session) {
+        //todo:gethotelandroomfac
+
         return (hotelService.showall());
     }
 
