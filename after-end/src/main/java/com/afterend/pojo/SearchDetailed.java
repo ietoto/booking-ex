@@ -15,15 +15,22 @@ public class SearchDetailed {
     int child;
     double distance;
     List<Integer> distance_num; //0: 1公里内 1: 3公里内 2: 5公里内
+    List<Boolean> select_distance_num;  //size=3, 0:不选 1:选
     double score;
     List<Integer> score_num;    //0: beyond 9 1:beyond 8 2: beyond 7 3: beyond 6
+    List<Boolean> select_score_num; // size=4, 0:不选 1:选
     int star;
     List<Integer> star_num;     //0-5
+    List<Boolean> select_star_num;  //size=6, 0:不选 1:选
     List<Hotel> hotels;
     List<HotelFac> hotelFacList;
+    List<HotelFac> select_hotelFacList; //select_hotelFacList.num=0:不选 =1：选
     List<RoomFac>   roomFacList;
+    List<RoomFac> select_roomFacList;   //select_roomFacList.num=0:不选 =1:选
     List<Integer> break_num; //0: 早餐100以下   1: 早餐100以上
+    List<Boolean> select_break_num; //size=2, 0:不选 1:选
     List<Integer> cancle_policy_num;    //0: 免费取消 1: 免费预订
+    List<Boolean> select_policy_num;    //size=2, 0:不选 1:选
     int num;    //总共找到的酒店数
 
     public int getId() {
@@ -176,5 +183,61 @@ public class SearchDetailed {
 
     public void setStar_num(List<Integer> star_num) {
         this.star_num = star_num;
+    }
+
+    public List<Boolean> getSelect_distance_num() {
+        return select_distance_num;
+    }
+
+    public void setSelect_distance_num(List<Boolean> select_distance_num) {
+        this.select_distance_num = select_distance_num;
+    }
+
+    public List<Boolean> getSelect_score_num() {
+        return select_score_num;
+    }
+
+    public void setSelect_score_num(List<Boolean> select_score_num) {
+        this.select_score_num = select_score_num;
+    }
+
+    public List<Boolean> getSelect_star_num() {
+        return select_star_num;
+    }
+
+    public void setSelect_star_num(List<Boolean> select_star_num) {
+        this.select_star_num = select_star_num;
+    }
+
+    public List<HotelFac> getSelect_hotelFacList() {
+        return select_hotelFacList;
+    }
+
+    public void setSelect_hotelFacList(List<HotelFac> select_hotelFacList) {
+        this.select_hotelFacList = select_hotelFacList;
+    }
+
+    public List<RoomFac> getSelect_roomFacList() {
+        return select_roomFacList;
+    }
+
+    public void setSelect_roomFacList(List<RoomFac> select_roomFacList) {
+        this.select_roomFacList = select_roomFacList;
+    }
+
+    public List<Boolean> getSelect_break_num() {
+        return select_break_num;
+    }
+
+    public void setSelect_break_num(List<Boolean> select_break_num) {
+        this.select_break_num = select_break_num;
+    }
+
+    public List<Boolean> getSelect_policy_num() {
+        return select_policy_num;
+    }
+
+    public void setSelect_policy_num(List<Boolean> select_policy_num) {
+        this.select_policy_num = select_policy_num;
     }
 }

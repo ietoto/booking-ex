@@ -54,10 +54,10 @@ public class OrderController {
     @CrossOrigin
     @PostMapping(value = "/api/order/manager_showall")
     @ResponseBody
-    public List<Order> showallM(@RequestBody User requestUser, HttpSession session) {
+    public List<Order> showallM(@RequestBody Hotel requestHotel, HttpSession session) {
         Order order=new Order();
-        order.setUserid(requestUser.getId());
-        return orderService.showByUserID(order);
+        order.setHotelid(requestHotel.getId());
+        return orderService.showByHotelID(order);
     }
 
     //管理员查看所有订单
