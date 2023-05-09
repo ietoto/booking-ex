@@ -58,6 +58,7 @@ public class HotelController {
         return hotel;
     }
 
+    //管理员添加酒店
     @CrossOrigin
     @PostMapping(value = "/api/hotel/add")
     @ResponseBody
@@ -76,6 +77,7 @@ public class HotelController {
         }
     }
 
+    //管理员删除酒店
     @CrossOrigin
     @PostMapping(value = "/api/hotel/delete")
     @ResponseBody
@@ -94,6 +96,7 @@ public class HotelController {
         }
     }
 
+    //管理员/酒店经理更新酒店信息
     @CrossOrigin
     @PostMapping(value = "/api/hotel/update")
     @ResponseBody

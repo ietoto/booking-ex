@@ -41,15 +41,30 @@ public class OrderController {
     }
 
     //用户查订单
+    @CrossOrigin
+    @PostMapping(value = "/api/order/user_showall")
+    @ResponseBody
+    public List<Order> showallU(@RequestBody User requestUser, HttpSession session) {
+        Order order=new Order();
+        order.setUserid(requestUser.getId());
+        return orderService.showByUserID(order);
+    }
 
     //酒店经理查订单
-
+    @CrossOrigin
+    @PostMapping(value = "/api/order/manager_showall")
+    @ResponseBody
+    public List<Order> showallM(@RequestBody User requestUser, HttpSession session) {
+        Order order=new Order();
+        order.setUserid(requestUser.getId());
+        return orderService.showByUserID(order);
+    }
 
     //管理员查看所有订单
     @CrossOrigin
     @PostMapping(value = "/api/order/admin_showall")
     @ResponseBody
-    public List<Order> showall(@RequestBody Order requestOrder, HttpSession session) {
+    public List<Order> showallA(HttpSession session) {
         return orderService.showall();
     }
 
