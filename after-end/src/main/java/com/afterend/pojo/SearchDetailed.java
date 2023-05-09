@@ -15,7 +15,7 @@ public class SearchDetailed {
     double distance;
     double score;
     int star;
-    List<Integer> hotelId;
+    List<Hotel> hotelId;
     List<HotelFac> hotelFacList;
     List<RoomFac>   roomFacList;
 
@@ -115,11 +115,11 @@ public class SearchDetailed {
         this.roomFacList = roomFacList;
     }
 
-    public List<Integer> getHotelId() {
+    public List<Hotel> getHotelId() {
         return hotelId;
     }
 
-    public void setHotelId(List<Integer> hotelId) {
+    public void setHotelId(List<Hotel> hotelId) {
         this.hotelId = hotelId;
     }
 }

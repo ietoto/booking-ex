@@ -17,8 +17,9 @@ public class SearchController {
     @Autowired
     SearchService searchService;
 
+
     @CrossOrigin
-    @PostMapping(value = "/api/search/searchSimple")
+    @PostMapping(value = "/api/search/searchByLocation")
     @ResponseBody
     public List<Hotel> searchWithLocation(@RequestBody Search requestSearch, HttpSession session) {
         String location = requestSearch.getLocation();
