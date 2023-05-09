@@ -17,18 +17,33 @@ public class SearchController {
     @Autowired
     SearchService searchService;
 
+    //搜索
+    @CrossOrigin
+    @PostMapping(value = "/api/search/search")
+    @ResponseBody
+    public List<Hotel> search(@RequestBody Search requestSearch, HttpSession session) {
+        Search search= new Search();
+        /*
+
+         */
+
+        List<Hotel> hotels = searchService.SearchbyLocationAndHotel(requestSearch);
+        return hotels;
+    }
+
 
     @CrossOrigin
     @PostMapping(value = "/api/search/searchByLocation")
     @ResponseBody
     public List<Hotel> searchWithLocation(@RequestBody Search requestSearch, HttpSession session) {
-        String location = requestSearch.getLocation();
-        String hotel = requestSearch.getHotel();
-        location = HtmlUtils.htmlEscape(location);
-        hotel = HtmlUtils.htmlEscape(hotel);
-        System.out.println("searching: " + location + hotel+"...");
+        System.out.println("Searching...");
 
         List<Hotel> hotels = searchService.SearchbyLocationAndHotel(requestSearch);
+        if(null == hotels){
+            System.out.println("No result find.");
+        }else{
+            System.out.println("First hotel id: "+hotels.get(0).getId());
+        }
         return hotels;
     }
 
