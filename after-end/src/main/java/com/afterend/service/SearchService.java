@@ -36,10 +36,19 @@ public class SearchService {
     public List<Hotel> SearchbyCityAndDateAndHumanNum(Search search){
         return searchDAO.SearchbyCityAndDateAndHumanNum(search);
     }
-    //根据酒店地区、日期、人数，返回酒店list  这里的酒店地区指Localtion eg：南京
+    //根据酒店地区、日期、人数，返回酒店id list  这里的酒店地区指Localtion eg：南京
     public List<Hotel> SearchbyLocationAndDateAndHumanNum(Search search){
         return searchDAO.SearchbyLocationAndDateAndHumanNum(search);
     }
-
+    //根据酒店地区、日期、人数，返回酒店各个信息 list和酒店设施、客房设施及其数量  这里的酒店地区指Localtion eg：南京
+    //就是第一次查找要返回的东西
+    public SearchDetailed SearchForFirstLocation(Search search){
+        return searchDAO.SearchForFirstLocation(search);
+    }
+    //根据酒店地区、日期、人数，返回酒店各个信息 list和酒店设施、客房设施及其数量  这里的酒店地区指city eg：江苏
+    //就是第一次查找要返回的东西
+    public SearchDetailed SearchForFirstCity(Search search){
+        return searchDAO.SearchForFirstCity(search);
+    }
 
 }
