@@ -21,9 +21,9 @@ public class SearchController {
     @CrossOrigin
     @PostMapping(value = "/api/search/search")
     @ResponseBody
-    public SearchDetailed search(@RequestBody Search requestSearch, HttpSession session) {
+    public SearchDetailed search(@RequestBody SearchDetailed requestSearch, HttpSession session) {
         System.out.println("Searching...");
-        SearchDetailed searchDetailed = searchService.SearchForFirstLocation(requestSearch);
+        SearchDetailed searchDetailed = searchService.SearchForFirst(requestSearch);
         if(null==searchDetailed){
             System.out.println("No result find.");
         }else {
