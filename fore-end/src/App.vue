@@ -84,7 +84,7 @@ export default {
 
 .menu-right {
   float: right;
-  margin-right: 500px;
+  margin-right: 350px;
   display: flex;
   align-items: center;
   height: 100%;
