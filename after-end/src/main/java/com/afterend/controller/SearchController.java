@@ -27,24 +27,25 @@ public class SearchController {
         if(null==searchDetailed){
             System.out.println("No result find.");
         }else {
-            List<Integer> distance_num=searchDetailed.getDistance_num();
-            List<Integer> score_num=searchDetailed.getScore_num();
-            List<Integer> star_num=searchDetailed.getStar_num();
-            List<Integer> break_num=searchDetailed.getBreak_num();
-            List<Integer> cancle_policy_num=searchDetailed.getCancle_policy_num();
-            List<HotelFac> hotelFacList = searchDetailed.getHotelFacList();
-            List<RoomFac> roomFacList = searchDetailed.getRoomFacList();
-
-            System.out.println("Print hotel facilities: ID    Number");
-            for(int i=0;i<hotelFacList.size();i++) {
-                System.out.println(i+": "+hotelFacList.get(i).getNum());
-            }
-
-            System.out.println("Print Room facilities: HotelID    Number");
-            for (int i=0;i<roomFacList.size();i++){
-                System.out.println(i+": " + roomFacList.get(i).getNum());
-            }
-
+            System.out.println("Search success.");
+//            List<Integer> distance_num=searchDetailed.getDistance_num();
+//            List<Integer> score_num=searchDetailed.getScore_num();
+//            List<Integer> star_num=searchDetailed.getStar_num();
+//            List<Integer> break_num=searchDetailed.getBreak_num();
+//            List<Integer> cancle_policy_num=searchDetailed.getCancle_policy_num();
+//            List<HotelFac> hotelFacList = searchDetailed.getHotelFacList();
+//            List<RoomFac> roomFacList = searchDetailed.getRoomFacList();
+//
+//            System.out.println("Print hotel facilities: ID    Number");
+//            for(int i=0;i<hotelFacList.size();i++) {
+//                System.out.println(i+": "+hotelFacList.get(i).getNum());
+//            }
+//
+//            System.out.println("Print Room facilities: HotelID    Number");
+//            for (int i=0;i<roomFacList.size();i++){
+//                System.out.println(i+": " + roomFacList.get(i).getNum());
+//            }
+//
 //            System.out.println("total hotel number: "+searchDetailed.getNum());
 //            System.out.println("Beneath 1km: " + distance_num.get(0));
 //            System.out.println("Beneath 3km: " + distance_num.get(1));
@@ -63,7 +64,6 @@ public class SearchController {
 //            System.out.println("Breakfast below 100RMB: " + break_num.get(1));
 //            System.out.println("Free cancel" + cancle_policy_num.get(0));
 //            System.out.println("Free reserve" + cancle_policy_num.get(1));
-
 
         }
 
