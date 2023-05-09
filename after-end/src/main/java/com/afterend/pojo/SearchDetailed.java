@@ -119,7 +119,7 @@ public class SearchDetailed {
         return hotels;
     }
 
-    public void setHotels(List<Hotel> hotelId) {
-        this.hotels = hotelId;
+    public void setHotels(List<Hotel> hotels) {
+        this.hotels = hotels;
     }
 }
