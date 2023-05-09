@@ -18,6 +18,7 @@ public class SearchDetailed {
     double score;
     List<Integer> score_num;    //0: beyond 9 1:beyond 8 2: beyond 7 3: beyond 6
     int star;
+    List<Integer> star_num;     //0-5
     List<Hotel> hotels;
     List<HotelFac> hotelFacList;
     List<RoomFac>   roomFacList;
@@ -167,5 +168,13 @@ public class SearchDetailed {
 
     public void setNum(int num) {
         this.num = num;
+    }
+
+    public List<Integer> getStar_num() {
+        return star_num;
+    }
+
+    public void setStar_num(List<Integer> star_num) {
+        this.star_num = star_num;
     }
 }
