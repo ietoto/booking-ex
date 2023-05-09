@@ -679,9 +679,81 @@ public class SearchDAO {
                 }
             }
 
+            i=-1;
+            for(int j=0;j<search.getSelect_break_num().size();j++){
+                if(search.getSelect_break_num().get(j)){
+                    i=j;
+                    break;
+                }
+            }
+            if(i!=-1){
+                sql1+="AND (";
+                for(int j=0;j<search.getSelect_break_num().size();j++){
+                    if(search.getSelect_break_num().get(j)){
+                        if(i==j){
+                            if (j == 0) {
+                                sql1+=" room_breakfast<100";
+                            }
+                            else{
+                                sql1+=" room_breakfast>=100";
+                            }
+                        }
+                        else{
+                            if (j == 0) {
+                                sql1+=" OR room_breakfast<100";
+                            }
+                            else{
+                                sql1+=" OR room_breakfast>=100";
+                            }
+                        }
+                    }
+                }
+                sql1+=" )";
+            }
 
+            i=-1;
+            for(int j=0;j<search.getSelect_hotelFacList().size();j++){
+                if(search.getSelect_hotelFacList().get(j).getNum()){
+                    i=j;
+                    break;
+                }
+            }
+            if(i!=-1){
+                sql1+=" AND hotel_id IN(SELECT hotel_id FROM fac_hotel where ";
+                for(int j=0;j<search.getSelect_hotelFacList().size();j++){
+                    if(search.getSelect_hotelFacList().get(j).getNum()){
+                        if(i==j){
+                            sql1+="hotel_facname="+search.getSelect_hotelFacList().get(j).getName();
+                        }
+                        else{
+                            sql1+=" OR hotel_facname="+search.getSelect_hotelFacList().get(j).getName();
+                        }
+                    }
+                }
+                sql1+=" )";
+            }
 
-
+            i=-1;
+            for(int j=0;j<search.getSelect_roomFacList().size();j++){
+                if(search.getSelect_roomFacList().get(j).getNum()){
+                    i=j;
+                    break;
+                }
+            }
+            if(i!=-1){
+                sql1+=" AND hotel_id IN(SELECT hotel_id FROM fac_room where ";
+                for(int j=0;j<search.getSelect_roomFacList().size();j++){
+                    if(search.getSelect_roomFacList().get(j).getNum()){
+                        if(i==j){
+                            sql1+="room_facname="+search.getSelect_roomFacList().get(j).getName();
+                        }
+                        else{
+                            sql1+=" OR room_facname="+search.getSelect_roomFacList().get(j).getName();
+                        }
+                    }
+                }
+                sql1+=" )";
+            }
 
             sql1+=") as a LEFT join (select hotelid,roomid,count(*) num from `order` where  state=1 and startdate<=? and enddate >=? GROUP BY hotelid,roomid) as b on a.hotel_id=b.hotelid and a.room_id=b.roomid group by hotel_id HAVING num_hum > ?;";
             PreparedStatement pstate1 = con.prepareStatement(sql1);

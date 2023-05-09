@@ -33,7 +33,7 @@ public class HotelFac {
         this.name = name;
     }
 
-    public int getNum() {
+    public boolean getNum() {
         return num;
     }
 

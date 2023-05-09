@@ -34,7 +34,7 @@ public class RoomFac {
         this.name = name;
     }
 
-    public int getNum() {
+    public boolean getNum() {
         return num;
     }
 
