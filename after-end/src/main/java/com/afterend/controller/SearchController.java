@@ -74,6 +74,23 @@ public class SearchController {
         return searchDetailed;
     }
 
+    @CrossOrigin
+    @PostMapping(value = "/api/search/filter")
+    @ResponseBody
+    public SearchDetailed filter(@RequestBody SearchDetailed requestSearch, HttpSession session) {
+        System.out.println("Searching...");
+        SearchDetailed searchDetailed = searchService.SearchForSecond(requestSearch);
+        if(null==searchDetailed){
+            System.out.println("No result find.");
+        }else {
+            System.out.println("Search success.");
+            System.out.println("total hotel number: "+searchDetailed.getNum());
+        }
+
+        return searchDetailed;
+    }
+
+
     //通过位置和酒店名, 搜索酒店
     @CrossOrigin
     @PostMapping(value = "/api/search/searchByLocation")
