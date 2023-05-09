@@ -31,7 +31,7 @@ public class SearchController {
         return hotels;
     }
 
-
+    //通过位置和酒店名, 搜索酒店
     @CrossOrigin
     @PostMapping(value = "/api/search/searchByLocation")
     @ResponseBody
@@ -47,7 +47,7 @@ public class SearchController {
         return hotels;
     }
 
-    //根据日期和酒店id搜索, 只返回客房数量
+    //根据日期和酒店id搜索, 只返回客房数量num_max
     @CrossOrigin
     @PostMapping(value = "/api/search/searchHotelRoomNum")
     @ResponseBody
