@@ -1,25 +1,17 @@
 <template>
 <div class="container">
     <div class="content">
-        <div class="text-section">
-                <header>
-                    <h1 class="title">
-                        登录可省钱
-                    </h1>
-                </header>
-                <p class="description">
-                预定参与的住宿至少可以节省10%的价格，只需寻找蓝色Genius图标即可
-                </p>
-                <button class="cta-button">
-                    登录或注册账号
-                </button>
-        </div>
-        <div class="image-section">
-            <img src="https://r-xx.bstatic.com/xdata/images/xphoto/300x300/215304012.png?k=b77b02154b788db65955fd7c7ba2b62b0e7206053c53c950165f8959aa0f6021&o=" alt="带有Genius会员奖励计划标签的礼物盒。">
-            <div class="footer-text">
-                Booking.com会员奖励计划
-            </div>
-        </div>
+    <div class="text-section">
+        <header>
+        <h1 class="title">为你的旅行获取更多礼遇</h1>
+        </header>
+        <p class="description">
+        预定住宿可以节省10%的价格，寻找蓝色Genius图标升级你的旅行
+        </p>
+        <button class="cta-button">登录或注册账号</button>
+    </div>
+    <div class="image-section">
+    </div>
     </div>
 </div>
 </template>
@@ -35,29 +27,36 @@ export default {
 display: flex;
 justify-content: center;
 background-color: #082c5d;
-min-height: 50vh;
-padding: 15px 0;
+background-image: url("https://r-xx.bstatic.com/xdata/images/xphoto/2880x868/215577801.jpeg?k=c7f3c36ff700afff6bd7a92935e0a0b4b84dab2f7adf0079f2614eb488b0ed04&o=");
+background-size: cover;
+background-position: center;
+min-height: 90%;
+padding: 20px 0;
 }
 
 .content {
 display: flex;
-align-items: flex-start;
+align-items: center;
+justify-content: space-around;
+width: 100%;
+max-width: 1200px;
+padding: 0 20px;
+flex-wrap: wrap;
 }
 
 .text-section {
-margin-right: 20px;
-margin-top: 60px;
+max-width: 50%;
+padding: 0 10px;
+box-sizing: border-box;
 }
 
 .title {
-font-size: 40px;
-margin-bottom: 8px;
+font-size: 35px;
 color: #fff;
 }
 
 .description {
-margin-bottom: 22px;
-font-size: 20px;
+font-size: 15px;
 color: #fff;
 }
 
@@ -77,17 +76,37 @@ transition: background-color 0.3s;
 }
 
 .cta-button:hover {
-background-color: #0D47A1;
+background-color: #0d47a1;
 }
 
 .image-section {
 display: flex;
 flex-direction: column;
+max-width: 50%;
+padding: 0 20px;
+box-sizing: border-box;
+justify-content: center;
+align-items: center;
 }
 
 .footer-text {
 font-size: 22px;
 margin-top: 8px;
 color: #fff;
+}
+
+@media screen and (max-width: 768px) {
+.content {
+    flex-direction: column;
+    align-items: center;
+}
+
+.text-section {
+    max-width: 100%;
+}
+
+.image-section {
+    max-width: 100%;
+}
 }
 </style>
