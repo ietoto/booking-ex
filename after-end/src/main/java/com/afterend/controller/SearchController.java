@@ -36,16 +36,31 @@ public class SearchController {
     @PostMapping(value = "/api/search/searchByLocation")
     @ResponseBody
     public List<Hotel> searchWithLocation(@RequestBody Search requestSearch, HttpSession session) {
-        System.out.println("Searching...");
+        System.out.println("Searching with location and hotel name...");
 
         List<Hotel> hotels = searchService.SearchbyLocationAndHotel(requestSearch);
-        System.out.println(hotels.size());
         if(0 == hotels.size()){
             System.out.println("No result find.");
         }else{
-            System.out.println("First hotel id: "+hotels.get(0).getId());
+            System.out.println("Results find.");
         }
         return hotels;
+    }
+
+    //只返回客房数量
+    @CrossOrigin
+    @PostMapping(value = "/api/search/searchHotelRoomNum")
+    @ResponseBody
+    public List<Room> searchHotelRoomNum(@RequestBody Search requestSearch, HttpSession session) {
+        System.out.println("Searching...");
+
+        List<Room> rooms = searchService.SearchForHotelRoomNum(requestSearch);
+        if(0 == rooms.size()){
+            System.out.println("No result find.");
+        }else{
+            System.out.println("Results find.");
+        }
+        return rooms;
     }
 
 }
