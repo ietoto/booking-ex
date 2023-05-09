@@ -20,6 +20,7 @@ public class OrderController {
     OrderService orderService;
 
 
+    //用户请求订单
     @CrossOrigin
     @PostMapping(value = "/api/order/req")
     @ResponseBody
@@ -39,13 +40,20 @@ public class OrderController {
         }
     }
 
+    //用户查订单
+
+    //酒店经理查订单
+
+
+    //管理员查看所有订单
     @CrossOrigin
-    @PostMapping(value = "/api/order/showall")
+    @PostMapping(value = "/api/order/admin_showall")
     @ResponseBody
     public List<Order> showall(@RequestBody Order requestOrder, HttpSession session) {
         return orderService.showall();
     }
 
+    //管理员/酒店经理删除订单
     @CrossOrigin
     @PostMapping(value = "/api/order/delete")
     @ResponseBody
@@ -65,6 +73,7 @@ public class OrderController {
         }
     }
 
+    //管理员/酒店经理修改订单信息
     @CrossOrigin
     @PostMapping(value = "/api/order/update")
     @ResponseBody

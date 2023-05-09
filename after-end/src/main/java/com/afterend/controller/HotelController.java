@@ -18,13 +18,13 @@ public class HotelController {
 
     @Autowired
     HotelService hotelService;
-    @CrossOrigin
-    @PostMapping(value = "/api/hotel/showall")
-    @ResponseBody
+
+
     public List<Hotel> showall(HttpSession session) {
         return (hotelService.showall());
     }
 
+    //获取单个酒店详细信息
     @CrossOrigin
     @PostMapping(value = "/api/hotel/info")
     @ResponseBody
