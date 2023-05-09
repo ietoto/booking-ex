@@ -74,7 +74,7 @@ public class SearchController {
         return searchDetailed;
     }
 
-    //filter——
+    //filter
     @CrossOrigin
     @PostMapping(value = "/api/search/filter")
     @ResponseBody
