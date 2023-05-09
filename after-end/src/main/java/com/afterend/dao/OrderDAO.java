@@ -50,6 +50,78 @@ public class OrderDAO {
         }
         return list;
     }
+    public static List<Order> showByUserID(Order order) {
+        Connection con=null;
+        List<Order> list=new ArrayList<>();
+        try{
+            con= JDBCUtils.getConnect();
+            String sql="select * from order where userid=?";
+            PreparedStatement pstate = con.prepareStatement(sql);
+            pstate.setInt(1,order.getUserid());
+            ResultSet resultSet = pstate.executeQuery();
+            while (resultSet.next()){
+                Order s=new Order();
+                s.setId(resultSet.getInt("orderid"));
+                s.setUserid(resultSet.getInt("userid"));
+                s.setHotelid(resultSet.getInt("hotelid"));
+                s.setRoomid(resultSet.getInt("roomid"));
+                s.setNum(resultSet.getInt("num"));
+                s.setMoney(resultSet.getInt("money"));
+                s.setStartdate(resultSet.getString("startdate"));
+                s.setEnddate(resultSet.getString("enddate"));
+                s.setState(resultSet.getInt("state"));
+                list.add(s);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            try {
+                if(con==null){
+                    System.out.println("test ");
+                }
+                con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return list;
+    }
+    public static List<Order> showByHotelID(Order order) {
+        Connection con=null;
+        List<Order> list=new ArrayList<>();
+        try{
+            con= JDBCUtils.getConnect();
+            String sql="select * from order where hotelid=?";
+            PreparedStatement pstate = con.prepareStatement(sql);
+            pstate.setInt(1,order.getHotelid());
+            ResultSet resultSet = pstate.executeQuery();
+            while (resultSet.next()){
+                Order s=new Order();
+                s.setId(resultSet.getInt("orderid"));
+                s.setUserid(resultSet.getInt("userid"));
+                s.setHotelid(resultSet.getInt("hotelid"));
+                s.setRoomid(resultSet.getInt("roomid"));
+                s.setNum(resultSet.getInt("num"));
+                s.setMoney(resultSet.getInt("money"));
+                s.setStartdate(resultSet.getString("startdate"));
+                s.setEnddate(resultSet.getString("enddate"));
+                s.setState(resultSet.getInt("state"));
+                list.add(s);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            try {
+                if(con==null){
+                    System.out.println("test ");
+                }
+                con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return list;
+    }
     public static Order insert(Order order) {
         Connection con=null;
         try{

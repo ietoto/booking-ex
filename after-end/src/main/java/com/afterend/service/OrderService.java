@@ -19,6 +19,14 @@ public class OrderService {
     public List<Order> showall(){
         return orderDAO.showall();
     }
+    //根据用户id查询所有订单
+    public List<Order> showByUserID(Order order){
+        return orderDAO.showByUserID(order);
+    }
+    //根据酒店id查询所有订单
+    public List<Order> showByHotelID(Order order){
+        return orderDAO.showByHotelID(order);
+    }
     //添加订单
     public Order add(Order order){
         return orderDAO.insert(order);
