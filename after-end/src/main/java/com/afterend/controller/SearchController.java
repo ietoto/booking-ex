@@ -17,7 +17,11 @@ public class SearchController {
     @Autowired
     SearchService searchService;
 
-    //搜索
+    //初次搜索, 根据位置, 日期, 人数
+    //返回(可以参考pojo.SearchDetailed)：满足条件的酒店信息（不包括其客房和酒店设施的信息）
+    //共找到的总数量、星级为0-5的数量、距离中心的1、3、5公里内的数量、评分大于9、8、7、6的数量
+    //酒店和客房设施及其数量
+    //早餐价格大于100或小于100的数量、免费取消、无需预订的数量
     @CrossOrigin
     @PostMapping(value = "/api/search/search")
     @ResponseBody
@@ -48,6 +52,7 @@ public class SearchController {
 //
 //            System.out.println("total hotel number: "+searchDetailed.getNum());
 //            System.out.println("Beneath 1km: " + distance_num.get(0));
+
 //            System.out.println("Beneath 3km: " + distance_num.get(1));
 //            System.out.println("Beneath 5km: " + distance_num.get(2));
 //            System.out.println("Score beyond 9: " + score_num.get(0));
@@ -64,7 +69,6 @@ public class SearchController {
 //            System.out.println("Breakfast below 100RMB: " + break_num.get(1));
 //            System.out.println("Free cancel" + cancle_policy_num.get(0));
 //            System.out.println("Free reserve" + cancle_policy_num.get(1));
-
         }
 
         return searchDetailed;
