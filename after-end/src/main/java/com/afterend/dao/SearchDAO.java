@@ -1,10 +1,7 @@
 package com.afterend.dao;
 
 import com.afterend.dao.utils.JDBCUtils;
-import com.afterend.pojo.Hotel;
-import com.afterend.pojo.Room;
-import com.afterend.pojo.Search;
-import com.afterend.pojo.User;
+import com.afterend.pojo.*;
 import org.springframework.stereotype.Service;
 
 import java.sql.Connection;
@@ -77,12 +74,12 @@ public class SearchDAO {
         List<Room> list=new ArrayList<>();
         try{
             con= JDBCUtils.getConnect();
-            String sql="select a.hotel_id,a.room_id,a.room_num-b.num as num_ava from (select hotel_id,room_id,room_num from room where hotel_id=?) as a join (select hotelid,roomid,count(*) num from `order` where hotelid=? and state=1 and startdate<=? and enddate >=? GROUP BY hotelid,roomid) as b on a.hotel_id=b.hotelid and a.room_id=b.roomid;";
+            String sql="select a.hotel_id,a.room_id,ifnull(a.room_num-b.num,a.room_num) as num_ava from (select hotel_id,room_id,room_num from room where hotel_id=?) as a LEFT join (select hotelid,roomid,count(*) num from `order` where hotelid=? and state=1 and startdate<=? and enddate >=? GROUP BY hotelid,roomid) as b on a.hotel_id=b.hotelid and a.room_id=b.roomid;";
             PreparedStatement pstate = con.prepareStatement(sql);
             pstate.setInt(1,search.getId());
             pstate.setInt(2,search.getId());
-            pstate.setString(3,search.getStartdate());
-            pstate.setString(4,search.getEnddate());
+            pstate.setString(3,search.getEnddate());
+            pstate.setString(4,search.getStartdate());
             ResultSet resultSet = pstate.executeQuery();
             while (resultSet.next()){
                 Room s=new Room();
@@ -104,5 +101,120 @@ public class SearchDAO {
             }
         }
         return list;
+    }
+    public static List<Hotel> SearchByDateAndHumanNum(Search search) {
+        Connection con=null;
+        List<Hotel> list=new ArrayList<>();
+        try{
+            con= JDBCUtils.getConnect();
+            String sql="select a.hotel_id,sum((ifnull(a.room_num-b.num,a.room_num)*a.room_size)) as num_hum from (select hotel_id,room_id,room_num,room_size from room) as a LEFT join (select hotelid,roomid,count(*) num from `order` where  state=1 and startdate<=? and enddate >=? GROUP BY hotelid,roomid) as b on a.hotel_id=b.hotelid and a.room_id=b.roomid group by hotel_id HAVING num_hum >= ?";
+            PreparedStatement pstate = con.prepareStatement(sql);
+            pstate.setString(1,search.getEnddate());
+            pstate.setString(2,search.getStartdate());
+            int num= (int) ((double)search.getAdult()+(double)search.getChild()/2);
+            pstate.setInt(3,num);
+            ResultSet resultSet = pstate.executeQuery();
+            while (resultSet.next()){
+                Hotel s=new Hotel();
+                s.setId(resultSet.getInt("hotel_id"));
+                list.add(s);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            try {
+                if(con==null){
+                    System.out.println("test");
+                }
+                con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return list;
+    }
+    public static SearchDetailed SearchForSingalFac(Search search) {
+        Connection con=null;
+        SearchDetailed s=null;
+        List<HotelFac> HotelFaclist=new ArrayList<>();
+        List<RoomFac> RoomFaclist=new ArrayList<>();
+        try{
+            con= JDBCUtils.getConnect();
+            String sql1="SELECT * FROM fac_hotel where hotel_id=?";
+            PreparedStatement pstate1 = con.prepareStatement(sql1);
+            pstate1.setInt(1,search.getId());
+            ResultSet resultSet1 = pstate1.executeQuery();
+            while (resultSet1.next()){
+                HotelFac temp=null;
+                temp.setId(search.getId());
+                temp.setName(resultSet1.getString("hotel_facname"));
+                HotelFaclist.add(temp);
+            }
+            String sql2="SELECT hotel_id,room_facname FROM fac_room where hotel_id=? GROUP BY room_facname";
+            PreparedStatement pstate2 = con.prepareStatement(sql2);
+            pstate2.setInt(1,search.getId());
+            ResultSet resultSet2 = pstate1.executeQuery();
+            while (resultSet2.next()){
+                RoomFac temp=null;
+                temp.setId(search.getId());
+                temp.setName(resultSet1.getString("room_facname"));
+                RoomFaclist.add(temp);
+            }
+            s.setHotelFacList(HotelFaclist);
+            s.setRoomFacList(RoomFaclist);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            try {
+                if(con==null){
+                    System.out.println("test");
+                }
+                con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return s;
+    }
+    public static SearchDetailed SearchForAllFac() {
+        Connection con=null;
+        SearchDetailed s=null;
+        List<HotelFac> HotelFaclist=new ArrayList<>();
+        List<RoomFac> RoomFaclist=new ArrayList<>();
+        try{
+            con= JDBCUtils.getConnect();
+            String sql1="SELECT hotel_facname,count(*) num FROM fac_hotel GROUP BY hotel_facname";
+            PreparedStatement pstate1 = con.prepareStatement(sql1);
+            ResultSet resultSet1 = pstate1.executeQuery();
+            while (resultSet1.next()){
+                HotelFac temp=null;
+                temp.setName(resultSet1.getString("hotel_facname"));
+                temp.setNum(resultSet1.getInt("num"));
+                HotelFaclist.add(temp);
+            }
+            String sql2="SELECT room_facname,COUNT(*) num FROM (SELECT hotel_id,room_facname FROM fac_room GROUP BY room_facname,hotel_id)as a GROUP BY room_facname";
+            PreparedStatement pstate2 = con.prepareStatement(sql2);
+            ResultSet resultSet2 = pstate1.executeQuery();
+            while (resultSet2.next()){
+                RoomFac temp=null;
+                temp.setName(resultSet1.getString("room_facname"));
+                temp.setNum(resultSet1.getInt("num"));
+                RoomFaclist.add(temp);
+            }
+            s.setHotelFacList(HotelFaclist);
+            s.setRoomFacList(RoomFaclist);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            try {
+                if(con==null){
+                    System.out.println("test");
+                }
+                con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return s;
     }
 }
