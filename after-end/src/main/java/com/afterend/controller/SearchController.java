@@ -33,24 +33,24 @@ public class SearchController {
             List<Integer> break_num=searchDetailed.getBreak_num();
             List<Integer> cancle_policy_num=searchDetailed.getCancle_policy_num();
 
-            System.out.println("酒店总数: "+searchDetailed.getNum());
-            System.out.println("1公里内: " + distance_num.get(0));
-            System.out.println("3公里内: " + distance_num.get(1));
-            System.out.println("5公里内: " + distance_num.get(2));
-            System.out.println("高于9分: " + score_num.get(0));
-            System.out.println("高于8分: " + score_num.get(1));
-            System.out.println("高于7分: " + score_num.get(2));
-            System.out.println("高于6分: " + score_num.get(3));
-            System.out.println("民宿: " + star_num.get(0));
-            System.out.println("1星: " + star_num.get(1));
-            System.out.println("2星: " + star_num.get(2));
-            System.out.println("3星: " + star_num.get(3));
-            System.out.println("4星: " + star_num.get(4));
-            System.out.println("5星: " + star_num.get(5));
-            System.out.println("早餐100以下: " + break_num.get(0));
-            System.out.println("早餐100以上: " + break_num.get(1));
-            System.out.println("免费取消" + cancle_policy_num.get(0));
-            System.out.println("免费预订" + cancle_policy_num.get(1));
+            System.out.println("total hotel number: "+searchDetailed.getNum());
+            System.out.println("Beneath 1km: " + distance_num.get(0));
+            System.out.println("Beneath 3km: " + distance_num.get(1));
+            System.out.println("Beneath 5km: " + distance_num.get(2));
+            System.out.println("Score beyond 9: " + score_num.get(0));
+            System.out.println("Score beyond 8: " + score_num.get(1));
+            System.out.println("Score beyond 7: " + score_num.get(2));
+            System.out.println("Score beyond 6: " + score_num.get(3));
+            System.out.println("B&B: " + star_num.get(0));
+            System.out.println("1 star: " + star_num.get(1));
+            System.out.println("2 star: " + star_num.get(2));
+            System.out.println("3 star: " + star_num.get(3));
+            System.out.println("4 star: " + star_num.get(4));
+            System.out.println("5 star: " + star_num.get(5));
+            System.out.println("Breakfast beyond 100RMB: " + break_num.get(0));
+            System.out.println("Breakfast below 100RMB: " + break_num.get(1));
+            System.out.println("Free cancel" + cancle_policy_num.get(0));
+            System.out.println("Free reserve" + cancle_policy_num.get(1));
         }
 
         return searchDetailed;
