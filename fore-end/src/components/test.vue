@@ -58,7 +58,7 @@ export default {
       this.$axios
         .post('/search/searchByLocation', {
           location: '南京',
-          hotel: 'jlljk'
+          hotel: '南京'
         })
         .then(successResponse => {
 

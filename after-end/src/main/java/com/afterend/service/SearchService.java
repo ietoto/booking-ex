@@ -50,5 +50,14 @@ public class SearchService {
     public SearchDetailed SearchForFirstCity(Search search){
         return searchDAO.SearchForFirstCity(search);
     }
+    //根据酒店地区、日期、人数，返回酒店各个信息 list和酒店设施、客房设施及其数量
+    //初次搜索的终极版，地区会在酒店city和location里都判断
+    //返回的有：满足条件的酒店信息（不包括其客房和酒店设施的信息）
+    //共找到的总数量、星级为0-5的数量、距离中心的1、3、5公里内的数量、评分大于9、8、7、6的数量
+    //酒店和客房设施及其数量
+    //早餐价格大于100或小于100的数量、免费取消、无需预订的数量
+    public SearchDetailed SearchForFirst(SearchDetailed search){
+        return searchDAO.SearchForFirst(search);
+    }
 
 }
