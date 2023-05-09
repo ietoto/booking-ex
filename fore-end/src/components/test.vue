@@ -70,22 +70,19 @@ export default {
         })
     },
     test2 () {
-      var _this = this
+      // var _this = this
       console.log(this.$store.state)
       this.$axios
-        .post('/user/register', {
-          username: this.loginForm.username,
-          password: this.loginForm.password,
-          name: this.loginForm.name,
-          postbox: this.loginForm.postbox
+        .post('/search/filter', {
+          location: '南京',
+          startdate: '2023-05-05',
+          enddate: '2023-05-09',
+          adult: 2,
+          child: 2,
+          select_policy_num: [1,0]
         })
         .then(successResponse => {
-          if (successResponse.data.code === 200) {
-            // var data = this.loginForm
-            _this.$store.commit('login', _this.loginForm)
-            var path = this.$route.query.redirect
-            this.$router.replace({path: path === '/' || path === undefined ? '/index' : path})
-          }
+
         })
         .catch(failResponse => {
         })

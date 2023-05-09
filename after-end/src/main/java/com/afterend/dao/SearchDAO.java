@@ -601,8 +601,10 @@ public class SearchDAO {
             String sql1="CREATE VIEW hotellist AS select a.hotel_id,sum((ifnull(a.room_num-b.num,a.room_num)*a.room_size)) as num_hum from (select hotel_id,room_id,room_num,room_size from room where hotel_id IN(SELECT hotel_id FROM hotel where (hotel_name Like ? OR hotel_city Like ? OR hotel_location Like ?) ";
 
             int i=-1;
-            for(int j=0;j<search.getSelect_distance_num().size();j++){
-                if(search.getSelect_distance_num().get(j))i=j;
+            if(search.getSelect_distance_num()!=null){
+                for(int j=0;j<search.getSelect_distance_num().size();j++){
+                    if(search.getSelect_distance_num().get(j))i=j;
+                }
             }
             switch (i){
                 case 0:{
@@ -619,8 +621,10 @@ public class SearchDAO {
                 }
             }
             i=-1;
-            for(int j=0;j<search.getSelect_score_num().size();j++){
-                if(search.getSelect_score_num().get(j))i=j;
+            if(search.getSelect_score_num()!=null){
+                for(int j=0;j<search.getSelect_score_num().size();j++){
+                    if(search.getSelect_score_num().get(j))i=j;
+                }
             }
             switch (i){
                 case 0:{
@@ -641,10 +645,12 @@ public class SearchDAO {
                 }
             }
             i=-1;
-            for(int j=0;j<search.getSelect_star_num().size();j++){
-                if(search.getSelect_star_num().get(j)){
-                    i=j;
-                    break;
+            if(search.getSelect_star_num()!=null){
+                for(int j=0;j<search.getSelect_star_num().size();j++){
+                    if(search.getSelect_star_num().get(j)){
+                        i=j;
+                        break;
+                    }
                 }
             }
             if(i!=-1){
@@ -664,26 +670,30 @@ public class SearchDAO {
 
             sql1+=")";
             i=-1;
-            for(int j=0;j<search.getSelect_policy_num().size();j++){
-                if(search.getSelect_policy_num().get(j)){
-                    i=j;
-                    break;
+            if(search.getSelect_policy_num()!=null){
+                for(int j=0;j<search.getSelect_policy_num().size();j++){
+                    if(search.getSelect_policy_num().get(j)){
+                        i=j;
+                        break;
+                    }
                 }
             }
             if(i!=-1){
                 if(search.getSelect_policy_num().get(0)){
                     sql1+=" AND room_isfreecancel= 1";
                 }
-                if(search.getSelect_policy_num().get(0)){
+                if(search.getSelect_policy_num().get(1)){
                     sql1+=" AND room_isnorequire= 1";
                 }
             }
 
             i=-1;
-            for(int j=0;j<search.getSelect_break_num().size();j++){
-                if(search.getSelect_break_num().get(j)){
-                    i=j;
-                    break;
+            if(search.getSelect_break_num()!=null){
+                for(int j=0;j<search.getSelect_break_num().size();j++){
+                    if(search.getSelect_break_num().get(j)){
+                        i=j;
+                        break;
+                    }
                 }
             }
             if(i!=-1){
@@ -712,16 +722,18 @@ public class SearchDAO {
             }
 
             i=-1;
-            for(int j=0;j<search.getSelect_hotelFacList().size();j++){
-                if(search.getSelect_hotelFacList().get(j).getNum()){
-                    i=j;
-                    break;
+            if(search.getSelect_hotelFacList()!=null){
+                for(int j=0;j<search.getSelect_hotelFacList().size();j++){
+                    if(search.getSelect_hotelFacList().get(j).getNum()>0){
+                        i=j;
+                        break;
+                    }
                 }
             }
             if(i!=-1){
                 sql1+=" AND hotel_id IN(SELECT hotel_id FROM fac_hotel where ";
                 for(int j=0;j<search.getSelect_hotelFacList().size();j++){
-                    if(search.getSelect_hotelFacList().get(j).getNum()){
+                    if(search.getSelect_hotelFacList().get(j).getNum()>0){
                         if(i==j){
                             sql1+="hotel_facname="+search.getSelect_hotelFacList().get(j).getName();
                         }
@@ -734,16 +746,18 @@ public class SearchDAO {
             }
 
             i=-1;
-            for(int j=0;j<search.getSelect_roomFacList().size();j++){
-                if(search.getSelect_roomFacList().get(j).getNum()){
-                    i=j;
-                    break;
+            if(search.getSelect_roomFacList()!=null){
+                for(int j=0;j<search.getSelect_roomFacList().size();j++){
+                    if(search.getSelect_roomFacList().get(j).getNum()>0){
+                        i=j;
+                        break;
+                    }
                 }
             }
             if(i!=-1){
                 sql1+=" AND hotel_id IN(SELECT hotel_id FROM fac_room where ";
                 for(int j=0;j<search.getSelect_roomFacList().size();j++){
-                    if(search.getSelect_roomFacList().get(j).getNum()){
+                    if(search.getSelect_roomFacList().get(j).getNum()>0){
                         if(i==j){
                             sql1+="room_facname="+search.getSelect_roomFacList().get(j).getName();
                         }
@@ -756,6 +770,7 @@ public class SearchDAO {
             }
 
             sql1+=") as a LEFT join (select hotelid,roomid,count(*) num from `order` where  state=1 and startdate<=? and enddate >=? GROUP BY hotelid,roomid) as b on a.hotel_id=b.hotelid and a.room_id=b.roomid group by hotel_id HAVING num_hum > ?;";
+            System.out.println(sql1);
             PreparedStatement pstate1 = con.prepareStatement(sql1);
             pstate1.setString(1,'%'+search.getLocation()+'%');
             pstate1.setString(2,'%'+search.getLocation()+'%');
