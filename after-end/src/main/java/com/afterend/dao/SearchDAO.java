@@ -354,4 +354,77 @@ public class SearchDAO {
         }
         return s;
     }
+    public static SearchDetailed SearchForFirstCity(Search search) {
+        Connection con=null;
+        SearchDetailed s=null;
+        List<Hotel> Hotellist=new ArrayList<>();
+        List<HotelFac> HotelFaclist=new ArrayList<>();
+        List<RoomFac> RoomFaclist=new ArrayList<>();
+        try{
+            con= JDBCUtils.getConnect();
+            String sql1="CREATE VIEW hotellist AS select a.hotel_id,sum((ifnull(a.room_num-b.num,a.room_num)*a.room_size)) as num_hum from (select hotel_id,room_id,room_num,room_size from room where hotel_id IN(SELECT hotel_id FROM hotel where hotel_city=?)) as a LEFT join (select hotelid,roomid,count(*) num from `order` where  state=1 and startdate<=? and enddate >=? GROUP BY hotelid,roomid) as b on a.hotel_id=b.hotelid and a.room_id=b.roomid group by hotel_id HAVING num_hum > ?;";
+            PreparedStatement pstate1 = con.prepareStatement(sql1);
+            pstate1.setString(1,search.getLocation());
+            pstate1.setString(2,search.getEnddate());
+            pstate1.setString(3,search.getStartdate());
+            int num= (int) ((double)search.getAdult()+(double)search.getChild()/2);
+            pstate1.setInt(4,num);
+            pstate1.executeUpdate();
+
+            String sql2="SELECT * from hotel where hotel_id in (SELECT hotel_id FROM hotellist);";
+            PreparedStatement pstate2 = con.prepareStatement(sql2);
+            ResultSet resultSet2 = pstate2.executeQuery();
+            while (resultSet2.next()){
+                Hotel temp=null;
+                temp.setId(resultSet2.getInt("hotel_id"));
+                temp.setName(resultSet2.getString("hotel_name"));
+                temp.setDesciption(resultSet2.getString("hotel_description"));
+                temp.setScore(resultSet2.getDouble("hotel_score"));
+                temp.setLocation(resultSet2.getString("hotel_location"));
+                temp.setStar(resultSet2.getInt("hotel_star"));
+                temp.setDistance(resultSet2.getDouble("hotel_distance"));
+                temp.setImg_num(resultSet2.getInt("hotel_imgnum"));
+                temp.setCity(resultSet2.getString("hotel_city"));
+                temp.setAddress(resultSet2.getString("hotel_address"));
+                Hotellist.add(temp);
+            }
+            String sql3="SELECT hotel_facname,count(*) num FROM fac_hotel WHERE hotel_id IN (SELECT hotel_id FROM hotellist)GROUP BY hotel_facname;";
+            PreparedStatement pstate3 = con.prepareStatement(sql3);
+            ResultSet resultSet3 = pstate3.executeQuery();
+            while (resultSet3.next()){
+                HotelFac temp=null;
+                temp.setName(resultSet3.getString("hotel_facname"));
+                temp.setNum(resultSet3.getInt("num"));
+                HotelFaclist.add(temp);
+            }
+            String sql4="SELECT room_facname,COUNT(*) num FROM (SELECT hotel_id,room_facname FROM fac_room WHERE hotel_id IN (SELECT hotel_id FROM hotellist)GROUP BY room_facname,hotel_id)as a GROUP BY room_facname;";
+            PreparedStatement pstate4 = con.prepareStatement(sql4);
+            ResultSet resultSet4 = pstate4.executeQuery();
+            while (resultSet4.next()){
+                RoomFac temp=null;
+                temp.setName(resultSet4.getString("room_facname"));
+                temp.setNum(resultSet4.getInt("num"));
+                RoomFaclist.add(temp);
+            }
+            s.setHotels(Hotellist);
+            s.setHotelFacList(HotelFaclist);
+            s.setRoomFacList(RoomFaclist);
+
+            String sql5="drop view hotellist;";
+            PreparedStatement pstate5 = con.prepareStatement(sql5);
+            pstate5.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            try {
+                if(con==null){
+                    System.out.println("test");
+                }
+                con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return s;
+    }
 }
