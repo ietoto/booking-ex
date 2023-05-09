@@ -21,14 +21,39 @@ public class SearchController {
     @CrossOrigin
     @PostMapping(value = "/api/search/search")
     @ResponseBody
-    public List<Hotel> search(@RequestBody Search requestSearch, HttpSession session) {
-        Search search= new Search();
-        /*
+    public SearchDetailed search(@RequestBody Search requestSearch, HttpSession session) {
+        System.out.println("Searching...");
+        SearchDetailed searchDetailed = searchService.SearchForFirstLocation(requestSearch);
+        if(null==searchDetailed){
+            System.out.println("No result find.");
+        }else {
+            List<Integer> distance_num=searchDetailed.getDistance_num();
+            List<Integer> score_num=searchDetailed.getScore_num();
+            List<Integer> star_num=searchDetailed.getStar_num();
+            List<Integer> break_num=searchDetailed.getBreak_num();
+            List<Integer> cancle_policy_num=searchDetailed.getCancle_policy_num();
 
-         */
+            System.out.println("酒店总数: "+searchDetailed.getNum());
+            System.out.println("1公里内: " + distance_num.get(0));
+            System.out.println("3公里内: " + distance_num.get(1));
+            System.out.println("5公里内: " + distance_num.get(2));
+            System.out.println("高于9分: " + score_num.get(0));
+            System.out.println("高于8分: " + score_num.get(1));
+            System.out.println("高于7分: " + score_num.get(2));
+            System.out.println("高于6分: " + score_num.get(3));
+            System.out.println("民宿: " + star_num.get(0));
+            System.out.println("1星: " + star_num.get(1));
+            System.out.println("2星: " + star_num.get(2));
+            System.out.println("3星: " + star_num.get(3));
+            System.out.println("4星: " + star_num.get(4));
+            System.out.println("5星: " + star_num.get(5));
+            System.out.println("早餐100以下: " + break_num.get(0));
+            System.out.println("早餐100以上: " + break_num.get(1));
+            System.out.println("免费取消" + cancle_policy_num.get(0));
+            System.out.println("免费预订" + cancle_policy_num.get(1));
+        }
 
-        List<Hotel> hotels = searchService.SearchbyLocationAndHotel(requestSearch);
-        return hotels;
+        return searchDetailed;
     }
 
     //通过位置和酒店名, 搜索酒店
