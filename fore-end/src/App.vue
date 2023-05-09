@@ -1,8 +1,10 @@
 <template>
   <div id="app">
+    <router-view></router-view>
     <Navbar/>
     <Loginshow/>
     <Search/>
+
   </div>
 </template>
 <script>

@@ -31,10 +31,12 @@ public class SearchDAO {
                     sql+=" and hotel_name=?";
                     attribute.add(search.getHotel());
                 }
-                else sql+="hotel_name=?";
-                attribute.add(search.getHotel());
+                else{
+                    sql+="hotel_name=?";
+                    attribute.add(search.getHotel());}
                 i++;
             }
+            System.out.println(sql);
             PreparedStatement pstate = con.prepareStatement(sql);
             for(int j=1;j<=attribute.size();j++)
             {

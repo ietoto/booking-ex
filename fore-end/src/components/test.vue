@@ -56,7 +56,9 @@ export default {
       // var _this = this
       console.log(this.$store.state)
       this.$axios
-        .post('/hotel/showall', {
+        .post('/search/searchByLocation', {
+          location: '南京',
+          hotel: 'jlljk'
         })
         .then(successResponse => {
 
