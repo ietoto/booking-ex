@@ -66,7 +66,7 @@ export default {
 
 .logo-container {
   float: left;
-  margin-left:300px;
+  margin-left:250px;
   display: flex;
   align-items: center;
   height: 100%;
@@ -80,7 +80,7 @@ export default {
 
 .menu-right {
   float: right;
-  margin-right: 350px;
+  margin-right: 330px;
   display: flex;
   align-items: center;
   height: 100%;
