@@ -431,7 +431,7 @@ public class SearchDAO {
     }
     public static SearchDetailed SearchForFirst(SearchDetailed search) {
         Connection con=null;
-        SearchDetailed s=null;
+        SearchDetailed s= new SearchDetailed();
         List<Integer> star_num=new ArrayList<>();
         List<Integer> distance_num=new ArrayList<>();
         List<Integer> score_num=new ArrayList<>();
@@ -444,21 +444,25 @@ public class SearchDAO {
         List<Integer> cancle_policy_num=new ArrayList<>();
         try{
             con= JDBCUtils.getConnect();
-            String sql1="CREATE VIEW hotellist AS select a.hotel_id,sum((ifnull(a.room_num-b.num,a.room_num)*a.room_size)) as num_hum from (select hotel_id,room_id,room_num,room_size from room where hotel_id IN(SELECT hotel_id FROM hotel where hotel_city Like ? OR hotel_location Like ?)) as a LEFT join (select hotelid,roomid,count(*) num from `order` where  state=1 and startdate<=? and enddate >=? GROUP BY hotelid,roomid) as b on a.hotel_id=b.hotelid and a.room_id=b.roomid group by hotel_id HAVING num_hum > ?;";
+            String sql00="DROP VIEW IF EXISTS hotellist;";
+            PreparedStatement pstate00 = con.prepareStatement(sql00);
+            pstate00.executeUpdate();
+            String sql1="CREATE VIEW hotellist AS select a.hotel_id,sum((ifnull(a.room_num-b.num,a.room_num)*a.room_size)) as num_hum from (select hotel_id,room_id,room_num,room_size from room where hotel_id IN(SELECT hotel_id FROM hotel where hotel_name Like ? OR hotel_city Like ? OR hotel_location Like ?)) as a LEFT join (select hotelid,roomid,count(*) num from `order` where  state=1 and startdate<=? and enddate >=? GROUP BY hotelid,roomid) as b on a.hotel_id=b.hotelid and a.room_id=b.roomid group by hotel_id HAVING num_hum > ?;";
             PreparedStatement pstate1 = con.prepareStatement(sql1);
             pstate1.setString(1,'%'+search.getLocation()+'%');
             pstate1.setString(2,'%'+search.getLocation()+'%');
-            pstate1.setString(3,search.getEnddate());
-            pstate1.setString(4,search.getStartdate());
+            pstate1.setString(3,'%'+search.getLocation()+'%');
+            pstate1.setString(4,search.getEnddate());
+            pstate1.setString(5,search.getStartdate());
             int num= (int) ((double)search.getAdult()+(double)search.getChild()/2);
-            pstate1.setInt(5,num);
+            pstate1.setInt(6,num);
             pstate1.executeUpdate();
 
             String sql2="SELECT * from hotel where hotel_id in (SELECT hotel_id FROM hotellist);";
             PreparedStatement pstate2 = con.prepareStatement(sql2);
             ResultSet resultSet2 = pstate2.executeQuery();
             while (resultSet2.next()){
-                Hotel temp=null;
+                Hotel temp=new Hotel();
                 temp.setId(resultSet2.getInt("hotel_id"));
                 temp.setName(resultSet2.getString("hotel_name"));
                 temp.setDesciption(resultSet2.getString("hotel_description"));
@@ -489,6 +493,9 @@ public class SearchDAO {
                 star_num.add(resultSet4.getInt("star_5"));
                 s.setStar_num(star_num);
             }
+            String sql01="DROP VIEW IF EXISTS distance;";
+            PreparedStatement pstate01 = con.prepareStatement(sql01);
+            pstate01.executeUpdate();
             String sql5="CREATE VIEW distance AS SELECT hotel_distance,if(hotel_distance>0 and hotel_distance<=1,1,0) dis_1,if(hotel_distance>0 and hotel_distance<=3,1,0) dis_3,if(hotel_distance>0 and hotel_distance<=5,1,0) dis_5 from hotel where hotel_id in (SELECT hotel_id FROM hotellist);";
             PreparedStatement pstate5 = con.prepareStatement(sql5);
             pstate5.executeUpdate();
@@ -504,6 +511,9 @@ public class SearchDAO {
             String sql7="drop view distance;";
             PreparedStatement pstate7 = con.prepareStatement(sql7);
             pstate7.executeUpdate();
+            String sql02="DROP VIEW IF EXISTS score;";
+            PreparedStatement pstate02 = con.prepareStatement(sql02);
+            pstate02.executeUpdate();
             String sql8="CREATE VIEW score AS SELECT hotel_score,if(hotel_score>=9,1,0) sco_9,if(hotel_score>=8,1,0) dis_8,if(hotel_score>=7,1,0) dis_7,if(hotel_score>=6,1,0) dis_6 from hotel where hotel_id in (SELECT hotel_id FROM hotellist);";
             PreparedStatement pstate8 = con.prepareStatement(sql8);
             pstate8.executeUpdate();
@@ -524,7 +534,7 @@ public class SearchDAO {
             PreparedStatement pstate11 = con.prepareStatement(sql11);
             ResultSet resultSet11 = pstate11.executeQuery();
             while (resultSet11.next()){
-                HotelFac temp=null;
+                HotelFac temp=new HotelFac();
                 temp.setName(resultSet11.getString("hotel_facname"));
                 temp.setNum(resultSet11.getInt("num"));
                 HotelFaclist.add(temp);
@@ -533,7 +543,7 @@ public class SearchDAO {
             PreparedStatement pstate12 = con.prepareStatement(sql12);
             ResultSet resultSet12 = pstate12.executeQuery();
             while (resultSet12.next()){
-                RoomFac temp=null;
+                RoomFac temp=new RoomFac();
                 temp.setName(resultSet12.getString("room_facname"));
                 temp.setNum(resultSet12.getInt("num"));
                 RoomFaclist.add(temp);
