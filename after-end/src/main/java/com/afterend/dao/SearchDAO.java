@@ -217,4 +217,68 @@ public class SearchDAO {
         }
         return s;
     }
+    public static List<Hotel> SearchbyCityAndDateAndHumanNum(Search search) {
+        Connection con=null;
+        List<Hotel> list=new ArrayList<>();
+        try{
+            con= JDBCUtils.getConnect();
+            String sql="select a.hotel_id,sum((ifnull(a.room_num-b.num,a.room_num)*a.room_size)) as num_hum from (select hotel_id,room_id,room_num,room_size from room where hotel_id IN(SELECT hotel_id FROM hotel where hotel_city=?)) as a LEFT join (select hotelid,roomid,count(*) num from `order` where  state=1 and startdate<=? and enddate >=? GROUP BY hotelid,roomid) as b on a.hotel_id=b.hotelid and a.room_id=b.roomid group by hotel_id HAVING num_hum > ?;";
+            PreparedStatement pstate = con.prepareStatement(sql);
+            pstate.setString(1,search.getLocation());
+            pstate.setString(2,search.getEnddate());
+            pstate.setString(3,search.getStartdate());
+            int num= (int) ((double)search.getAdult()+(double)search.getChild()/2);
+            pstate.setInt(4,num);
+            ResultSet resultSet = pstate.executeQuery();
+            while (resultSet.next()){
+                Hotel s=new Hotel();
+                s.setId(resultSet.getInt("hotel_id"));
+                list.add(s);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            try {
+                if(con==null){
+                    System.out.println("test");
+                }
+                con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return list;
+    }
+    public static List<Hotel> SearchbyLocationAndDateAndHumanNum(Search search) {
+        Connection con=null;
+        List<Hotel> list=new ArrayList<>();
+        try{
+            con= JDBCUtils.getConnect();
+            String sql="select a.hotel_id,sum((ifnull(a.room_num-b.num,a.room_num)*a.room_size)) as num_hum from (select hotel_id,room_id,room_num,room_size from room where hotel_id IN(SELECT hotel_id FROM hotel where hotel_location=?)) as a LEFT join (select hotelid,roomid,count(*) num from `order` where  state=1 and startdate<=? and enddate >=? GROUP BY hotelid,roomid) as b on a.hotel_id=b.hotelid and a.room_id=b.roomid group by hotel_id HAVING num_hum > ?;";
+            PreparedStatement pstate = con.prepareStatement(sql);
+            pstate.setString(1,search.getLocation());
+            pstate.setString(2,search.getEnddate());
+            pstate.setString(3,search.getStartdate());
+            int num= (int) ((double)search.getAdult()+(double)search.getChild()/2);
+            pstate.setInt(4,num);
+            ResultSet resultSet = pstate.executeQuery();
+            while (resultSet.next()){
+                Hotel s=new Hotel();
+                s.setId(resultSet.getInt("hotel_id"));
+                list.add(s);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            try {
+                if(con==null){
+                    System.out.println("test");
+                }
+                con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return list;
+    }
 }

@@ -24,6 +24,7 @@ public class RoomController {
         return roomService.getRoomList(room);
     }
 
+    //管理员/酒店经理添加房间
     @CrossOrigin
     @PostMapping(value = "/api/room/add")
     @ResponseBody
@@ -42,22 +43,23 @@ public class RoomController {
         }
     }
 
-@CrossOrigin
-@PostMapping(value = "/api/room/delete")
-@ResponseBody
-public Result deleteRoom(@RequestBody Room requestRoom, HttpSession session) {
-    String name = requestRoom.getName();
-    name = HtmlUtils.htmlEscape(name);
-    System.out.println("Deleting room: "+name+"...");
+    //管理员/酒店经理删除房间
+    @CrossOrigin
+    @PostMapping(value = "/api/room/delete")
+    @ResponseBody
+    public Result deleteRoom(@RequestBody Room requestRoom, HttpSession session) {
+        String name = requestRoom.getName();
+        name = HtmlUtils.htmlEscape(name);
+        System.out.println("Deleting room: "+name+"...");
 
-    Room room = roomService.delete(requestRoom);
-    if(null ==room) {
-        System.out.println("Room deleting failed!");
-        return new Result(400);
-    }else{
-        System.out.println("Room deleting success!");
-        return new Result(200);
+        Room room = roomService.delete(requestRoom);
+        if(null ==room) {
+            System.out.println("Room deleting failed!");
+            return new Result(400);
+        }else{
+            System.out.println("Room deleting success!");
+            return new Result(200);
+        }
     }
-}
 
 }

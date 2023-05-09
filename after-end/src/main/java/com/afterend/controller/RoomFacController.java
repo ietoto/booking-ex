@@ -21,6 +21,7 @@ public class RoomFacController {
         return roomFacService.get(hotel);
     }
 
+    //管理员/酒店经理添加房间设施
     @CrossOrigin
     @PostMapping(value = "/api/roomFac/add")
     @ResponseBody
@@ -39,6 +40,7 @@ public class RoomFacController {
         }
     }
 
+    //管理员/酒店经理删除房间设施
     @CrossOrigin
     @PostMapping(value = "/api/roomFac/delete")
     @ResponseBody
