@@ -39,11 +39,12 @@ public class SearchController {
         System.out.println("Searching...");
 
         List<Hotel> hotels = searchService.SearchbyLocationAndHotel(requestSearch);
-        if(0 == hotels.size()){
-            System.out.println("No result find.");
-        }else{
-            System.out.println("First hotel id: "+hotels.get(0).getId());
-        }
+        System.out.println(hotels.size());
+//        if(0 == hotels.size()){
+//            System.out.println("No result find.");
+//        }else{
+//            System.out.println("First hotel id: "+hotels.get(0).getId());
+//        }
         return hotels;
     }
 
