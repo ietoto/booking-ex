@@ -3,14 +3,8 @@
     <div class="search-container">
       <div class=" search-item destination-item">
         <el-input calss type="text" placeholder="目的地/住宿" />
-        <el-date-picker
-          v-model="value1"
-          type="daterange"
-          range-separator="至"
-          start-placeholder="到店日期"
-          end-placeholder="离店日期"
-          :picker-options="pickerOptions"
-        />
+        <el-date-picker v-model="value1" type="daterange" range-separator="至" start-placeholder="到店日期"
+          end-placeholder="离店日期" :picker-options="pickerOptions" />
         <el-input type="text" placeholder="人员情况" />
         <el-button type="primary" class="search-button">搜索</el-button>
       </div>
@@ -21,7 +15,7 @@
 <script>
 export default {
   name: 'Search',
-  data () {
+  data() {
     return {
       value1: '',
       pickerOptions: {
