@@ -16,7 +16,7 @@
       <span class="currency">CNY</span>
       <img class="china-img" src="https://t-cf.bstatic.com/design-assets/assets/v3.68.0/images-flags/Cn@3x.png" alt="中国" />
       <div class="wechat-container">
-        <i class="el-icon-s-custom wechat-icon"></i>
+        <i class="el-icon-chat-dot-round wechat-icon"></i>
         <div class="wechat-qr-code">
           <p class="qr-title">关注 Booking.com 官方微信</p>
           <img src="/static/qr-code.jpg" alt="QR Code" />

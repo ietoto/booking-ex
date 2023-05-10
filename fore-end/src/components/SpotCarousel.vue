@@ -1,5 +1,13 @@
 <template>
     <div>
+      <div class="spottext">
+      <h1 class="title">
+        探索中国
+      </h1>
+      <h2 class="description">
+        这些目的地精彩纷呈
+      </h2>
+      </div>
       <el-carousel
         class="carousel"
         arrow="always"
@@ -43,22 +51,22 @@
                 price: "399"
                 },
                 {
-                imgSrc: "https://example.com/image2.jpg",
+                imgSrc: "http://y1.ifengimg.com/a/2016_10/73e37122ef1fde1.jpg",
                 city: "上海",
                 price: "450"
                 },
                 {
-                imgSrc: "https://example.com/image3.jpg",
+                imgSrc: "https://youimg1.c-ctrip.com/target/01034120005vw6999391C.jpg",
                 city: "深圳",
                 price: "500"
                 },
                 {
-                imgSrc: "https://example.com/image4.jpg",
+                imgSrc: "http://news.ycwb.com/pic/2021-04/23/ee460686-2cb5-4bd8-8412-9fb0fa20fd77.jpg",
                 city: "广州",
                 price: "350"
                 },
                 {
-                imgSrc: "https://example.com/image5.jpg",
+                imgSrc: "https://youimg1.c-ctrip.com/target/100d14000000vu15e552D_D_10000_1200.jpg?proc=autoorient",
                 city: "杭州",
                 price: "400"
                 },
@@ -68,22 +76,22 @@
                 price: "380"
                 },
                 {
-                imgSrc: "https://example.com/image7.jpg",
+                imgSrc: "https://pic2.zhimg.com/v2-906e0fe7a1ace8be912b1d3ea8cf546f_r.jpg",
                 city: "苏州",
                 price: "420"
                 },
                 {
-                imgSrc: "https://example.com/image8.jpg",
+                imgSrc: "http://www.chinavideos.net/uploads/allimg/170322/1-1F3221F314S0.jpg",
                 city: "成都",
                 price: "450"
                 },
                 {
-                imgSrc: "https://example.com/image9.jpg",
+                imgSrc: "http://seopic.699pic.com/photo/50035/1757.jpg_wh1200.jpg",
                 city: "重庆",
                 price: "480"
                 },
                 {
-                imgSrc: "https://example.com/image10.jpg",
+                imgSrc: "http://img95.699pic.com/photo/50083/8813.jpg_wh860.jpg",
                 city: "西安",
                 price: "390"
                 }
@@ -107,10 +115,24 @@
 </script>
 
 <style scoped>
+.spottext
+{
+  padding:0 18%;
+}
+.title
+{
+  font-family: 'Microsoft YaHei', Arial, sans-serif;
+}
+.description
+{
+  font-size:18px;
+  font-family: 'Microsoft YaHei', Arial, sans-serif;
+  font-weight: normal;
+}
 .carousel {
   width: 100%;
   height: 100%;
-  padding:0 10%;
+  padding:0 18%;
   box-sizing: border-box;
 }
 
@@ -118,8 +140,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 90%;
-  height: 90%;
+  width: 100%;
+  height: 100%;
 }
 
 .group-container .spotitem {
