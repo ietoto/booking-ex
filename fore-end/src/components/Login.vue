@@ -1,5 +1,7 @@
 <template>
-  <body id="poster">
+ 
+  <body id="poster"> 
+    <Navbar/>
     <el-form class="login-container" label-position="left" label-width="0px">
       <h3 class="login_title">系统登录</h3>
       <el-form-item>
@@ -17,7 +19,7 @@
 </template>
 
 <script>
-
+import Navbar from './Navbar.vue'
 export default {
   name: 'Login',
   data() {
@@ -28,6 +30,9 @@ export default {
       },
       responseResult: []
     }
+  },
+  components :{
+    Navbar
   },
   methods: {
     login() {

@@ -1,32 +1,12 @@
 <template>
   <div id="app">
-     <router-view></router-view>
-    <Navbar/>
-    <Loginshow/>
-    <Search/>
-    <HotSpot>
-    </HotSpot>
-    <SpotCarousel/>
-    <Display/>
+    <router-view></router-view>
   </div>
 </template>
 <script>
-import Display from './components/Display.vue'
-import SpotCarousel from './components/SpotCarousel.vue'
-import Loginshow from './components/Loginshow.vue'
-import Search from './components/Search.vue'
-import Navbar from './components/Navbar.vue'
-import HotSpot from './components/HotSpot.vue'
+
 export default {
   name: 'App',
-  components: {
-    Navbar,
-    Loginshow,
-    Search,
-    HotSpot,
-    SpotCarousel,
-    Display
-  }
 }
 </script>
 <style>

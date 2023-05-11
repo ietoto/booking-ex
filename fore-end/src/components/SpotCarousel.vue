@@ -4,9 +4,9 @@
       <h1 class="title">
         探索中国
       </h1>
-      <h2 class="description">
+      <p class="description">
         这些目的地精彩纷呈
-      </h2>
+      </p>
     </div>
     <el-carousel class="carousel" arrow="always" :interval="0" :loop="false" :trigger="trigger">
       <el-carousel-item v-for="(group, index) in spotGroups" :key="index">
