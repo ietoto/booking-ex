@@ -24,7 +24,17 @@
           style="color:#0D47A1; background-color: white; border-color: white;">登录</el-button>
       </p>
       <p v-else>
-        <p  style="color: white;font-size:150%;">{{this.$store.state.user.username}},欢迎回来！</p>
+<!--        <p  style="color: white;font-size:150%;">{{this.$store.state.user.username}},欢迎回来！</p>-->
+        <el-dropdown @command="information">
+          <span placement= bottom-start class="el-dropdown-link" style="color: white;font-size:150%;">
+            {{this.$store.state.user.username}},欢迎回来！<i class="el-icon-arrow-down el-icon--right"></i>
+          </span>
+          <el-dropdown-menu slot="dropdown">
+            <el-dropdown-item command="order" icon="el-icon-s-order" style="font-size: 20px;padding: 8px 50px;">我的订单</el-dropdown-item>
+            <el-dropdown-item command="user" icon="el-icon-user" style="font-size: 20px;padding: 8px 50px;">个人信息</el-dropdown-item>
+            <el-dropdown-item command="quit" icon="el-icon-switch-button" style="font-size: 20px;padding: 8px 50px;">退出登录</el-dropdown-item>
+          </el-dropdown-menu>
+        </el-dropdown>
       </p>
     </div>
   </el-menu>
@@ -49,8 +59,17 @@ export default {
     register() {
       var path = this.$route.query.redirect
       this.$router.replace({ path: path === '/' || path === undefined ? '/reg' : path })
+    },
+    information(command) {
+      switch (command) {
+        case 'quit' :
+          this.$store.state.user.username=null
+          this.$store.state.user.state=null
+          break
+      }
+      // this.$message('click on item ' + command);
     }
-  }
+  },
 }
 </script>
 
