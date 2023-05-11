@@ -24,8 +24,7 @@ export default {
     Loginshow,
     Search,
     HotSpot,
-    SpotCarousel,
-    Display
+    SpotCarousel
   }
 }
 </script>

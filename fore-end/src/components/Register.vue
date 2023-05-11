@@ -83,10 +83,10 @@ export default {
           phone: this.registerForm.phone
         })
         .then(successResponse => {
-          if (successResponse.data.code === 200) {
+          if (successResponse.data !=null) {
             // var data = this.registerForm
             this.registerright()
-            _this.$store.commit('login', _this.registerForm)
+            _this.$store.commit('login', successResponse.data)
             var path = this.$route.query.redirect
             this.$router.replace({ path: path === '/' || path === undefined ? '/index' : path })
           }
