@@ -74,6 +74,10 @@ export default {
         case 'quit' :
           this.$store.state.user.username=null
           this.$store.state.user.state=null
+          this.$router.push("/index")
+          break
+        case 'user' :
+          this.$router.push("/user")
           break
       }
       // this.$message('click on item ' + command);
