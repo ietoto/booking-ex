@@ -1,5 +1,5 @@
 <template>
-   <body id="poster"> 
+   <body id="poster">
     <Navbar/>
     <el-form class="login-container" label-position="left" label-width="0px">
       <h3 class="login_title">系统登录</h3>
@@ -51,9 +51,9 @@ export default {
           password: this.loginForm.password
         })
         .then(successResponse => {
-          if (successResponse.data.code === 200) {
+          if (successResponse.data !=null) {
             // var data = this.loginForm
-            _this.$store.commit('login', _this.loginForm)
+            _this.$store.commit('login', successResponse.data)
             var path = this.$route.query.redirect
             this.$router.replace({ path: path === '/' || path === undefined ? '/index' : path })
           }

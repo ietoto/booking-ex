@@ -1,5 +1,6 @@
 <template>
   <body id="poster">
+   <Navbar/>
   <el-form class="register-container" label-position="left" label-width="0px">
     <h3 class="register_title">系统注册</h3>
     <el-form-item>
@@ -26,7 +27,7 @@
 </template>
 
 <script>
-
+import Navbar from './Navbar.vue'
 export default {
   name: 'Register',
   data() {
@@ -40,6 +41,9 @@ export default {
       },
       responseResult: []
     }
+  },
+  components :{
+    Navbar
   },
   methods: {
     registererror1() {
@@ -103,14 +107,14 @@ export default {
 </script>
 
 <style>
-/*#poster {*/
-/*  background: url("../assets/register.jpg") no-repeat;*/
-/*  background-position: center;*/
-/*  height: 100%;*/
-/*  width: 100%;*/
-/*  background-size: cover;*/
-/*  position: fixed;*/
-/*}*/
+#poster {
+  background: url("../assets/login.jpg") no-repeat;
+  background-position: center;
+  height: 100%;
+  width: 100%;
+  background-size: cover;
+  position: fixed;
+}
 
 body {
   margin: 0px;
@@ -122,9 +126,9 @@ body {
   margin: 90px auto;
   width: 600px;
   padding: 35px 35px 15px 35px;
-  background: rgba(255, 255, 255);
-  border: 1px solid rgba(234, 234, 234);
-  box-shadow: 0 0 25px rgba(202, 198, 198);
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(234, 234, 234, 0.6);
+  box-shadow: 0 0 25px rgba(202, 198, 198, 0.6);
 }
 
 .register_title {

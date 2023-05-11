@@ -2,7 +2,7 @@
   <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" background-color="#0D47A1"
     text-color="#fff" active-text-color="#409EFF" @select="handleSelect">
     <div class="logo-container">
-      <router-link to="/" class="logo-link">
+      <router-link to="/index" class="logo-link">
         <h1 class="logo-text">Booking.com</h1>
       </router-link>
     </div>
@@ -17,9 +17,9 @@
           <img src="/static/qr-code.jpg" alt="QR Code" />
         </div>
       </div>
-      <el-button class="custom-button" type="primary"
+      <el-button class="custom-button" type="primary" v-on:click="register"
         style="color:#0D47A1; background-color: white; border-color: white;">注册</el-button>
-      <el-button class="custom-button" type="primary"
+      <el-button class="custom-button" type="primary" v-on:click="login"
         style="color:#0D47A1; background-color: white; border-color: white;">登录</el-button>
     </div>
   </el-menu>
@@ -36,6 +36,14 @@ export default {
   methods: {
     handleSelect(key, keyPath) {
       console.log(key, keyPath)
+    },
+    login() {
+      var path = this.$route.query.redirect
+      this.$router.replace({ path: path === '/' || path === undefined ? '/login' : path })
+    },
+    register() {
+      var path = this.$route.query.redirect
+      this.$router.replace({ path: path === '/' || path === undefined ? '/reg' : path })
     }
   }
 }
