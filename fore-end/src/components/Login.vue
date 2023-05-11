@@ -1,6 +1,5 @@
 <template>
- 
-  <body id="poster"> 
+   <body id="poster"> 
     <Navbar/>
     <el-form class="login-container" label-position="left" label-width="0px">
       <h3 class="login_title">系统登录</h3>
