@@ -100,7 +100,7 @@ public class SearchController {
             //设置封面图片路径
             List<Hotel> hotels = searchDetailed.getHotels();
             for(int i=0;i<hotels.size();i++){
-                hotels.get(i).setImg("..../after-end/picture/image_hotel/"+hotels.get(i).getId()+".jpg");
+                hotels.get(i).setImg("../../../after-end/picture/image_hotel/"+hotels.get(i).getId()+".jpg");
             }
             searchDetailed.setHotels(hotels);
 //            System.out.println("total hotel number: "+searchDetailed.getNum());
@@ -115,7 +115,11 @@ public class SearchController {
     @PostMapping(value = "/api/search/Hotel_Info")
     @ResponseBody
     public SearchDetailed hotel_info(@RequestBody SearchDetailed requestSearch, HttpSession session) {
+        Hotel hotel = new Hotel();
+        hotel.setId(requestSearch.getId());
+        HotelController hotelController = new HotelController();
         SearchDetailed searchDetailed = requestSearch;
+        hotel = hotelController.hotelInfo(hotel);
 
 
         return searchDetailed;

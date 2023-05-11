@@ -25,10 +25,7 @@ public class HotelController {
     }
 
     //获取单个酒店详细信息
-    @CrossOrigin
-    @PostMapping(value = "/api/hotel/info")
-    @ResponseBody
-    public Hotel hotelInfo(@RequestBody Hotel requestHotel, HttpSession session) {
+    public Hotel hotelInfo(Hotel requestHotel) {
         Hotel hotel = requestHotel;
         if(null == hotel){
             System.out.println("Get hotel info failed!");
@@ -36,7 +33,7 @@ public class HotelController {
             //set imgList
             List<String> images = new ArrayList<>();
             for(int i=0;i<hotel.getImg_num();i++){
-                images.add("..../after-end/picture/image_hotel_info/"+hotel.getId()+"_"+i+".jpg");
+                images.add("../../../after-end/picture/image_hotel_info/"+hotel.getId()+"_"+i+".jpg");
             }
             hotel.setImgList(images);
 
@@ -53,15 +50,8 @@ public class HotelController {
             //set rooms
             RoomController roomController = new RoomController();
             List<Room> rooms = roomController.getRoomList(requestHotel);
+            hotel.setRooms(rooms);
 
-            //set room facilities
-            RoomFacController roomFacController = new RoomFacController();
-            List<RoomFac> roomFacList = roomFacController.getRoomFac(requestHotel);
-            List<String> facilities_room = new ArrayList<>();
-            for (int i = 0; i < roomFacList.size(); i++) {
-                facilities_room.add(roomFacList.get(i).getName());
-
-            }
         }
 
 
