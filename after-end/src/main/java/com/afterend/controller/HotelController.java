@@ -30,28 +30,38 @@ public class HotelController {
     @ResponseBody
     public Hotel hotelInfo(@RequestBody Hotel requestHotel, HttpSession session) {
         Hotel hotel = requestHotel;
-        // get hotel facilities
-        HotelFacController hotelFacController = new HotelFacController();
-        List<HotelFac> hotelFacList = hotelFacController.getHotelFac(requestHotel);
-        List<String> facilities_hotel = new ArrayList<>();
-        for(int i =0;i<hotelFacList.size();i++)
-        {
-            facilities_hotel.add(hotelFacList.get(i).getName());
-        }
-        hotel.setFacilities(facilities_hotel);
+        if(null == hotel){
+            System.out.println("Get hotel info failed!");
+        }else {
+            //set imgList
+            List<String> images = new ArrayList<>();
+            for(int i=0;i<hotel.getImg_num();i++){
+                images.add("..../after-end/picture/image_hotel_info/"+hotel.getId()+"_"+i+".jpg");
+            }
+            hotel.setImgList(images);
 
-        //get rooms
-        RoomController roomController = new RoomController();
-        List<Room> rooms = roomController.getRoomList(requestHotel);
 
-        //get room facilities
-        RoomFacController roomFacController = new RoomFacController();
-        List<RoomFac> roomFacList = roomFacController.getRoomFac(requestHotel);
-        List<String> facilities_room = new ArrayList<>();
-        for(int i=0;i<roomFacList.size();i++)
-        {
-            facilities_room.add(roomFacList.get(i).getName());
+            // set hotel facilities
+            HotelFacController hotelFacController = new HotelFacController();
+            List<HotelFac> hotelFacList = hotelFacController.getHotelFac(requestHotel);
+            List<String> facilities_hotel = new ArrayList<>();
+            for (int i = 0; i < hotelFacList.size(); i++) {
+                facilities_hotel.add(hotelFacList.get(i).getName());
+            }
+            hotel.setFacilities(facilities_hotel);
 
+            //set rooms
+            RoomController roomController = new RoomController();
+            List<Room> rooms = roomController.getRoomList(requestHotel);
+
+            //set room facilities
+            RoomFacController roomFacController = new RoomFacController();
+            List<RoomFac> roomFacList = roomFacController.getRoomFac(requestHotel);
+            List<String> facilities_room = new ArrayList<>();
+            for (int i = 0; i < roomFacList.size(); i++) {
+                facilities_room.add(roomFacList.get(i).getName());
+
+            }
         }
 
 
