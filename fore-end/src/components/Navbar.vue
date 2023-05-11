@@ -24,7 +24,7 @@
           style="color:#0D47A1; background-color: white; border-color: white;">登录</el-button>
       </p>
       <p v-else>
-        <p >{{this.$store.state.user.username}}</p>
+        <p  style="color: white;font-size:150%;">{{this.$store.state.user.username}},欢迎回来！</p>
       </p>
     </div>
   </el-menu>
