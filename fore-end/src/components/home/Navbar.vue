@@ -2,7 +2,7 @@
   <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" background-color="#0D47A1"
     text-color="#fff" active-text-color="#409EFF" @select="handleSelect">
     <div class="logo-container">
-      <router-link to="/" class="logo-link">
+      <router-link to="/index" class="logo-link">
         <h1 class="logo-text">Booking.com</h1>
       </router-link>
     </div>
@@ -17,10 +17,34 @@
           <img src="/static/qr-code.jpg" alt="QR Code" />
         </div>
       </div>
-      <el-button class="custom-button" type="primary"
-        style="color:#0D47A1; background-color: white; border-color: white;">注册</el-button>
-      <el-button class="custom-button" type="primary"
-        style="color:#0D47A1; background-color: white; border-color: white;">登录</el-button>
+      <p v-if= "!this.$store.state.user.username">
+        <el-button class="custom-button" type="primary" v-on:click="register"
+          style="color:#0D47A1; background-color: white; border-color: white;">注册</el-button>
+        <el-button class="custom-button" type="primary" v-on:click="login"
+          style="color:#0D47A1; background-color: white; border-color: white;">登录</el-button>
+      </p>
+      <p v-else>
+<!--        <p  style="color: white;font-size:150%;">{{this.$store.state.user.username}},欢迎回来！</p>-->
+        <el-dropdown @command="information">
+          <span placement= bottom-start class="el-dropdown-link" style="color: white;font-size:150%;">
+            {{this.$store.state.user.username}},欢迎回来！<i class="el-icon-arrow-down el-icon--right"></i>
+          </span>
+          <el-dropdown-menu slot="dropdown">
+            <el-dropdown-item command="order" icon="el-icon-s-order" style="font-size: 20px;padding: 8px 50px;">我的订单</el-dropdown-item>
+            <el-dropdown-item command="user" icon="el-icon-user" style="font-size: 20px;padding: 8px 50px;">个人信息</el-dropdown-item>
+            <p v-if= "this.$store.state.user.state === 1">
+            <el-dropdown-item command="order" icon="el-icon-office-building" style="font-size: 20px;padding: 8px 50px;">酒店管理</el-dropdown-item>
+            <el-dropdown-item command="user" icon="el-icon-s-custom" style="font-size: 20px;padding: 8px 50px;">个人信息管理</el-dropdown-item>
+            <el-dropdown-item command="user" icon="el-icon-edit" style="font-size: 20px;padding: 8px 50px;">订单管理</el-dropdown-item>
+            </p>
+            <p v-if= "this.$store.state.user.state === 2">
+            <el-dropdown-item command="order" icon="el-icon-school" style="font-size: 20px;padding: 8px 50px;">我的酒店</el-dropdown-item>
+              <el-dropdown-item command="user" icon="el-icon-s-check" style="font-size: 20px;padding: 8px 50px;">酒店订单</el-dropdown-item>
+            </p>
+            <el-dropdown-item command="quit" icon="el-icon-switch-button" style="font-size: 20px;padding: 8px 50px;">退出登录</el-dropdown-item>
+      </el-dropdown-menu>
+        </el-dropdown>
+      </p>
     </div>
   </el-menu>
 </template>
@@ -36,8 +60,29 @@ export default {
   methods: {
     handleSelect(key, keyPath) {
       console.log(key, keyPath)
+    },
+    login() {
+      var path = this.$route.query.redirect
+      this.$router.replace({ path: path === '/' || path === undefined ? '/login' : path })
+    },
+    register() {
+      var path = this.$route.query.redirect
+      this.$router.replace({ path: path === '/' || path === undefined ? '/reg' : path })
+    },
+    information(command) {
+      switch (command) {
+        case 'quit' :
+          this.$store.state.user.username=null
+          this.$store.state.user.state=null
+          this.$router.push("/index")
+          break
+        case 'user' :
+          this.$router.push("/user")
+          break
+      }
+      // this.$message('click on item ' + command);
     }
-  }
+  },
 }
 </script>
 
