@@ -22,14 +22,9 @@ public class UserController {
     @ResponseBody
     public Result login(@RequestBody User requestUser, HttpSession session) {
         String Username = requestUser.getUsername();
-            System.out.println(Username);
-            System.out.println(requestUser.getPassword());
         Username = HtmlUtils.htmlEscape(Username);
 
         User user = userService.get(Username, requestUser.getPassword());
-            System.out.println(user.getId());
-            System.out.println(user.getUsername());
-            System.out.println(user.getPassword());
         if (null == user) {
             System.out.println("User name/password error! The username is:"+Username+" Password is:"+requestUser.getPassword());
             return new Result(400);
