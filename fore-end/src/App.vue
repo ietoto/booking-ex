@@ -6,9 +6,13 @@
     <Search/>
     <HotSpot>
     </HotSpot>
+    <SpotCarousel/>
+    <Display/>
   </div>
 </template>
 <script>
+import Display from './components/Display.vue'
+import SpotCarousel from './components/SpotCarousel.vue'
 import Loginshow from './components/Loginshow.vue'
 import Search from './components/Search.vue'
 import Navbar from './components/Navbar.vue'
@@ -19,9 +23,16 @@ export default {
     Navbar,
     Loginshow,
     Search,
-    HotSpot
+    HotSpot,
+    SpotCarousel,
+    Display
   }
 }
 </script>
 <style>
+body
+{
+  margin:0;
+  padding:0;
+}
 </style>
