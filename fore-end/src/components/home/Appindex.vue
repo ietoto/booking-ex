@@ -7,12 +7,11 @@
     <HotSpot>
     </HotSpot>
     <SpotCarousel/>
-    <Display/>
+
   </div>
 </template>
 
 <script>
-import Display from '../Display.vue'
 import SpotCarousel from '../SpotCarousel.vue'
 import Loginshow from '../Loginshow.vue'
 import Search from '../Search.vue'

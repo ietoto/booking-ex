@@ -102,19 +102,23 @@ export default {
 <style scoped>
 .spottext {
   padding: 0 18%;
+  margin-bottom: 0;
 }
 
 .title {
   font-family: 'Microsoft YaHei', Arial, sans-serif;
+  margin-bottom: 0;
 }
 
 .description {
   font-size: 18px;
   font-family: 'Microsoft YaHei', Arial, sans-serif;
   font-weight: normal;
+  margin-bottom: 0;
 }
 
 .carousel {
+  margin-top: 0;
   width: 100%;
   height: 100%;
   padding: 0 18%;
@@ -122,6 +126,7 @@ export default {
 }
 
 .group-container {
+  margin-top: 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
