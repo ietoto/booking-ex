@@ -18,7 +18,7 @@ public class RoomController {
     @Autowired
     RoomService roomService;
 
-    public List<Room> getRoomList(Hotel hotel) {
+    public List<Room> getRoomListWithFac(Hotel hotel) {
         Room room =new Room();
         room.setHotelid(hotel.getId());
         List<Room> rooms = roomService.getRoomList(room);
@@ -33,6 +33,13 @@ public class RoomController {
             }
             rooms.get(i).setFacilities(facilities_room);
         }
+        return rooms;
+    }
+
+    public  List<Room> getRoomList(Hotel hotel){
+        Room room = new Room();
+        room.setHotelid(hotel.getId());
+        List<Room> rooms = roomService.getRoomList(room);
         return rooms;
     }
 
