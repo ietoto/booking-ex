@@ -1,13 +1,13 @@
 <template>
   <div id="app">
      <router-view></router-view>
-    <Navbar/>
-    <Loginshow/>
-    <Search/>
-    <HotSpot>
-    </HotSpot>
-    <SpotCarousel/>
-    <Display/>
+<!--    <Navbar/>-->
+<!--    <Loginshow/>-->
+<!--    <Search/>-->
+<!--    <HotSpot>-->
+<!--    </HotSpot>-->
+<!--    <SpotCarousel/>-->
+<!--    <Display/>-->
   </div>
 </template>
 <script>
