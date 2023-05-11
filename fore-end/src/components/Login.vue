@@ -35,6 +35,14 @@ export default {
     Navbar
   },
   methods: {
+    loginerror() {
+      this.$message({
+        duration: 1000,
+        showClose: true,
+        message: '用户名或密码错误！',
+        type: 'error'
+      });
+    },
     login() {
       var _this = this
       console.log(this.$store.state)
@@ -49,6 +57,10 @@ export default {
             _this.$store.commit('login', _this.loginForm)
             var path = this.$route.query.redirect
             this.$router.replace({ path: path === '/' || path === undefined ? '/index' : path })
+          }
+          else {
+            this.loginerror()
+            this.loginForm.password=''
           }
         })
         .catch(failResponse => {
