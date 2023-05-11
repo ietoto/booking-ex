@@ -17,10 +17,15 @@
           <img src="/static/qr-code.jpg" alt="QR Code" />
         </div>
       </div>
-      <el-button class="custom-button" type="primary" v-on:click="register"
-        style="color:#0D47A1; background-color: white; border-color: white;">注册</el-button>
-      <el-button class="custom-button" type="primary" v-on:click="login"
-        style="color:#0D47A1; background-color: white; border-color: white;">登录</el-button>
+      <p v-if= "!this.$store.state.user.username">
+        <el-button class="custom-button" type="primary" v-on:click="register"
+          style="color:#0D47A1; background-color: white; border-color: white;">注册</el-button>
+        <el-button class="custom-button" type="primary" v-on:click="login"
+          style="color:#0D47A1; background-color: white; border-color: white;">登录</el-button>
+      </p>
+      <p v-else>
+        <p >{{this.$store.state.user.username}}</p>
+      </p>
     </div>
   </el-menu>
 </template>
