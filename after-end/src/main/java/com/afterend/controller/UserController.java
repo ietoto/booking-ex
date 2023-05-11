@@ -40,7 +40,7 @@ public class UserController {
     public Result register(@RequestBody User requestUser, HttpSession session) {
         String Username = requestUser.getUsername();
         Username = HtmlUtils.htmlEscape(Username);
-
+        System.out.println(requestUser.getPhone());
         User user = userService.register(requestUser);
         if (null == user) {
             System.out.println("Registration failed! The username is:"+Username+" Password is:"+requestUser.getPassword());
