@@ -54,7 +54,7 @@ public class User {
         this.postbox = postbox;
     }
     public String getPhone(){return phone;}
-    public void setPhone(String postbox) {
+    public void setPhone(String phone) {
         this.phone = phone;
     }
     public int getState() {

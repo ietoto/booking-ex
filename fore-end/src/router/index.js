@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import AppIndex from '@/components/home/AppIndex'
 import Login from '@/components/Login'
 import Test from '@/components/Test'
+import Register from '@/components/Register'
 Vue.use(Router)
 
 export default new Router({
@@ -25,6 +26,11 @@ export default new Router({
       path: '/test',
       name: 'Test',
       component: Test
+    },
+    {
+      path: '/reg',
+      name: 'Register',
+      component: Register
     }
   ]
 })
