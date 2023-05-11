@@ -51,7 +51,7 @@ export default {
           password: this.loginForm.password
         })
         .then(successResponse => {
-          if (successResponse.data !=null) {
+          if (successResponse.data.username !=null) {
             // var data = this.loginForm
             _this.$store.commit('login', successResponse.data)
             var path = this.$route.query.redirect

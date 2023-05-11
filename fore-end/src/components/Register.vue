@@ -87,7 +87,7 @@ export default {
           phone: this.registerForm.phone
         })
         .then(successResponse => {
-          if (successResponse.data !=null) {
+          if (successResponse.data.username !=null) {
             // var data = this.registerForm
             this.registerright()
             _this.$store.commit('login', successResponse.data)

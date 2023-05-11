@@ -32,8 +32,17 @@
           <el-dropdown-menu slot="dropdown">
             <el-dropdown-item command="order" icon="el-icon-s-order" style="font-size: 20px;padding: 8px 50px;">我的订单</el-dropdown-item>
             <el-dropdown-item command="user" icon="el-icon-user" style="font-size: 20px;padding: 8px 50px;">个人信息</el-dropdown-item>
+            <p v-if= "this.$store.state.user.state === 1">
+            <el-dropdown-item command="order" icon="el-icon-office-building" style="font-size: 20px;padding: 8px 50px;">酒店管理</el-dropdown-item>
+            <el-dropdown-item command="user" icon="el-icon-s-custom" style="font-size: 20px;padding: 8px 50px;">个人信息管理</el-dropdown-item>
+            <el-dropdown-item command="user" icon="el-icon-edit" style="font-size: 20px;padding: 8px 50px;">订单管理</el-dropdown-item>
+            </p>
+            <p v-if= "this.$store.state.user.state === 2">
+            <el-dropdown-item command="order" icon="el-icon-school" style="font-size: 20px;padding: 8px 50px;">我的酒店</el-dropdown-item>
+              <el-dropdown-item command="user" icon="el-icon-s-check" style="font-size: 20px;padding: 8px 50px;">酒店订单</el-dropdown-item>
+            </p>
             <el-dropdown-item command="quit" icon="el-icon-switch-button" style="font-size: 20px;padding: 8px 50px;">退出登录</el-dropdown-item>
-          </el-dropdown-menu>
+      </el-dropdown-menu>
         </el-dropdown>
       </p>
     </div>
