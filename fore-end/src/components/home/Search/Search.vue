@@ -1,12 +1,11 @@
 <template>
   <div class="background">
     <div class="search-container">
-      <div class=" search-item destination-item">
-        <el-input calss type="text" placeholder="目的地/住宿" />
+      <div class="search-item destination-item">
+        <el-input prefix-icon="el-icon-s-cooperation" type="text" placeholder="目的地/住宿" />
         <el-date-picker v-model="value1" type="daterange" range-separator="至" start-placeholder="到店日期"
           end-placeholder="离店日期" :picker-options="pickerOptions" />
-           <SearchPeople/>
-        <!-- <el-input type="text" placeholder="人员情况" /> -->
+        <SearchPeople/>
         <el-button type="primary" class="search-button">搜索</el-button>
       </div>
     </div>
@@ -43,7 +42,7 @@ export default {
 .background {
   position: absolute;
   top:335px;
-  left:25%;
+  left:19%;
   background-size: cover;
   background-position: center;
   height: 100px;
@@ -67,7 +66,7 @@ export default {
 }
 
 .el-input {
-  width: 200px;
+  width: 300px;
 }
 
 .el-date-editor {

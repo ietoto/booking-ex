@@ -21,7 +21,7 @@ import SpotCarousel from './Spot/SpotCarousel.vue'
 import Loginshow from './Loginshow.vue'
 import Search from './Search/Search.vue'
 import Navbar from './Navbar/Navbar.vue'
-import HotSpot from './HotSpot.vue'
+import HotSpot from './Spot/HotSpot.vue'
 import FooterBlue from './Footer/FooterBlue.vue'
 export default {
   name: 'AppIndex',

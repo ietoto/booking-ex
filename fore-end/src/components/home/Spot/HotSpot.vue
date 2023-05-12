@@ -33,7 +33,7 @@
   </template>
   
   <script>
-  import Spotitem from './Spot/Spotitem.vue'
+  import Spotitem from './Spotitem.vue'
   export default {
     name: 'HotSpot',
     components: {

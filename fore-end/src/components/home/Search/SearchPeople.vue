@@ -1,29 +1,18 @@
 <template>
     <div class="search-bar-wrapper">
         <div class="input-group guests">
-            <label class="input-label" for="guests-toggle">客房数量和入住人数</label>
             <el-popover v-model="isGuestsOpen" placement="bottom" trigger="click" popper-class="guests-popover"
                 width="300px">
                 <div class="guests-popover-content">
                     <div class="input-group adults">
                         <label class="input-label" for="adults">成人</label>
-                        <div class="input-stepper">
-                            <el-button class="subtract-button" :disabled="adults === 1" @click="decrementAdults"
-                                aria-label="减少成人数量" size="mini">−</el-button>
-                            <span class="display-value">{{ adults }}</span>
-                            <el-button class="add-button" @click="incrementAdults" aria-label="增加成人数量"
-                                size="mini">+</el-button>
-                        </div>
+                        <el-input-number v-model="adults" @change="handleAdultChange" :min="1"
+                            controls-position="right"></el-input-number>
                     </div>
                     <div class="input-group children">
                         <label class="input-label" for="children">儿童</label>
-                        <div class="input-stepper">
-                            <el-button class="subtract-button" :disabled="children === 0" @click="decrementChildren"
-                                aria-label="减少儿童数量" size="mini">−</el-button>
-                            <span class="display-value">{{ children }}</span>
-                            <el-button class="add-button" @click="incrementChildren" aria-label="增加儿童数量"
-                                size="mini">+</el-button>
-                        </div>
+                        <el-input-number v-model="children" @change="handleChildrenChange" :min="0"
+                            controls-position="right"></el-input-number>
                         <div v-for="(age, index) in childAges" :key="index" class="age-select">
                             <el-select v-model="childAges[index]" aria-label="儿童年龄" :key="'childAge' + index" size="mini">
                                 <el-option value="">需提供儿童年龄</el-option>
@@ -33,17 +22,13 @@
                     </div>
                     <div class="input-group rooms">
                         <label class="input-label" for="rooms">客房</label>
-                        <div class="input-stepper">
-                            <el-button class="subtract-button" :disabled="rooms === 1" @click="decrementRooms"
-                                aria-label="减少客房数量" size="mini">−</el-button>
-                            <span class="display-value">{{ rooms }}</span>
-                            <el-button class="add-button" @click="incrementRooms" aria-label="增加客房数量"
-                                size="mini">+</el-button>
-                        </div>
+                        <el-input-number v-model="rooms" @change="handleRoomChange" :min="1"
+                            controls-position="right"></el-input-number>
                     </div>
                 </div>
                 <template slot="reference">
                     <button class="toggle-button" :aria-expanded="isGuestsOpen">
+                        <i class="el-icon-user"></i>
                         <span class="invisible-spoken">客房数量和入住人数</span>
                         <span class="guests-count">
                             <span>{{ adults }}位成人</span>
@@ -63,7 +48,7 @@ export default {
     data() {
         return {
             adults: 2,
-            children: 3,
+            children: 0,
             childAges: [],
             rooms: 1,
             isGuestsOpen: false,
@@ -71,46 +56,33 @@ export default {
     },
     computed: {
         showChildren() {
-            return this.children > 0;
+            return this.children >= 0;
         },
     },
     methods: {
-        toggleGuests() {
-            this.isGuestsOpen = !this.isGuestsOpen;
+        handleAdultChange(value) {
+            this.adults = value;
         },
-        incrementAdults() {
-            this.adults++;
-        },
-        decrementAdults() {
-            if (this.adults > 1) {
-                this.adults--;
-            }
-        },
-        incrementChildren() {
-            this.children++;
-            this.childAges.push("");
-        },
-        decrementChildren() {
-            if (this.children > 0) {
-                this.children--;
+        handleChildrenChange(value) {
+            if (value > this.children) {
+                this.$set(this.childAges, this.childAges.length, "");
+            } else {
                 this.childAges.pop();
             }
+            this.children = value;
         },
-        incrementRooms() {
-            this.rooms++;
-        },
-        decrementRooms() {
-            if (this.rooms > 1) {
-                this.rooms--;
-            }
+
+        handleRoomChange(value) {
+            this.rooms = value;
         },
     },
 };
 </script>
+
 <style scoped>
 .search-bar-wrapper {
-    margin-bottom: 20px;
-    width: 100%;
+    margin-top: 10px;
+    width: 40%;
 }
 
 .input-group {
@@ -125,27 +97,33 @@ export default {
 
 /* Enhanced button styling */
 .toggle-button {
-    background-color: #f0b90b; /* Modify background color */
-    color: #ffffff; /* Modify text color */
-    border: none;
-    padding: 10px 20px; /* Increase padding to enlarge button size */
+    background-color: #fff; /* 设置背景颜色与输入框一致 */
+    color: #606266; /* 设置文字颜色与输入框一致 */
+    border: 1px solid #DCDFE6; /* 设置边框样式与输入框一致 */
+    padding: 10px 15px; /* 设置内部填充空间 */
     text-align: center;
     display: inline-block;
-    font-size: 16px;
-    transition: all 0.4s ease; /* Add transition effect */
+    font-size: 14px;
     cursor: pointer;
-    border-radius: 5px; /* Add rounded corners */
+    border-radius: 4px;
+    transition: .1s;
+    box-sizing: border-box;
 }
 
 /* Enhanced button hover and active states */
-.toggle-button:hover,
-.toggle-button:focus {
-    background-color: #d6a00b; /* Darken the button color slightly when hovered or focused */
-    color: #ffffff;
+.toggle-button:hover {
+    border-color: #C0C4CC; /* Lighter color when hovered */
 }
 
+.toggle-button:active {
+    border-color: #909399; /* Darker color when active */
+}
+
+
 .guests-count {
-    font-weight: bold;
+    font-size: 14px;
+    color: grey;
+    margin-left: 10px;
 }
 
 .input-stepper {
@@ -171,7 +149,9 @@ export default {
 .guests-popover {
     margin-top: 10px;
 }
-
+.invisible-spoken{
+    
+}
 .guests-popover-content {
     display: flex;
     flex-direction: column;
