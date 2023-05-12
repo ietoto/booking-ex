@@ -36,6 +36,9 @@ export default {
 
 <style scoped>
 .background {
+  position: absolute;
+  top:335px;
+  left:500px;
   background-size: cover;
   background-position: center;
   height: 100px;

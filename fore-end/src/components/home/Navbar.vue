@@ -1,11 +1,9 @@
 <template>
   <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" background-color="#0D47A1"
     text-color="#fff" active-text-color="#409EFF" @select="handleSelect">
-    <div class="logo-container">
-      <router-link to="/index" class="logo-link">
-        <h1 class="logo-text">Booking.com</h1>
-      </router-link>
-    </div>
+    <router-link to="/index" class="logo-link"> 
+    <Bookingicon></Bookingicon>
+     </router-link>
     <div class="menu-right">
       <span class="currency">CNY</span>
       <img class="china-img" src="https://t-cf.bstatic.com/design-assets/assets/v3.68.0/images-flags/Cn@3x.png"
@@ -50,8 +48,13 @@
 </template>
 
 <script>
+import Bookingicon from './Bookingicon.vue'
 export default {
+  components: { Bookingicon },
   name: 'Navbar',
+  components: {
+    Bookingicon
+  },
   data() {
     return {
       activeIndex: '1'

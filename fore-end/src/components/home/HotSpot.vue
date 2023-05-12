@@ -44,7 +44,7 @@
   
   <style scoped>
   .hot-spot {
-    margin-top:20px;
+    margin-top:50px;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;

@@ -31,7 +31,8 @@ export default {
     background-size: cover;
     background-position: center;
     min-height: 90%;
-    padding: 20px 0;
+    padding: 80px 0;
+    position: relative;
 }
 
 .content {
