@@ -1,5 +1,5 @@
 <template>
-  <div style="margin: 0 auto; width: 65%; text-align: left">
+  <div style="margin: 0 auto;  font-family: 'Microsoft YaHei', Arial, sans-serif; width: 64%; text-align: left">
     <h2>大家都爱去</h2>
     <div class="button-group" style="margin-left: 1.3px">
       <button 

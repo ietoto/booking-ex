@@ -7,6 +7,7 @@
     <HotSpot>
     </HotSpot>
     <SpotCarousel/>
+    <NextTrip/>
     <Degination/>
     <FooterBlue/>
    
@@ -14,6 +15,7 @@
 </template>
 
 <script>
+import NextTrip from '../NextTrip/NextTrip.vue'
 import Degination from './Degination/Degination.vue'
 import SpotCarousel from './SpotCarousel.vue'
 import Loginshow from './Loginshow.vue'
@@ -30,7 +32,8 @@ export default {
     HotSpot,
     SpotCarousel,
     FooterBlue,
-    Degination
+    Degination,
+    NextTrip
 }
 }
 </script>
