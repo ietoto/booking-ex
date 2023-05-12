@@ -38,7 +38,7 @@ export default {
 .background {
   position: absolute;
   top:335px;
-  left:500px;
+  left:25%;
   background-size: cover;
   background-position: center;
   height: 100px;

@@ -17,10 +17,10 @@
 <script>
 import NextTrip from '../NextTrip/NextTrip.vue'
 import Degination from './Degination/Degination.vue'
-import SpotCarousel from './SpotCarousel.vue'
+import SpotCarousel from './Spot/SpotCarousel.vue'
 import Loginshow from './Loginshow.vue'
-import Search from './Search.vue'
-import Navbar from './Navbar.vue'
+import Search from './Search/Search.vue'
+import Navbar from './Navbar/Navbar.vue'
 import HotSpot from './HotSpot.vue'
 import FooterBlue from './Footer/FooterBlue.vue'
 export default {
@@ -39,5 +39,8 @@ export default {
 </script>
 
 <style scoped>
-
+body{
+  margin:0;
+  padding:0;
+}
 </style>

@@ -52,7 +52,7 @@
 </template>
 
 <script>
-import Navbar from './home/Navbar.vue'
+import Navbar from './home/Navbar/Navbar.vue'
 export default {
   name: "user",
   components :{

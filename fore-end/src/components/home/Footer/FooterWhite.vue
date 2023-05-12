@@ -2,7 +2,7 @@
     <div>
       <div
         :style="{
-          width: '73%',
+          width: '76%',
           margin: 'auto',
           backgroundColor: 'white',
           padding: '10px',
