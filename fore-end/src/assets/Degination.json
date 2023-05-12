@@ -1,405 +1,404 @@
 [
     {
-        "地区": [
+        "regions": [
             {
-                "name": "Isle of Wight",
-                "properties": "993 properties"
+                "name": "怀特岛",
+                "properties": "993个房源"
             },
             {
-                "name": "Tenerife",
-                "properties": "9,601 properties"
+                "name": "特内里费岛",
+                "properties": "9,601个房源"
             },
             {
-                "name": "Hawaii",
-                "properties": "5,516 properties"
+                "name": "夏威夷",
+                "properties": "5,516个房源"
             },
             {
-                "name": "Texel",
-                "properties": "413 properties"
+                "name": "泰塞尔岛",
+                "properties": "413个房源"
             },
             {
-                "name": "Mykonos",
-                "properties": "1,452 properties"
+                "name": "米科诺斯岛",
+                "properties": "1,452个房源"
             },
             {
-                "name": "Bora Bora",
-                "properties": "59 properties"
+                "name": "波拉波拉岛",
+                "properties": "59个房源"
             },
             {
-                "name": "Bali",
-                "properties": "12,679 properties"
+                "name": "巴厘岛",
+                "properties": "12,679个房源"
             },
             {
-                "name": "Uttar Pradesh",
-                "properties": "4,370 properties"
+                "name": "北方邦",
+                "properties": "4,370个房源"
             },
             {
-                "name": "Phuket Province",
-                "properties": "5,494 properties"
+                "name": "普吉府",
+                "properties": "5,494个房源"
             },
             {
-                "name": "Cornwall",
-                "properties": "5,275 properties"
+                "name": "康沃尔",
+                "properties": "5,275个房源"
             },
             {
-                "name": "Ibiza",
-                "properties": "1,640 properties"
+                "name": "伊比沙岛",
+                "properties": "1,640个房源"
             },
             {
-                "name": "Santorini",
-                "properties": "1,762 properties"
+                "name": "圣托里尼岛",
+                "properties": "1,762个房源"
             },
             {
-                "name": "Lake District",
-                "properties": "2,403 properties"
+                "name": "湖区",
+                "properties": "2,403个房源"
             },
             {
-                "name": "Bihar",
-                "properties": "761 properties"
+                "name": "比哈尔邦",
+                "properties": "761个房源"
             },
             {
-                "name": "Jersey",
-                "properties": "89 properties"
+                "name": "泽西岛",
+                "properties": "89个房源"
             },
             {
-                "name": "England",
-                "properties": "73,969 properties"
+                "name": "英格兰",
+                "properties": "73,969个房源"
             },
             {
-                "name": "Zanzibar",
-                "properties": "835 properties"
+                "name": "桑给巴尔",
+                "properties": "835个房源"
             },
             {
-                "name": "Ras Al Khaimah",
-                "properties": "113 properties"
+                "name": "拉斯阿尔海马",
+                "properties": "113个房源"
             },
             {
-                "name": "Guernsey",
-                "properties": "61 properties"
+                "name": "根西岛",
+                "properties": "61个房源"
             }
         ],
         "cities": [
             {
-                "name": "Bangkok",
-                "properties": "4,040 hotels"
+              "name": "曼谷",
+              "properties": "4,040家酒店"
             },
             {
-                "name": "York",
-                "properties": "830 hotels"
+              "name": "约克",
+              "properties": "830家酒店"
             },
             {
-                "name": "Newcastel upon Tyne",
-                "properties": "387 hotels"
+              "name": "纽卡斯尔",
+              "properties": "387家酒店"
             },
             {
-                "name": "Manchester",
-                "properties": "1,087 hotels"
+              "name": "曼彻斯特",
+              "properties": "1,087家酒店"
             },
             {
-                "name": "London",
-                "properties": "14,522 hotels"
+              "name": "伦敦",
+              "properties": "14,522家酒店"
             },
             {
-                "name": "Liverpool",
-                "properties": "1,083 hotels"
+              "name": "利物浦",
+              "properties": "1,083家酒店"
             },
             {
-                "name": "Leeds",
-                "properties": "381 hotels"
+              "name": "利兹",
+              "properties": "381家酒店"
             },
             {
-                "name": "Glasgow",
-                "properties": "915 hotels"
+              "name": "格拉斯哥",
+              "properties": "915家酒店"
             },
             {
-                "name": "Edinburgh",
-                "properties": "3,344 hotels"
+              "name": "爱丁堡",
+              "properties": "3,344家酒店"
             },
             {
-                "name": "Carbis Bay",
-                "properties": "69 hotels"
+              "name": "卡比斯湾",
+              "properties": "69家酒店"
             },
             {
-                "name": "Bristol",
-                "properties": "643 hotels"
+              "name": "布里斯托尔",
+              "properties": "643家酒店"
             },
             {
-                "name": "Brighton & Hove",
-                "properties": "856 hotels"
+              "name": "布莱顿与霍夫",
+              "properties": "856家酒店"
             },
             {
-                "name": "Bournemouth",
-                "properties": "404 hotels"
+              "name": "伯恩茅斯",
+              "properties": "404家酒店"
             },
             {
-                "name": "Blackpool",
-                "properties": "896 hotels"
+              "name": "布莱克浦",
+              "properties": "896家酒店"
             },
             {
-                "name": "Birmingham",
-                "properties": "1,009 hotels"
+              "name": "伯明翰",
+              "properties": "1,009家酒店"
             },
             {
-                "name": "Stockholm",
-                "properties": "445 hotels"
+              "name": "斯德哥尔摩",
+              "properties": "445家酒店"
             },
             {
-                "name": "Manila",
-                "properties": "4,797 hotels"
+              "name": "马尼拉",
+              "properties": "4,797家酒店"
             },
             {
-                "name": "Kuala Lumpur",
-                "properties": "4,224 hotels"
+              "name": "吉隆坡",
+              "properties": "4,224家酒店"
             },
             {
-                "name": "Amsterdam",
-                "properties": "1,913 hotels"
+              "name": "阿姆斯特丹",
+              "properties": "1,913家酒店"
             },
             {
-                "name": "Berlin",
-                "properties": "1,759 hotels"
+              "name": "柏林",
+              "properties": "1,759家酒店"
             },
             {
-                "name": "Sydney",
-                "properties": "3,621 hotels"
+              "name": "悉尼",
+              "properties": "3,621家酒店"
             },
             {
-                "name": "Perth",
-                "properties": "887 hotels"
+              "name": "珀斯",
+              "properties": "887家酒店"
             },
             {
-                "name": "Melbourne",
-                "properties": "2,831 hotels"
+              "name": "墨尔本",
+              "properties": "2,831家酒店"
             },
             {
-                "name": "Gold Coast",
-                "properties": "1,574 hotels"
+              "name": "黄金海岸",
+              "properties": "1,574家酒店"
             },
             {
-                "name": "Canberra",
-                "properties": "184 hotels"
+              "name": "堪培拉",
+              "properties": "184家酒店"
             },
             {
-                "name": "Brisbane",
-                "properties": "893 hotels"
+              "name": "布里斯托尔",
+              "properties":"1,009家酒店"
             },
             {
-                "name": "Adelaide",
-                "properties": "416 hotels"
+                "name": "阿姆斯特丹",
+                "properties": "893家酒店"
             },
             {
-                "name": "Wellington",
-                "properties": "164 hotels"
+            "name": "阿德莱德",
+            "properties": "416家酒店"
             },
             {
-                "name": "Auckland",
-                "properties": "1,683 hotels"
+            "name": "惠灵顿",
+            "properties": "164家酒店"
             },
             {
-                "name": "Killarney",
-                "properties": "263 hotels"
+            "name": "奥克兰",
+            "properties": "1,683家酒店"
             },
             {
-                "name": "Galway",
-                "properties": "404 hotels"
+            "name": "基拉尼",
+            "properties": "263家酒店"
             },
             {
-                "name": "Dublin",
-                "properties": "1,229 hotels"
+            "name": "戈尔韦",
+            "properties": "404家酒店"
             },
             {
-                "name": "Cork",
-                "properties": "138 hotels"
+            "name": "都柏林",
+            "properties": "1,229家酒店"
             },
             {
-                "name": "Paris",
-                "properties": "7,578 hotels"
+            "name": "科克",
+            "properties": "138家酒店"
             },
             {
-                "name": "Hong Kong",
-                "properties": "813 hotels"
+            "name": "巴黎",
+            "properties": "7,578家酒店"
             },
             {
-                "name": "Doha",
-                "properties": "160 hotels"
+            "name": "香港",
+            "properties": "813家酒店"
             },
             {
-                "name": "Ras al Khaimah",
-                "properties": "114 hotels"
+            "name": "多哈",
+            "properties": "160家酒店"
             },
             {
-                "name": "Dubai",
-                "properties": "4,299 hotels"
+            "name": "拉斯阿尔海马",
+            "properties": "114家酒店"
             },
             {
-                "name": "Fujairah",
-                "properties": "22 hotels"
+            "name": "迪拜",
+            "properties": "4,299家酒店"
             },
             {
-                "name": "Ajman",
-                "properties": "81 hotels"
+            "name": "富吉拉",
+            "properties": "22家酒店"
             },
             {
-                "name": "Abu Dhabi",
-                "properties": "169 hotels"
+            "name": "艾曼",
+            "properties": "81家酒店"
             },
             {
-                "name": "Istanbul",
-                "properties": "4,217 hotels"
+            "name": "阿布扎比",
+            "properties": "169家酒店"
             },
             {
-                "name": "Seoul",
-                "properties": "2,304 hotels"
+            "name": "伊斯坦布尔",
+            "properties": "4,217家酒店"
             },
             {
-                "name": "Vancouver",
-                "properties": "627 hotels"
+            "name": "首尔",
+            "properties": "2,304家酒店"
             },
             {
-                "name": "Toronto",
-                "properties": "2,034 hotels"
+            "name": "温哥华",
+            "properties": "627家酒店"
             },
             {
-                "name": "Ottawa",
-                "properties": "240 hotels"
+            "name": "多伦多",
+            "properties": "2,034家酒店"
             },
             {
-                "name": "Niagara Falls",
-                "properties": "253 hotels"
+            "name": "渥太华",
+            "properties": "240家酒店"
             },
             {
-                "name": "Montreal",
-                "properties": "1,118 hotels"
+            "name": "尼亚加拉瀑布",
+            "properties": "253家酒店"
             },
             {
-                "name": "Kelowna",
-                "properties": "214 hotels"
+            "name": "蒙特利尔",
+            "properties": "1,118家酒店"
             },
             {
-                "name": "Jasper",
-                "properties": "55 hotels"
+            "name": "基洛纳",
+            "properties": "214家酒店"
             },
             {
-                "name": "Edmonton",
-                "properties": "274 hotels"
+            "name": "贾斯珀",
+            "properties": "55家酒店"
             },
             {
-                "name": "Canmore",
-                "properties": "149 hotels"
+            "name": "埃德蒙顿",
+            "properties": "274家酒店"
             },
             {
-                "name": "Banff",
-                "properties": "50 hotels"
+            "name": "坎莫尔",
+            "properties": "149家酒店"
+            },
+             {
+             "name": "班夫",
+             "properties": "50家酒店"
+             },
+            {
+            "name": "巴塞罗那",
+            "properties": "3,319家酒店"
             },
             {
-                "name": "Barcelona",
-                "properties": "3,319 hotels"
+            "name": "东京",
+            "properties": "5,655家酒店"
             },
             {
-                "name": "Tokyo",
-                "properties": "5,655 hotels"
+            "name": "罗马",
+            "properties": "14,102家酒店"
             },
             {
-                "name": "Rome",
-                "properties": "14,102 hotels"
+            "name": "新加坡",
+            "properties": "808家酒店"
             },
             {
-                "name": "Singapore",
-                "properties": "808 hotels"
+            "name": "惠斯勒",
+            "properties": "332家酒店"
             },
             {
-                "name": "Whistler",
-                "properties": "332 hotels"
-            },
-            {
-                "name": "Rotorua",
-                "properties": "279 hotels"
-            },
-            {
-                "name": "Queenstown",
-                "properties": "823 hotels"
+            "name": "罗托鲁瓦",
+            "properties": "279家酒店"
             }
-        ],
-        "interests": [
+        ],  "interests": [
             {
-                "name": "Kalahari Waterpark",
-                "properties": "43 properties"
+              "name": "喀拉哈里水上乐园",
+              "properties": "43个景点"
             },
             {
-                "name": "Al Maha wildlife Reserve",
-                "properties": "1 properties"
+              "name": "阿尔玛哈野生动物保护区",
+              "properties": "1个景点"
             },
             {
-                "name": "River Walk",
-                "properties": "671 properties"
+              "name": "河滨长廊",
+              "properties": "671个景点"
             },
             {
-                "name": "Burj Al Arab Tower",
-                "properties": "4,299 properties"
+              "name": "阿拉伯塔奇酒店",
+              "properties": "4,299个景点"
             },
             {
-                "name": "Niagara Falls State Park",
-                "properties": "75 properties"
+              "name": "尼亚加拉瀑布州立公园",
+              "properties": "75个景点"
             },
             {
-                "name": "Disneyland",
-                "properties": "247 properties"
+              "name": "迪士尼乐园",
+              "properties": "247个景点"
             },
             {
-                "name": "Portmeirion",
-                "properties": "9 properties"
+              "name": "波特迈里恩",
+              "properties": "9个景点"
             },
             {
-                "name": "Heathrow Terminal 2",
-                "properties": ""
+              "name": "希思罗机场2号航站楼",
+              "properties": "3个景点"
             },
             {
-                "name": "Wembley Stadium",
-                "properties": "14,522 properties"
+              "name": "温布利体育场",
+              "properties": "14,522个景点"
             },
             {
-                "name": "State Park",
-                "properties": "21 properties"
+              "name": "州立公园",
+              "properties": "21个景点"
             },
             {
-                "name": "Guadalupe River Tubing",
-                "properties": "327 properties"
+              "name": "瓜达卢佩河漂流",
+              "properties": "327个景点"
             },
             {
-                "name": "Ocean City Boarddwalk",
-                "properties": "768 properties"
+              "name": "大洋城滨道",
+              "properties": "768个景点"
             },
             {
-                "name": "Eiffel Tower",
-                "properties": "7,578 properties"
+              "name": "艾菲尔铁塔",
+              "properties": "7,578个景点"
             },
             {
-                "name": "Disneyland Paris",
-                "properties": "7,578 properties"
+              "name": "巴黎迪士尼乐园",
+              "properties": "7,578个景点"
             },
             {
-                "name": "Times Square",
-                "properties": "1,383 properties"
+              "name": "时代广场",
+              "properties": "1,383个景点"
             },
             {
-                "name": "The Shard",
-                "properties": "14,522 properties"
+              "name": "碎片大厦",
+              "properties": "14,522个景点"
             },
             {
-                "name": "Universal Studios Orlando",
-                "properties": "3,691 properties"
+              "name": "奥兰多环球影城",
+              "properties": "3,691个景点"
             },
             {
-                "name": "O2 Arena",
-                "properties": "14,522 properties"
+              "name": "O2竞技场",
+              "properties": "14,522个景点"
             },
             {
-                "name": "Comal River Tubing",
-                "properties": "327 properties"
+              "name": "科马尔河漂流",
+              "properties": "327个景点"
             },
             {
-                "name": "Heathrow Terminal 5",
-                "properties": "61 properties"
+              "name": "希思罗机场5号航站楼",
+              "properties": "61个景点"
             }
         ],
         "discover": [
