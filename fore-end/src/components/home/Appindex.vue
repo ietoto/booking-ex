@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import NextTrip from '../NextTrip/NextTrip.vue'
+import NextTrip from './NextTrip/NextTrip.vue'
 import Degination from './Degination/Degination.vue'
 import SpotCarousel from './Spot/SpotCarousel.vue'
 import Loginshow from './Loginshow.vue'
