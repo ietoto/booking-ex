@@ -1,16 +1,16 @@
 <!-- index是登陆前界面 -->
 <template>
   <div>
-    <Navbar/>
-    <Loginshow/>
-    <Search/>
+    <Navbar />
+    <Loginshow />
+    <Search />
     <HotSpot>
     </HotSpot>
-    <SpotCarousel/>
-    <NextTrip/>
-    <Degination/>
-    <FooterBlue/>
-   
+    <SpotCarousel />
+    <NextTrip />
+    <Degination />
+    <FooterBlue />
+
   </div>
 </template>
 
@@ -34,13 +34,11 @@ export default {
     FooterBlue,
     Degination,
     NextTrip
-}
+  }
 }
 </script>
 
-<style scoped>
-body{
-  margin:0;
-  padding:0;
-}
-</style>
+<style scoped>body {
+  margin: 0;
+  padding: 0;
+}</style>

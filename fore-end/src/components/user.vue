@@ -66,7 +66,7 @@
             <a v-if="user">
               <a v-if="user.state === 0">用户</a>
               <a v-else-if="user.state === 1">系统管理员</a>
-              <a v-else="user.state === 2">酒店管理员</a>
+              <a v-else-if="user.state === 2">酒店管理员</a>
             </a>
           </el-descriptions-item>
           <a v-if="user"><a v-if="user.state === 2">
