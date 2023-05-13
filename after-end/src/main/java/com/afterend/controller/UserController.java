@@ -54,17 +54,17 @@ public class UserController {
     @CrossOrigin
     @PostMapping(value = "/api/user/update")
     @ResponseBody
-    public Result update(@RequestBody User requestUser, HttpSession session) {
+    public User update(@RequestBody User requestUser, HttpSession session) {
         String Username = requestUser.getUsername();
         Username = HtmlUtils.htmlEscape(Username);
 
         User user = userService.update(requestUser);
         if (null == user) {
             System.out.println("update failed! The username is:"+Username+" Password is:"+requestUser.getPassword());
-            return new Result(400);
+            return user;
         } else {
             System.out.println("update successful! The username is:"+Username+" Password is:"+requestUser.getPassword());
-            return new Result(200);
+            return user;
         }
     }
 //    显示所有用户信息
