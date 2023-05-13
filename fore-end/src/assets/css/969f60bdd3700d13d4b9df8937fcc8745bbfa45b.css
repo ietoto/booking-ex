@@ -1,0 +1,113 @@
+body.ja span.feataddress,
+body.ja span.scorewordspan em,
+body.ja div.address,
+body.ja p.address,
+body.ja #searchboxInc .description_text,
+body.ja div.in_and_around span,
+body.ja #althotels table td div.althotelsDiv p.althotelsReview,
+body.ja div#rate_guarantee a,
+body.ja div#rate_guarantee a:visited,
+body.ja div#rate_guarantee a:hover,
+body.ja .hotel_comparison_matrix p.notice,
+body.ja div#bookStage2Inc.yourdetails span.help_text,
+body.ja .remarks em,
+body.ja div#netPromoterScore em,
+body.ja div#cancelQuestionnaire i,
+body.ja p.althotelsReview2,
+body.ja .hotel_comparison_matrix p.notice em,
+body.ja div.alt_hotel_block span.address em,
+body.ja .hotel_comparison_matrix blockquote {
+  font-style: normal !important;
+}
+body.ja p.localcharges small {
+  font-size: 100% !important;
+}
+body.ja span.littlescore,
+span.lastbooking {
+  font-size: 0.9em !important;
+}
+body.ja #left.leftsmall span.lastbooking {
+  font-size: 105% !important;
+}
+body.ja .distfromdest {
+  font-family: Osaka, Arial, Helvetica, sans-serif;
+}
+body.zh span.feataddress,
+body.zh span.littlescore,
+body.zh span.lastbooking,
+body.zh #footernote,
+body.zh span.concvisitors,
+body.zh div#rate_guarantee a,
+body.zh div#rate_guarantee a:visited,
+body.zh div#rate_guarantee a:hover,
+body.zh div.cheapest_roomtype,
+body.zh div#popularHotels,
+span.xroomsleft,
+body.zh span.score_from_number_of_reviews,
+body.zh fieldset#faq_form div.required p {
+  font-size: 0.92em !important;
+  font-style: normal !important;
+}
+body.zh fieldset#faq_form div.required p {
+  white-space: nowrap;
+}
+body.zh span.scorewordspan strong {
+  font-size: 1em !important;
+  font-style: normal !important;
+}
+body.zh #bookwrapper div.yourdetails span.help_text,
+body.zh div.address,
+body.zh p.address,
+body.zh p.althotelsReview2,
+body.zh p.summary,
+body.zh p.althotelsReview,
+body.zh div.in_and_around ul li span,
+body.zh p.hotel_desc span,
+body.zh p.notice,
+p.notice em,
+body.zh blockquote.hreview,
+body.zh .disambBlock #landmarks .item_type,
+body.zh div#profilebox em,
+body.zh #right form#profile_emails span.main_emaildescription,
+body.zh div#cancelQuestionnaire i,
+body.zh span.address,
+body.zh div#new_alt_hotels span.address em {
+  font-style: normal !important;
+}
+body.zh li.cancelBooking a.myBookingOptionsTitle span {
+  color: var(--bui_color_black) !important;
+  font-size: 100% !important;
+}
+body.zh
+  .myBookingOptionsPanel
+  input[type="submit"].cancelQuestionnaire-button-disabled {
+  color: #666;
+  font-size: 12px;
+}
+body.zh #b_confirmation_body a.b_conf_buttons,
+body.zh #b_confirmation_body .price_breakdown tr.not_included th,
+body.zh #b_confirmation_body .price_breakdown tr.not_included td,
+body.zh #left.leftsmall div.avail label,
+body.zh #left.leftsmall a#sidebar_print_map,
+body.zh ul.lastViewedList.small,
+body.zh ul.lastViewedList.small span,
+body.zh #left.leftsmall div#popularHotels,
+body.zh div#csNumbers small,
+body.zh div#pricedetails div#disclaimer p,
+body.zh .myBookingOptionsPanel #entire-cancel #cancellation-policy ul ul li {
+  font-size: 12px !important;
+}
+body.zh table.promos td.fromprice span {
+  font-size: 0.6em !important;
+}
+body.ja *,
+body.ko *,
+body.zh *,
+body.ja em,
+body.zh em,
+body.ko em,
+body.ja i,
+body.zh i,
+body.ko i {
+  font-style: normal !important;
+}

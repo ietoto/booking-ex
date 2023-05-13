@@ -1,0 +1,421 @@
+#beach-quiz-modal .c-beach-quiz {
+  position: relative;
+  height: auto;
+}
+#beach-quiz-modal .c-beach-quiz__actions {
+  position: relative;
+}
+#beach-modal {
+  display: none;
+}
+#beach-quiz-modal #beach-modal {
+  display: block;
+}
+#beach-quiz-modal .bui-modal__close {
+  z-index: 9;
+}
+.c-beach-quiz {
+  background: white;
+  z-index: 5;
+}
+.c-beach_quiz__section {
+  padding: 0 8px;
+}
+.c-beach-quiz__top {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  justify-items: center;
+}
+.c-beach_quiz__section-header {
+  margin-bottom: 16px;
+}
+.c-beach_quiz__section-wrapper {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+.c-beach_quiz__grid {
+  display: grid;
+  grid-template-rows: 172px 172px;
+}
+.c-beach_quiz__grid--2cols {
+  grid-template-columns: 172px 172px;
+}
+.c-beach_quiz__grid--3cols {
+  grid-template-columns: 172px 172px 172px;
+}
+.c-beach_quiz__grid--4cols {
+  grid-template-columns: 172px 172px 172px 172px;
+}
+.c-beach-quiz__grid--calendar {
+  grid-template-columns: 360px;
+}
+.c-beach-quiz__actions {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+.c-beach-quiz__actions .bui-button__icon {
+  position: relative;
+  top: -1px;
+}
+.c-beach-quiz__actions .c-beach-quiz__actions--next .bui-button,
+.c-beach-quiz__actions .c-beach-quiz__actions--submit .bui-button,
+.c-beach-quiz__actions .tt-quiz__next-btn {
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: reverse;
+  -webkit-flex-direction: row-reverse;
+  -ms-flex-direction: row-reverse;
+  flex-direction: row-reverse;
+}
+.c-beach-quiz__actions .c-beach-quiz__actions--next .bui-button__icon,
+.c-beach-quiz__actions .c-beach-quiz__actions--submit .bui-button__icon,
+.c-beach-quiz__actions .tt-quiz__next-btn .bui-button__icon {
+  margin-right: 0;
+  margin-left: 8px;
+}
+.beach-quiz__item {
+  margin: 8px;
+  border: 0;
+  cursor: pointer;
+  width: 156px;
+  height: 156px;
+}
+.beach-quiz__item .beach-quiz__item-image-container {
+  width: 100%;
+  max-width: 156px;
+  max-height: 156px;
+  width: 156px;
+  height: 156px;
+  overflow: hidden;
+  border-radius: 2px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+.beach-quiz__item-image-container .bui-radio,
+.beach-quiz__item-image-container .bui-checkbox {
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+.beach-quiz__item .bui-radio__input {
+  display: none;
+}
+.beach-quiz__item .beach-quiz__item-header {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  color: #fff;
+}
+.beach-quiz__item .bui-checkbox {
+  padding: 0;
+}
+.beach-quiz__item-title {
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 500;
+}
+.beach-quiz__item
+  .bui-radio__input:checked
+  + .beach-quiz__item
+  > .bui-card__image {
+  background: -webkit-linear-gradient(
+    271.07deg,
+    #00224f 0.92%,
+    rgba(255, 255, 255, 0) 101.63%
+  );
+  background: linear-gradient(
+    178.93deg,
+    #00224f 0.92%,
+    rgba(255, 255, 255, 0) 101.63%
+  );
+}
+.beach-quiz__item--image-overlay {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background: -webkit-linear-gradient(
+    271.07deg,
+    #00224f 0.92%,
+    rgba(255, 255, 255, 0) 60%
+  );
+  background: linear-gradient(
+    178.93deg,
+    #00224f 0.92%,
+    rgba(255, 255, 255, 0) 60%
+  );
+  cursor: pointer;
+}
+.beach-quiz__item--image-overlay--checked {
+  background: #00224f;
+  opacity: 0.72;
+}
+.beach-quiz__item--checked {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  color: white;
+}
+.quiz-page-indicator__list {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.quiz-page-indicator__list-item {
+  font-size: 14px;
+  font-weight: 400;
+  color: #707070;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+.quiz-page-indicator__circle {
+  border-radius: 50%;
+  background: #e6e6e6;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  line-height: 1;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  -webkit-box-flex: 0;
+  -webkit-flex-grow: 0;
+  -ms-flex-positive: 0;
+  flex-grow: 0;
+  width: 8px;
+  height: 8px;
+}
+.quiz-page-indicator__circle.current {
+  width: 12px;
+  height: 12px;
+}
+.quiz-page-indicator__divider {
+  height: 2px;
+  background: #e6e6e6;
+  min-width: 8px;
+}
+.quiz-page-indicator__circle.active,
+.quiz-page-indicator__divider.active {
+  background: #0071c2;
+}
+.tt-quiz--opener span {
+  font-weight: 500;
+}
+@media screen and (max-width: 730px) {
+  .c-beach_quiz__grid--4cols {
+    grid-template-columns: 172px 172px 172px;
+  }
+}
+@media screen and (max-width: 576px) {
+  .c-beach-quiz {
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    position: fixed;
+    overflow-y: auto;
+  }
+  .c-beach_quiz__grid--4cols,
+  .c-beach_quiz__grid--3cols,
+  .c-beach_quiz__grid--2cols {
+    grid-template-columns: auto auto;
+  }
+  .c-beach-quiz__actions {
+    position: fixed;
+    bottom: 0;
+    width: -webkit-calc(100% - 32px);
+    width: calc(100% - 32px);
+    background: #fff;
+    border-top: 1px solid #e6e6e6;
+    left: 0;
+    right: 0;
+    padding: 8px 16px;
+    z-index: 100;
+  }
+  .c-beach_quiz__section {
+    margin-bottom: 80px;
+    padding: 56px 16px 0 16px;
+  }
+  .c-beach-quiz__actions .bui-button__icon {
+    top: 3px;
+  }
+  .c-beach-quiz__grid--calendar {
+    grid-template-columns: auto;
+    margin: 0 8px;
+  }
+  .c-beach_quiz__section-wrapper {
+    margin: 0 -8px;
+  }
+  body.beach_quiz-tab-active #main_content {
+    position: initial !important;
+  }
+  .c-beach-quiz__top {
+    position: fixed;
+    background: #fff;
+    width: 100%;
+    z-index: 101;
+    padding: 24px 0;
+  }
+  #tt-quiz-modal .c-beach-quiz__top {
+    top: 0;
+    left: 0;
+  }
+  #tt-quiz-modal .bui-modal__close {
+    position: fixed;
+    z-index: 126;
+  }
+  #tt-quiz-modal .tt-quiz__content {
+    margin: 32px 0 48px 0;
+  }
+}
+.beach-quiz__close-btn {
+  position: fixed;
+  z-index: 6;
+  right: 0;
+  top: 0;
+}
+.beach-quiz__close-btn .bui-button {
+  border: 0;
+  cursor: pointer;
+}
+#beach-quiz-modal .bui-modal__content {
+  max-width: 720px;
+}
+.beach-calendar {
+  margin: 0 auto;
+}
+.beach-calendar_wrapper {
+  overflow: hidden;
+  padding: 16px;
+  background: #fff;
+  -webkit-box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2),
+    0px 1px 8px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2), 0px 1px 8px rgba(0, 0, 0, 0.12);
+  border-radius: 2px;
+}
+.beach-calendar_topPanel {
+  text-align: center;
+  line-height: 32px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+.beach-caledar__btn {
+  border: 0;
+  background: 0;
+  padding: 0;
+  cursor: pointer;
+}
+.beach-calendar_prevYearButton:disabled,
+.beach-calendar_nextYearButton:disabled {
+  cursor: default;
+}
+.beach-calendar_prevYearButton:disabled svg,
+.beach-calendar_nextYearButton:disabled svg {
+  fill: #bdbdbd;
+}
+.beach-calendar_yearLabel {
+  font-size: var(--DO_NOT_USE_bui_large_font_headline_2_font-size);
+  font-weight: var(--DO_NOT_USE_bui_large_font_headline_2_font-weight);
+  line-height: var(--DO_NOT_USE_bui_large_font_headline_2_line-height);
+  font-family: var(--DO_NOT_USE_bui_large_font_headline_2_font-family);
+}
+.beach-calendar_contentPanel {
+  padding: 24px 8px;
+}
+.beach-calendar_monthWrapper {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  justify-items: center;
+}
+.beach-calendar_monthItem {
+  margin: 4px;
+  -webkit-box-flex: 0;
+  -webkit-flex: 0 0 21%;
+  -ms-flex: 0 0 21%;
+  flex: 0 0 21%;
+  cursor: pointer;
+  text-align: center;
+  padding: 16px 0;
+  border-radius: 2px;
+}
+.beach-calendar_monthItem:hover,
+.beach-calendar_monthItem.selected {
+  background: #0071c2;
+}
+.beach-calendar_monthItem.selected .beach-calendar_monthItemText,
+.beach-calendar_monthItem:hover .beach-calendar_monthItemText {
+  color: #fff;
+}
+.beach-calendar_monthItemText {
+  color: #6b6b6b;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+}
+.disable-date {
+  background: #e6e6e6;
+  pointer-events: none;
+}

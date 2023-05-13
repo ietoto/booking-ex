@@ -1,0 +1,557 @@
+[
+    {
+        "regions": [
+            {
+                "name": "怀特岛",
+                "properties": "993个房源"
+            },
+            {
+                "name": "特内里费岛",
+                "properties": "9,601个房源"
+            },
+            {
+                "name": "夏威夷",
+                "properties": "5,516个房源"
+            },
+            {
+                "name": "泰塞尔岛",
+                "properties": "413个房源"
+            },
+            {
+                "name": "米科诺斯岛",
+                "properties": "1,452个房源"
+            },
+            {
+                "name": "波拉波拉岛",
+                "properties": "59个房源"
+            },
+            {
+                "name": "巴厘岛",
+                "properties": "12,679个房源"
+            },
+            {
+                "name": "北方邦",
+                "properties": "4,370个房源"
+            },
+            {
+                "name": "普吉府",
+                "properties": "5,494个房源"
+            },
+            {
+                "name": "康沃尔",
+                "properties": "5,275个房源"
+            },
+            {
+                "name": "伊比沙岛",
+                "properties": "1,640个房源"
+            },
+            {
+                "name": "圣托里尼岛",
+                "properties": "1,762个房源"
+            },
+            {
+                "name": "湖区",
+                "properties": "2,403个房源"
+            },
+            {
+                "name": "比哈尔邦",
+                "properties": "761个房源"
+            },
+            {
+                "name": "泽西岛",
+                "properties": "89个房源"
+            },
+            {
+                "name": "英格兰",
+                "properties": "73,969个房源"
+            },
+            {
+                "name": "桑给巴尔",
+                "properties": "835个房源"
+            },
+            {
+                "name": "拉斯阿尔海马",
+                "properties": "113个房源"
+            },
+            {
+                "name": "根西岛",
+                "properties": "61个房源"
+            }
+        ],
+        "cities": [
+            {
+              "name": "曼谷",
+              "properties": "4,040家酒店"
+            },
+            {
+              "name": "约克",
+              "properties": "830家酒店"
+            },
+            {
+              "name": "纽卡斯尔",
+              "properties": "387家酒店"
+            },
+            {
+              "name": "曼彻斯特",
+              "properties": "1,087家酒店"
+            },
+            {
+              "name": "伦敦",
+              "properties": "14,522家酒店"
+            },
+            {
+              "name": "利物浦",
+              "properties": "1,083家酒店"
+            },
+            {
+              "name": "利兹",
+              "properties": "381家酒店"
+            },
+            {
+              "name": "格拉斯哥",
+              "properties": "915家酒店"
+            },
+            {
+              "name": "爱丁堡",
+              "properties": "3,344家酒店"
+            },
+            {
+              "name": "卡比斯湾",
+              "properties": "69家酒店"
+            },
+            {
+              "name": "布里斯托尔",
+              "properties": "643家酒店"
+            },
+            {
+              "name": "布莱顿与霍夫",
+              "properties": "856家酒店"
+            },
+            {
+              "name": "伯恩茅斯",
+              "properties": "404家酒店"
+            },
+            {
+              "name": "布莱克浦",
+              "properties": "896家酒店"
+            },
+            {
+              "name": "伯明翰",
+              "properties": "1,009家酒店"
+            },
+            {
+              "name": "斯德哥尔摩",
+              "properties": "445家酒店"
+            },
+            {
+              "name": "马尼拉",
+              "properties": "4,797家酒店"
+            },
+            {
+              "name": "吉隆坡",
+              "properties": "4,224家酒店"
+            },
+            {
+              "name": "阿姆斯特丹",
+              "properties": "1,913家酒店"
+            },
+            {
+              "name": "柏林",
+              "properties": "1,759家酒店"
+            },
+            {
+              "name": "悉尼",
+              "properties": "3,621家酒店"
+            },
+            {
+              "name": "珀斯",
+              "properties": "887家酒店"
+            },
+            {
+              "name": "墨尔本",
+              "properties": "2,831家酒店"
+            },
+            {
+              "name": "黄金海岸",
+              "properties": "1,574家酒店"
+            },
+            {
+              "name": "堪培拉",
+              "properties": "184家酒店"
+            },
+            {
+              "name": "布里斯托尔",
+              "properties":"1,009家酒店"
+            },
+            {
+                "name": "阿姆斯特丹",
+                "properties": "893家酒店"
+            },
+            {
+            "name": "阿德莱德",
+            "properties": "416家酒店"
+            },
+            {
+            "name": "惠灵顿",
+            "properties": "164家酒店"
+            },
+            {
+            "name": "奥克兰",
+            "properties": "1,683家酒店"
+            },
+            {
+            "name": "基拉尼",
+            "properties": "263家酒店"
+            },
+            {
+            "name": "戈尔韦",
+            "properties": "404家酒店"
+            },
+            {
+            "name": "都柏林",
+            "properties": "1,229家酒店"
+            },
+            {
+            "name": "科克",
+            "properties": "138家酒店"
+            },
+            {
+            "name": "巴黎",
+            "properties": "7,578家酒店"
+            },
+            {
+            "name": "香港",
+            "properties": "813家酒店"
+            },
+            {
+            "name": "多哈",
+            "properties": "160家酒店"
+            },
+            {
+            "name": "拉斯阿尔海马",
+            "properties": "114家酒店"
+            },
+            {
+            "name": "迪拜",
+            "properties": "4,299家酒店"
+            },
+            {
+            "name": "富吉拉",
+            "properties": "22家酒店"
+            },
+            {
+            "name": "艾曼",
+            "properties": "81家酒店"
+            },
+            {
+            "name": "阿布扎比",
+            "properties": "169家酒店"
+            },
+            {
+            "name": "伊斯坦布尔",
+            "properties": "4,217家酒店"
+            },
+            {
+            "name": "首尔",
+            "properties": "2,304家酒店"
+            },
+            {
+            "name": "温哥华",
+            "properties": "627家酒店"
+            },
+            {
+            "name": "多伦多",
+            "properties": "2,034家酒店"
+            },
+            {
+            "name": "渥太华",
+            "properties": "240家酒店"
+            },
+            {
+            "name": "尼亚加拉瀑布",
+            "properties": "253家酒店"
+            },
+            {
+            "name": "蒙特利尔",
+            "properties": "1,118家酒店"
+            },
+            {
+            "name": "基洛纳",
+            "properties": "214家酒店"
+            },
+            {
+            "name": "贾斯珀",
+            "properties": "55家酒店"
+            },
+            {
+            "name": "埃德蒙顿",
+            "properties": "274家酒店"
+            },
+            {
+            "name": "坎莫尔",
+            "properties": "149家酒店"
+            },
+             {
+             "name": "班夫",
+             "properties": "50家酒店"
+             },
+            {
+            "name": "巴塞罗那",
+            "properties": "3,319家酒店"
+            },
+            {
+            "name": "东京",
+            "properties": "5,655家酒店"
+            },
+            {
+            "name": "罗马",
+            "properties": "14,102家酒店"
+            },
+            {
+            "name": "新加坡",
+            "properties": "808家酒店"
+            },
+            {
+            "name": "惠斯勒",
+            "properties": "332家酒店"
+            },
+            {
+            "name": "罗托鲁瓦",
+            "properties": "279家酒店"
+            }
+        ],  "interests": [
+            {
+              "name": "喀拉哈里水上乐园",
+              "properties": "43个景点"
+            },
+            {
+              "name": "阿尔玛哈野生动物保护区",
+              "properties": "1个景点"
+            },
+            {
+              "name": "河滨长廊",
+              "properties": "671个景点"
+            },
+            {
+              "name": "阿拉伯塔奇酒店",
+              "properties": "4,299个景点"
+            },
+            {
+              "name": "尼亚加拉瀑布州立公园",
+              "properties": "75个景点"
+            },
+            {
+              "name": "迪士尼乐园",
+              "properties": "247个景点"
+            },
+            {
+              "name": "波特迈里恩",
+              "properties": "9个景点"
+            },
+            {
+              "name": "希思罗机场2号航站楼",
+              "properties": "3个景点"
+            },
+            {
+              "name": "温布利体育场",
+              "properties": "14,522个景点"
+            },
+            {
+              "name": "州立公园",
+              "properties": "21个景点"
+            },
+            {
+              "name": "瓜达卢佩河漂流",
+              "properties": "327个景点"
+            },
+            {
+              "name": "大洋城滨道",
+              "properties": "768个景点"
+            },
+            {
+              "name": "艾菲尔铁塔",
+              "properties": "7,578个景点"
+            },
+            {
+              "name": "巴黎迪士尼乐园",
+              "properties": "7,578个景点"
+            },
+            {
+              "name": "时代广场",
+              "properties": "1,383个景点"
+            },
+            {
+              "name": "碎片大厦",
+              "properties": "14,522个景点"
+            },
+            {
+              "name": "奥兰多环球影城",
+              "properties": "3,691个景点"
+            },
+            {
+              "name": "O2竞技场",
+              "properties": "14,522个景点"
+            },
+            {
+              "name": "科马尔河漂流",
+              "properties": "327个景点"
+            },
+            {
+              "name": "希思罗机场5号航站楼",
+              "properties": "61个景点"
+            }
+        ],
+        "discover": [
+            {
+                "name": "You'll love relaxation, restaurants and shopping during your next trip to United States of America!",
+                "img": "https://cf.bstatic.com/images/city/360x240/689/689587.jpg",
+                "title": "United State of America"
+            },
+            {
+                "name": "You'll love old town, scenery and food during your next trip to Italy!",
+                "img": "https://cf.bstatic.com/images/city/360x240/613/613105.jpg",
+                "title": "Italy"
+            },
+            {
+                "name": "Put tranquillity, scenery and old town on your to-do list for your next trip to France!",
+                "img": "https://cf.bstatic.com/images/city/360x240/613/613088.jpg",
+                "title": "France"
+            },
+            {
+                "name": "If tranquillity, old town and food are your thing, don’t miss out on Spain!",
+                "img": "https://cf.bstatic.com/images/city/360x240/971/971353.jpg",
+                "title": "Spain"
+            },
+            {
+                "name": "Don’t miss out on Germany! Top destination for old town, walking and city walks",
+                "img": "https://cf.bstatic.com/images/city/360x240/613/613105.jpg",
+                "title": "Germany"
+            },
+            {
+                "name": "Try United Kingdom for your next trip! Enjoy shopping, scenery and sightseeing while you’re there!",
+                "img": "https://cf.bstatic.com/images/city/360x240/613/613095.jpg",
+                "title": "United Kingdom"
+            },
+            {
+                "name": "Russia is highly rated by travelers for city walks, sightseeing and architecture.",
+                "img": "https://cf.bstatic.com/images/city/360x240/620/620007.jpg",
+                "title": "Russia"
+            },
+            {
+                "name": "Croatia is highly rated by travelers for oceanside, relaxation and old town.",
+                "img": "https://cf.bstatic.com/images/city/360x240/638/638617.jpg",
+                "title": "Croatia"
+            },
+            {
+                "name": "Put tranquillity, nature and beaches on your to-do list for your next trip to Brazil!",
+                "img": "https://cf.bstatic.com/images/city/360x240/653/653641.jpg",
+                "title": "Brazil"
+            },
+            {
+                "name": "Relaxation, sightseeing and temples are just a few reasons why travelers enjoy India.",
+                "img": "https://cf.bstatic.com/images/city/360x240/684/684765.jpg",
+                "title": "India"
+            },
+            {
+                "name": "Relaxation, beaches and food are just a few reasons why travelers enjoy Greece.",
+                "img": "https://cf.bstatic.com/images/city/360x240/971/971374.jpg",
+                "title": "Greece"
+            },
+            {
+                "name": "If old town, walking and city walks are your thing, don’t miss out on Poland!",
+                "img": "https://cf.bstatic.com/images/city/360x240/653/653082.jpg",
+                "title": "Poland"
+            },
+            {
+                "name": "Don’t miss out on Japan! Top destination for food, sightseeing and scenery.",
+                "img": "https://cf.bstatic.com/images/city/360x240/619/619763.jpg",
+                "title": "Japan"
+            },
+            {
+                "name": "You'll love relaxation, scenery and nature during your next trip to South Africa!",
+                "img": "https://cf.bstatic.com/images/city/360x240/674/674546.jpg",
+                "title": "South Africa"
+            },
+            {
+                "name": "If old town, tranquillity and scenery are your thing, don’t miss out on Portugal!",
+                "img": "https://cf.bstatic.com/images/city/360x240/619/619965.jpg",
+                "title": "Portugal"
+            },
+            {
+                "name": "You'll love relaxation, scenery and beaches during your next trip to Australia!",
+                "img": "https://cf.bstatic.com/images/city/360x240/682/682540.jpg",
+                "title": "Australia"
+            },
+            {
+                "name": "Put nature, mountains and scenery on your to-do list for your next trip to Austria!",
+                "img": "https://cf.bstatic.com/images/city/360x240/619/619925.jpg",
+                "title": "Austria"
+            },
+            {
+                "name": "Travelers choose Thailand for relaxation, food and beaches.",
+                "img": "https://cf.bstatic.com/images/city/360x240/620/620029.jpg",
+                "title": "Thailand"
+            },
+            {
+                "name": "the ideal getaway for food, sightseeing and culture!",
+                "img": "https://cf.bstatic.com/images/city/360x240/683/683831.jpg",
+                "title": "China"
+            },
+            {
+                "name": "Put relaxation, food and beaches on your to-do list for your next trip to Indonesia!",
+                "img": "https://cf.bstatic.com/images/city/360x240/688/688053.jpg",
+                "title": "Indonesia"
+            },
+            {
+                "name": "Argentina – the ideal getaway for tranquillity, scenery and nature!",
+                "img": "https://cf.bstatic.com/images/city/360x240/664/664052.jpg",
+                "title": "Argentina"
+            },
+            {
+                "name": "Mexico is a great choice for travelers interested in food, friendly locals and tranquillity",
+                "img": "https://cf.bstatic.com/images/city/360x240/682/682683.jpg",
+                "title": "Mexico"
+            },
+            {
+                "name": "Put scenery, nature and restaurants on your to-do list for your next trip to Canada!",
+                "img": "https://cf.bstatic.com/images/city/360x240/971/971990.jpg",
+                "title": "Canada"
+            },
+            {
+                "name": "Vietnam – the ideal getaway for food, friendly locals and local food!",
+                "img": "https://cf.bstatic.com/images/city/360x240/688/688893.jpg",
+                "title": "Vietnam"
+            },
+            {
+                "name": "Georgia is a great choice for travelers interested in friendly locals, nature and local food.",
+                "img": "https://cf.bstatic.com/images/city/360x240/691/691464.jpg",
+                "title": "Georgia"
+            },
+            {
+                "name": "Don’t miss out on Romania! Top destination for relaxation, old town and scenery",
+                "img": "https://cf.bstatic.com/images/city/360x240/674/674375.jpg",
+                "title": "Romania"
+            },
+            {
+                "name": "Walking, city walks and cycling are just a few reasons why you’ll love Netherlands.",
+                "img": "https://cf.bstatic.com/images/city/360x240/972/972585.jpg",
+                "title": "Netherlands"
+            },
+            {
+                "name": "Malaysia – the ideal getaway for relaxation, food and shopping!",
+                "img": "https://cf.bstatic.com/images/city/360x240/685/685535.jpg",
+                "title": "Malaysia"
+            },
+            {
+                "name": "Ukraine – the ideal getaway for city walks, architecture and old town!",
+                "img": "https://cf.bstatic.com/images/city/360x240/664/664728.jpg",
+                "title": "Ukraine"
+            },
+            {
+                "name": "Old Town, city walks and architecture are just a few reasons why travelers enjoy Czech Republic.",
+                "img": "https://cf.bstatic.com/images/city/360x240/653/653172.jpg",
+                "title": "Czech Republic"
+            }
+        ]
+    }
+]

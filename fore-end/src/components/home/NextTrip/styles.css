@@ -1,0 +1,19 @@
+/* styles.css */
+.cont {
+  width: 71%;
+  margin: auto;
+}
+
+.h1 {
+  font-size: 25px;
+  font-weight: 700;
+  line-height: 32px;
+  margin-left: 5%;
+  margin-bottom: 16px;
+  color: #333333;
+}
+
+.flex-div {
+  display: flex;
+  justify-content: space-between;
+}
