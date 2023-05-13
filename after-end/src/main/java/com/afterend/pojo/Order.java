@@ -23,6 +23,10 @@ public class Order {
     String enddate;
     int state;
 
+    String username;
+    String hotel_name;
+    String room_name;
+
     public int getId() {
         return id;
     }
@@ -93,5 +97,29 @@ public class Order {
 
     public void setState(int state) {
         this.state = state;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getHotel_name() {
+        return hotel_name;
+    }
+
+    public void setHotel_name(String hotel_name) {
+        this.hotel_name = hotel_name;
+    }
+
+    public String getRoom_name() {
+        return room_name;
+    }
+
+    public void setRoom_name(String room_name) {
+        this.room_name = room_name;
     }
 }

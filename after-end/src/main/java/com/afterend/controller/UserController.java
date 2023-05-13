@@ -74,5 +74,25 @@ public class UserController {
     public List<User> showall(HttpSession session) {
         return userService.showall();
     }
-
+    //    显示用户信息根据用户名
+    @CrossOrigin
+    @PostMapping(value = "/api/user/showbyusername")
+    @ResponseBody
+    public List<User> showbyusername(@RequestBody User requestUser,HttpSession session) {
+        return userService.showbyusername(requestUser);
+    }
+    //    删除用户信息
+    @CrossOrigin
+    @PostMapping(value = "/api/user/delete")
+    @ResponseBody
+    public User delete(@RequestBody User requestUser, HttpSession session) {
+        User user = userService.delete(requestUser);
+        if (null == user) {
+            System.out.println("delete failed! ");
+            return user;
+        } else {
+            System.out.println("delete successful!");
+            return user;
+        }
+    }
 }

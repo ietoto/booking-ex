@@ -32,5 +32,9 @@ public class UserService {
     public User delete(User user){
         return userDAO.delete(user);
     }
+
+    public List<User> showbyusername(User user){
+        return userDAO.showbyusername(user);
+    }
 }
 
