@@ -33,6 +33,9 @@ public class SearchDetailed {
     List<Boolean> select_policy_num;    //size=2, 0:不选 1:选
     int num;    //总共找到的酒店数
     List<Integer> price;  //价格估计
+    List<Hotel> room_rec;
+
+
 
     public int getId() {
         return id;
@@ -248,5 +251,13 @@ public class SearchDetailed {
 
     public void setPrice(List<Integer> price) {
         this.price = price;
+    }
+
+    public List<Hotel> getRoom_rec() {
+        return room_rec;
+    }
+
+    public void setRoom_rec(List<Hotel> room_rec) {
+        this.room_rec = room_rec;
     }
 }

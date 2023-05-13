@@ -44,80 +44,9 @@ public class SearchController {
                 hotels.get(i).setImg("..../after-end/picture/image_hotel/"+hotels.get(i).getId()+".jpg");
             }
 
-            //计算价格, 动态规划
-            List<Integer> price = new ArrayList<>();
-            Dateutils dateutils = new Dateutils();
-            int start = dateutils.DatetoInt(requestSearch.getStartdate());
-            int end = dateutils.DatetoInt(requestSearch.getEnddate());
-            int time = end - start;
-            RoomController roomController = new RoomController();
-            for(int k=0;k<hotels.size();k++){
-                Hotel hotel = hotels.get(k);
-                hotel.setRooms(roomController.getRoomList(hotel));
-                List<Room> rooms = hotel.getRooms();
-                int adult_num = requestSearch.getAdult();
-                int child_num = requestSearch.getChild();
-                int total = adult_num + child_num;
+            //计算价格以及推荐客房
+            recommend(searchDetailed);
 
-                // 对房间列表按大小从小到大进行排序
-                Collections.sort(rooms, Comparator.comparingInt(Room::getSize));
-
-                // 创建二维数组用于存储最优解的状态
-                int[][] dp = new int[rooms.size() + 1][total + 1];
-
-                // 初始化二维数组
-                for (int i = 0; i <= rooms.size(); i++) {
-                    for (int j = 0; j <= total; j++) {
-                        dp[i][j] = Integer.MAX_VALUE; // 初始化为最大值
-                    }
-                }
-
-                // 设置初始状态
-                dp[0][0] = 0;
-
-                // 动态规划求解
-                for (int i = 1; i <= rooms.size(); i++) {
-                    for (int j = 0; j <= total; j++) {
-                        // 不选当前房间
-                        dp[i][j] = dp[i - 1][j];
-
-                        // 选当前房间
-                        if (j >= rooms.get(i - 1).getSize() && dp[i][j - rooms.get(i - 1).getSize()] != Integer.MAX_VALUE) {
-                            dp[i][j] = Math.min(dp[i][j], dp[i][j - rooms.get(i - 1).getSize()] + 1);
-                        }
-                    }
-                }
-
-                // 根据最优解的状态求解房间选择和总价格
-                List<String> selectedRooms = new ArrayList<>();
-                int remainingTotal = total;
-                int totalPrice = 0;
-                for (int i = rooms.size(); i > 0; i--) {
-                    if (dp[i][remainingTotal] != dp[i - 1][remainingTotal]) {
-                        Room room = rooms.get(i - 1);
-                        int numOfRooms = remainingTotal / room.getSize();
-                        selectedRooms.add(room.getId() + " x " + numOfRooms);
-
-                        remainingTotal -= numOfRooms * room.getSize();
-                        totalPrice += numOfRooms * room.getPrice_r();
-                    }
-                }
-
-                if (remainingTotal == 0) {
-//                    System.out.println("选择的房间：");
-//                    for (String roomInfo : selectedRooms) {
-//                        System.out.println(roomInfo);
-//                    }
-//                    System.out.println("总价格：" + totalPrice);
-                    price.add(totalPrice*time);
-                } else {
-//                    System.out.println("无法安排所有人");
-                    price.add(-1);
-                }
-
-
-            }
-            searchDetailed.setPrice(price);
             searchDetailed.setHotels(hotels);
         }
 
@@ -146,6 +75,10 @@ public class SearchController {
             for(int i=0;i<hotels.size();i++){
                 hotels.get(i).setImg("../../../after-end/picture/image_hotel/"+hotels.get(i).getId()+".jpg");
             }
+
+            //计算价格以及推荐客房
+            recommend(searchDetailed);
+
             searchDetailed.setHotels(hotels);
 //            System.out.println("total hotel number: "+searchDetailed.getNum());
         }
@@ -168,6 +101,89 @@ public class SearchController {
 
         return searchDetailed;
 
+    }
+
+    public void recommend(SearchDetailed requestSearch){
+        List<Hotel> hotels = requestSearch.getHotels();
+        List<Hotel> room_rec = new ArrayList<>();
+        //计算价格, 动态规划
+        List<Integer> price = new ArrayList<>();
+        Dateutils dateutils = new Dateutils();
+        int start = dateutils.DatetoInt(requestSearch.getStartdate());
+        int end = dateutils.DatetoInt(requestSearch.getEnddate());
+        int time = end - start;
+        RoomController roomController = new RoomController();
+        for(int k=0;k<hotels.size();k++){
+            Hotel hotel = hotels.get(k);
+            hotel.setRooms(roomController.getRoomList(hotel));
+            List<Room> rooms = hotel.getRooms();
+            int adult_num = requestSearch.getAdult();
+            int child_num = requestSearch.getChild();
+            int total = adult_num + child_num;
+
+            // 对房间列表按大小从小到大进行排序
+            Collections.sort(rooms, Comparator.comparingInt(Room::getSize));
+
+            // 创建二维数组用于存储最优解的状态
+            int[][] dp = new int[rooms.size() + 1][total + 1];
+
+            // 初始化二维数组
+            for (int i = 0; i <= rooms.size(); i++) {
+                for (int j = 0; j <= total; j++) {
+                    dp[i][j] = Integer.MAX_VALUE; // 初始化为最大值
+                }
+            }
+
+            // 设置初始状态
+            dp[0][0] = 0;
+
+            // 动态规划求解
+            for (int i = 1; i <= rooms.size(); i++) {
+                for (int j = 0; j <= total; j++) {
+                    // 不选当前房间
+                    dp[i][j] = dp[i - 1][j];
+
+                    // 选当前房间
+                    if (j >= rooms.get(i - 1).getSize() && dp[i][j - rooms.get(i - 1).getSize()] != Integer.MAX_VALUE) {
+                        dp[i][j] = Math.min(dp[i][j], dp[i][j - rooms.get(i - 1).getSize()] + 1);
+                    }
+                }
+            }
+
+            // 根据最优解的状态求解房间选择和总价格
+            List<String> selectedRooms = new ArrayList<>();
+            int remainingTotal = total;
+            int totalPrice = 0;
+            for (int i = rooms.size(); i > 0; i--) {
+                if (dp[i][remainingTotal] != dp[i - 1][remainingTotal]) {
+                    Room room = rooms.get(i - 1);
+                    int numOfRooms = remainingTotal / room.getSize();
+                    selectedRooms.add(room.getId() + " x " + numOfRooms);
+
+                    remainingTotal -= numOfRooms * room.getSize();
+                    totalPrice += numOfRooms * room.getPrice_r();
+                }
+            }
+
+            if (remainingTotal == 0) {
+//                    System.out.println("选择的房间：");
+//                    for (String roomInfo : selectedRooms) {
+//                        System.out.println(roomInfo);
+//                    }
+//                    System.out.println("总价格：" + totalPrice);
+                Hotel hotel1=new Hotel();
+                hotel1.setRooms(rooms);
+                room_rec.add(hotel1);
+                price.add(totalPrice*time);
+            } else {
+//                    System.out.println("无法安排所有人");
+                price.add(-1);
+            }
+
+
+        }
+        requestSearch.setRoom_rec(room_rec);
+        requestSearch.setPrice(price);
     }
 
 
