@@ -109,23 +109,24 @@
             @cell-mouse-enter="mouseEnter"
             :data="orderList.slice((page.currentPage-1)*page.pageSize,page.currentPage*page.pageSize)"
           >
-            <el-table-column label="序号" type="index" width="55">
+            <el-table-column label="序号" type="index" width="40">
               <template v-slot="scope">
                 <!-- (当前页 - 1) * 当前显示数据条数 + 当前行数据的索引 + 1  -->
                 <span>{{ (page.currentPage - 1) * page.pageSize + scope.$index + 1 }}</span>
               </template>
             </el-table-column>
-            <el-table-column label="订单id" prop="id" min-width="25px"/>
-            <el-table-column label="用户id" prop="id" min-width="25px"/>
-            <el-table-column label="用户姓名" prop="username" min-width="25px"/>
-            <el-table-column label="酒店id" prop="password" min-width="25px"/>
-            <el-table-column label="酒店名" prop="name" min-width="25px"/>
-            <el-table-column label="客房id" prop="postbox" min-width="25px"/>
-            <el-table-column label="客房名" prop="phone" min-width="25px"/>
-            <el-table-column label="房间数" prop="state" min-width="25px"/>
-            <el-table-column label="入住时间" prop="hotel_id" min-width="25px"/>
-            <el-table-column label="离开时间" prop="state" min-width="25px"/>
-            <el-table-column label="状态" prop="hotel_id" min-width="25px"/>
+            <el-table-column label="订单id" prop="id" min-width="11px"/>
+            <el-table-column label="用户id" prop="userid" min-width="12px"/>
+            <el-table-column label="用户姓名" prop="username" min-width="12px"/>
+            <el-table-column label="酒店id" prop="hotelid" min-width="12px"/>
+            <el-table-column label="酒店名" prop="hotel_name" min-width="40px"/>
+            <el-table-column label="客房id" prop="roomid" min-width="12px"/>
+            <el-table-column label="客房名" prop="room_name" min-width="35px"/>
+            <el-table-column label="房间数" prop="num" min-width="10px"/>
+            <el-table-column label="金额" prop="money" min-width="15px"/>
+            <el-table-column label="入住时间" prop="startdate" min-width="25px"/>
+            <el-table-column label="离开时间" prop="enddate" min-width="25px"/>
+            <el-table-column label="状态" prop="state" min-width="16px"/>
             <el-table-column label="操作" prop="operation" width="200">
               <template>
                 <el-button
@@ -137,7 +138,7 @@
                   type="text"
                   icon="el-icon-delete"
                   style="color: red;"
-                  @click="deleteuser"
+                  @click="deleteorder"
                 >删除</el-button>
               </template>
             </el-table-column>
@@ -148,7 +149,7 @@
             @current-change="handleCurrentChange"
             background
             layout="total,prev, pager, next, jumper"
-            :page-size="6"
+            :page-size="5"
             :total="orderList.length">
           </el-pagination>
         </div>
@@ -213,28 +214,29 @@ export default {
     },
     Addorder(){
       var _this = this
-      if (this.adduser.username === ''||this.adduser.password === ''){
+      if (this.addorder.userid === ''||this.addorder.hotelid === ''||this.addorder.roomid === ''||this.addorder.state === null){
         // alert(this.registerForm.phone)
         this.$message({
           duration: 1000,
           showClose: true,
-          message: '用户名或密码不能为空！',
+          message: '关键信息不能为空！',
           type: 'error'
         })
         return
       }
       this.$axios
-        .post('/user/register', {
-          username: this.adduser.username,
-          password: this.adduser.password,
-          name: this.adduser.name,
-          postbox: this.adduser.postbox,
-          phone: this.adduser.phone,
-          state: this.adduser.state,
-          hotel_id: this.adduser.hotel_id
+        .post('/order/req', {
+          userid: this.addorder.userid,
+          hotelid: this.addorder.hotelid,
+          roomid: this.addorder.roomid,
+          num: this.addorder.num,
+          money: this.addorder.money,
+          startdate: this.addorder.startdate,
+          enddate: this.addorder.enddate,
+          state: this.addorder.state
         })
         .then(successResponse => {
-          if (successResponse.data.username !=null) {
+          if (successResponse.data.code===200) {
             // var data = this.registerForm
             this.$message({
               duration: 1000,
@@ -249,7 +251,7 @@ export default {
             this.$message({
               duration: 1000,
               showClose: true,
-              message: '用户名和密码组合已存在！',
+              message: '添加失败！',
               type: 'error'
             })
           }
@@ -290,18 +292,18 @@ export default {
         })
     },
     deleteorder(){
-      this.$confirm('此操作将永久删除该用户，是否继续？', '提示', {
+      this.$confirm('此操作将永久删除该订单，是否继续？', '提示', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
         type: 'warning',
         center: true
       }).then((res) => {
         this.$axios
-          .post('/user/delete', {
-            id: this.chooseUser.id
+          .post('/order/delete', {
+            id: this.chooseOrder.id
           })
           .then(successResponse => {
-            if (successResponse.data !=null) {
+            if (successResponse.data.code===200) {
               console.log('删除成功')
               this.$message({
                 duration: 1000,
@@ -334,49 +336,51 @@ export default {
     },
     SetSetInformationVisible(){
       this.SetInformationVisible=true
-      this.adduser.username=this.chooseUser.username
-      this.adduser.password=this.chooseUser.password
-      this.adduser.phone=this.chooseUser.phone
-      this.adduser.postbox=this.chooseUser.postbox
-      this.adduser.name=this.chooseUser.name
-      this.adduser.hotel_id=this.chooseUser.hotel_id
-      switch (this.chooseUser.state){
-        case '用户':
-          this.adduser.state=0
+      this.addorder.userid=this.chooseOrder.userid
+      this.addorder.hotelid=this.chooseOrder.hotelid
+      this.addorder.roomid=this.chooseOrder.roomid
+      this.addorder.num=this.chooseOrder.num
+      this.addorder.money=this.chooseOrder.money
+      this.addorder.startdate=this.chooseOrder.startdate
+      this.addorder.enddate=this.chooseOrder.enddate
+      switch (this.chooseOrder.state){
+        case '未付款':
+          this.addorder.state=0
           break
-        case'系统管理员':
-          this.adduser.state=1
+        case'已付款':
+          this.addorder.state=1
           break
-        case '酒店管理员':
-          this.adduser.state=2
+        case '已取消':
+          this.addorder.state=2
           break
       }
     },
     updateorder(){
       var _this = this
-      if (this.adduser.username === ''||this.adduser.password === ''){
+      if (this.addorder.userid === ''||this.addorder.hotelid === ''||this.addorder.roomid === ''||this.addorder.state === null){
         // alert(this.registerForm.phone)
         this.$message({
           duration: 1000,
           showClose: true,
-          message: '用户名或密码不能为空！',
+          message: '关键信息不能为空！',
           type: 'error'
         })
         return
       }
       this.$axios
-        .post('/user/update', {
-          id: this.chooseUser.id,
-          username: this.adduser.username,
-          password: this.adduser.password,
-          name: this.adduser.name,
-          postbox: this.adduser.postbox,
-          phone: this.adduser.phone,
-          state: this.adduser.state,
-          hotel_id: this.adduser.hotel_id
+        .post('/order/update', {
+          id: this.chooseOrder.id,
+          userid: this.addorder.userid,
+          hotelid: this.addorder.hotelid,
+          roomid: this.addorder.roomid,
+          num: this.addorder.num,
+          money: this.addorder.money,
+          startdate: this.addorder.startdate,
+          enddate: this.addorder.enddate,
+          state: this.addorder.state
         })
         .then(successResponse => {
-          if (successResponse.data.username !=null) {
+          if (successResponse.data.code ===200) {
             // var data = this.registerForm
             this.$message({
               duration: 1000,
@@ -391,7 +395,7 @@ export default {
             this.$message({
               duration: 1000,
               showClose: true,
-              message: '用户名和密码组合已存在！',
+              message: '修改失败！',
               type: 'error'
             })
           }
@@ -433,7 +437,7 @@ export default {
       }],
       page: {
         currentPage: 1, // 当前页
-        pageSize: 6, // 每页条数
+        pageSize: 5, // 每页条数
       }
     }
   }
