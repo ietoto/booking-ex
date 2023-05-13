@@ -9,7 +9,7 @@
       <img class="china-img" src="https://t-cf.bstatic.com/design-assets/assets/v3.68.0/images-flags/Cn@3x.png"
         alt="中国" />
       <div class="wechat-container">
-        <i class="el-icon-chat-dot-round wechat-icon"></i>
+        <i class="wechat-icon"></i>
         <div class="wechat-qr-code">
           <p class="qr-title">关注 Booking.com 官方微信</p>
           <img src="/static/qr-code.jpg" alt="QR Code" />
@@ -162,6 +162,7 @@ export default {
 .wechat-container {
   position: relative;
   cursor: pointer;
+  margin-top: auto;
   margin-right: 10px;
 }
 
@@ -173,6 +174,14 @@ export default {
   /* 添加呼吸式动画 */
   transition: all 0.3s ease-in-out;
   /* 添加平滑过渡效果 */
+    /* 设置背景图像 */
+  background-image: url('./wechat.png');
+  background-size: contain; /* 按比例扩大或缩小背景图片以完全覆盖元素的内容区 */
+  background-repeat: no-repeat; /* 不重复显示背景图片 */
+  /* 你可能需要设置一个固定的宽度和高度 */
+  width: 20px; 
+  height: 20px;
+  display: inline-block; /* 允许你设置元素的宽度和高度 */
 }
 
 .wechat-qr-code {
@@ -196,6 +205,7 @@ export default {
 
 .qr-title {
   font-size: 15px;
+
 }
 
 /* 更新二维码背景样式 */

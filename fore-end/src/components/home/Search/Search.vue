@@ -6,7 +6,7 @@
         <el-date-picker v-model="value1" type="daterange" range-separator="至" start-placeholder="到店日期"
           end-placeholder="离店日期" :picker-options="pickerOptions" />
         <SearchPeople/>
-        <el-button type="primary" class="search-button">搜索</el-button>
+        <el-button type="primary" class="search-button"  @click="goToPage">搜索</el-button>
       </div>
     </div>
   </div>
@@ -34,7 +34,13 @@ export default {
   },
   components: {
     SearchPeople
+  },
+  methods: {
+  goToPage() {
+    this.$router.push('/search'); // 这里的 '/path/to/page' 是你要跳转的页面的路由
   }
+}
+
 }
 </script>
 
