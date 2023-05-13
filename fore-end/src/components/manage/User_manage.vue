@@ -5,7 +5,7 @@
   <el-container style="height: 625px; width: 1500px;">
     <el-aside style="width: 250px;margin-top: 50px;">
     </el-aside>
-    <el-container style="height: 575px;margin-top: 20px;border: 1px solid #de1b4f;width: 1200px;position: relative;left: 20px;">
+    <el-container style="height: 590px;margin-top: 20px;border: 1px solid #de1b4f;width: 1200px;position: relative;left: 20px;">
       <el-header>
       <el-form  :inline="true">
         <el-row>
@@ -56,28 +56,49 @@
             </el-form-item>
           </p>
           <el-form-item style="width: 60%;display: inline-block;position: relative;left: -50px;">
-            <el-button type="primary" @click="adduser()" style="width: 80%;">提交</el-button>
+            <el-button type="primary" @click="Adduser" style="width: 80%;">提交</el-button>
           </el-form-item>
         </el-form>
       </el-dialog>
       <el-dialog title="修改个人信息" :visible.sync="SetInformationVisible">
         <el-form label-width="100px" style="text-align: center;">
+          <el-form-item label="用户名" prop="pass" style="width: 80%;display: inline-block;position: relative;left: -50px;">
+            <el-input v-model="adduser.username"></el-input>
+          </el-form-item>
+          <el-form-item label="密码" prop="pass" style="width: 80%;display: inline-block;position: relative;left: -50px;">
+            <el-input v-model="adduser.password"></el-input>
+          </el-form-item>
           <el-form-item label="姓名" prop="pass" style="width: 80%;display: inline-block;position: relative;left: -50px;">
-            <a v-if="newname"><el-input v-model="newname"></el-input></a>
+            <el-input v-model="adduser.name"></el-input>
           </el-form-item>
           <el-form-item label="电话" prop="pass" style="width: 80%;display: inline-block;position: relative;left: -50px;">
-            <a v-if="newphone"><el-input v-model="newphone"></el-input></a>
+            <el-input v-model="adduser.phone"></el-input>
           </el-form-item>
           <el-form-item label="邮箱" prop="pass" style="width: 80%;display: inline-block;position: relative;left: -50px;">
-            <a v-if="newpostbox"><el-input v-model="newpostbox"></el-input></a>
+            <el-input v-model="adduser.postbox"></el-input>
           </el-form-item>
+          <el-form-item label="身份" prop="pass" style="width: 80%;display: inline-block;position: relative;left: -50px;">
+            <el-select v-model="adduser.state" placeholder="请选择">
+              <el-option
+                v-for="item in state"
+                :key="item.value"
+                :label="item.label"
+                :value="item.value">
+              </el-option>
+            </el-select>
+          </el-form-item>
+          <p v-if="adduser.state===2">
+            <el-form-item label="负责酒店" prop="pass" style="width: 80%;display: inline-block;position: relative;left: -50px;">
+              <el-input v-model="adduser.hotel_id"></el-input>
+            </el-form-item>
+          </p>
           <el-form-item style="width: 60%;display: inline-block;position: relative;left: -50px;">
-            <el-button type="primary" @click="updateuser()" style="width: 80%;">提交</el-button>
+            <el-button type="primary" @click="updateuser" style="width: 80%;">提交</el-button>
           </el-form-item>
         </el-form>
       </el-dialog>
       <el-main>
-        <el-container style="height: 485px;margin-top: -15px;border: 1px solid #de1b4f;width: 1200px;position: relative;left: 0px;">
+        <el-container style="height: 460px;margin-top: -15px;border: 1px solid #de1b4f;width: 1200px;position: relative;left: 0px;">
           <el-table
             border
             height="450"
@@ -87,11 +108,12 @@
             @cell-mouse-enter="mouseEnter"
           >
             <el-table-column label="序号" type="index" width="55">
-<!--              <template slot-scope="scope">-->
-<!--                &lt;!&ndash; (当前页 - 1) * 当前显示数据条数 + 当前行数据的索引 + 1  &ndash;&gt;-->
-<!--                <span>{{ (page.currentPage - 1) * page.pageSize + scope.$index + 1 }}</span>-->
-<!--              </template>-->
+              <template slot-scope="scope">
+                <!-- (当前页 - 1) * 当前显示数据条数 + 当前行数据的索引 + 1  -->
+                <span>{{ (page.currentPage - 1) * page.pageSize + scope.$index + 1 }}</span>
+              </template>
             </el-table-column>
+            <el-table-column label="id" prop="id" min-width="25px"/>
             <el-table-column label="用户名" prop="username" min-width="25px"/>
             <el-table-column label="密码" prop="password" min-width="25px"/>
             <el-table-column label="真实姓名" prop="name" min-width="25px"/>
@@ -116,8 +138,13 @@
             </el-table-column>
           </el-table>
         </el-container>
-      <!-- el-table中的height用于固定表头 -->
-
+        <div class="block">
+          <el-pagination
+            background
+            layout="total,prev, pager, next, jumper"
+            :total="50">
+          </el-pagination>
+        </div>
       </el-main>
     </el-container>
   </el-container>
@@ -173,7 +200,51 @@ export default {
     SetAddInformationVisible(){
       this.AddInformationVisible=true
     },
-    adduser(){
+    Adduser(){
+      var _this = this
+      if (this.adduser.username === ''||this.adduser.password === ''){
+        // alert(this.registerForm.phone)
+        this.$message({
+          duration: 1000,
+          showClose: true,
+          message: '用户名或密码不能为空！',
+          type: 'error'
+        })
+        return
+      }
+      this.$axios
+        .post('/user/register', {
+          username: this.adduser.username,
+          password: this.adduser.password,
+          name: this.adduser.name,
+          postbox: this.adduser.postbox,
+          phone: this.adduser.phone,
+          state: this.adduser.state,
+          hotel_id: this.adduser.hotel_id
+        })
+        .then(successResponse => {
+          if (successResponse.data.username !=null) {
+            // var data = this.registerForm
+            this.$message({
+              duration: 1000,
+              showClose: true,
+              message: '添加成功！',
+              type: 'success'
+            })
+            this.AddInformationVisible=false
+            this.getall()
+          }
+          else {
+            this.$message({
+              duration: 1000,
+              showClose: true,
+              message: '用户名和密码组合已存在！',
+              type: 'error'
+            })
+          }
+        })
+        .catch(failResponse => {
+        })
     },
     getall(){
       var _this = this
@@ -252,9 +323,70 @@ export default {
     },
     SetSetInformationVisible(){
       this.SetInformationVisible=true
+      this.adduser.username=this.chooseUser.username
+      this.adduser.password=this.chooseUser.password
+      this.adduser.phone=this.chooseUser.phone
+      this.adduser.postbox=this.chooseUser.postbox
+      this.adduser.name=this.chooseUser.name
+      this.adduser.hotel_id=this.chooseUser.hotel_id
+      switch (this.chooseUser.state){
+        case '用户':
+          this.adduser.state=0
+          break
+        case'系统管理员':
+          this.adduser.state=1
+          break
+        case '酒店管理员':
+          this.adduser.state=2
+          break
+      }
     },
     updateuser(){
-
+      var _this = this
+      if (this.adduser.username === ''||this.adduser.password === ''){
+        // alert(this.registerForm.phone)
+        this.$message({
+          duration: 1000,
+          showClose: true,
+          message: '用户名或密码不能为空！',
+          type: 'error'
+        })
+        return
+      }
+      this.$axios
+        .post('/user/update', {
+          id: this.chooseUser.id,
+          username: this.adduser.username,
+          password: this.adduser.password,
+          name: this.adduser.name,
+          postbox: this.adduser.postbox,
+          phone: this.adduser.phone,
+          state: this.adduser.state,
+          hotel_id: this.adduser.hotel_id
+        })
+        .then(successResponse => {
+          if (successResponse.data.username !=null) {
+            // var data = this.registerForm
+            this.$message({
+              duration: 1000,
+              showClose: true,
+              message: '修改成功！',
+              type: 'success'
+            })
+            this.SetInformationVisible=false
+            this.getall()
+          }
+          else {
+            this.$message({
+              duration: 1000,
+              showClose: true,
+              message: '用户名和密码组合已存在！',
+              type: 'error'
+            })
+          }
+        })
+        .catch(failResponse => {
+        })
     },
     mouseEnter (data) {
       this.chooseUser = Object.assign({}, data)
@@ -285,7 +417,13 @@ export default {
       },{
         value: 2,
         label: '酒店管理员'
-      }]
+      }],
+      page: {
+        currentPage: 0, // 当前页，对应接口中的page
+        pageSize: 0, // 每页条数，对应接口中的limit
+        totalSize: 0, // 中条数，对应接口中的res.data.page.totalRows
+        totalPage: 0 // 总页数，对应接口中的res.data.page.totalPages
+      }
     }
   }
 }
