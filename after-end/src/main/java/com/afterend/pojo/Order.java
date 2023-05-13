@@ -23,6 +23,10 @@ public class Order {
     String enddate;
     int state;
 
+    String username;
+    String hotel_name;
+    String room_name;
+
     public int getId() {
         return id;
     }
