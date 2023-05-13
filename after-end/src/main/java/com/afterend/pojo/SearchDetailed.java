@@ -32,7 +32,9 @@ public class SearchDetailed {
     List<Integer> cancle_policy_num;    //0: 免费取消 1: 免费预订
     List<Boolean> select_policy_num;    //size=2, 0:不选 1:选
     int num;    //总共找到的酒店数
-
+    List<Integer> price;  //价格估计
+    List<Hotel> room_rec;   //推荐客房列表
+    
     public int getId() {
         return id;
     }
@@ -239,5 +241,21 @@ public class SearchDetailed {
 
     public void setSelect_policy_num(List<Boolean> select_policy_num) {
         this.select_policy_num = select_policy_num;
+    }
+    
+        public List<Integer> getPrice() {
+        return price;
+    }
+
+    public void setPrice(List<Integer> price) {
+        this.price = price;
+    }
+
+    public List<Hotel> getRoom_rec() {
+        return room_rec;
+    }
+
+    public void setRoom_rec(List<Hotel> room_rec) {
+        this.room_rec = room_rec;
     }
 }
