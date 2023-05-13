@@ -20,6 +20,13 @@ public class RoomFacController {
     public List<RoomFac> getRoomFac(Hotel hotel) {
         return roomFacService.get(hotel);
     }
+    
+    public List<RoomFac> getOneRoomFac(Room room) {
+        Room room1 =new Room();
+        room1.setHotelid(room.getHotelid());
+        room1.setId(room.getId());
+        return roomFacService.getByHotelIDAndRoomID(room1);
+    }
 
     //管理员/酒店经理添加房间设施
     @CrossOrigin
