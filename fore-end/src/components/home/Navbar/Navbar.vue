@@ -1,7 +1,7 @@
 <template>
   <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" background-color="#0D47A1"
     text-color="#fff" active-text-color="#409EFF" @select="handleSelect">
-    <router-link to="/index" class="logo-link"> 
+    <router-link to="/index" class="logo-link">
     <Bookingicon></Bookingicon>
      </router-link>
     <div class="menu-right">
@@ -31,9 +31,9 @@
             <el-dropdown-item command="order" icon="el-icon-s-order" style="font-size: 20px;padding: 8px 50px;">我的订单</el-dropdown-item>
             <el-dropdown-item command="user" icon="el-icon-user" style="font-size: 20px;padding: 8px 50px;">个人信息</el-dropdown-item>
             <p v-if= "this.$store.state.user.state === 1">
-            <el-dropdown-item command="order" icon="el-icon-office-building" style="font-size: 20px;padding: 8px 50px;">酒店管理</el-dropdown-item>
-            <el-dropdown-item command="user" icon="el-icon-s-custom" style="font-size: 20px;padding: 8px 50px;">个人信息管理</el-dropdown-item>
-            <el-dropdown-item command="user" icon="el-icon-edit" style="font-size: 20px;padding: 8px 50px;">订单管理</el-dropdown-item>
+            <el-dropdown-item command="hotel_manage" icon="el-icon-office-building" style="font-size: 20px;padding: 8px 50px;">酒店管理</el-dropdown-item>
+            <el-dropdown-item command="user_manage" icon="el-icon-s-custom" style="font-size: 20px;padding: 8px 50px;">个人信息管理</el-dropdown-item>
+            <el-dropdown-item command="order_manage" icon="el-icon-edit" style="font-size: 20px;padding: 8px 50px;">订单管理</el-dropdown-item>
             </p>
             <p v-if= "this.$store.state.user.state === 2">
             <el-dropdown-item command="order" icon="el-icon-school" style="font-size: 20px;padding: 8px 50px;">我的酒店</el-dropdown-item>
@@ -81,6 +81,15 @@ export default {
           break
         case 'user' :
           this.$router.push("/user")
+          break
+        case 'hotel_manage' :
+          this.$router.push("/hotel_manage")
+          break
+        case 'user_manage' :
+          this.$router.push("/user_manage")
+          break
+        case 'order_manage' :
+          this.$router.push("/order_manage")
           break
       }
       // this.$message('click on item ' + command);
@@ -179,7 +188,7 @@ export default {
   background-size: contain; /* 按比例扩大或缩小背景图片以完全覆盖元素的内容区 */
   background-repeat: no-repeat; /* 不重复显示背景图片 */
   /* 你可能需要设置一个固定的宽度和高度 */
-  width: 20px; 
+  width: 20px;
   height: 20px;
   display: inline-block; /* 允许你设置元素的宽度和高度 */
 }
