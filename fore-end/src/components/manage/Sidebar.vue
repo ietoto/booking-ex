@@ -4,9 +4,9 @@
             class="sidebar-el-menu"
             :default-active="onRoutes"
             :collapse="collapse"
-            background-color="#324157"
-            text-color="#bfcbd9"
-            active-text-color="#20a0ff"
+            background-color="rgba(82,156,235,0.6)"
+            text-color="black"
+            active-text-color="rgba(255,255,0)"
             unique-opened
             router
         >
@@ -37,54 +37,24 @@ export default {
             collapse: false,
             items: [
                 {
-                    icon: 'el-icon-lx-home',
-                    index: 'dashboard',
-                    menuName: '系统首页'
+                    icon: 'el-icon-office-building',
+                    index: 'hotel_manage',
+                    menuName: '酒店管理'
                 },
                 {
-                    icon: 'el-icon-lx-cascades',
-                    index: 'employee',
-                    menuName: '员工管理'
+                    icon: 'el-icon-s-custom',
+                    index: 'user_manage',
+                    menuName: '个人信息管理'
                 },
                 {
-                    icon: 'el-icon-lx-copy',
-                    index: 'roomservice',
-                    menuName: '客户服务'
-                },
-                {
-                    icon: 'el-icon-lx-copy',
-                    index: 'cropper',
-                    menuName: '文件上传(可裁剪)'
-                },
-                {
-                    icon: 'el-icon-lx-calendar',
-                    index: 'room',
-                    menuName: '客房管理'
-                },
-                {
-                    icon: 'el-icon-s-shop',
-                    index: 'searchroom',
-                    menuName: '客房查询'
-                },
-                {
-                    icon: 'el-icon-lx-emoji',
-                    index: 'checkin',
-                    menuName: '入住管理'
-                },
-                {
-                    icon: 'el-icon-lx-global',
-                    index: 'checkout',
-                    menuName: '退房办理'
-                },
-                {
-                    icon: 'el-icon-lx-redpacket_fill',
-                    index: 'finance',
-                    menuName: '财务管理'
+                    icon: 'el-icon-edit',
+                    index: 'order_manage',
+                    menuName: '订单管理'
                 }
             ]
         };
     },
-    computed: {//员工管理、客房管理、客房查询、入住管理、客户服务、财务管理
+    computed: {
         onRoutes() {
             return this.$route.path.replace('/', '');
         }
