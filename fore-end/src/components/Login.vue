@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import Navbar from './home/Navbar.vue'
+import Navbar from './home/Navbar/Navbar.vue'
 export default {
   name: 'Login',
   data() {
@@ -71,7 +71,7 @@ export default {
 
 <style>
 #poster {
-  background: url("../assets/login.jpg") no-repeat;
+  background: url("../assets/login1.jpg") no-repeat;
   background-position: center;
   height: 100%;
   width: 100%;

@@ -52,7 +52,7 @@ public class HotelController {
 
             //set rooms
             RoomController roomController = new RoomController();
-            List<Room> rooms = roomController.getRoomList(requestHotel);
+            List<Room> rooms = roomController.getRoomListWithFac(requestHotel);
 
             //set room facilities
             RoomFacController roomFacController = new RoomFacController();

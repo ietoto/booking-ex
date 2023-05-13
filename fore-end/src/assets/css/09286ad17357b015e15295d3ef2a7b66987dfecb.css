@@ -1,0 +1,40 @@
+.sliding-view__content {
+  padding: 0;
+}
+.sliding-view__content .ski-gallery {
+  position: relative;
+  padding: 4px;
+}
+.sliding-view__content .ski-gallery .ski-gallery__item {
+  position: relative;
+  height: 200px;
+  padding: 2px 0;
+}
+.sliding-view__content .ski-gallery .ski-gallery__item .ski-gallery__img {
+  height: 100%;
+  width: 100%;
+}
+.sliding-view__content .bui-grid {
+  padding: 8px;
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  background: var(--bui_color_white);
+}
+.sliding-view__content .bui-grid .bui-grid__column-6 {
+  padding: 0 8px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+.sliding-view__content .bui-grid .bui-button {
+  width: 100%;
+}
+.b_lang_ru .sliding-view__content .bui-grid .bui-button {
+  font-size: var(--DO_NOT_USE_bui_large_font_small_1_font-size);
+  font-weight: var(--DO_NOT_USE_bui_large_font_small_1_font-weight);
+  line-height: var(--DO_NOT_USE_bui_large_font_small_1_line-height);
+  font-family: var(--DO_NOT_USE_bui_large_font_small_1_font-family);
+  padding: 8px;
+}

@@ -2,11 +2,11 @@
     <div>
       <div
         :style="{
-          marginTop: '30px',
+          marginTop: '50px',
           backgroundColor: '#00224F',
-          padding: '30px',
+          padding: '8px',
           textAlign: 'center',
-          width: '100vw',
+          width:'100%',
           overflowY: 'hidden',
         }"
       >
@@ -23,7 +23,8 @@
           paddingTop: '20px',
           paddingBottom: '15px',
           border: 'none',
-          width: '100',
+          padding: '8px',
+          width: '100%',
           overflowY: 'hidden',
         }"
       >

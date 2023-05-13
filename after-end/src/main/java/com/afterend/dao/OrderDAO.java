@@ -20,7 +20,7 @@ public class OrderDAO {
         List<Order> list=new ArrayList<>();
         try{
             con= JDBCUtils.getConnect();
-            String sql="select * from order";
+            String sql="SELECT orderid,userid,name,hotelid,hotel_name,roomid,room_name,num,money,startdate,enddate,`order`.state FROM `order`,hotel,`user`,room WHERE `order`.userid=`user`.id AND `order`.hotelid=hotel.hotel_id AND `order`.hotelid=room.hotel_id AND `order`.roomid=room.room_id";
             PreparedStatement pstate = con.prepareStatement(sql);
             ResultSet resultSet = pstate.executeQuery();
             while (resultSet.next()){
@@ -34,6 +34,9 @@ public class OrderDAO {
                 s.setStartdate(resultSet.getString("startdate"));
                 s.setEnddate(resultSet.getString("enddate"));
                 s.setState(resultSet.getInt("state"));
+                s.setUsername(resultSet.getString("name"));
+                s.setHotel_name(resultSet.getString("hotel_name"));
+                s.setRoom_name(resultSet.getString("room_name"));
                 list.add(s);
             }
         } catch (SQLException e) {
@@ -55,7 +58,7 @@ public class OrderDAO {
         List<Order> list=new ArrayList<>();
         try{
             con= JDBCUtils.getConnect();
-            String sql="select * from order where userid=?";
+            String sql="SELECT orderid,userid,name,hotelid,hotel_name,roomid,room_name,num,money,startdate,enddate,`order`.state FROM `order`,hotel,`user`,room WHERE userid=? AND`order`.userid=`user`.id AND `order`.hotelid=hotel.hotel_id AND `order`.hotelid=room.hotel_id AND `order`.roomid=room.room_id";
             PreparedStatement pstate = con.prepareStatement(sql);
             pstate.setInt(1,order.getUserid());
             ResultSet resultSet = pstate.executeQuery();
@@ -70,6 +73,9 @@ public class OrderDAO {
                 s.setStartdate(resultSet.getString("startdate"));
                 s.setEnddate(resultSet.getString("enddate"));
                 s.setState(resultSet.getInt("state"));
+                s.setUsername(resultSet.getString("name"));
+                s.setHotel_name(resultSet.getString("hotel_name"));
+                s.setRoom_name(resultSet.getString("room_name"));
                 list.add(s);
             }
         } catch (SQLException e) {

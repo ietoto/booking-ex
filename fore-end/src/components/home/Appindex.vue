@@ -1,27 +1,27 @@
 <!-- index是登陆前界面 -->
 <template>
   <div>
-    <Navbar/>
-    <Loginshow/>
-    <Search/>
+    <Navbar />
+    <Loginshow />
+    <Search />
     <HotSpot>
     </HotSpot>
-    <SpotCarousel/>
-    <NextTrip/>
-    <Degination/>
-    <FooterBlue/>
-   
+    <SpotCarousel />
+    <NextTrip />
+    <Degination />
+    <FooterBlue />
+
   </div>
 </template>
 
 <script>
 import NextTrip from './NextTrip/NextTrip.vue'
 import Degination from './Degination/Degination.vue'
-import SpotCarousel from './SpotCarousel.vue'
+import SpotCarousel from './Spot/SpotCarousel.vue'
 import Loginshow from './Loginshow.vue'
-import Search from './Search.vue'
-import Navbar from './Navbar.vue'
-import HotSpot from './HotSpot.vue'
+import Search from './Search/Search.vue'
+import Navbar from './Navbar/Navbar.vue'
+import HotSpot from './Spot/HotSpot.vue'
 import FooterBlue from './Footer/FooterBlue.vue'
 export default {
   name: 'AppIndex',
@@ -34,10 +34,11 @@ export default {
     FooterBlue,
     Degination,
     NextTrip
-}
+  }
 }
 </script>
 
-<style scoped>
-
-</style>
+<style scoped>body {
+  margin: 0;
+  padding: 0;
+}</style>
