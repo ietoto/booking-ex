@@ -6,6 +6,7 @@ import Login from '@/components/Login'
 import Test from '@/components/Test'
 import Register from '@/components/Register'
 import User from '@/components/User'
+import Home from '@/components/manage/Home'
 Vue.use(Router)
 
 export default new Router({
@@ -43,6 +44,11 @@ export default new Router({
       path: '/search',
       name: 'Searchfilter',
       component: Searchfilter
+    },
+    {
+      path: '/hotel_manage',
+      name: 'Home',
+      component: Home
     }
   ]
 })
