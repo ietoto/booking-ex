@@ -80,6 +80,6 @@ export default {
 }
 
 .search-button {
-  margin-left: 20px;
+  
 }
 </style>

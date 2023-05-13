@@ -1,10 +1,13 @@
 <template>
     <div>
-        <Navbar/>
-        <!-- <HotelFilter/> -->
-        <SearchAside/>     
-        <MainMenu/>
-        <FooterBlue/>
+        <Navbar />
+        <div id="basiclayout" style="position: relative;">
+            <SearchAside />
+            <div id="left" class="rlt-left leftsmall" role="complementary">
+                <MainMenu />
+             </div>
+        </div>
+        <FooterBlue />
     </div>
 </template>
 
@@ -15,14 +18,14 @@ import Navbar from '../home/Navbar/Navbar.vue';
 import FooterBlue from '../home/Footer/FooterBlue.vue';
 import FooterWhite from '../home/Footer/FooterWhite.vue';
 export default {
-   name: "HotelSearch",
-   components: {
-      FooterBlue,
-      FooterWhite,
-      Navbar,
-      MainMenu,
-      SearchAside
-   },
+    name: "HotelSearch",
+    components: {
+        FooterBlue,
+        FooterWhite,
+        Navbar,
+        MainMenu,
+        SearchAside
+    },
 }
 </script>
 

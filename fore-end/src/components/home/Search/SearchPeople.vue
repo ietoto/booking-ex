@@ -82,14 +82,15 @@ export default {
 <style scoped>
 .search-bar-wrapper {
     margin-top: 10px;
-    width: 40%;
 }
 
 .input-group {
     margin-bottom: 10px;
+    width: 100%
 }
 
 .input-label {
+    display: inline-block;
     font-weight: bold;
     font-size: 14px;
     color: #333;
@@ -100,7 +101,7 @@ export default {
     background-color: #fff; /* 设置背景颜色与输入框一致 */
     color: #606266; /* 设置文字颜色与输入框一致 */
     border: 1px solid #DCDFE6; /* 设置边框样式与输入框一致 */
-    padding: 10px 15px; /* 设置内部填充空间 */
+    padding: 10px 2px; /* 设置内部填充空间 */
     text-align: center;
     display: inline-block;
     font-size: 14px;
@@ -108,6 +109,7 @@ export default {
     border-radius: 4px;
     transition: .1s;
     box-sizing: border-box;
+    width:103%
 }
 
 /* Enhanced button hover and active states */

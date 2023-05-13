@@ -1,5 +1,5 @@
 <template>
-  <el-container direction="vertical">
+  <el-container direction="vertical" class="container">
     <el-row>
       <el-card class="card1" shadow="never">
         缩小搜索范围
@@ -90,6 +90,12 @@ export default {
 </script>
 
 <style scoped>
+.container
+{
+  margin-left: 49%;
+  margin-bottom: 10%;
+}
+
 .card1 {
   border-radius: 2px;
   text-align: left;
