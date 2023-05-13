@@ -102,13 +102,13 @@
           <el-table
             border
             height="450"
-            :data="userList"
             v-loading="loading"
             element-loading-text="努力加载中"
             @cell-mouse-enter="mouseEnter"
+            :data="userList.slice((page.currentPage-1)*page.pageSize,page.currentPage*page.pageSize)"
           >
             <el-table-column label="序号" type="index" width="55">
-              <template slot-scope="scope">
+              <template v-slot="scope">
                 <!-- (当前页 - 1) * 当前显示数据条数 + 当前行数据的索引 + 1  -->
                 <span>{{ (page.currentPage - 1) * page.pageSize + scope.$index + 1 }}</span>
               </template>
@@ -140,9 +140,11 @@
         </el-container>
         <div class="block">
           <el-pagination
+            @current-change="handleCurrentChange"
             background
             layout="total,prev, pager, next, jumper"
-            :total="50">
+            :page-size="6"
+            :total="userList.length">
           </el-pagination>
         </div>
       </el-main>
@@ -165,6 +167,10 @@ export default {
     this.getall()
   },
   methods: {
+    handleCurrentChange(val) {
+      console.log(`当前页: ${val}`);
+      this.page.currentPage = val
+    },
     getByUserName(){
       var _this = this
       this.loading=true
@@ -419,10 +425,8 @@ export default {
         label: '酒店管理员'
       }],
       page: {
-        currentPage: 0, // 当前页，对应接口中的page
-        pageSize: 0, // 每页条数，对应接口中的limit
-        totalSize: 0, // 中条数，对应接口中的res.data.page.totalRows
-        totalPage: 0 // 总页数，对应接口中的res.data.page.totalPages
+        currentPage: 1, // 当前页
+        pageSize: 6, // 每页条数
       }
     }
   }
