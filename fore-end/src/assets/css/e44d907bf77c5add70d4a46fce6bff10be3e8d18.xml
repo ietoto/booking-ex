@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<OpenSearchDescription xmlns="http://a9.com/-/spec/opensearch/1.1/" xmlns:moz="http://www.mozilla.org/2006/browser/search/">
+<ShortName>Booking.com</ShortName>
+<Description>在線預訂酒店</Description>
+<Image width="16" height="16" type="image/vnd.microsoft.icon">http://q.bstatic.com/static/img/favicon.ico</Image>
+<Url type="text/html" method="get" template="https://www.booking.com/searchresults.zh-cn.html?si=ai%2Cco%2Cci%2Cre%2Cdi;ss={searchTerms};label=opensearch-plugin"/>
+<moz:UpdateInterval>7</moz:UpdateInterval>
+<moz:UpdateUrl>
+http://q.bstatic.com/static/opensearch/zh-cn.xml	
+</moz:UpdateUrl>
+</OpenSearchDescription>

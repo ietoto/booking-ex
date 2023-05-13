@@ -1,0 +1,60 @@
+/* image-container-styles.css */
+
+.cont {
+  height: 320px;
+  overflow: hidden;
+  position: relative;
+  margin-bottom: 20px;
+  border-radius: 3px;
+}
+
+.cont:hover {
+  cursor: pointer;
+}
+
+.background {
+  height: 320px;
+  background-position: center;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+  filter: brightness(0.8);
+  border-radius: 20px;
+}
+
+.background:hover {
+  transform: scale(1.05, 1.05);
+  transition: all 0.3s ease-in-out;
+}
+
+.text {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 92%;
+  padding: 12px;
+  z-index: 100;
+}
+
+.text h1 {
+  margin: 0;
+  font-size: 20px;
+  line-height: 28px;
+  color: #fff;
+  font-weight: 600;
+  background-color: rgba(0, 0, 0, 0.5); 
+  border-radius: 5px;
+}
+
+.text p {
+  margin: 0;
+  font-size: 14px;
+  background-color: rgba(0, 0, 0, 0.5); 
+  border-radius: 5px;   
+  line-height: 20px;
+  color: #fff;
+  font-weight: 600;
+}

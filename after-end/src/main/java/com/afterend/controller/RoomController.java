@@ -21,19 +21,7 @@ public class RoomController {
     public List<Room> getRoomListWithFac(Hotel hotel) {
         Room room =new Room();
         room.setHotelid(hotel.getId());
-        List<Room> rooms = roomService.getRoomList(room);
-
-        //set room facilities
-        RoomFacController roomFacController = new RoomFacController();
-        for(int i=0;i<rooms.size();i++){
-            List<RoomFac> roomFacList = roomFacController.getOneRoomFac(room);
-            List<String> facilities_room = new ArrayList<>();
-            for (int j = 0; j < roomFacList.size(); j++) {
-                facilities_room.add(roomFacList.get(j).getName());
-            }
-            rooms.get(i).setFacilities(facilities_room);
-        }
-        return rooms;
+        return roomService.getRoomList(room);
     }
 
     public  List<Room> getRoomList(Hotel hotel){
