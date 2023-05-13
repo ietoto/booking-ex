@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Searchfilter from '@/components/Searchfilter/Searchfilter'
+import HotelSearch from '@/components/HotelSearch/HotelSearch'
 import AppIndex from '@/components/home/AppIndex'
 import Login from '@/components/Login'
 import Test from '@/components/Test'
@@ -41,8 +41,8 @@ export default new Router({
     },
     {
       path: '/search',
-      name: 'Searchfilter',
-      component: Searchfilter
+      name: 'HotelSearch',
+      component: HotelSearch
     }
   ]
 })
