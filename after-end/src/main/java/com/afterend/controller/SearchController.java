@@ -97,8 +97,12 @@ public class SearchController {
         HotelController hotelController = new HotelController();
         SearchDetailed searchDetailed = requestSearch;
         hotel = hotelController.hotelInfo(hotel);
-        //可用房间以及价格
+        List<Hotel> temp = new ArrayList<>();
+        temp.add(hotel);
+        //推荐客房以及价格
+        recommend(searchDetailed);
 
+        searchDetailed.setHotels(temp);
         return searchDetailed;
 
     }
