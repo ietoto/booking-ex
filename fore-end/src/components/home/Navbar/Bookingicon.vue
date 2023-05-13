@@ -2,7 +2,7 @@
     <div class="navbarContainer">
       <div class="navbarUpperSection">
         <div>
-          <router-link to="/">
+          <router-link to="/index">
             <svg height="30" width="200" viewBox="0 0 252 42" role="presentation" aria-hidden="true" focusable="false">
               <!-- SVG Paths here -->
               <!-- ... -->
@@ -14,14 +14,14 @@
       </div>
     </div>
   </template>
-  
+
   <script>
   export default {
     // component logic here...
     name:"Bookingicon"
   }
   </script>
-  
+
   <style scoped>
   /* CSS styles here */
   /* ... */
@@ -40,7 +40,6 @@ padding-right: 5%;
     display: flex;
     justify-content: space-between;
     margin-right: 10%;
-  
+
 }
   </style>
-  
