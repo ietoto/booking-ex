@@ -83,15 +83,6 @@ public class HotelController {
         hotel = hotelService.SearchbyID(requestHotel);
         return hotel;
     }
-    
-    @CrossOrigin
-    @PostMapping(value = "/api/hotel/searchById")
-    @ResponseBody
-    public Hotel searchById(@RequestBody Hotel requestHotel, HttpSession session){
-        Hotel hotel = new Hotel();
-        hotel = hotelService.SearchbyID(requestHotel);
-        return hotel;
-    }
 
     //管理员添加酒店
     @CrossOrigin
