@@ -247,6 +247,34 @@
           </el-form-item>
         </el-form>
       </el-dialog>
+      <el-dialog title="修改客房" :visible.sync="SetRoomInformationVisible">
+        <el-form label-width="100px" style="text-align: center;">
+          <el-form-item label="客房名" prop="pass" style="width: 80%;display: inline-block;position: relative;left: -50px;">
+            <a v-if="addroom.name"><el-input v-model="addroom.name"></el-input></a>
+          </el-form-item>
+          <el-form-item label="客房总数" prop="pass" style="width: 80%;display: inline-block;position: relative;left: -50px;">
+            <a v-if="addroom.num_max"><el-input v-model="addroom.num_max"></el-input></a>
+          </el-form-item>
+          <el-form-item label="可住人数" prop="pass" style="width: 80%;display: inline-block;position: relative;left: -50px;">
+            <a v-if="addroom.size"><el-input v-model="addroom.size"></el-input></a>
+          </el-form-item>
+          <el-form-item label="一晚价格" prop="pass" style="width: 80%;display: inline-block;position: relative;left: -50px;">
+            <a v-if="addroom.price_r"><el-input v-model="addroom.price_r"></el-input></a>
+          </el-form-item>
+          <el-form-item label="早餐价格" prop="pass" style="width: 80%;display: inline-block;position: relative;left: -50px;">
+            <a v-if="addroom.price_b"><el-input v-model="addroom.price_b"></el-input></a>
+          </el-form-item>
+          <el-form-item label="免费取消" prop="pass" style="width: 80%;display: inline-block;position: relative;left: -50px;">
+            <a v-if="addroom.ifFreeCancle"><el-input v-model="addroom.ifFreeCancle"></el-input></a>
+          </el-form-item>
+          <el-form-item label="无需预订" prop="pass" style="width: 80%;display: inline-block;position: relative;left: -50px;">
+            <a v-if="addroom.ifNoRequire"><el-input v-model="addroom.ifNoRequire"></el-input></a>
+          </el-form-item>
+          <el-form-item style="width: 60%;display: inline-block;position: relative;left: -50px;">
+            <el-button type="primary" @click="updateroom" style="width: 80%;">提交</el-button>
+          </el-form-item>
+        </el-form>
+      </el-dialog>
       <el-main>
         <el-container style="height: 460px;margin-top: -15px;border: 1px solid #de1b4f;width: 1200px;position: relative;left: 0px;">
           <el-table
@@ -651,6 +679,53 @@ export default {
         })
       })
     },
+    deleteroom(){
+      this.$confirm('此操作将永久删除该客房，是否继续？', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning',
+        center: true
+      }).then((res) => {
+        this.$axios
+          .post('/room/delete', {
+            hotelid: this.chooseHotel.id,
+            id: this.chooseRoom.id
+          })
+          .then(successResponse => {
+            if (successResponse.data.code ===200) {
+              console.log('删除成功')
+              this.$message({
+                duration: 1000,
+                showClose: true,
+                type: 'success',
+                message: '删除成功！'
+              })
+              this.getallroom()
+            }
+            else {
+              this.$message({
+                duration: 1000,
+                showClose: true,
+                type: 'error',
+                message: '删除失败！'
+              })
+              this.getallroom()
+            }
+          })
+          .catch(failResponse => {
+          })
+      }).catch(() => {
+        this.$message({
+          duration: 1000,
+          showClose: true,
+          type: 'info',
+          message: '取消删除'
+        })
+      })
+    },
+    deleteroomfac(){
+
+    },
     SetShowInformationVisible(){
       this.ShowInformationVisible=true
       this.addhotel.name=this.chooseHotel.name
@@ -668,7 +743,21 @@ export default {
       this.getallhotelfac()
     },
     SetSetHotelFacInformationVisible(){
-
+      this.SetHotelFacInformationVisible = true
+      this.addhotelfac.name=this.chooseHotelFac.name
+    },
+    SetSetRoomInformationVisible(){
+      this.SetRoomInformationVisible = true
+      this.addroom.name=this.chooseRoom.name
+      this.addroom.num_max=this.chooseRoom.num_max
+      this.addroom.size=this.chooseRoom.size
+      this.addroom.price_r=this.chooseRoom.price_r
+      this.addroom.price_b=this.chooseRoom.price_b
+      this.addroom.ifFreeCancle=this.chooseRoom.ifFreeCancle
+      this.addroom.ifNoRequire=this.chooseRoom.ifNoRequire
+    },
+    SetSetRoomFacInformationVisible(){
+      this.SetRoomFacInformationVisible = true
     },
     SetShowRoomVisible(){
       this.ShowRoomVisible = true
@@ -775,6 +864,56 @@ export default {
         .catch(failResponse => {
         })
     },
+    updateroom(){
+      var _this = this
+      if (this.addroom.name === ''){
+        // alert(this.registerForm.phone)
+        this.$message({
+          duration: 1000,
+          showClose: true,
+          message: '客房名不能为空！',
+          type: 'error'
+        })
+        return
+      }
+      this.$axios
+        .post('/room/update', {
+          id: this.addroom.id,
+          hotelid: this.chooseHotel.id,
+          name: this.addroom.name,
+          size: this.addroom.size,
+          price_r: this.addroom.price_r,
+          price_b: this.addroom.price_b,
+          ifFreeCancle: this.addroom.ifFreeCancle,
+          ifNoRequire: this.addroom.ifNoRequire
+        })
+        .then(successResponse => {
+          if (successResponse.data.code ===200) {
+            // var data = this.registerForm
+            this.$message({
+              duration: 1000,
+              showClose: true,
+              message: '修改成功！',
+              type: 'success'
+            })
+            this.SetSetRoomInformationVisible=false
+            this.getallroom()
+          }
+          else {
+            this.$message({
+              duration: 1000,
+              showClose: true,
+              message: '修改失败！',
+              type: 'error'
+            })
+          }
+        })
+        .catch(failResponse => {
+        })
+    },
+    updateroomfac(){
+
+    },
     mouseEnter (data) {
       this.chooseHotel = Object.assign({}, data)
     },
@@ -812,6 +951,7 @@ export default {
       ShowHotelFacVisible: false,
       SetHotelFacInformationVisible: false,
       ShowRoomVisible: false,
+      SetRoomInformationVisible: false,
       addhotel:{
         name: null,
         desciption: null,
