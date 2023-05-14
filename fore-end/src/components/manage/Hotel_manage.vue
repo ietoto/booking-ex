@@ -142,7 +142,7 @@
       <el-dialog title="添加酒店设施" :visible.sync="AddHotelFacVisible">
         <el-form label-width="100px" style="text-align: center;">
           <el-form-item label="酒店设施" prop="pass" style="width: 80%;display: inline-block;position: relative;left: -50px;">
-            <a v-if="addhotelfac.name"><el-input v-model="addhotelfac.name"></el-input></a>
+            <a v-if="addhotelfac"><el-input v-model="addhotelfac.name"></el-input></a>
           </el-form-item>
           <el-form-item style="width: 60%;display: inline-block;position: relative;left: -50px;">
             <el-button type="primary" @click="Addhotelfac" style="width: 80%;">提交</el-button>
@@ -164,7 +164,7 @@
       </el-dialog>
       <el-dialog title="客房信息" :visible.sync="ShowRoomVisible">
         <span slot="title" class="title">
-          <el-button @click="SetShowRoomFacVisible">客房设施</el-button>
+<!--          <el-button @click="SetShowRoomFacVisible">客房设施</el-button>-->
           <el-button @click="SetAddRoomVisible">添加</el-button>
         </span>
         <el-container style="height: 460px;margin-top: -15px;border: 1px solid #de1b4f;width: 725px;position: relative;left: 0px;">          <el-table
@@ -198,6 +198,11 @@
                 >修改</el-button>
                 <el-button
                   type="text"
+                  icon="el-icon-edit"
+                  @click="SetShowRoomFacVisible"
+                >客房设施</el-button>
+                <el-button
+                  type="text"
                   icon="el-icon-delete"
                   style="color: red;"
                   @click="deleteroom"
@@ -219,28 +224,28 @@
       <el-dialog title="添加客房" :visible.sync="AddRoomVisible">
         <el-form label-width="100px" style="text-align: center;">
           <el-form-item label="客房id" prop="pass" style="width: 80%;display: inline-block;position: relative;left: -50px;">
-            <a v-if="addroom.id"><el-input v-model="addroom.id"></el-input></a>
+            <a v-if="addroom"><el-input v-model="addroom.id"></el-input></a>
           </el-form-item>
           <el-form-item label="客房名" prop="pass" style="width: 80%;display: inline-block;position: relative;left: -50px;">
-            <a v-if="addroom.name"><el-input v-model="addroom.name"></el-input></a>
+            <a v-if="addroom"><el-input v-model="addroom.name"></el-input></a>
           </el-form-item>
           <el-form-item label="客房总数" prop="pass" style="width: 80%;display: inline-block;position: relative;left: -50px;">
-            <a v-if="addroom.num_max"><el-input v-model="addroom.num_max"></el-input></a>
+            <a v-if="addroom"><el-input v-model="addroom.num_max"></el-input></a>
           </el-form-item>
           <el-form-item label="可住人数" prop="pass" style="width: 80%;display: inline-block;position: relative;left: -50px;">
-            <a v-if="addroom.size"><el-input v-model="addroom.size"></el-input></a>
+            <a v-if="addroom"><el-input v-model="addroom.size"></el-input></a>
           </el-form-item>
           <el-form-item label="一晚价格" prop="pass" style="width: 80%;display: inline-block;position: relative;left: -50px;">
-            <a v-if="addroom.price_r"><el-input v-model="addroom.price_r"></el-input></a>
+            <a v-if="addroom"><el-input v-model="addroom.price_r"></el-input></a>
           </el-form-item>
           <el-form-item label="早餐价格" prop="pass" style="width: 80%;display: inline-block;position: relative;left: -50px;">
-            <a v-if="addroom.price_b"><el-input v-model="addroom.price_b"></el-input></a>
+            <a v-if="addroom"><el-input v-model="addroom.price_b"></el-input></a>
           </el-form-item>
           <el-form-item label="免费取消" prop="pass" style="width: 80%;display: inline-block;position: relative;left: -50px;">
-            <a v-if="addroom.ifFreeCancle"><el-input v-model="addroom.ifFreeCancle"></el-input></a>
+            <a v-if="addroom"><el-input v-model="addroom.ifFreeCancle"></el-input></a>
           </el-form-item>
           <el-form-item label="无需预订" prop="pass" style="width: 80%;display: inline-block;position: relative;left: -50px;">
-          <a v-if="addroom.ifNoRequire"><el-input v-model="addroom.ifNoRequire"></el-input></a>
+          <a v-if="addroom"><el-input v-model="addroom.ifNoRequire"></el-input></a>
           </el-form-item>
           <el-form-item style="width: 60%;display: inline-block;position: relative;left: -50px;">
             <el-button type="primary" @click="Addroom" style="width: 80%;">提交</el-button>
@@ -272,6 +277,75 @@
           </el-form-item>
           <el-form-item style="width: 60%;display: inline-block;position: relative;left: -50px;">
             <el-button type="primary" @click="updateroom" style="width: 80%;">提交</el-button>
+          </el-form-item>
+        </el-form>
+      </el-dialog>
+      <el-dialog title="客房设施信息" :visible.sync="ShowRoomFacVisible">
+        <span slot="title" class="title">
+          <el-button @click="SetAddRoomFacVisible">添加</el-button>
+        </span>
+        <el-container style="height: 460px;margin-top: -15px;border: 1px solid #de1b4f;width: 725px;position: relative;left: 0px;">          <el-table
+          border
+          height="450"
+          v-loading="roomfacloading"
+          element-loading-text="努力加载中"
+          @cell-mouse-enter="roomfacmouseEnter"
+          :data="roomfacList.slice((roomfacpage.currentPage-1)*roomfacpage.pageSize,roomfacpage.currentPage*roomfacpage.pageSize)"
+        >
+          <el-table-column label="序号" type="index" width="55">
+            <template v-slot="scope">
+              <!-- (当前页 - 1) * 当前显示数据条数 + 当前行数据的索引 + 1  -->
+              <span>{{ (roomfacpage.currentPage - 1) * roomfacpage.pageSize + scope.$index + 1 }}</span>
+            </template>
+          </el-table-column>
+          <el-table-column label="客房设施" prop="id" min-width="50px"/>
+          <el-table-column label="操作" prop="operation" width="200">
+            <template>
+              <el-button
+                type="text"
+                icon="el-icon-edit"
+                @click="SetSetRoomFacInformationVisible"
+              >修改</el-button>
+              <el-button
+                type="text"
+                icon="el-icon-delete"
+                style="color: red;"
+                @click="deleteroomfac"
+              >删除</el-button>
+            </template>
+          </el-table-column>
+        </el-table>
+        </el-container>
+        <div class="block">
+          <el-pagination
+            @current-change="roomfachandleCurrentChange"
+            background
+            layout="total,prev, pager, next, jumper"
+            :page-size=roomfacpage.pageSize
+            :total="roomfacList.length">
+          </el-pagination>
+        </div>
+      </el-dialog>
+      <el-dialog title="添加客房设施" :visible.sync="AddRoomFacVisible">
+        <el-form label-width="100px" style="text-align: center;">
+          <el-form-item label="客房设施" prop="pass" style="width: 80%;display: inline-block;position: relative;left: -50px;">
+            <a v-if="addroomfac"><el-input v-model="addroomfac.name"></el-input></a>
+          </el-form-item>
+          <el-form-item style="width: 60%;display: inline-block;position: relative;left: -50px;">
+            <el-button type="primary" @click="Addroomfac" style="width: 80%;">提交</el-button>
+          </el-form-item>
+        </el-form>
+      </el-dialog>
+      <el-dialog title="客房设施修改" :visible.sync="SetRoomFacInformationVisible">
+        <el-form label-width="100px" style="text-align: center;">
+          <el-form-item label="原酒店设施" prop="pass" style="width: 80%;display: inline-block;position: relative;left: -50px;">
+            <a v-if="chooseRoomFac"><el-input v-model="chooseRoomFac.name" :disabled=true></el-input></a>
+          </el-form-item>
+          <el-form-item label="新酒店设施" prop="pass" style="width: 80%;display: inline-block;position: relative;left: -50px;">
+            <a v-if="addroomfac.name"><el-input v-model="addroomfac.name"></el-input></a>
+          </el-form-item>
+          <el-form-item style="width: 60%;display: inline-block;position: relative;left: -50px;">
+            <el-button type="primary" @click="updateroomfac" style="width: 80%;">提交</el-button>
           </el-form-item>
         </el-form>
       </el-dialog>
@@ -395,6 +469,10 @@ export default {
     },
     SetAddRoomFacVisible(){
       this.AddRoomFacVisible=true
+    },
+    SetShowRoomFacVisible(){
+      this.ShowRoomFacVisible=true
+      this.getallroomfac()
     },
     Addhotel(){
       var _this = this
@@ -534,7 +612,46 @@ export default {
         })
     },
     Addroomfac(){
-
+      var _this = this
+      if (this.addroomfac.name === ''){
+        // alert(this.registerForm.phone)
+        this.$message({
+          duration: 1000,
+          showClose: true,
+          message: '客房设施名不能为空！',
+          type: 'error'
+        })
+        return
+      }
+      this.$axios
+        .post('/roomFac/add', {
+          id: this.chooseRoomFac.id,
+          hotelid: this.chooseHotel.id,
+          name: this.addhotelfac.name
+        })
+        .then(successResponse => {
+          if (successResponse.data.code===200) {
+            // var data = this.registerForm
+            this.$message({
+              duration: 1000,
+              showClose: true,
+              message: '添加成功！',
+              type: 'success'
+            })
+            this.AddRoomFacVisible=false
+            this.getallroomfac()
+          }
+          else {
+            this.$message({
+              duration: 1000,
+              showClose: true,
+              message: '添加失败！',
+              type: 'error'
+            })
+          }
+        })
+        .catch(failResponse => {
+        })
     },
     getall(){
       var _this = this
@@ -585,6 +702,24 @@ export default {
             console.log('查询成功')
             this.roomList=successResponse.data
             this.roomloading=false
+          }
+          else {
+          }
+        })
+        .catch(failResponse => {
+        })
+    },
+    getallroomfac(){
+      var _this = this
+      this.roomfacloading=true
+      this.$axios
+        .post('/hotelFac/getByHotelAndRoomId', {
+        })
+        .then(successResponse => {
+          if (successResponse.data !=null) {
+            console.log('查询成功')
+            this.roomfacList=successResponse.data
+            this.roomfacloading=false
           }
           else {
           }
@@ -724,7 +859,49 @@ export default {
       })
     },
     deleteroomfac(){
-
+      this.$confirm('此操作将永久删除该客房设施，是否继续？', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning',
+        center: true
+      }).then((res) => {
+        this.$axios
+          .post('/roomFac/delete', {
+            id: this.chooseRoom.id,
+            hotelid: this.chooseHotel.id,
+            name: this.chooseRoomFac.name
+          })
+          .then(successResponse => {
+            if (successResponse.data.code ===200) {
+              console.log('删除成功')
+              this.$message({
+                duration: 1000,
+                showClose: true,
+                type: 'success',
+                message: '删除成功！'
+              })
+              this.getallroomfac()
+            }
+            else {
+              this.$message({
+                duration: 1000,
+                showClose: true,
+                type: 'error',
+                message: '删除失败！'
+              })
+              this.getallroomfac()
+            }
+          })
+          .catch(failResponse => {
+          })
+      }).catch(() => {
+        this.$message({
+          duration: 1000,
+          showClose: true,
+          type: 'info',
+          message: '取消删除'
+        })
+      })
     },
     SetShowInformationVisible(){
       this.ShowInformationVisible=true
@@ -758,6 +935,7 @@ export default {
     },
     SetSetRoomFacInformationVisible(){
       this.SetRoomFacInformationVisible = true
+      this.addroomfac.name=this.chooseRoomFac.name
     },
     SetShowRoomVisible(){
       this.ShowRoomVisible = true
@@ -837,8 +1015,8 @@ export default {
       this.$axios
         .post('/hotelFac/update', {
           id: this.chooseHotel.id,
-          name: this.chooseHotel.name,
-          new_name: this.addhotel.name
+          name: this.chooseHotelFac.name,
+          new_name: this.addhotelfac.name
         })
         .then(successResponse => {
           if (successResponse.data.code ===200) {
@@ -912,7 +1090,57 @@ export default {
         })
     },
     updateroomfac(){
-
+      var _this = this
+      if (this.addroomfac.name === ''){
+        // alert(this.registerForm.phone)
+        this.$message({
+          duration: 1000,
+          showClose: true,
+          message: '客房设施名不能为空！',
+          type: 'error'
+        })
+        return
+      }
+      if (this.addroomfac.name === this.chooseRoomFac.name){
+        // alert(this.registerForm.phone)
+        this.$message({
+          duration: 1000,
+          showClose: true,
+          message: '客房设施名不能和原有的重复！',
+          type: 'error'
+        })
+        return
+      }
+      this.$axios
+        .post('/roomFac/update', {
+          id: this.chooseRoom.id,
+          hotelid: this.chooseHotel.id,
+          name: this.chooseRoomFac.name,
+          new_name: this.addroomfac.name
+        })
+        .then(successResponse => {
+          if (successResponse.data.code ===200) {
+            // var data = this.registerForm
+            this.$message({
+              duration: 1000,
+              showClose: true,
+              message: '修改成功！',
+              type: 'success'
+            })
+            this.SetSetRoomFacInformationVisible=false
+            this.getallroomfac()
+          }
+          else {
+            this.$message({
+              duration: 1000,
+              showClose: true,
+              message: '修改失败！',
+              type: 'error'
+            })
+          }
+        })
+        .catch(failResponse => {
+        })
     },
     mouseEnter (data) {
       this.chooseHotel = Object.assign({}, data)
@@ -951,7 +1179,9 @@ export default {
       ShowHotelFacVisible: false,
       SetHotelFacInformationVisible: false,
       ShowRoomVisible: false,
+      ShowRoomFacVisible: false,
       SetRoomInformationVisible: false,
+      SetRoomFacInformationVisible: false,
       addhotel:{
         name: null,
         desciption: null,
@@ -976,6 +1206,11 @@ export default {
         price_b: null,
         ifFreeCancle: null,
         ifNoRequire: null
+      },
+      addroomfac:{
+        id: null,
+        hotelid: null,
+        name: null
       },
       page: {
         currentPage: 1, // 当前页
