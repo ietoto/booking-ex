@@ -233,25 +233,12 @@ export default {
       this.username=null
       this.loading=true
       this.$axios
-        .post('/user/showall', {
+        .post('/hotel/showlimit', {
         })
         .then(successResponse => {
           if (successResponse.data !=null) {
             console.log('查询成功')
-            this.userList=successResponse.data
-            for (let i = 0; i < this.userList.length; i++) {
-              switch (this.userList[i].state){
-                case 0:
-                  this.userList[i].state='用户'
-                  break
-                case 1:
-                  this.userList[i].state='系统管理员'
-                  break
-                case 2:
-                  this.userList[i].state='酒店管理员'
-                  break
-              }
-            }
+            this.hotelList=successResponse.data
             this.loading=false
           }
           else {
@@ -261,18 +248,18 @@ export default {
         })
     },
     deleteuser(){
-      this.$confirm('此操作将永久删除该用户，是否继续？', '提示', {
+      this.$confirm('此操作将永久删除该酒店，是否继续？', '提示', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
         type: 'warning',
         center: true
       }).then((res) => {
         this.$axios
-          .post('/user/delete', {
-            id: this.chooseUser.id
+          .post('/hotel/delete', {
+            id: this.chooseHotel.id
           })
           .then(successResponse => {
-            if (successResponse.data !=null) {
+            if (successResponse.data.code ===200) {
               console.log('删除成功')
               this.$message({
                 duration: 1000,
@@ -303,51 +290,45 @@ export default {
         })
       })
     },
-    SetSetInformationVisible(){
+    SetShowInformationVisible(){
       this.SetInformationVisible=true
-      this.adduser.username=this.chooseUser.username
-      this.adduser.password=this.chooseUser.password
-      this.adduser.phone=this.chooseUser.phone
-      this.adduser.postbox=this.chooseUser.postbox
-      this.adduser.name=this.chooseUser.name
-      this.adduser.hotel_id=this.chooseUser.hotel_id
-      switch (this.chooseUser.state){
-        case '用户':
-          this.adduser.state=0
-          break
-        case'系统管理员':
-          this.adduser.state=1
-          break
-        case '酒店管理员':
-          this.adduser.state=2
-          break
-      }
+      this.addhotel.name=this.hotelList[this.chooseHotel.index-1].name
+      this.addhotel.desciption=this.hotelList[this.chooseHotel.index-1].desciption
+      this.addhotel.distance=this.hotelList[this.chooseHotel.index-1].distance
+      this.addhotel.city=this.hotelList[this.chooseHotel.index-1].city
+      this.addhotel.location=this.hotelList[this.chooseHotel.index-1].location
+      this.addhotel.address=this.hotelList[this.chooseHotel.index-1].address
+      this.addhotel.score=this.hotelList[this.chooseHotel.index-1].score
+      this.addhotel.star=this.hotelList[this.chooseHotel.index-1].star
+      this.addhotel.img=this.hotelList[this.chooseHotel.index-1].img
     },
     updateuser(){
       var _this = this
-      if (this.adduser.username === ''||this.adduser.password === ''){
+      if (this.adduser.name === ''){
         // alert(this.registerForm.phone)
         this.$message({
           duration: 1000,
           showClose: true,
-          message: '用户名或密码不能为空！',
+          message: '酒店名不能为空！',
           type: 'error'
         })
         return
       }
       this.$axios
-        .post('/user/update', {
-          id: this.chooseUser.id,
-          username: this.adduser.username,
-          password: this.adduser.password,
-          name: this.adduser.name,
-          postbox: this.adduser.postbox,
-          phone: this.adduser.phone,
-          state: this.adduser.state,
-          hotel_id: this.adduser.hotel_id
+        .post('/hotel/update', {
+          id: this.chooseHotel.id,
+          name: this.addhotel.name,
+          desciption: this.addhotel.desciption,
+          distance: this.addhotel.distance,
+          city: this.addhotel.city,
+          location: this.addhotel.location,
+          address: this.addhotel.address,
+          score: this.addhotel.score,
+          star: this.addhotel.star,
+          img: this.addhotel.img
         })
         .then(successResponse => {
-          if (successResponse.data.username !=null) {
+          if (successResponse.data.code ===200) {
             // var data = this.registerForm
             this.$message({
               duration: 1000,
@@ -355,14 +336,14 @@ export default {
               message: '修改成功！',
               type: 'success'
             })
-            this.SetInformationVisible=false
+            this.ShowInformationVisible=false
             this.getall()
           }
           else {
             this.$message({
               duration: 1000,
               showClose: true,
-              message: '用户名和密码组合已存在！',
+              message: '修改失败！',
               type: 'error'
             })
           }
@@ -371,35 +352,28 @@ export default {
         })
     },
     mouseEnter (data) {
-      this.chooseUser = Object.assign({}, data)
+      this.chooseHotel = Object.assign({}, data)
     }
   },
   data() {
     return {
       loading: true,
-      username: null,
-      userList: [],
-      chooseUser: null,
+      id: null,
+      hotelList: [],
+      chooseHotel: null,
       AddInformationVisible: false,
-      SetInformationVisible: false,
-      adduser:{
-        username:null,
-        password:null,
-        phone:null,
-        postbox:null,
-        state:null,
-        hotel_id:null
+      ShowInformationVisible: false,
+      addhotel:{
+        name: null,
+        desciption: null,
+        distance: null,
+        city: null,
+        location: null,
+        address: null,
+        score: null,
+        star: null,
+        img: null
       },
-      state:[{
-        value: 0,
-        label: '用户'
-      },{
-        value: 1,
-        label: '系统管理员'
-      },{
-        value: 2,
-        label: '酒店管理员'
-      }],
       page: {
         currentPage: 1, // 当前页
         pageSize: 6, // 每页条数
