@@ -23,12 +23,16 @@ public class HotelController {
     public List<Hotel> showall(HttpSession session) {
         return (hotelService.showall());
     }
+    
+    @CrossOrigin
+    @PostMapping(value = "/api/hotel/showLimit")
+    @ResponseBody
+    public List<Hotel> showallLimit(HttpSession session) {
+        return (hotelService.showalllimit());
+    }
 
     //获取单个酒店详细信息
-    @CrossOrigin
-    @PostMapping(value = "/api/hotel/info")
-    @ResponseBody
-    public Hotel hotelInfo(@RequestBody Hotel requestHotel, HttpSession session) {
+    public Hotel hotelInfo(Hotel requestHotel) {
         Hotel hotel = requestHotel;
         if(null == hotel){
             System.out.println("Get hotel info failed!");
@@ -68,6 +72,15 @@ public class HotelController {
         return hotel;
     }
 
+    @CrossOrigin
+    @PostMapping(value = "/api/hotel/searchById")
+    @ResponseBody
+    public Hotel searchById(@RequestBody Hotel requestHotel, HttpSession session){
+        Hotel hotel = new Hotel();
+        hotel = hotelService.SearchbyID(requestHotel);
+        return hotel;
+    }
+
     //管理员添加酒店
     @CrossOrigin
     @PostMapping(value = "/api/hotel/add")
@@ -92,11 +105,10 @@ public class HotelController {
     @PostMapping(value = "/api/hotel/delete")
     @ResponseBody
     public Result deleteHotel(@RequestBody Hotel requestHotel, HttpSession session) {
-        String name = requestHotel.getName();
-        name = HtmlUtils.htmlEscape(name);
-        System.out.println("Deleting hotel: "+name+"...");
+        Hotel hotel = requestHotel;
 
-        Hotel hotel = hotelService.delete(requestHotel);
+
+        hotelService.delete(requestHotel);
         if(null ==hotel) {
             System.out.println("Hotel deleting failed!");
             return new Result(400);
@@ -111,10 +123,6 @@ public class HotelController {
     @PostMapping(value = "/api/hotel/update")
     @ResponseBody
     public Result updateHotel(@RequestBody Hotel requestHotel, HttpSession session) {
-        String name = requestHotel.getName();
-        name = HtmlUtils.htmlEscape(name);
-        System.out.println("Updating hotel: "+name+"...");
-
         Hotel hotel = hotelService.update(requestHotel);
         if(null ==hotel) {
             System.out.println("Hotel updating failed!");

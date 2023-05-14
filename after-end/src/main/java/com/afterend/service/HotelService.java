@@ -17,6 +17,10 @@ public class HotelService {
     public List<Hotel> showall(){
         return hotelDAO.showall();
     }
+    //查询所有酒店，之显示100条
+    public List<Hotel> showalllimit(){
+        return hotelDAO.showalllimit();
+    }
     //根据酒店id查询酒店
     public Hotel SearchbyID(Hotel hotel){
         return hotelDAO.SearchbyID(hotel);
