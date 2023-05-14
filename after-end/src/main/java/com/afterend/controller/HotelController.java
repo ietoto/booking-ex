@@ -24,6 +24,13 @@ public class HotelController {
         return (hotelService.showall());
     }
 
+    @CrossOrigin
+    @PostMapping(value = "/api/hotel/showLimit")
+    @ResponseBody
+    public List<Hotel> showallLimit(HttpSession session) {
+        return (hotelService.showalllimit());
+    }
+
     //获取单个酒店详细信息
     @CrossOrigin
     @PostMapping(value = "/api/hotel/info")
@@ -65,6 +72,15 @@ public class HotelController {
         }
 
 
+        return hotel;
+    }
+
+    @CrossOrigin
+    @PostMapping(value = "/api/hotel/searchById")
+    @ResponseBody
+    public Hotel searchById(@RequestBody Hotel requestHotel, HttpSession session){
+        Hotel hotel = new Hotel();
+        hotel = hotelService.SearchbyID(requestHotel);
         return hotel;
     }
     
