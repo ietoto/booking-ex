@@ -11,7 +11,7 @@
           <el-row>
             <el-col :span="60" :offset="100">
               <el-form-item label="酒店id：">
-                <el-input v-model="hotel_id" placeholder="请输入酒店id" clearable/>
+                <el-input v-model="id" placeholder="请输入酒店id" clearable/>
               </el-form-item>
             </el-col>
             <el-col :span="50">
@@ -93,7 +93,7 @@
             v-loading="loading"
             element-loading-text="努力加载中"
             @cell-mouse-enter="mouseEnter"
-            :data="userList.slice((page.currentPage-1)*page.pageSize,page.currentPage*page.pageSize)"
+            :data="hotelList.slice((page.currentPage-1)*page.pageSize,page.currentPage*page.pageSize)"
           >
             <el-table-column label="序号" type="index" width="55">
               <template v-slot="scope">
@@ -102,12 +102,12 @@
               </template>
             </el-table-column>
             <el-table-column label="id" prop="id" min-width="25px"/>
-            <el-table-column label="酒店名" prop="name" min-width="25px"/>
+            <el-table-column label="酒店名" prop="name" min-width="50px"/>
             <el-table-column label="所在城市" prop="city" min-width="25px"/>
             <el-table-column label="所在地区" prop="location" min-width="25px"/>
-            <el-table-column label="距中心距离" prop="distance" min-width="50px"/>
-            <el-table-column label="酒店评分" prop="score" min-width="50px"/>
-            <el-table-column label="酒店星级" prop="star" min-width="50px"/>
+            <el-table-column label="距中心距离" prop="distance" min-width="10px"/>
+            <el-table-column label="酒店评分" prop="score" min-width="10px"/>
+            <el-table-column label="酒店星级" prop="star" min-width="10px"/>
             <el-table-column label="操作" prop="operation" width="200">
               <template>
                 <el-button
@@ -168,6 +168,7 @@ export default {
         .then(successResponse => {
           if (successResponse.data.id !=null) {
             console.log('查询成功')
+            this.hotelList=[]
             this.hotelList.push(successResponse.data)
             this.loading=false
           }
@@ -233,7 +234,7 @@ export default {
       this.username=null
       this.loading=true
       this.$axios
-        .post('/hotel/showlimit', {
+        .post('/hotel/showLimit', {
         })
         .then(successResponse => {
           if (successResponse.data !=null) {
@@ -292,19 +293,19 @@ export default {
     },
     SetShowInformationVisible(){
       this.SetInformationVisible=true
-      this.addhotel.name=this.hotelList[this.chooseHotel.index-1].name
-      this.addhotel.desciption=this.hotelList[this.chooseHotel.index-1].desciption
-      this.addhotel.distance=this.hotelList[this.chooseHotel.index-1].distance
-      this.addhotel.city=this.hotelList[this.chooseHotel.index-1].city
-      this.addhotel.location=this.hotelList[this.chooseHotel.index-1].location
-      this.addhotel.address=this.hotelList[this.chooseHotel.index-1].address
-      this.addhotel.score=this.hotelList[this.chooseHotel.index-1].score
-      this.addhotel.star=this.hotelList[this.chooseHotel.index-1].star
-      this.addhotel.img=this.hotelList[this.chooseHotel.index-1].img
+      this.addhotel.name=this.chooseHotel.name
+      this.addhotel.desciption=this.chooseHotel.desciption
+      this.addhotel.distance=this.chooseHotel.distance
+      this.addhotel.city=this.chooseHotel.city
+      this.addhotel.location=this.chooseHotel.location
+      this.addhotel.address=this.chooseHotel.address
+      this.addhotel.score=this.chooseHotel.score
+      this.addhotel.star=this.chooseHotel.star
+      this.addhotel.img=this.chooseHotel.img
     },
-    updateuser(){
+    updatehotel(){
       var _this = this
-      if (this.adduser.name === ''){
+      if (this.addhotel.name === ''){
         // alert(this.registerForm.phone)
         this.$message({
           duration: 1000,
@@ -363,6 +364,7 @@ export default {
       chooseHotel: null,
       AddInformationVisible: false,
       ShowInformationVisible: false,
+      ShowInformationIsDisabled: false,
       addhotel:{
         name: null,
         desciption: null,
@@ -376,7 +378,7 @@ export default {
       },
       page: {
         currentPage: 1, // 当前页
-        pageSize: 6, // 每页条数
+        pageSize: 5, // 每页条数
       }
     }
   }
