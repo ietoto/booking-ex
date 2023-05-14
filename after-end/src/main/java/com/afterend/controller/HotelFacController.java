@@ -17,6 +17,9 @@ public class HotelFacController {
     @Autowired
     HotelFacService hotelFacService;
 
+    @CrossOrigin
+    @PostMapping(value = "/api/hotelFac/getByHotelId")
+    @ResponseBody
     public List<HotelFac> getHotelFac(Hotel hotel) {
         return hotelFacService.get(hotel);
     }

@@ -105,10 +105,7 @@ public class HotelController {
     @PostMapping(value = "/api/hotel/delete")
     @ResponseBody
     public Result deleteHotel(@RequestBody Hotel requestHotel, HttpSession session) {
-        Hotel hotel = requestHotel;
-
-
-        hotelService.delete(requestHotel);
+        Hotel hotel = hotelService.delete(requestHotel);
         if(null ==hotel) {
             System.out.println("Hotel deleting failed!");
             return new Result(400);

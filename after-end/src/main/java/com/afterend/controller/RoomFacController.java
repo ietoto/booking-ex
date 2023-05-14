@@ -17,10 +17,16 @@ public class RoomFacController {
     @Autowired
     RoomFacService roomFacService;
 
+    @CrossOrigin
+    @PostMapping(value = "/api/roomFac/getByHotelId")
+    @ResponseBody
     public List<RoomFac> getRoomFac(Hotel hotel) {
         return roomFacService.get(hotel);
     }
-    
+
+    @CrossOrigin
+    @PostMapping(value = "/api/roomFac/getByHotelAndRoomId")
+    @ResponseBody
     public List<RoomFac> getOneRoomFac(Room room) {
         Room room1 =new Room();
         room1.setHotelid(room.getHotelid());

@@ -36,6 +36,9 @@ public class RoomController {
         return rooms;
     }
 
+    @CrossOrigin
+    @PostMapping(value = "/api/room/getRooms")
+    @ResponseBody
     public  List<Room> getRoomList(Hotel hotel){
         Room room = new Room();
         room.setHotelid(hotel.getId());
