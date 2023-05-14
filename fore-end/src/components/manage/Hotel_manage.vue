@@ -29,7 +29,7 @@
             <el-input v-model="addhotel.name"></el-input>
           </el-form-item>
           <el-form-item label="酒店描述" prop="pass" style="width: 80%;display: inline-block;position: relative;left: -50px;">
-            <el-input v-model="addhotel.desciption"></el-input>
+            <el-input type="textarea" autosize v-model="addhotel.desciption"></el-input>
           </el-form-item>
           <el-form-item label="距中心距离" prop="pass" style="width: 80%;display: inline-block;position: relative;left: -50px;">
             <el-input v-model="addhotel.distance"></el-input>
@@ -55,12 +55,17 @@
         </el-form>
       </el-dialog>
       <el-dialog title="酒店详细信息" :visible.sync="ShowInformationVisible">
+        <span slot="title" class="title">
+          <el-button @click="ShowInformationIsDisabled = !ShowInformationIsDisabled">修改</el-button>
+          <el-button @click="SetShowHotelFacVisible">酒店设施</el-button>
+          <el-button @click="SetShowRoomVisible">客房</el-button>
+        </span>
         <el-form label-width="100px" style="text-align: center;">
           <el-form-item label="酒店名" prop="pass" style="width: 80%;display: inline-block;position: relative;left: -50px;">
             <el-input v-model="addhotel.name" :disabled=ShowInformationIsDisabled></el-input>
           </el-form-item>
           <el-form-item label="酒店描述" prop="pass" style="width: 80%;display: inline-block;position: relative;left: -50px;">
-            <el-input v-model="addhotel.desciption" :disabled=ShowInformationIsDisabled></el-input>
+            <el-input type="textarea" autosize v-model="addhotel.desciption" :disabled=ShowInformationIsDisabled></el-input>
           </el-form-item>
           <el-form-item label="距中心距离" prop="pass" style="width: 80%;display: inline-block;position: relative;left: -50px;">
             <el-input v-model="addhotel.distance" :disabled=ShowInformationIsDisabled></el-input>
@@ -80,8 +85,67 @@
           <el-form-item label="星级" prop="pass" style="width: 80%;display: inline-block;position: relative;left: -50px;">
             <el-input v-model="addhotel.star" :disabled=ShowInformationIsDisabled></el-input>
           </el-form-item>
+          <a v-if="!ShowInformationIsDisabled">
           <el-form-item style="width: 60%;display: inline-block;position: relative;left: -50px;">
             <el-button type="primary" @click="updatehotel" style="width: 80%;">提交</el-button>
+          </el-form-item>
+          </a>
+        </el-form>
+      </el-dialog>
+      <el-dialog title="酒店设施信息" :visible.sync="ShowHotelFacVisible">
+        <el-container style="height: 460px;margin-top: -15px;border: 1px solid #de1b4f;width: 725px;position: relative;left: 0px;">
+          <el-table
+            border
+            height="450"
+            v-loading="hotelfacloading"
+            element-loading-text="努力加载中"
+            @cell-mouse-enter="hotelfacmouseEnter"
+            :data="hotelfacList.slice((hotelfacpage.currentPage-1)*hotelfacpage.pageSize,hotelfacpage.currentPage*hotelfacpage.pageSize)"
+          >
+            <el-table-column label="序号" type="index" width="55">
+              <template v-slot="scope">
+                <!-- (当前页 - 1) * 当前显示数据条数 + 当前行数据的索引 + 1  -->
+                <span>{{ (hotelfacpage.currentPage - 1) * hotelfacpage.pageSize + scope.$index + 1 }}</span>
+              </template>
+            </el-table-column>
+            <el-table-column label="客房设施" prop="name" min-width="50px"/>
+            <el-table-column label="操作" prop="operation" width="200">
+              <template>
+                <el-button
+                  type="text"
+                  icon="el-icon-edit"
+                  @click="SetSetHotelFacInformationVisible"
+                >修改</el-button>
+                <el-button
+                  type="text"
+                  icon="el-icon-delete"
+                  style="color: red;"
+                  @click="deletehotelfac"
+                >删除</el-button>
+              </template>
+            </el-table-column>
+          </el-table>
+        </el-container>
+        <div class="block">
+          <el-pagination
+            @current-change="hotelfachandleCurrentChange"
+            background
+            layout="total,prev, pager, next, jumper"
+            :page-size=hotelfacpage.pageSize
+            :total="hotelfacList.length">
+          </el-pagination>
+        </div>
+      </el-dialog>
+      <el-dialog title="酒店设施修改" :visible.sync="SetHotelFacInformationVisible">
+        <el-form label-width="100px" style="text-align: center;">
+          <el-form-item label="原酒店设施" prop="pass" style="width: 80%;display: inline-block;position: relative;left: -50px;">
+            <a v-if="chooseHotelFac.name"><el-input v-model="chooseHotelFac.name" :disabled=true></el-input></a>
+          </el-form-item>
+          <el-form-item label="新酒店设施" prop="pass" style="width: 80%;display: inline-block;position: relative;left: -50px;">
+            <a v-if="addhotelfac.name"><el-input v-model="addhotelfac.name"></el-input></a>
+          </el-form-item>
+          <el-form-item style="width: 60%;display: inline-block;position: relative;left: -50px;">
+            <el-button type="primary" @click="updatehotelfac" style="width: 80%;">提交</el-button>
           </el-form-item>
         </el-form>
       </el-dialog>
@@ -119,7 +183,7 @@
                   type="text"
                   icon="el-icon-delete"
                   style="color: red;"
-                  @click="deleteuser"
+                  @click="deletehotel"
                 >删除</el-button>
               </template>
             </el-table-column>
@@ -160,6 +224,10 @@ export default {
     },
     getByHotelId(){
       var _this = this
+      if(this.id===null){
+        this.getall()
+        return
+      }
       this.loading=true
       this.$axios
         .post('/hotel/searchById', {
@@ -231,7 +299,7 @@ export default {
     },
     getall(){
       var _this = this
-      this.username=null
+      this.id=null
       this.loading=true
       this.$axios
         .post('/hotel/showLimit', {
@@ -248,7 +316,25 @@ export default {
         .catch(failResponse => {
         })
     },
-    deleteuser(){
+    getallhotelfac(){
+      var _this = this
+      this.hotelfacloading=true
+      this.$axios
+        .post('/hotelFac/?', {
+        })
+        .then(successResponse => {
+          if (successResponse.data !=null) {
+            console.log('查询成功')
+            this.hotelfacList=successResponse.data
+            this.hotelfacloading=false
+          }
+          else {
+          }
+        })
+        .catch(failResponse => {
+        })
+    },
+    deletehotel(){
       this.$confirm('此操作将永久删除该酒店，是否继续？', '提示', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
@@ -291,8 +377,52 @@ export default {
         })
       })
     },
+    deletehotelfac(){
+      this.$confirm('此操作将永久删除该酒店设施，是否继续？', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning',
+        center: true
+      }).then((res) => {
+        this.$axios
+          .post('/hotelFac/delete', {
+            id: this.chooseHotelFac.id,
+            name: this.chooseHotelFac.name
+          })
+          .then(successResponse => {
+            if (successResponse.data.code ===200) {
+              console.log('删除成功')
+              this.$message({
+                duration: 1000,
+                showClose: true,
+                type: 'success',
+                message: '删除成功！'
+              })
+              this.getallhotelfac()
+            }
+            else {
+              this.$message({
+                duration: 1000,
+                showClose: true,
+                type: 'error',
+                message: '删除失败！'
+              })
+              this.getallhotelfac()
+            }
+          })
+          .catch(failResponse => {
+          })
+      }).catch(() => {
+        this.$message({
+          duration: 1000,
+          showClose: true,
+          type: 'info',
+          message: '取消删除'
+        })
+      })
+    },
     SetShowInformationVisible(){
-      this.SetInformationVisible=true
+      this.ShowInformationVisible=true
       this.addhotel.name=this.chooseHotel.name
       this.addhotel.desciption=this.chooseHotel.desciption
       this.addhotel.distance=this.chooseHotel.distance
@@ -303,7 +433,76 @@ export default {
       this.addhotel.star=this.chooseHotel.star
       this.addhotel.img=this.chooseHotel.img
     },
+    SetShowHotelFacVisible(){
+      this.ShowHotelFacVisible = true
+      this.getallhotelfac()
+    },
+    SetSetHotelFacInformationVisible(){
+
+    },
+    SetShowRoomVisible(){
+      this.ShowRoomVisible = true
+    },
     updatehotel(){
+      var _this = this
+      if (this.addhotelfac.name === ''){
+        // alert(this.registerForm.phone)
+        this.$message({
+          duration: 1000,
+          showClose: true,
+          message: '酒店设施名不能为空！',
+          type: 'error'
+        })
+        return
+      }
+      if (this.addhotelfac.name === this.chooseHotelFac.name){
+        // alert(this.registerForm.phone)
+        this.$message({
+          duration: 1000,
+          showClose: true,
+          message: '酒店设施名不能与已有的重复！',
+          type: 'error'
+        })
+        return
+      }
+      this.$axios
+        .post('/hotel/update', {
+          id: this.chooseHotel.id,
+          name: this.addhotel.name,
+          desciption: this.addhotel.desciption,
+          distance: this.addhotel.distance,
+          city: this.addhotel.city,
+          location: this.addhotel.location,
+          address: this.addhotel.address,
+          score: this.addhotel.score,
+          star: this.addhotel.star,
+          img: this.addhotel.img
+        })
+        .then(successResponse => {
+          if (successResponse.data.code ===200) {
+            // var data = this.registerForm
+            this.$message({
+              duration: 1000,
+              showClose: true,
+              message: '修改成功！',
+              type: 'success'
+            })
+            this.ShowInformationVisible=false
+            this.getall()
+          }
+          else {
+            this.$message({
+              duration: 1000,
+              showClose: true,
+              message: '修改失败！',
+              type: 'error'
+            })
+          }
+        })
+        .catch(failResponse => {
+        })
+    },
+    updatehotelfac(){
       var _this = this
       if (this.addhotel.name === ''){
         // alert(this.registerForm.phone)
@@ -354,17 +553,26 @@ export default {
     },
     mouseEnter (data) {
       this.chooseHotel = Object.assign({}, data)
+    },
+    hotelfacmouseEnter (data) {
+      this.chooseHotelFac = Object.assign({}, data)
     }
   },
   data() {
     return {
       loading: true,
+      hotelfacloading: true,
       id: null,
       hotelList: [],
+      hotelfacList: [],
       chooseHotel: null,
+      chooseHotelFac: null,
       AddInformationVisible: false,
       ShowInformationVisible: false,
-      ShowInformationIsDisabled: false,
+      ShowInformationIsDisabled: true,
+      ShowHotelFacVisible: false,
+      SetHotelFacInformationVisible: false,
+      ShowRoomVisible: false,
       addhotel:{
         name: null,
         desciption: null,
@@ -376,9 +584,17 @@ export default {
         star: null,
         img: null
       },
+      addhotelfac:{
+        id: null,
+        name: null
+      },
       page: {
         currentPage: 1, // 当前页
         pageSize: 5, // 每页条数
+      },
+      hotelfacpage: {
+        currentPage: 1, // 当前页
+        pageSize: 6, // 每页条数
       }
     }
   }
