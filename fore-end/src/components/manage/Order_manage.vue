@@ -179,6 +179,10 @@ export default {
     },
     getByUserId(){
       var _this = this
+      if(this.id===null){
+        this.getall()
+        return
+      }
       this.loading=true
       this.$axios
         .post('/order/user_showall', {

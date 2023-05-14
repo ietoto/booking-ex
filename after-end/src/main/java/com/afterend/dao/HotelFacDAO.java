@@ -90,5 +90,29 @@ public class HotelFacDAO {
         }
         return hotelFac;
     }
+    public static HotelFac update(HotelFac hotelFac) {
+        Connection con=null;
+        try{
+            con= JDBCUtils.getConnect();
+            String sql="UPDATE `HotelSystem`.`fac_hotel` SET `hotel_facname` = ? WHERE `hotel_id` = ? AND `hotel_facname` = ?";
+            PreparedStatement pstate = con.prepareStatement(sql);
+            pstate.setString(1,hotelFac.getNew_name());
+            pstate.setInt(2,hotelFac.getId());
+            pstate.setString(3,hotelFac.getName());
+            pstate.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            try {
+                if(con==null){
+                    System.out.println("test ");
+                }
+                con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return hotelFac;
+    }
 
 }

@@ -32,5 +32,9 @@ public class RoomFacService {
     public RoomFac delete(RoomFac roomFac){
         return roomFacDAO.delete(roomFac);
     }
+    //更新对应酒店客房的设施信息
+    public RoomFac update(RoomFac roomFac){
+        return roomFacDAO.update(roomFac);
+    }
 
 }

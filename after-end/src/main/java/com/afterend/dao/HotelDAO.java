@@ -88,7 +88,7 @@ public class HotelDAO {
     }
     public static Hotel SearchbyID(Hotel hotel) {
         Connection con=null;
-        Hotel s=null;
+        Hotel s=  new Hotel();
         try{
             con= JDBCUtils.getConnect();
             String sql="select * from hotel where hotel_id=?";
