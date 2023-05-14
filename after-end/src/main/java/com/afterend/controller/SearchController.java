@@ -176,8 +176,12 @@ public class SearchController {
     @PostMapping(value = "/api/search/Hotel_Info")
     @ResponseBody
     public SearchDetailed hotel_info(@RequestBody SearchDetailed requestSearch, HttpSession session) {
+        Hotel hotel = new Hotel();
+        hotel.setId(requestSearch.getId());
+        HotelController hotelController = new HotelController();
         SearchDetailed searchDetailed = requestSearch;
-
+        hotel = hotelController.hotelInfo(hotel);
+        //可用房间以及价格
 
         return searchDetailed;
 

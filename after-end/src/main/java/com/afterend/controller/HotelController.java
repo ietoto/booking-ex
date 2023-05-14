@@ -32,10 +32,7 @@ public class HotelController {
     }
 
     //获取单个酒店详细信息
-    @CrossOrigin
-    @PostMapping(value = "/api/hotel/info")
-    @ResponseBody
-    public Hotel hotelInfo(@RequestBody Hotel requestHotel, HttpSession session) {
+    public Hotel hotelInfo(Hotel requestHotel) {
         Hotel hotel = requestHotel;
         if(null == hotel){
             System.out.println("Get hotel info failed!");
@@ -108,8 +105,10 @@ public class HotelController {
     @PostMapping(value = "/api/hotel/delete")
     @ResponseBody
     public Result deleteHotel(@RequestBody Hotel requestHotel, HttpSession session) {
+        Hotel hotel = requestHotel;
 
-        Hotel hotel = hotelService.delete(requestHotel);
+
+        hotelService.delete(requestHotel);
         if(null ==hotel) {
             System.out.println("Hotel deleting failed!");
             return new Result(400);
