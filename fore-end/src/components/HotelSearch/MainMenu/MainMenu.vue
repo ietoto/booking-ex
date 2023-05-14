@@ -1,13 +1,31 @@
 <template>
-  
+ <div class="rlt-right" role="main">
+   <MenuTitle/>
+    <HotelList/>
+ </div>
 </template>
 
 <script>
+import HotelList from './HotelList.vue';
+import MenuTitle from './MenuTitle.vue';
 export default {
-   name:'MainMenu'
+   name: 'MainMenu',
+   components: {
+         MenuTitle,
+          HotelList
+   }
 }
 </script>
 
-<style>
-
+<style scoped>
+.rlt-right {
+    width: 60%!important;
+    padding: 0!important;
+    margin-top:1em;
+    margin-bottom: 1em;
+    margin-left: 0px;
+    margin-right: 0px;
+    float: right;
+    font-style: normal!important;;
+}
 </style>

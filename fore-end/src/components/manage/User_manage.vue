@@ -173,6 +173,10 @@ export default {
     },
     getByUserName(){
       var _this = this
+      if(this.username===null){
+        this.getall()
+        return
+      }
       this.loading=true
       this.$axios
         .post('/user/showbyusername', {

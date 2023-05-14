@@ -50,9 +50,45 @@ public class HotelDAO {
         }
         return list;
     }
+    public static List<Hotel> showalllimit() {
+        Connection con=null;
+        List<Hotel> list=new ArrayList<>();
+        try{
+            con= JDBCUtils.getConnect();
+            String sql="select * from hotel  LIMIT 0,100";
+            PreparedStatement pstate = con.prepareStatement(sql);
+            ResultSet resultSet = pstate.executeQuery();
+            while (resultSet.next()){
+                Hotel s=new Hotel();
+                s.setId(resultSet.getInt("hotel_id"));
+                s.setName(resultSet.getString("hotel_name"));
+                s.setDesciption(resultSet.getString("hotel_description"));
+                s.setScore(resultSet.getDouble("hotel_score"));
+                s.setLocation(resultSet.getString("hotel_location"));
+                s.setStar(resultSet.getInt("hotel_star"));
+                s.setDistance(resultSet.getDouble("hotel_distance"));
+                s.setImg_num(resultSet.getInt("hotel_imgnum"));
+                s.setCity(resultSet.getString("hotel_city"));
+                s.setAddress(resultSet.getString("hotel_address"));
+                list.add(s);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            try {
+                if(con==null){
+                    System.out.println("test");
+                }
+                con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return list;
+    }
     public static Hotel SearchbyID(Hotel hotel) {
         Connection con=null;
-        Hotel s=null;
+        Hotel s=  new Hotel();
         try{
             con= JDBCUtils.getConnect();
             String sql="select * from hotel where hotel_id=?";

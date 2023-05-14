@@ -24,4 +24,8 @@ public class HotelFacService {
     public HotelFac delete(HotelFac hotelFac){
         return hotelFacDAO.delete(hotelFac);
     }
+    //更新对应酒店的设施信息
+    public HotelFac update(HotelFac hotelFac){
+        return hotelFacDAO.update(hotelFac);
+    }
 }

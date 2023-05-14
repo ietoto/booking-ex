@@ -2,7 +2,7 @@
   <div class="background">
     <div class="search-container">
       <div class="search-item destination-item">
-        <el-input prefix-icon="el-icon-s-cooperation" type="text" placeholder="目的地/住宿" />
+        <el-input v-model="destination" prefix-icon="el-icon-s-cooperation" type="text" placeholder="目的地/住宿" />
         <el-date-picker v-model="value1" type="daterange" range-separator="至" start-placeholder="到店日期"
           end-placeholder="离店日期" :picker-options="pickerOptions" />
         <SearchPeople/>
@@ -19,6 +19,7 @@ export default {
   data() {
     return {
       value1: '',
+      destination:'',
       pickerOptions: {
         disabledDate: (time) => {
           const currentDate = new Date()
@@ -62,6 +63,7 @@ export default {
   padding: 20px;
   border: 3px solid #f0b90b;
   border-radius: 10px;
+  margin-left: 10px;
 }
 
 .search-item {
