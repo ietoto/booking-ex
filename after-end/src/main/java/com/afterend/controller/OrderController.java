@@ -25,11 +25,6 @@ public class OrderController {
     @PostMapping(value = "/api/order/req")
     @ResponseBody
     public Result order_req(@RequestBody Order requestOrder, HttpSession session) {
-        int user = requestOrder.getUserid();
-        int hotel = requestOrder.getHotelid();
-        int num = requestOrder.getNum();
-        System.out.println("Making order: user-"+user+" hotel"+hotel+" room_num"+num);
-
         Order order = orderService.add(requestOrder);
         if(null==order){
             System.out.println("order request failed!");
@@ -73,11 +68,6 @@ public class OrderController {
     @PostMapping(value = "/api/order/delete")
     @ResponseBody
     public Result deleteOrder(@RequestBody Order requestOrder, HttpSession session) {
-        int user = requestOrder.getUserid();
-        int hotel = requestOrder.getHotelid();
-        int num = requestOrder.getNum();
-        System.out.println("Deleting order: user-"+user+" hotel"+hotel+" room_num"+num);
-
         Order order = orderService.delete(requestOrder);
         if(null==order){
             System.out.println("order deleting failed!");
@@ -93,11 +83,6 @@ public class OrderController {
     @PostMapping(value = "/api/order/update")
     @ResponseBody
     public Result updateOrder(@RequestBody Order requestOrder, HttpSession session) {
-        int user = requestOrder.getUserid();
-        int hotel = requestOrder.getHotelid();
-        int num = requestOrder.getNum();
-        System.out.println("Updating order: user-"+user+" hotel"+hotel+" room_num"+num);
-
         Order order = orderService.update(requestOrder);
         if(null==order){
             System.out.println("order updating failed!");

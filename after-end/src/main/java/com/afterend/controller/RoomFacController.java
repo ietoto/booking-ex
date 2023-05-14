@@ -33,10 +33,6 @@ public class RoomFacController {
     @PostMapping(value = "/api/roomFac/add")
     @ResponseBody
     public Result addRoomFac(@RequestBody RoomFac requestRoomFac, HttpSession session) {
-        String name = requestRoomFac.getName();
-        name = HtmlUtils.htmlEscape(name);
-        System.out.println("Adding roomfac: "+name+"...");
-
         RoomFac roomfac = RoomFacService.add(requestRoomFac);
         if(null ==roomfac) {
             System.out.println("Hotelfac adding failed!");
@@ -52,10 +48,6 @@ public class RoomFacController {
     @PostMapping(value = "/api/roomFac/delete")
     @ResponseBody
     public Result deleteRoomFac(@RequestBody RoomFac requestRoomFac, HttpSession session) {
-        String name = requestRoomFac.getName();
-        name = HtmlUtils.htmlEscape(name);
-        System.out.println("Deleting roomfac: "+name+"...");
-
         RoomFac roomfac = roomFacService.delete(requestRoomFac);
         if(null ==roomfac) {
             System.out.println("RoomFac deleting failed!");

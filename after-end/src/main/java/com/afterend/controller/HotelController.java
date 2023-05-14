@@ -108,9 +108,6 @@ public class HotelController {
     @PostMapping(value = "/api/hotel/delete")
     @ResponseBody
     public Result deleteHotel(@RequestBody Hotel requestHotel, HttpSession session) {
-        String name = requestHotel.getName();
-        name = HtmlUtils.htmlEscape(name);
-        System.out.println("Deleting hotel: "+name+"...");
 
         Hotel hotel = hotelService.delete(requestHotel);
         if(null ==hotel) {
@@ -127,10 +124,6 @@ public class HotelController {
     @PostMapping(value = "/api/hotel/update")
     @ResponseBody
     public Result updateHotel(@RequestBody Hotel requestHotel, HttpSession session) {
-        String name = requestHotel.getName();
-        name = HtmlUtils.htmlEscape(name);
-        System.out.println("Updating hotel: "+name+"...");
-
         Hotel hotel = hotelService.update(requestHotel);
         if(null ==hotel) {
             System.out.println("Hotel updating failed!");
