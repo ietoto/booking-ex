@@ -1,6 +1,5 @@
 <template>
-  <div>
-    <div id="left" class="rlt-left leftsmall" role="main">
+    <div id="left" class="rlt-left leftsmall" role="complementary">
       <div id="left_col_wrapper" style="z-index: 101;">
         <div>
           <Searchbar />
@@ -9,9 +8,7 @@
           <HotelFilter />
         </div>
       </div>
-
     </div>
-  </div>
 </template>
 
 <script>

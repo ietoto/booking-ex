@@ -6,10 +6,12 @@
                <div class="label">境内外特价搜不停</div>
             </el-form-item>
             <el-form-item label="目的地/住宿名称：">
-               <el-input placeholder="目的地？" prefix-icon="el-icon-search"></el-input>
+               <el-input v-model="destination" placeholder="目的地？" prefix-icon="el-icon-search"></el-input>
             </el-form-item>
+            <el-form-item label="入住日期：">
             <el-date-picker v-model="value1" type="daterange" range-separator="至" start-placeholder="到店日期"
                end-placeholder="离店日期" :picker-options="pickerOptions" />
+            </el-form-item>
          </div>
       </el-form>
       <div class="search-bar-wrapper" style="position: relative; z-index: 1;">
@@ -26,6 +28,7 @@ export default {
    data() {
       return {
          value1: '',
+         destination:'',
          pickerOptions: {
             disabledDate: (time) => {
                const currentDate = new Date()
@@ -65,6 +68,7 @@ form {
    font-size: 12px;
    font-weight: 400;
    line-height: 20px;
+   width:100%;
    padding: 16px;
 }
 
@@ -76,7 +80,7 @@ form {
 
 .item3 {
    background-color: #ffc489;
-   margin-left: 50%;
+   margin-left: 35%;
    border-radius: 10px;
    margin-bottom: 20px;
 }

@@ -1,12 +1,8 @@
 <template>
     <div>
         <Navbar />
-        <div id="basiclayout" style="position: relative;">
             <SearchAside />
-            <div id="left" class="rlt-left leftsmall" role="complementary">
-                <MainMenu />
-             </div>
-        </div>
+            <MainMenu />
         <FooterBlue />
     </div>
 </template>
@@ -29,6 +25,5 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped>
 </style>
