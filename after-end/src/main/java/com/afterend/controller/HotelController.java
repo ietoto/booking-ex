@@ -31,13 +31,6 @@ public class HotelController {
         return (hotelService.showalllimit());
     }
 
-    @CrossOrigin
-    @PostMapping(value = "/api/hotel/showLimit")
-    @ResponseBody
-    public List<Hotel> showallLimit(HttpSession session) {
-        return (hotelService.showalllimit());
-    }
-
     //获取单个酒店详细信息
     @CrossOrigin
     @PostMapping(value = "/api/hotel/info")
