@@ -60,7 +60,7 @@ public class HotelController {
 
             //set room facilities
             RoomFacController roomFacController = new RoomFacController();
-            List<RoomFac> roomFacList = roomFacController.getRoomFac(requestHotel);
+            List<RoomFac> roomFacList = roomFacController.getRoomFac2(requestHotel);
             List<String> facilities_room = new ArrayList<>();
             for (int i = 0; i < roomFacList.size(); i++) {
                 facilities_room.add(roomFacList.get(i).getName());
