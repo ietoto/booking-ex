@@ -1,6 +1,6 @@
 <template>
  <div class="rlt-right" role="main">
-   <MenuTitle/>
+    <MenuTitle/>
     <HotelList/>
  </div>
 </template>

@@ -29,7 +29,6 @@
                 <template slot="reference">
                     <button class="toggle-button" :aria-expanded="isGuestsOpen">
                         <i class="el-icon-user"></i>
-                        <span class="invisible-spoken">客房数量和入住人数</span>
                         <span class="guests-count">
                             <span>{{ adults }}位成人</span>
                             <span v-if="showChildren">&nbsp;

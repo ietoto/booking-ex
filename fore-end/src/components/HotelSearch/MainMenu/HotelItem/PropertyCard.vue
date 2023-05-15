@@ -1,196 +1,115 @@
 <template>
-    <div data-testid="property-card"
-        class="property-card">
-        <div class="container">
-            <div class="imgstyle">
-                <div class="imgposition">
-                    <a href="https://www.booking.com/hotel/cn/holiday-inn-express-nanjing-dongshan.zh-cn.html?label=bookings-naam-oYFnc5Uc4A3ORKdyD8eI7AS632911532530%3Apl%3Ata%3Ap1%3Ap22%2C563%2C000%3Aac%3Aap%3Aneg%3Afi%3Atikwd-65526620%3Alp9061376%3Ali%3Adec%3Adm%3Appccp%3DUmFuZG9tSVYkc2RlIyh9YXdX6HrtnYy-wu9AdI9VTio&amp;aid=376390&amp;ucfs=1&amp;arphpl=1&amp;dest_id=-1919548&amp;dest_type=city&amp;group_adults=2&amp;req_adults=2&amp;no_rooms=1&amp;group_children=0&amp;req_children=0&amp;hpos=1&amp;hapos=1&amp;sr_order=popularity&amp;srpvid=e9202cd3033400f9&amp;srepoch=1684045352&amp;from=searchresults#hotelTmpl"
-                        target="_blank" rel="noopener noreferrer" tabindex="-1" aria-hidden="true"><img
-                            src="https://cf.bstatic.com/xdata/images/hotel/square200/230593664.webp?k=16c0a299c8f78cf490b02d827b8320e4938c32aac4e476c2666b6da91bb65e07&amp;o="
-                            alt="南京东山智选假日酒店" width="200" height="200" class="imgstyle2" data-testid="image" /></a>
-                </div>
-            </div>
-            <div class="descriptionstyle">
-                <div class="a1b3f50dcd a1f3ecff04 f7c6687c3d f996d8c258">
-                    <div class="">
-                        <div class="a1b3f50dcd a7c67ebfe5 b2fe1a41c3 d19ba76520 d14b211b4f">
-                            <div class="b1e6dd8416 aacd9d0b0a">
-                                <div class="a1b3f50dcd ef8295f3e6 f7c6687c3d">
-                                    <div>
-                                        <div class="dd023375f5">
-                                            <h3 class="a4225678b2">
-                                                <a href="https://www.booking.com/hotel/cn/holiday-inn-express-nanjing-dongshan.zh-cn.html?label=bookings-naam-oYFnc5Uc4A3ORKdyD8eI7AS632911532530%3Apl%3Ata%3Ap1%3Ap22%2C563%2C000%3Aac%3Aap%3Aneg%3Afi%3Atikwd-65526620%3Alp9061376%3Ali%3Adec%3Adm%3Appccp%3DUmFuZG9tSVYkc2RlIyh9YXdX6HrtnYy-wu9AdI9VTio&amp;aid=376390&amp;ucfs=1&amp;arphpl=1&amp;dest_id=-1919548&amp;dest_type=city&amp;group_adults=2&amp;req_adults=2&amp;no_rooms=1&amp;group_children=0&amp;req_children=0&amp;hpos=1&amp;hapos=1&amp;sr_order=popularity&amp;srpvid=e9202cd3033400f9&amp;srepoch=1684045352&amp;from=searchresults#hotelTmpl"
-                                                    class="e13098a59f" target="_blank" rel="noopener noreferrer"
-                                                    data-testid="title-link">
-                                                    <div data-testid="title" class="fcab3ed991 a23c043802">
-                                                        南京东山智选假日酒店
-                                                    </div>
-                                                    <div class="e6e585da68">在新窗口中打开</div>
-                                                </a>
-                                            </h3>
-                                            <div class="f919b8b3d5">
-                                                <span class="subscribeposition">
-                                                    <div class="e4755bbd60" tabindex="0" aria-label="第3位（共5家）"
-                                                        aria-expanded="false">
-                                                        <div data-testid="rating-circles" aria-hidden="true"
-                                                            class="fbb11b26f5" role="img">
-                                                            <span aria-hidden="true"
-                                                                class="buttonstyle2 adc357e4f1 fe621d6382"><svg
-                                                                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                                                    <path
-                                                                        d="M24 12c0 6.627-5.373 12-12 12S0 18.627 0 12 5.373 0 12 0s12 5.373 12 12z">
-                                                                    </path>
-                                                                </svg></span><span aria-hidden="true"
-                                                                class="buttonstyle2 adc357e4f1 fe621d6382"><svg
-                                                                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                                                    <path
-                                                                        d="M24 12c0 6.627-5.373 12-12 12S0 18.627 0 12 5.373 0 12 0s12 5.373 12 12z">
-                                                                    </path>
-                                                                </svg></span><span aria-hidden="true"
-                                                                class="buttonstyle2 adc357e4f1 fe621d6382"><svg
-                                                                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                                                    <path
-                                                                        d="M24 12c0 6.627-5.373 12-12 12S0 18.627 0 12 5.373 0 12 0s12 5.373 12 12z">
-                                                                    </path>
-                                                                </svg></span>
-                                                        </div>
-                                                    </div>
-                                                </span>
-                                            </div>
-                                            <span class="subscribeposition"><span aria-expanded="false" tabindex="0" role="button"
-                                                    data-testid="preferred-badge"><span role="img"
-                                                        class="buttonstyle2 c79b3cbed2 e6c50852bd fe3639fe67"
-                                                        aria-label="这家住宿参与了我们的主推合作伙伴项目。主推住宿提供优质的服务和较高的性价比，为客人创造良好的体验。该住宿可能向Booking.com支付的佣金比例稍高。"><svg
-                                                            viewBox="0 0 128 128" width="1em" height="1em">
-                                                            <path
-                                                                d="M112 8H16a8 8 0 0 0-8 8v96a8 8 0 0 0 8 8h96a8 8 0 0 0 8-8V16a8 8 0 0 0-8-8zM48 96H24V58h24zm56-25a8.7 8.7 0 0 1-2 6 8.9 8.9 0 0 1 1 4 6.9 6.9 0 0 1-5 7c-.5 4-4.8 8-9 8H56V58l10.3-23.3a5.4 5.4 0 0 1 10.1 2.7 10.3 10.3 0 0 1-.6 2.7L72 52h23c4.5 0 9 3.5 9 8a9.2 9.2 0 0 1-2 5.3 7.5 7.5 0 0 1 2 5.7z">
-                                                            </path>
-                                                        </svg></span></span></span>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="a1fbd102d9" data-testid="location">
-                                            <a target="_blank" rel="noopener noreferrer"
-                                                href="https://www.booking.com/hotel/cn/holiday-inn-express-nanjing-dongshan.zh-cn.html?label=bookings-naam-oYFnc5Uc4A3ORKdyD8eI7AS632911532530%3Apl%3Ata%3Ap1%3Ap22%2C563%2C000%3Aac%3Aap%3Aneg%3Afi%3Atikwd-65526620%3Alp9061376%3Ali%3Adec%3Adm%3Appccp%3DUmFuZG9tSVYkc2RlIyh9YXdX6HrtnYy-wu9AdI9VTio&amp;aid=376390&amp;ucfs=1&amp;arphpl=1&amp;dest_id=-1919548&amp;dest_type=city&amp;group_adults=2&amp;req_adults=2&amp;no_rooms=1&amp;group_children=0&amp;req_children=0&amp;hpos=1&amp;hapos=1&amp;sr_order=popularity&amp;srpvid=e9202cd3033400f9&amp;srepoch=1684045352&amp;from=searchresults&amp;map=1"
-                                                class="fc63351294 a168c6f285 e0e11a8307 a25b1d9e47"><span><span
-                                                        class="f4bd0794db b4273d69aa" data-testid="address">南京</span><span
-                                                        class="f4bd0794db b4273d69aa">显示在地图上</span></span></a><span
-                                                class="f4bd0794db"><span class="subscribeposition"><span aria-expanded="false"
-                                                        data-testid="distance">离中心地区12.7千米</span></span></span>
-                                        </div>
-                                    </div>
-                                    <div class="d8eab2cf7f">
-                                        南京东山智选假日酒店位于南京，提供客房，距离Dr.中山陵有不到12公里，距离夫子庙有13公里。这家住宿提供的设施包括餐厅、24小时前台、行李寄存处和免费WiFi。这家酒店距离玄武湖有17公里，距离雨花台有13公里。
-                                        这家酒店的所有房间均配有电热水壶。所有客房都配有空调、书桌和平板电视。南京东山智选假日酒店的部分客房配有庭院。
-                                        这家住宿提供自助或亚洲风味早餐。...
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="">
-                                <div class="a1b3f50dcd bdf0df2d01 f7c6687c3d f920833fe5">
-                                    <div class="">
-                                        <div class="a1b3f50dcd ef8295f3e6 f7c6687c3d">
-                                            <a target="_blank" rel="noopener noreferrer" data-testid="review-score-link"
-                                                href="https://www.booking.com/hotel/cn/holiday-inn-express-nanjing-dongshan.zh-cn.html?label=bookings-naam-oYFnc5Uc4A3ORKdyD8eI7AS632911532530%3Apl%3Ata%3Ap1%3Ap22%2C563%2C000%3Aac%3Aap%3Aneg%3Afi%3Atikwd-65526620%3Alp9061376%3Ali%3Adec%3Adm%3Appccp%3DUmFuZG9tSVYkc2RlIyh9YXdX6HrtnYy-wu9AdI9VTio&amp;aid=376390&amp;ucfs=1&amp;arphpl=1&amp;dest_id=-1919548&amp;dest_type=city&amp;group_adults=2&amp;req_adults=2&amp;no_rooms=1&amp;group_children=0&amp;req_children=0&amp;hpos=1&amp;hapos=1&amp;sr_order=popularity&amp;srpvid=e9202cd3033400f9&amp;srepoch=1684045352&amp;from=searchresults#hotelTmpl"
-                                                class="fc63351294 a168c6f285 aeccf0d865 a25b1d9e47"><span>
-                                                    <div data-testid="review-score"
-                                                        class="a1b3f50dcd a1f3ecff04 cbb2d85c33 db7f07f643 d19ba76520 d02f1578ba d17b3fe5e2">
-                                                        <div aria-label="评分9.1" class="b5cd09854e d10a6220b4">
-                                                            9.1
-                                                        </div>
-                                                        <div class="b1e6dd8416 aacd9d0b0a b48795b3df">
-                                                            <div aria-label="好极了" class="b5cd09854e f0d4d6a2f5 e46e88563a">
-                                                                好极了<!-- -->
-                                                            </div>
-                                                            <div class="d8eab2cf7f c90c0a70d3 db63693c62">
-                                                                9条住客点评
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </span></a>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <span class="subscribeposition"><button aria-expanded="false" type="button"
-                                                class="fc63351294 a822bdf511 d4b6b7a9e7 f7db01295e c334e6f658 f4605622ad">
-                                                <span class="e57ffa4eb5">显示价格</span>
-                                            </button></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="ea6e492f88"></div>
+  <el-card class="property-card">
+    <div class="left">
+      <div class="image-container">
+        <img :src="hotel.hotel_image" alt="hotel image" />
+      </div>
     </div>
+    <div class="middle">
+      <div class="hotel-name">{{ hotel.hotel_name }}</div>
+      <div class="hotel-description">{{ hotel.hotel_description }}</div>
+      <div class="hotel-location">
+        <span class="small-text">{{ hotel.hotel_area }}</span>
+        <span class="small-text separator">·</span>
+        <span class="small-text">{{ hotel.hotel_city }}</span>
+      </div>
+    </div>
+    <div class="right">
+      <div class="hotel-score">酒店评分：{{ hotel.hotel_score }}</div>
+      <el-button class="price-button" type="primary">显示价格</el-button>
+    </div>
+  </el-card>
 </template>
 
 <script>
 export default {
-
-}
+  props: {
+    hotel: {
+      type: Object,
+      required: true
+    }
+  }
+};
 </script>
 
 <style scoped>
-.property-card{
-    font-style:normal!important;
-    background: #f0f6ff;
-    border-color: #a3d7fc;
-    box-shadow: 0 0 8px #a3d7fc;
-    overflow: visible;
-    margin: 16px 0;
-    border-radius: 8px;
-    border: 1px solid;
-    padding: 16px;
-}
-.container
-{
-    display: flex;
-    font-style: normal;
+.property-card {
+  display: flex;
+  align-items: stretch;
+  max-height: 250px;
+  padding: 16px;
+  font-style: normal !important;
+  background: #f0f6ff;
+  border-color: #a3d7fc;
+  box-shadow: 0 0 8px #a3d7fc;
+  overflow: visible;
+  margin: 16px 0;
+  border-radius: 8px;
+  border: 1px solid;
 }
 
-.imgstyle{
-    font-style: normal!important;
-    flex:0 0 auto;
-    width: 200px;
+.left {
+  width: 200px;  
+  height: 100%;  
+  flex-shrink: 0;
+  margin-right: 16px;
 }
 
-.imgposition{
-  position:relative;
-  width:200px;
+
+.middle {
+  flex-grow: 1;
+  flex-shrink: 1;  
+  overflow: hidden;  
+  margin-right: 16px;
 }
 
-.subscribestyle{
-    position: absolute;
-    right:-3px;
-    top:7px;
-}
-.subscribeposition {
-    display: inline-block;
-    vertical-align: middle;
-}
-.subscribebutton {
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    margin: 0 10px 2px 0;
-    padding: 0;
-    z-index: 100;
-}
-.descriptionstyle {
-    flex: 1 1 auto;
-    margin-left: 16px;
-    width: calc(100% - 200px -16px);
+.right {
+  flex-shrink: 1; 
+  overflow: hidden;  
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
 }
 
-.buttonstyle2 {
-    fill: currentcolor;
-    display: inline-block;
+
+.image-container {
+  width: 200px;
+  height: 200px;
+  padding-bottom: 0;
+  position: relative;
+  overflow: hidden;
 }
-.imgstyle2{
-    border-radius: 8px;
-    display: block;
+
+.image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hotel-name {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.hotel-description {
+  margin-bottom: 8px;
+}
+
+.small-text {
+  font-size: 12px;
+  color: #888;
+}
+
+.separator {
+  margin: 0 4px;
+}
+
+.hotel-score {
+  margin-bottom: 8px;
+}
+
+.price-button {
+  margin-top: 8px;
 }
 </style>
