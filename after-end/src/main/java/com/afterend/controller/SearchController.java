@@ -150,17 +150,17 @@ public class SearchController {
             }
 
             if (remainingTotal == 0) {
-//                    System.out.println("选择的房间：");
-//                    for (String roomInfo : selectedRooms) {
-//                        System.out.println(roomInfo);
-//                    }
-//                    System.out.println("总价格：" + totalPrice);
+                    System.out.println("推荐客房成功");
+                    for (String roomInfo : selectedRooms) {
+                        System.out.println(roomInfo);
+                    }
+                    System.out.println("总价格：" + totalPrice);
                 Hotel hotel1=new Hotel();
                 hotel1.setRooms(rooms);
                 room_rec.add(hotel1);
                 price.add(totalPrice*time);
             } else {
-//                    System.out.println("无法安排所有人");
+                    System.out.println("推荐客房失败");
                 price.add(-1);
             }
 
@@ -181,7 +181,11 @@ public class SearchController {
         HotelController hotelController = new HotelController();
         SearchDetailed searchDetailed = requestSearch;
         hotel = hotelController.hotelInfo(hotel);
+        List<Hotel> hotels = new ArrayList<>();
+        hotels.add(hotel);
         //可用房间以及价格
+        recommend(searchDetailed);
+
 
 
         return searchDetailed;

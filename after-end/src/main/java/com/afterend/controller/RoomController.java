@@ -22,6 +22,9 @@ public class RoomController {
         Room room =new Room();
         room.setHotelid(hotel.getId());
         List<Room> rooms = roomService.getRoomList(room);
+        if(0 == rooms.size()){
+            System.out.println("");
+        }
 
         //set room facilities
         RoomFacController roomFacController = new RoomFacController();
@@ -43,6 +46,7 @@ public class RoomController {
         Room room = new Room();
         room.setHotelid(hotel.getId());
         List<Room> rooms = roomService.getRoomList(room);
+        System.out.println(rooms);
         if(0 == rooms.size()){
             System.out.println("Get rooms list failed!");
         }else {
