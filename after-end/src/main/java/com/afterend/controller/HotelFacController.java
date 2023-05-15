@@ -54,4 +54,18 @@ public class HotelFacController {
         }
     }
 
+    @CrossOrigin
+    @PostMapping(value = "/api/hotelFac/update")
+    @ResponseBody
+    public Result updateHotelFac(@RequestBody HotelFac requestHotelFac, HttpSession session) {
+        HotelFac hotelfac = hotelFacService.delete(requestHotelFac);
+        if(null ==hotelfac) {
+            System.out.println("Hotelfac deleting failed!");
+            return new Result(400);
+        }else{
+            System.out.println("Hotelfac deleting success!");
+            return new Result(200);
+        }
+    }
+
 }

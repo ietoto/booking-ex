@@ -41,4 +41,12 @@ public class HotelFac {
     public void setNum(int num) {
         this.num = num;
     }
+
+    public String getNew_name() {
+        return new_name;
+    }
+
+    public void setNew_name(String new_name) {
+        this.new_name = new_name;
+    }
 }

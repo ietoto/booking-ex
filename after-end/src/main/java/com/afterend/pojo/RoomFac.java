@@ -50,4 +50,12 @@ public class RoomFac {
     public void setHotelid(int hotelid) {
         this.hotelid = hotelid;
     }
+
+    public String getNew_name() {
+        return new_name;
+    }
+
+    public void setNew_name(String new_name) {
+        this.new_name = new_name;
+    }
 }
