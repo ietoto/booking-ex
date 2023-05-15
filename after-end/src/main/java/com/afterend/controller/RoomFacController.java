@@ -64,4 +64,18 @@ public class RoomFacController {
         }
     }
 
+    @CrossOrigin
+    @PostMapping(value = "/api/roomFac/update")
+    @ResponseBody
+    public Result updateRoomFac(@RequestBody RoomFac requestRoomFac, HttpSession session) {
+        RoomFac roomfac = roomFacService.update(requestRoomFac);
+        if(null ==roomfac) {
+            System.out.println("RoomFac updating failed!");
+            return new Result(400);
+        }else{
+            System.out.println("RoomFac updating success!");
+            return new Result(200);
+        }
+    }
+
 }

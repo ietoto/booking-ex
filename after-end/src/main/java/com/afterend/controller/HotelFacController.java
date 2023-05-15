@@ -58,12 +58,12 @@ public class HotelFacController {
     @PostMapping(value = "/api/hotelFac/update")
     @ResponseBody
     public Result updateHotelFac(@RequestBody HotelFac requestHotelFac, HttpSession session) {
-        HotelFac hotelfac = hotelFacService.delete(requestHotelFac);
+        HotelFac hotelfac = hotelFacService.update(requestHotelFac);
         if(null ==hotelfac) {
-            System.out.println("Hotelfac deleting failed!");
+            System.out.println("HotelFac updating failed!");
             return new Result(400);
         }else{
-            System.out.println("Hotelfac deleting success!");
+            System.out.println("HotelFac updating success!");
             return new Result(200);
         }
     }

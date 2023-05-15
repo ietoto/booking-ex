@@ -76,4 +76,18 @@ public class RoomController {
         }
     }
 
+    @CrossOrigin
+    @PostMapping(value = "/api/room/update")
+    @ResponseBody
+    public Result updateRoom(@RequestBody Room requestRoom, HttpSession session) {
+        Room room = roomService.update(requestRoom);
+        if(null ==room) {
+            System.out.println("Room updating failed!");
+            return new Result(400);
+        }else{
+            System.out.println("Room updating success!");
+            return new Result(200);
+        }
+    }
+
 }
