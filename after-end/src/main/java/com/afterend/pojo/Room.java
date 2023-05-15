@@ -93,7 +93,7 @@ public class Room {
         this.facilities = facilities;
     }
 
-    public int isIfFreeCancle() {
+    public int getIfFreeCancle() {
         return ifFreeCancle;
     }
 
@@ -101,7 +101,7 @@ public class Room {
         this.ifFreeCancle = ifFreeCancle;
     }
 
-    public int isIfNoRequire() {
+    public int getIfNoRequire() {
         return ifNoRequire;
     }
 

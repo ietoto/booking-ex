@@ -48,7 +48,7 @@ public class RoomController {
         Room room = new Room();
         room.setHotelid(hotel.getId());
         List<Room> rooms = roomService.getRoomList(room);
-        System.out.println(rooms.get(0).isIfFreeCancle());
+        System.out.println(rooms.get(0).getIfFreeCancle());
         if(0 == rooms.size()){
             System.out.println("Get rooms list failed!");
         }else {
