@@ -20,9 +20,9 @@ export default {
     return {
       date: '',
       destination:'',
-      adults: null,
-      children: null,
-      rooms: null,
+      adults: 2,
+      children: 0,
+      rooms: 1,
       pickerOptions: {
         disabledDate: (time) => {
           const currentDate = new Date()
@@ -49,7 +49,7 @@ export default {
           adult:this.adults,
           child:this.children,
           room_num:this.rooms}
-      this.$store.commit("firstsearch",search)
+      this.$store.commit("search",search)
       this.$router.push('/search'); // 这里的 '/path/to/page' 是你要跳转的页面的路由
     },
     // 事件处理函数
