@@ -35,7 +35,7 @@ public class OrderController {
         }
     }
 
-    //用户查订单
+    //用户查订单-根据用户id
     @CrossOrigin
     @PostMapping(value = "/api/order/user_showall")
     @ResponseBody
@@ -45,7 +45,7 @@ public class OrderController {
         return orderService.showByUserID(order);
     }
 
-    //酒店经理查订单
+    //酒店经理查订单-根据酒店id
     @CrossOrigin
     @PostMapping(value = "/api/order/manager_showall")
     @ResponseBody
@@ -55,7 +55,7 @@ public class OrderController {
         return orderService.showByHotelID(order);
     }
 
-    //管理员查看所有订单
+    //查看所有订单
     @CrossOrigin
     @PostMapping(value = "/api/order/admin_showall")
     @ResponseBody

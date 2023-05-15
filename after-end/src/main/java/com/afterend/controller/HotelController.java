@@ -47,7 +47,7 @@ public class HotelController {
 
             // set hotel facilities
             HotelFacController hotelFacController = new HotelFacController();
-            List<HotelFac> hotelFacList = hotelFacController.getHotelFac(requestHotel);
+            List<HotelFac> hotelFacList = hotelFacController.getHotelFac2(requestHotel);
             List<String> facilities_hotel = new ArrayList<>();
             for (int i = 0; i < hotelFacList.size(); i++) {
                 facilities_hotel.add(hotelFacList.get(i).getName());
@@ -78,6 +78,11 @@ public class HotelController {
     public Hotel searchById(@RequestBody Hotel requestHotel, HttpSession session){
         Hotel hotel = new Hotel();
         hotel = hotelService.SearchbyID(requestHotel);
+        if(null == hotel){
+            System.out.println("Can't find hotel by id!");
+        }else {
+            System.out.println("Successfully find hotel by id!");
+        }
         return hotel;
     }
 

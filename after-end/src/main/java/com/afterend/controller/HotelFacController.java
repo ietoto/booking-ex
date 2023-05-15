@@ -20,7 +20,11 @@ public class HotelFacController {
     @CrossOrigin
     @PostMapping(value = "/api/hotelFac/getByHotelId")
     @ResponseBody
-    public List<HotelFac> getHotelFac(Hotel hotel) {
+    public List<HotelFac> getHotelFac(@RequestBody Hotel hotel, HttpSession session) {
+        return hotelFacService.get(hotel);
+    }
+
+    public List<HotelFac> getHotelFac2(Hotel hotel) {
         return hotelFacService.get(hotel);
     }
 
