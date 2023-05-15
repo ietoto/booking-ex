@@ -99,13 +99,13 @@
         <el-container style="height: 460px;margin-top: -15px;border: 1px solid #de1b4f;width: 725px;position: relative;left: 0px;">
           <el-table
             border
-            height="450"
+            height="460"
             v-loading="hotelfacloading"
             element-loading-text="努力加载中"
             @cell-mouse-enter="hotelfacmouseEnter"
             :data="hotelfacList.slice((hotelfacpage.currentPage-1)*hotelfacpage.pageSize,hotelfacpage.currentPage*hotelfacpage.pageSize)"
           >
-            <el-table-column label="序号" type="index" width="55">
+            <el-table-column label="序号" type="index" width="60">
               <template v-slot="scope">
                 <!-- (当前页 - 1) * 当前显示数据条数 + 当前行数据的索引 + 1  -->
                 <span>{{ (hotelfacpage.currentPage - 1) * hotelfacpage.pageSize + scope.$index + 1 }}</span>
@@ -164,31 +164,30 @@
       </el-dialog>
       <el-dialog title="客房信息" :visible.sync="ShowRoomVisible">
         <span slot="title" class="title">
-<!--          <el-button @click="SetShowRoomFacVisible">客房设施</el-button>-->
           <el-button @click="SetAddRoomVisible">添加</el-button>
         </span>
-        <el-container style="height: 460px;margin-top: -15px;border: 1px solid #de1b4f;width: 725px;position: relative;left: 0px;">          <el-table
+        <el-container style="height: 540px;margin-top: -15px;border: 1px solid #de1b4f;width: 725px;position: relative;left: 0px;">          <el-table
             border
-            height="450"
+            height="540"
             v-loading="roomloading"
             element-loading-text="努力加载中"
             @cell-mouse-enter="roommouseEnter"
             :data="roomList.slice((roompage.currentPage-1)*roompage.pageSize,roompage.currentPage*roompage.pageSize)"
           >
-            <el-table-column label="序号" type="index" width="55">
+            <el-table-column label="序号" type="index" width="50">
               <template v-slot="scope">
                 <!-- (当前页 - 1) * 当前显示数据条数 + 当前行数据的索引 + 1  -->
                 <span>{{ (roompage.currentPage - 1) * roompage.pageSize + scope.$index + 1 }}</span>
               </template>
             </el-table-column>
-            <el-table-column label="客房id" prop="id" min-width="25px"/>
+            <el-table-column label="客房id" prop="id" min-width="20px"/>
             <el-table-column label="客房名" prop="name" min-width="50px"/>
             <el-table-column label="客房总数" prop="num_max" min-width="25px"/>
             <el-table-column label="可住人数" prop="size" min-width="25px"/>
-            <el-table-column label="一晚价格" prop="price_r" min-width="10px"/>
-            <el-table-column label="早餐价格" prop="price_b" min-width="10px"/>
-            <el-table-column label="免费取消" prop="ifFreeCancle" min-width="10px"/>
-            <el-table-column label="免费预订" prop="ifNoRequire" min-width="10px"/>
+            <el-table-column label="一晚价格" prop="price_r" min-width="25px"/>
+            <el-table-column label="早餐价格" prop="price_b" min-width="25px"/>
+            <el-table-column label="免费取消" prop="ifFreeCancle" min-width="20px"/>
+            <el-table-column label="免费预订" prop="ifNoRequire" min-width="20px"/>
             <el-table-column label="操作" prop="operation" width="200">
               <template>
                 <el-button
@@ -298,7 +297,7 @@
               <span>{{ (roomfacpage.currentPage - 1) * roomfacpage.pageSize + scope.$index + 1 }}</span>
             </template>
           </el-table-column>
-          <el-table-column label="客房设施" prop="id" min-width="50px"/>
+          <el-table-column label="客房设施" prop="name" min-width="50px"/>
           <el-table-column label="操作" prop="operation" width="200">
             <template>
               <el-button
@@ -613,7 +612,7 @@ export default {
     },
     Addroomfac(){
       var _this = this
-      if (this.addroomfac.name === ''){
+      if (this.addroomfac.name === null){
         // alert(this.registerForm.phone)
         this.$message({
           duration: 1000,
@@ -625,9 +624,9 @@ export default {
       }
       this.$axios
         .post('/roomFac/add', {
-          id: this.chooseRoomFac.id,
+          id: this.chooseRoom.id,
           hotelid: this.chooseHotel.id,
-          name: this.addhotelfac.name
+          name: this.addroomfac.name
         })
         .then(successResponse => {
           if (successResponse.data.code===200) {
@@ -677,14 +676,15 @@ export default {
       this.hotelfacloading=true
       this.$axios
         .post('/hotelFac/getByHotelId', {
+          id: this.chooseHotel.id
         })
         .then(successResponse => {
           if (successResponse.data !=null) {
-            console.log('查询成功')
             this.hotelfacList=successResponse.data
             this.hotelfacloading=false
           }
           else {
+            console.log('酒店设施查询失败')
           }
         })
         .catch(failResponse => {
@@ -695,7 +695,7 @@ export default {
       this.roomloading=true
       this.$axios
         .post('/room/getRooms', {
-          hotelid: this.chooseHotel.id
+          id: this.chooseHotel.id
         })
         .then(successResponse => {
           if (successResponse.data !=null) {
@@ -713,7 +713,9 @@ export default {
       var _this = this
       this.roomfacloading=true
       this.$axios
-        .post('/hotelFac/getByHotelAndRoomId', {
+        .post('/roomFac/getByHotelAndRoomId', {
+          id: this.chooseRoom.id,
+          hotelid: this.chooseRoom.hotelid
         })
         .then(successResponse => {
           if (successResponse.data !=null) {
@@ -1027,7 +1029,7 @@ export default {
               message: '修改成功！',
               type: 'success'
             })
-            this.SetSetHotelFacInformationVisible=false
+            this.SetHotelFacInformationVisible=false
             this.getallhotelfac()
           }
           else {
@@ -1056,10 +1058,11 @@ export default {
       }
       this.$axios
         .post('/room/update', {
-          id: this.addroom.id,
+          id: this.chooseRoom.id,
           hotelid: this.chooseHotel.id,
           name: this.addroom.name,
           size: this.addroom.size,
+          num_max: this.addroom.num_max,
           price_r: this.addroom.price_r,
           price_b: this.addroom.price_b,
           ifFreeCancle: this.addroom.ifFreeCancle,
@@ -1074,7 +1077,7 @@ export default {
               message: '修改成功！',
               type: 'success'
             })
-            this.SetSetRoomInformationVisible=false
+            this.SetRoomInformationVisible=false
             this.getallroom()
           }
           else {
@@ -1127,7 +1130,7 @@ export default {
               message: '修改成功！',
               type: 'success'
             })
-            this.SetSetRoomFacInformationVisible=false
+            this.SetRoomFacInformationVisible=false
             this.getallroomfac()
           }
           else {
@@ -1149,10 +1152,10 @@ export default {
       this.chooseHotelFac = Object.assign({}, data)
     },
     roommouseEnter (data) {
-      this.chooseHotelFac = Object.assign({}, data)
+      this.chooseRoom = Object.assign({}, data)
     },
     roomfacmouseEnter (data) {
-      this.chooseHotelFac = Object.assign({}, data)
+      this.chooseRoomFac = Object.assign({}, data)
     }
   },
   data() {
@@ -1222,7 +1225,7 @@ export default {
       },
       roompage: {
         currentPage: 1, // 当前页
-        pageSize: 6, // 每页条数
+        pageSize: 4, // 每页条数
       },
       roomfacpage: {
         currentPage: 1, // 当前页
