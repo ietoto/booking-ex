@@ -15,6 +15,7 @@ public class HotelFac {
     int id;
 
     String name;
+    String new_name;
     int num;
 
     public int getId() {

@@ -15,6 +15,7 @@ public class RoomFac {
     int id;
 
     String name;
+    String new_name;
     int hotelid;
     int num;
 
