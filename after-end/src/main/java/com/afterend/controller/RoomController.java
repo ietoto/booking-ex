@@ -39,7 +39,14 @@ public class RoomController {
     @CrossOrigin
     @PostMapping(value = "/api/room/getRooms")
     @ResponseBody
-    public  List<Room> getRoomList(Hotel hotel){
+    public  List<Room> getRoomList(@RequestBody Hotel hotel,HttpSession session){
+        Room room = new Room();
+        room.setHotelid(hotel.getId());
+        List<Room> rooms = roomService.getRoomList(room);
+        return rooms;
+    }
+
+    public  List<Room> getRoomList2(Hotel hotel){
         Room room = new Room();
         room.setHotelid(hotel.getId());
         List<Room> rooms = roomService.getRoomList(room);

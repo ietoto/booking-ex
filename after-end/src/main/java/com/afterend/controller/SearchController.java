@@ -99,7 +99,7 @@ public class SearchController {
         RoomController roomController = new RoomController();
         for(int k=0;k<hotels.size();k++){
             Hotel hotel = hotels.get(k);
-            hotel.setRooms(roomController.getRoomList(hotel));
+            hotel.setRooms(roomController.getRoomList2(hotel));
             List<Room> rooms = hotel.getRooms();
             int adult_num = requestSearch.getAdult();
             int child_num = requestSearch.getChild();
@@ -182,6 +182,7 @@ public class SearchController {
         SearchDetailed searchDetailed = requestSearch;
         hotel = hotelController.hotelInfo(hotel);
         //可用房间以及价格
+
 
         return searchDetailed;
 
