@@ -1,23 +1,34 @@
 <template>
   <el-card class="property-card">
-    <div class="left">
-      <div class="image-container">
-        <img :src="hotel.hotel_image" alt="hotel image" />
-      </div>
-    </div>
-    <div class="middle">
-      <div class="hotel-name">{{ hotel.hotel_name }}</div>
-      <div class="hotel-description">{{ hotel.hotel_description }}</div>
-      <div class="hotel-location">
-        <span class="small-text">{{ hotel.hotel_area }}</span>
-        <span class="small-text separator">·</span>
-        <span class="small-text">{{ hotel.hotel_city }}</span>
-      </div>
-    </div>
-    <div class="right">
-      <div class="hotel-score">酒店评分：{{ hotel.hotel_score }}</div>
-      <el-button class="price-button" type="primary">显示价格</el-button>
-    </div>
+    <el-container>
+      <el-aside style="width:230px">
+        <div class="image-container">
+          <img :src="hotel.hotel_image" alt="hotel image" />
+        </div>
+      </el-aside>
+      <el-aside>
+        <div class="middle">
+          <div class="hotel-name">
+            {{ hotel.hotel_name }}
+            <el-rate v-model="hotel.hotel_star" disabled></el-rate>
+          </div>
+          <a href="" class="small-text">{{ hotel.hotel_city }}{{ hotel.hotel_location }}</a>
+          <div class="hotel-description">{{ hotel.hotel_description }}</div>
+          <div class="hotel-location">
+            <span class="small-text">{{ hotel.hotel_area }}</span>
+            <span class="small-text separator">·</span>
+          </div>
+        </div>
+      </el-aside>
+      <el-main>
+        <div class="right">
+          <div class="extra-info">{{ scoreText }}</div>
+          <div class="hotel-score">{{ hotel.hotel_score }}</div>
+          <!-- 大于等于9分优异的、好极了、理想随机选 7-8分好  低于7分不尽人意 -->
+          <el-button class="price-button" type="primary">显示价格</el-button>
+        </div>
+      </el-main>
+    </el-container>
   </el-card>
 </template>
 
@@ -27,6 +38,19 @@ export default {
     hotel: {
       type: Object,
       required: true
+    }
+  },
+  computed: {
+    scoreText() {
+      if (this.hotel.hotel_score >= 9) {
+        const options = ["优异的", "好极了", "理想"];
+        const randomIndex = Math.floor(Math.random() * options.length);
+        return options[randomIndex];
+      } else if (this.hotel.hotel_score >= 7) {
+        return "好";
+      } else {
+        return "不尽人意";
+      }
     }
   }
 };
@@ -49,8 +73,8 @@ export default {
 }
 
 .left {
-  width: 200px;  
-  height: 100%;  
+  width: 200px;
+  height: 100%;
   flex-shrink: 0;
   margin-right: 16px;
 }
@@ -58,14 +82,15 @@ export default {
 
 .middle {
   flex-grow: 1;
-  flex-shrink: 1;  
-  overflow: hidden;  
+  flex-shrink: 1;
+  overflow: hidden;
   margin-right: 16px;
 }
 
 .right {
-  flex-shrink: 1; 
-  overflow: hidden;  
+  margin-top: 20%;
+  flex-shrink: 1;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
@@ -73,6 +98,7 @@ export default {
 
 
 .image-container {
+  border-radius: 8px;
   width: 200px;
   height: 200px;
   padding-bottom: 0;
@@ -106,6 +132,9 @@ export default {
 }
 
 .hotel-score {
+  padding:8px;
+  background-color: #003B95;
+  color: white;
   margin-bottom: 8px;
 }
 
