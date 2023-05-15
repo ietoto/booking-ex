@@ -124,4 +124,29 @@ public class RoomFacDAO {
         }
         return roomFac;
     }
+    public static RoomFac update(RoomFac roomFac) {
+        Connection con=null;
+        try{
+            con= JDBCUtils.getConnect();
+            String sql="UPDATE `HotelSystem`.`fac_room` SET `room_facname` = ? WHERE `hotel_id` = ? AND `room_id` = ? AND `room_facname` = ?";
+            PreparedStatement pstate = con.prepareStatement(sql);
+            pstate.setString(1,roomFac.getNew_name());
+            pstate.setInt(2,roomFac.getHotelid());
+            pstate.setInt(3,roomFac.getId());
+            pstate.setString(4,roomFac.getName());
+            pstate.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            try {
+                if(con==null){
+                    System.out.println("test ");
+                }
+                con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return roomFac;
+    }
 }

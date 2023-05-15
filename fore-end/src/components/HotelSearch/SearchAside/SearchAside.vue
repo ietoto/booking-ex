@@ -1,12 +1,8 @@
 <template>
-    <div id="left" class="rlt-left leftsmall" role="complementary">
+    <div  class="rlt-left">
       <div id="left_col_wrapper" style="z-index: 101;">
-        <div>
           <Searchbar />
-        </div>
-        <div>
           <HotelFilter />
-        </div>
       </div>
     </div>
 </template>
@@ -24,16 +20,15 @@ export default {
 </script>
 
 <style scoped>
-.rlt-left,
-.rilt-left {
-  float: left;
-}
 
 .rlt-left {
-  width: 40% !important;
+  width: 20% !important;
   padding: 0 !important;
-}
-
-#left.leftsmall {
+  margin-top: 0;
   font-size: 88%;
-}</style>
+  margin-bottom: 1em;
+  font-style: normal;
+  float: left;
+  margin-left: 18%;
+}
+</style>
