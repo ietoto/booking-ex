@@ -16,8 +16,9 @@
         </div>
         <!-- ... -->
       </div>
-  
-      <h6 :style="h6Style">后台登陆</h6>
+      <router-link to="/login" style="text-decoration: none">
+        <h6 :style="h6Style">后台登陆</h6>
+      </router-link>
       <div :style="copyrightStyle">版权 © 1996–2023 Booking.com™. 版权所有.</div>
       <div :style="descriptionStyle">Booking.com隶属于Booking Holdings Inc.，该集团是深受全球用户好评的在线旅行及周边服务供应商。</div>
       <div :style="logoStyle">
@@ -27,7 +28,7 @@
       </div>
     </div>
   </template>
-  
+
   <script>
   export default {
     data() {
@@ -117,4 +118,3 @@
     },
   };
   </script>
-  
