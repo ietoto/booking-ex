@@ -3,9 +3,9 @@
     <div class="search-container">
       <div class="search-item destination-item">
         <el-input v-model="destination" prefix-icon="el-icon-s-cooperation" type="text" placeholder="目的地/住宿" />
-        <el-date-picker v-model="value1" type="daterange" range-separator="至" start-placeholder="到店日期"
-          end-placeholder="离店日期" :picker-options="pickerOptions" />
-        <SearchPeople/>
+        <el-date-picker v-model="date" type="daterange" range-separator="至" start-placeholder="到店日期"
+          end-placeholder="离店日期" :picker-options="pickerOptions" value-format="yyyy-MM-dd" />
+        <SearchPeople @change="people"/>
         <el-button type="primary" class="search-button"  @click="goToPage">搜索</el-button>
       </div>
     </div>
@@ -18,8 +18,11 @@ export default {
   name: 'Search',
   data() {
     return {
-      value1: '',
+      date: '',
       destination:'',
+      adults: null,
+      children: null,
+      rooms: null,
       pickerOptions: {
         disabledDate: (time) => {
           const currentDate = new Date()
@@ -37,9 +40,24 @@ export default {
     SearchPeople
   },
   methods: {
-  goToPage() {
-    this.$router.push('/search'); // 这里的 '/path/to/page' 是你要跳转的页面的路由
-  }
+    goToPage() {
+      let search;
+      search=
+        {location:this.destination,
+          startdate:this.date[0],
+          enddate:this.date[1],
+          adult:this.adults,
+          child:this.children,
+          room_num:this.rooms}
+      this.$store.commit("firstsearch",search)
+      this.$router.push('/search'); // 这里的 '/path/to/page' 是你要跳转的页面的路由
+    },
+    // 事件处理函数
+    async people(adults,children,rooms) {
+      this.adults=adults
+      this.children=children
+      this.rooms=rooms
+    }
 }
 
 }
@@ -49,7 +67,7 @@ export default {
 .background {
   position: absolute;
   top:335px;
-  left:19%;
+  left:17%;
   background-size: cover;
   background-position: center;
   height: 100px;
@@ -82,6 +100,6 @@ export default {
 }
 
 .search-button {
-  
+
 }
 </style>
