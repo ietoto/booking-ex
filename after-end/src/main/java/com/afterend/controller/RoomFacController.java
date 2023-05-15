@@ -37,7 +37,19 @@ public class RoomFacController {
     @CrossOrigin
     @PostMapping(value = "/api/roomFac/getByHotelAndRoomId")
     @ResponseBody
-    public List<RoomFac> getOneRoomFac(Room room) {
+    public List<RoomFac> getOneRoomFac(@RequestBody Room room,HttpSession session) {
+        Room room1 =new Room();
+        room1.setHotelid(room.getHotelid());
+        room1.setId(room.getId());
+        List<RoomFac> roomFacList = roomFacService.getByHotelIDAndRoomID(room1);
+        if(0 == roomFacList.size()){
+            System.out.println("Get room fac failed!");
+        }else
+            System.out.println("Get room fac success!");
+        return roomFacList;
+    }
+
+    public List<RoomFac> getOneRoomFac1(Room room) {
         Room room1 =new Room();
         room1.setHotelid(room.getHotelid());
         room1.setId(room.getId());
