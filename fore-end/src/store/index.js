@@ -13,24 +13,24 @@ export default new Vuex.Store({
       hotel_id: window.localStorage.getItem('user' || '[]') == null ? '' : JSON.parse(window.localStorage.getItem('user' || '[]')).hotel_id
     },
     search: {
-      id: null,
-      location: null,
-      startdate: null,
-      enddate: null,
-      adult: null,
-      child: null,
-      room_num: null,
-      distance: null,
-      distance_num: [],
-      select_distance_num: [],
-      select_score_num: [],
-      select_star_num: [],
-      select_hotelFacList: [],
-      select_roomFacList: [],
-      break_num: [],
-      select_break_num: [],
-      cancle_policy_num: [],
-      select_policy_num: []
+      id: window.localStorage.getItem('search' || '[]') == null ? '' : JSON.parse(window.localStorage.getItem('search' || '[]')).id,
+      location: window.localStorage.getItem('search' || '[]') == null ? '' : JSON.parse(window.localStorage.getItem('search' || '[]')).location,
+      startdate: window.localStorage.getItem('search' || '[]') == null ? '' : JSON.parse(window.localStorage.getItem('search' || '[]')).startdate,
+      enddate: window.localStorage.getItem('search' || '[]') == null ? '' : JSON.parse(window.localStorage.getItem('search' || '[]')).enddate,
+      adult: window.localStorage.getItem('search' || '[]') == null ? '' : JSON.parse(window.localStorage.getItem('search' || '[]')).adult,
+      child: window.localStorage.getItem('search' || '[]') == null ? '' : JSON.parse(window.localStorage.getItem('search' || '[]')).child,
+      room_num: window.localStorage.getItem('search' || '[]') == null ? '' : JSON.parse(window.localStorage.getItem('search' || '[]')).room_num,
+      distance: window.localStorage.getItem('search' || '[]') == null ? '' : JSON.parse(window.localStorage.getItem('search' || '[]')).distance,
+      distance_num: window.localStorage.getItem('search' || '[]') == null ? '' : JSON.parse(window.localStorage.getItem('search' || '[]')).distance_num,
+      select_distance_num: window.localStorage.getItem('search' || '[]') == null ? '' : JSON.parse(window.localStorage.getItem('search' || '[]')).select_distance_num,
+      select_score_num: window.localStorage.getItem('search' || '[]') == null ? '' : JSON.parse(window.localStorage.getItem('search' || '[]')).select_score_num,
+      select_star_num: window.localStorage.getItem('search' || '[]') == null ? '' : JSON.parse(window.localStorage.getItem('search' || '[]')).select_star_num,
+      select_hotelFacList: window.localStorage.getItem('search' || '[]') == null ? '' : JSON.parse(window.localStorage.getItem('search' || '[]')).select_hotelFacList,
+      select_roomFacList: window.localStorage.getItem('search' || '[]') == null ? '' : JSON.parse(window.localStorage.getItem('search' || '[]')).select_roomFacList,
+      break_num: window.localStorage.getItem('search' || '[]') == null ? '' : JSON.parse(window.localStorage.getItem('search' || '[]')).break_num,
+      select_break_num: window.localStorage.getItem('search' || '[]') == null ? '' : JSON.parse(window.localStorage.getItem('search' || '[]')).select_break_num,
+      cancle_policy_num: window.localStorage.getItem('search' || '[]') == null ? '' : JSON.parse(window.localStorage.getItem('search' || '[]')).cancle_policy_num,
+      select_policy_num: window.localStorage.getItem('search' || '[]') == null ? '' : JSON.parse(window.localStorage.getItem('search' || '[]')).select_policy_num
     }
   },
   mutations: {
@@ -38,11 +38,9 @@ export default new Vuex.Store({
       state.user = user
       window.localStorage.setItem('user', JSON.stringify(user))
     },
-    firstsearch(state,search){
-      state.search=search
-    },
     search(state,search){
       state.search=search
+      window.localStorage.setItem('search', JSON.stringify(search))
     },
     firstsearchclear(state){
       state.search.id=null
