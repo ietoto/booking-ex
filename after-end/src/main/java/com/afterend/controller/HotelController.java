@@ -28,8 +28,14 @@ public class HotelController {
     @CrossOrigin
     @PostMapping(value = "/api/hotel/showLimit")
     @ResponseBody
-    public List<Hotel> showallLimit(HttpSession session) {
-        return (hotelService.showalllimit());
+    public List<Hotel> showAllLimit(HttpSession session) {
+        List<Hotel> hotels = hotelService.showalllimit();
+        if(0 == hotels.size()){
+            System.out.println("Show all hotels failed!");
+        }else {
+            System.out.println("Show all hotels successful!");
+        }
+        return hotels;
     }
 
     //获取单个酒店详细信息

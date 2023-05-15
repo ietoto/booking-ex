@@ -43,6 +43,11 @@ public class RoomController {
         Room room = new Room();
         room.setHotelid(hotel.getId());
         List<Room> rooms = roomService.getRoomList(room);
+        if(0 == rooms.size()){
+            System.out.println("Get rooms list failed!");
+        }else {
+            System.out.println("Get rooms list success!");
+        }
         return rooms;
     }
 
@@ -50,6 +55,11 @@ public class RoomController {
         Room room = new Room();
         room.setHotelid(hotel.getId());
         List<Room> rooms = roomService.getRoomList(room);
+        if(0 == rooms.size()){
+            System.out.println("Get rooms list failed!");
+        }else {
+            System.out.println("Get rooms list success!");
+        }
         return rooms;
     }
 

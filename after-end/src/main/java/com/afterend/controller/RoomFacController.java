@@ -21,7 +21,13 @@ public class RoomFacController {
     @PostMapping(value = "/api/roomFac/getByHotelId")
     @ResponseBody
     public List<RoomFac> getRoomFac(@RequestBody Hotel hotel, HttpSession session) {
-        return roomFacService.get(hotel);
+        List<RoomFac> roomFacList = roomFacService.get(hotel);
+        if(0 == roomFacList.size()){
+            System.out.println("Get room fac failed!");
+        }else {
+            System.out.println("Get room fac success!");
+        }
+        return roomFacList;
     }
 
     public List<RoomFac> getRoomFac2(Hotel hotel) {
@@ -35,7 +41,12 @@ public class RoomFacController {
         Room room1 =new Room();
         room1.setHotelid(room.getHotelid());
         room1.setId(room.getId());
-        return roomFacService.getByHotelIDAndRoomID(room1);
+        List<RoomFac> roomFacList = roomFacService.getByHotelIDAndRoomID(room1);
+        if(0 == roomFacList.size()){
+            System.out.println("Get room fac failed!");
+        }else
+            System.out.println("Get room fac success!");
+        return roomFacList;
     }
 
     //管理员/酒店经理添加房间设施

@@ -21,11 +21,23 @@ public class HotelFacController {
     @PostMapping(value = "/api/hotelFac/getByHotelId")
     @ResponseBody
     public List<HotelFac> getHotelFac(@RequestBody Hotel hotel, HttpSession session) {
-        return hotelFacService.get(hotel);
+        List<HotelFac> hotelFacList = hotelFacService.get(hotel);
+        if(0==hotelFacList.size()){
+            System.out.println("Get fac by hotelId failed!");
+        }else {
+            System.out.println("Get fac by hotelId success!");
+        }
+        return hotelFacList;
     }
 
     public List<HotelFac> getHotelFac2(Hotel hotel) {
-        return hotelFacService.get(hotel);
+        List<HotelFac> hotelFacList = hotelFacService.get(hotel);
+        if(0==hotelFacList.size()){
+            System.out.println("Get fac by hotelId failed!");
+        }else {
+            System.out.println("Get fac by hotelId success!");
+        }
+        return hotelFacList;
     }
 
     //酒店经理/管理员添加酒店设施

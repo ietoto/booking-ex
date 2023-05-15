@@ -42,7 +42,13 @@ public class OrderController {
     public List<Order> showallU(@RequestBody User requestUser, HttpSession session) {
         Order order=new Order();
         order.setUserid(requestUser.getId());
-        return orderService.showByUserID(order);
+        List<Order> orders = orderService.showByUserID(order);
+        if(0 == orders.size()){
+            System.out.println("Show orders failed!");
+        }else {
+            System.out.println("Show orders success!");
+        }
+        return orders;
     }
 
     //酒店经理查订单-根据酒店id
@@ -52,7 +58,13 @@ public class OrderController {
     public List<Order> showallM(@RequestBody Hotel requestHotel, HttpSession session) {
         Order order=new Order();
         order.setHotelid(requestHotel.getId());
-        return orderService.showByHotelID(order);
+        List<Order> orders = orderService.showByHotelID(order);
+        if(0 == orders.size()){
+            System.out.println("Show orders failed!");
+        }else {
+            System.out.println("Show orders success!");
+        }
+        return orders;
     }
 
     //查看所有订单
@@ -60,7 +72,13 @@ public class OrderController {
     @PostMapping(value = "/api/order/admin_showall")
     @ResponseBody
     public List<Order> showallA(HttpSession session) {
-        return orderService.showall();
+        List<Order> orders = orderService.showall();
+        if(0 == orders.size()){
+            System.out.println("Show orders failed!");
+        }else {
+            System.out.println("Show orders success!");
+        }
+        return orders;
     }
 
     //管理员/酒店经理删除订单
