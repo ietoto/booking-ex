@@ -44,6 +44,8 @@ public class HotelController {
         if(null == hotel){
             System.out.println("Get hotel info failed!");
         }else {
+            System.out.println("Get hotel info success");
+            System.out.println("Setting hotel...");
             //set imgList
             List<String> images = new ArrayList<>();
             for(int i=0;i<hotel.getImg_num();i++){
@@ -64,17 +66,9 @@ public class HotelController {
             //set rooms
             RoomController roomController = new RoomController();
             List<Room> rooms = roomController.getRoomListWithFac(requestHotel);
+            hotel.setRooms(rooms);
 
-            //set room facilities
-            RoomFacController roomFacController = new RoomFacController();
-            List<RoomFac> roomFacList = roomFacController.getRoomFac2(requestHotel);
-            List<String> facilities_room = new ArrayList<>();
-            for (int i = 0; i < roomFacList.size(); i++) {
-                facilities_room.add(roomFacList.get(i).getName());
-
-            }
         }
-
 
         return hotel;
     }

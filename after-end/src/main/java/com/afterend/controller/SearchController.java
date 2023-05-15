@@ -71,6 +71,7 @@ public class SearchController {
             System.out.println("No result find.");
         }else {
             System.out.println("Search success.");
+            System.out.println("setting filter result.");
             //设置封面图片路径
             List<Hotel> hotels = searchDetailed.getHotels();
             for(int i=0;i<hotels.size();i++){
