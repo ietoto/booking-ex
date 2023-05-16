@@ -116,6 +116,11 @@ export default {
         })
     },
     ShowOrder(){
+      var date1 = new Date(this.chooseOrder.enddate);
+      var date2 = new Date(this.chooseOrder.startdate);
+      var diffTime = Math.abs(date2 - date1);
+      var diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+      this.chooseOrder.date_num=diffDays
       this.$store.commit('order', this.chooseOrder)
       this.$router.push('/order');
     }

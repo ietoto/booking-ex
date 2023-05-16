@@ -25,7 +25,7 @@
 <!--        <p  style="color: white;font-size:150%;">{{this.$store.state.user.username}},欢迎回来！</p>-->
         <el-dropdown @command="information">
           <span placement= bottom-start class="el-dropdown-link" style="color: white;font-size:150%;">
-            {{this.$store.state.user.username}},欢迎回来！<i class="el-icon-arrow-down el-icon--right"></i>
+            {{this.$store.state.user.name}},欢迎回来！<i class="el-icon-arrow-down el-icon--right"></i>
           </span>
           <el-dropdown-menu slot="dropdown">
             <el-dropdown-item command="myorder" icon="el-icon-s-order" style="font-size: 20px;padding: 8px 50px;">我的订单</el-dropdown-item>
