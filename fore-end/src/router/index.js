@@ -74,7 +74,7 @@ export default new Router({
       path:'/hoteldetail',
       name:'HotelDetail',
       component:HotelDetail
-    ,
+    ,},
     {
       path: '/order',
       name: 'Order',
