@@ -9,6 +9,7 @@ import User from '@/components/User'
 import Hotel_manage from '@/components/manage/Hotel_manage'
 import User_manage from '@/components/manage/User_manage'
 import Order_manage from '@/components/manage/Order_manage'
+import HotelDetail from '@/components/HotelDetail/HotelDetail'
 Vue.use(Router)
 
 export default new Router({
@@ -61,6 +62,11 @@ export default new Router({
       path: '/order_manage',
       name: 'Order_manage',
       component: Order_manage
+    },
+    {
+      path:'/hoteldetail',
+      name:'HotelDetail',
+      component:HotelDetail
     }
   ]
 })

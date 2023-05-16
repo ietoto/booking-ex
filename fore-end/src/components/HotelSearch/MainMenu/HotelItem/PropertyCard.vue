@@ -8,9 +8,11 @@
       </el-aside>
       <el-aside>
         <div class="middle">
-          <div class="hotel-name">
-            {{ hotel.hotel_name }}
-            <el-rate v-model="hotel.hotel_star" disabled></el-rate>
+          <div class="title">
+            <div class="hotel-name">
+              {{ hotel.hotel_name }}
+              <el-rate v-model="hotel.hotel_star" disabled></el-rate>
+            </div>
           </div>
           <a href="" class="small-text">{{ hotel.hotel_city }}{{ hotel.hotel_location }}</a>
           <div class="hotel-description">{{ hotel.hotel_description }}</div>
@@ -22,10 +24,12 @@
       </el-aside>
       <el-main>
         <div class="right">
-          <div class="extra-info">{{ scoreText }}</div>
-          <div class="hotel-score">{{ hotel.hotel_score }}</div>
+          <span class="score">
+            <div class="extra-info">{{ scoreText }}</div>
+            <div class="hotel-score">{{ hotel.hotel_score }}</div>
+          </span>
           <!-- 大于等于9分优异的、好极了、理想随机选 7-8分好  低于7分不尽人意 -->
-          <el-button class="price-button" type="primary">显示价格</el-button>
+          <el-button class="price-button" type="primary" @click="navigateToHotelDetail(hotel.hotel_id)">显示价格</el-button>
         </div>
       </el-main>
     </el-container>
@@ -51,6 +55,12 @@ export default {
       } else {
         return "不尽人意";
       }
+    }
+  },
+  methods: {
+    navigateToHotelDetail(id) {
+      this.$router.push({ name: 'HotelDetail', params: { id } });
+      this.$emit('navigate', id);
     }
   }
 };
@@ -106,6 +116,12 @@ export default {
   overflow: hidden;
 }
 
+.score {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
 .image-container img {
   width: 100%;
   height: 100%;
@@ -113,9 +129,11 @@ export default {
 }
 
 .hotel-name {
+  font-family: BlinkMacSystemFont, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
   font-size: 18px;
   font-weight: bold;
   margin-bottom: 8px;
+  color: #006ce4;
 }
 
 .hotel-description {
@@ -131,8 +149,15 @@ export default {
   margin: 0 4px;
 }
 
+.extra-info {
+  font-size: 18px;
+  margin-right: 12px;
+  color: black;
+  margin-bottom: 8px;
+}
+
 .hotel-score {
-  padding:8px;
+  padding: 8px;
   background-color: #003B95;
   color: white;
   margin-bottom: 8px;
@@ -140,5 +165,11 @@ export default {
 
 .price-button {
   margin-top: 8px;
+}
+.title{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
 }
 </style>
