@@ -1,7 +1,11 @@
 <template>
     <div>
         <Navbar />
-        <Searchbar />
+        <el-container>
+            <el-aside >
+                <SearchBar />
+            </el-aside>
+        </el-container>
         <FooterBlue />
     </div>
 </template>
