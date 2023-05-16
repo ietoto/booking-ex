@@ -28,7 +28,7 @@
             {{this.$store.state.user.username}},欢迎回来！<i class="el-icon-arrow-down el-icon--right"></i>
           </span>
           <el-dropdown-menu slot="dropdown">
-            <el-dropdown-item command="order" icon="el-icon-s-order" style="font-size: 20px;padding: 8px 50px;">我的订单</el-dropdown-item>
+            <el-dropdown-item command="myorder" icon="el-icon-s-order" style="font-size: 20px;padding: 8px 50px;">我的订单</el-dropdown-item>
             <el-dropdown-item command="user" icon="el-icon-user" style="font-size: 20px;padding: 8px 50px;">个人信息</el-dropdown-item>
             <p v-if= "this.$store.state.user.state === 1">
             <el-dropdown-item command="hotel_manage" icon="el-icon-office-building" style="font-size: 20px;padding: 8px 50px;">酒店管理</el-dropdown-item>
@@ -81,6 +81,9 @@ export default {
           break
         case 'user' :
           this.$router.push("/user")
+          break
+        case 'myorder' :
+          this.$router.push("/myorder")
           break
         case 'hotel_manage' :
           this.$router.push("/hotel_manage")

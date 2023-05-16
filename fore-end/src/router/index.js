@@ -6,6 +6,8 @@ import Login from '@/components/Login'
 import Test from '@/components/Test'
 import Register from '@/components/Register'
 import User from '@/components/User'
+import Myorder from '@/components/myorder'
+import Order from '@/components/Order'
 import Hotel_manage from '@/components/manage/Hotel_manage'
 import User_manage from '@/components/manage/User_manage'
 import Order_manage from '@/components/manage/Order_manage'
@@ -44,6 +46,11 @@ export default new Router({
       component: User
     },
     {
+      path: '/myorder',
+      name: 'Myorder',
+      component: Myorder
+    },
+    {
       path: '/search',
       name: 'HotelSearch',
       component: HotelSearch
@@ -67,6 +74,11 @@ export default new Router({
       path:'/hoteldetail',
       name:'HotelDetail',
       component:HotelDetail
+    ,
+    {
+      path: '/order',
+      name: 'Order',
+      component: Order
     }
   ]
 })

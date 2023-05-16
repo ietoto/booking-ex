@@ -22,7 +22,7 @@
           <el-dialog title="密码修改" :visible.sync="SetPasswordVisible">
             <el-form label-width="100px" style="text-align: center;">
               <el-form-item label="原始密码" prop="pass" style="width: 80%;display: inline-block;position: relative;left: -50px;">
-                <a v-if="user"><el-input v-model="user.password" :disabled=true></el-input></a>
+                <a v-if="$store.state.user"><el-input v-model="$store.state.user.password" :disabled=true></el-input></a>
               </el-form-item>
               <el-form-item label="新密码" prop="pass" style="width: 80%;display: inline-block;position: relative;left: -50px;">
                 <a v-if="newpassword"><el-input v-model="newpassword"></el-input></a>
@@ -55,54 +55,54 @@
                   <i class="el-icon-user"></i>
                   用户名
                 </template>
-                <a v-if="user">{{ user.username }}</a>
+                <a v-if="$store.state.user">{{ $store.state.user.username }}</a>
               </el-descriptions-item>
               <el-descriptions-item>
                 <template slot="label">
                   <i class="el-icon-mobile-phone"></i>
                   手机号
                 </template>
-                <a v-if="user">{{ user.phone }}</a>
+                <a v-if="$store.state.user">{{ $store.state.user.phone }}</a>
               </el-descriptions-item>
               <el-descriptions-item>
                 <template slot="label">
                   <i class="el-icon-location-outline"></i>
                   姓名
                 </template>
-                <a v-if="user">{{ user.name }}</a>
+                <a v-if="$store.state.user">{{ $store.state.user.name }}</a>
               </el-descriptions-item>
               <el-descriptions-item>
                 <template slot="label">
                   <i class="el-icon-tickets"></i>
                   密码
                 </template>
-                <a v-if="user">{{ user.password }}</a>
+                <a v-if="$store.state.user">{{ $store.state.user.password }}</a>
               </el-descriptions-item>
               <el-descriptions-item>
                 <template slot="label">
                   <i class="el-icon-office-building"></i>
                   邮箱
                 </template>
-                <a v-if="user">{{ user.postbox }}</a>
+                <a v-if="$store.state.user">{{ $store.state.user.postbox }}</a>
               </el-descriptions-item>
               <el-descriptions-item>
                 <template slot="label">
                   <i class="el-icon-office-building"></i>
                   身份
                 </template>
-                <a v-if="user">
-                  <a v-if="user.state === 0">用户</a>
-                  <a v-else-if="user.state === 1">系统管理员</a>
-                  <a v-else-if="user.state === 2">酒店管理员</a>
+                <a v-if="$store.state.user">
+                  <a v-if="$store.state.user.state === 0">用户</a>
+                  <a v-else-if="$store.state.user.state === 1">系统管理员</a>
+                  <a v-else-if="$store.state.user.state === 2">酒店管理员</a>
                 </a>
               </el-descriptions-item>
-              <a v-if="user"><a v-if="user.state === 2">
+              <a v-if="$store.state.user"><a v-if="$store.state.user.state === 2">
                 <el-descriptions-item>
                   <template slot="label">
                     <i class="el-icon-office-building"></i>
                     管理的酒店
                   </template>
-                  <a v-if="user">{{ user.hotel_id }}</a>
+                  <a v-if="$store.state.user">{{ $store.state.user.hotel_id }}</a>
                 </el-descriptions-item>
               </a>
               </a>
@@ -193,6 +193,7 @@ export default {
             if(!this.newname)this.newname=' '
             if(!this.newphone)this.newphone=' '
             if(!this.newpostbox)this.newpostbox=' '
+            this.$store.commit("login",this.user)
           }
           else {
             var path = this.$route.query.redirect
@@ -215,14 +216,14 @@ export default {
       }
       this.$axios
         .post('/user/update', {
-          username: this.user.username,
+          username: this.$store.state.user.username,
           password: this.newpassword,
-          id: this.user.id,
-          phone: this.user.phone,
-          name: this.user.name,
-          state: this.user.state,
-          postbox: this.user.postbox,
-          hotel_id: this.user.hotel_id
+          id: this.$store.state.user.id,
+          phone: this.$store.state.user.phone,
+          name: this.$store.state.user.name,
+          state: this.$store.state.user.state,
+          postbox: this.$store.state.user.postbox,
+          hotel_id: this.$store.state.user.hotel_id
         })
         .then(successResponse => {
           if (successResponse.data.username != null) {
@@ -244,9 +245,9 @@ export default {
       var _this = this
       this.$axios
         .post('/user/update', {
-          username: this.user.username,
-          password: this.user.password,
-          id: this.user.id,
+          username: this.$store.state.user.username,
+          password: this.$store.state.user.password,
+          id: this.$store.state.user.id,
           phone: this.newphone,
           name: this.newname,
           state: this.user.state,
@@ -273,12 +274,12 @@ export default {
   data() {
     return {
       user: null,
-      SetPasswordVisible: null,
-      SetInformationVisible: null,
-      newpassword: null,
-      newpostbox: null,
-      newphone: null,
-      newname: null
+      SetPasswordVisible: false,
+      SetInformationVisible: false,
+      newpassword: ' ',
+      newpostbox: ' ',
+      newphone: ' ',
+      newname: ' '
     }
   }
 }
