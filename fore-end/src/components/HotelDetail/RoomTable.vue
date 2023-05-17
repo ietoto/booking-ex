@@ -8,7 +8,7 @@
                     <hr>
                     <div class="facility-container">
                         <div v-for="facility in scope.row.facilities" :key="facility" class="facility-item">
-                            <i class="el-icon-check"></i>
+                            <i class="el-icon-check green-text"></i>
                             <span>{{ facility }}</span>
                         </div>
                     </div>
