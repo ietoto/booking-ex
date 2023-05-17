@@ -98,9 +98,7 @@ public class SearchController {
         //计算价格, 动态规划
         List<Integer> price = new ArrayList<>();
         Dateutils dateutils = new Dateutils();
-        int start = dateutils.DatetoInt(requestSearch.getStartdate());
-        int end = dateutils.DatetoInt(requestSearch.getEnddate());
-        int time = end - start;
+        int time = requestSearch.getDate_num();
         for(int k=0;k<hotels.size();k++){
             Hotel hotel = hotels.get(k);
             hotel.setRooms(roomController.getRoomList2(hotel));
