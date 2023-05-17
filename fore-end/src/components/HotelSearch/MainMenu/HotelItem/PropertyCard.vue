@@ -1,7 +1,7 @@
 <template>
   <el-card class="property-card">
     <el-container>
-      <el-aside style="width:230px">
+      <el-aside style="width:300px">
         <div class="image-container">
           <img :src="hotel.hotel_image" alt="hotel image" />
         </div>
@@ -84,6 +84,20 @@ export default {
 </script>
 
 <style scoped>
+.fcab3ed991 {
+    font-family: var(--DO_NOT_USE_bui_large_font_headline_3_font-family);
+    font-size: var(--DO_NOT_USE_bui_large_font_headline_3_font-size);
+    font-weight: var(--DO_NOT_USE_bui_large_font_headline_3_font-weight);
+    line-height: var(--DO_NOT_USE_bui_large_font_headline_3_line-height);
+}
+.hotel-name{
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  line-height: 28px;
+  color:#006ce4;
+  font-family: Avenir Next,BlinkMacSystemFont,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+}
 .property-card {
   display: flex;
   align-items: stretch;
@@ -124,7 +138,7 @@ export default {
 
 .image-container {
   border-radius: 8px;
-  width: 200px;
+  width: 270px;
   height: 200px;
   padding-bottom: 0;
   position: relative;
@@ -172,6 +186,7 @@ export default {
   padding: 8px;
   background-color: #003b95;
   color: white;
+  border-radius: 8px;
   margin-bottom: 8px;
 }
 
