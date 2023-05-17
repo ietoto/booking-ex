@@ -69,6 +69,15 @@ export default new Vuex.Store({
     },
     hotel_num: {
       num: window.localStorage.getItem('hotel_num' || '[]') == null ? '' : JSON.parse(window.localStorage.getItem('hotel_num' || '[]')).num
+    },
+    searchshow: {
+      break_num: window.localStorage.getItem('searchshow' || '[]') == null ? '' : JSON.parse(window.localStorage.getItem('searchshow' || '[]')).break_num,
+      cancle_policy_num: window.localStorage.getItem('searchshow' || '[]') == null ? '' : JSON.parse(window.localStorage.getItem('searchshow' || '[]')).cancle_policy_num,
+      distance_num: window.localStorage.getItem('searchshow' || '[]') == null ? '' : JSON.parse(window.localStorage.getItem('searchshow' || '[]')).distance_num,
+      hotelFacList: window.localStorage.getItem('searchshow' || '[]') == null ? '' : JSON.parse(window.localStorage.getItem('searchshow' || '[]')).hotelFacList,
+      roomFacList: window.localStorage.getItem('searchshow' || '[]') == null ? '' : JSON.parse(window.localStorage.getItem('searchshow' || '[]')).roomFacList,
+      score_num: window.localStorage.getItem('searchshow' || '[]') == null ? '' : JSON.parse(window.localStorage.getItem('searchshow' || '[]')).score_num,
+      star_num: window.localStorage.getItem('searchshow' || '[]') == null ? '' : JSON.parse(window.localStorage.getItem('searchshow' || '[]')).star_num
     }
   },
   mutations: {
@@ -105,6 +114,10 @@ export default new Vuex.Store({
     hotel_num(state,hotel_num){
       state.hotel_num=hotel_num
       window.localStorage.setItem('hotel_num', JSON.stringify(hotel_num))
+    },
+    searchshow(state,searchshow){
+      state.searchshow=searchshow
+      window.localStorage.setItem('searchshow', JSON.stringify(searchshow))
     }
   }
 })

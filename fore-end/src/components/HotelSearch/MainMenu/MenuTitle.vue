@@ -1,7 +1,7 @@
 <template>
         <div class="Menutitle">
           <h1 class="h1style1 h1style2">
-            {{ hotel.city }}: 共{{this.$store.state.hotel_num.num}}家住宿
+            {{ this.$store.state.search.location }}: 共{{this.$store.state.hotel_num}}家住宿
           </h1>
       </div>
   </template>

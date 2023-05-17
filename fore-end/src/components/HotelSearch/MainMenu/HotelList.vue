@@ -1,11 +1,19 @@
 <template>
     <div class="hotel-list">
         <PropertyCard
-        v-for="hotel in hotels"
+        v-for="hotel in hotels.slice((page.currentPage-1)*page.pageSize,page.currentPage*page.pageSize)"
         :key="hotel.name"
         :hotel="hotel"
         @navigate="handleNavigate"/>
+      <el-pagination
+        @current-change="handleCurrentChange"
+        background
+        layout="total,prev, pager, next, jumper"
+        :page-size="6"
+        :total="hotels.length">
+      </el-pagination>
     </div>
+
 </template>
 
 <script>
@@ -24,10 +32,18 @@ export default {
         hotels: [],
         hotel_num:{
           num: null
+        },
+        page: {
+          currentPage: 1, // 当前页
+          pageSize: 6, // 每页条数
         }
       }
   },
   methods: {
+    handleCurrentChange(val) {
+      console.log(`当前页: ${val}`);
+      this.page.currentPage = val
+    },
     handleNavigate(id) {
       console.log(id);
     },
@@ -48,7 +64,9 @@ export default {
           if (successResponse.data != null) {
             console.log(successResponse.data)
             this.hotel_num.num=successResponse.data.hotels.length
+            console.log(this.hotel_num)
             this.$store.commit("hotel_num",this.hotel_num.num)
+            this.$store.commit("searchshow",successResponse.data)
             this.hotels=successResponse.data.hotels
           }
           else {

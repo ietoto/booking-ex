@@ -11,7 +11,7 @@
          <el-form-item label="入住日期：" style="margin-left: 8px; margin-top: -20px;">
            <el-date-picker
              style="margin-left: 6px;"
-             v-model="value1"
+             v-model="value"
              type="daterange"
              range-separator="至"
              start-placeholder="到店日期"
@@ -23,7 +23,7 @@
        </div>
      </el-form>
      <div class="search-bar-wrapper">
-       <SearchPeople style="margin-left: 3px; margin-top: -5px;"/>
+       <SearchPeople style="margin-left: 3px; margin-top: -5px;" @change="people"/>
      </div>
      <el-button type="primary" class="search-button">搜索</el-button>
    </div>
@@ -37,10 +37,21 @@
    components: {
      SearchPeople,
    },
+   methods: {
+     // 事件处理函数
+     async people(adults,children,rooms) {
+       this.adults=adults
+       this.children=children
+       this.rooms=rooms
+     }
+   },
    data() {
      return {
-       value1: '',
-       destination: '',
+       value: [this.$store.state.search.startdate,this.$store.state.search.enddate],
+       destination: this.$store.state.search.location,
+       adults: 2,
+       children: 0,
+       rooms: 1,
        pickerOptions: {
          disabledDate: (time) => {
            const currentDate = new Date();

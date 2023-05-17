@@ -1,18 +1,32 @@
 <template>
-  <div>
-    <el-pagination class="pagination"
-      background
-      layout="prev, pager, next"
-      :total="1000"
-      :page-size="10"
+  <div class="block">
+    <el-pagination
       @current-change="handleCurrentChange"
-    ></el-pagination>
+      background
+      layout="total,prev, pager, next, jumper"
+      :page-size="5"
+      :total="hotelList.length">
+    </el-pagination>
   </div>
 </template>
 
 <script>
 export default {
-   name:'ListFooter',
+  name:'ListFooter',
+  date(){
+    return {
+      page: {
+        currentPage: 1, // 当前页
+        pageSize: 5, // 每页条数
+      }
+    }
+  },
+  methods: {
+    handleCurrentChange(val) {
+      console.log(`当前页: ${val}`);
+      this.page.currentPage = val
+    }
+  }
 }
 </script>
 
