@@ -215,12 +215,62 @@
           </span>
           </div>
         </el-card>
-        <div style="text-align:right;margin-top: 25px;">
-          <el-button type="primary">下一步：最终信息</el-button>
+        <div v-if="step!==3" style="text-align:right;margin-top: 25px;">
+          <el-button type="primary" @click="showconfirm()">下一步：最终信息</el-button>
         </div>
       </el-main>
     </el-container>
   </el-container>
+  <el-dialog  :visible.sync="confirmVisible">
+    <el-card class="box-card"style="width: 720px;height: 550px" shadow="never">
+      <div slot="header" style="font-size: 18px; font-weight: bold;">
+        <div style="font-weight: bold; font-size: 22px;   margin-top: 10px;">
+          {{this.$store.state.order.hotel_name}}
+        </div>
+        <div style="  margin-top: 10px;">
+          {{this.$store.state.order.room_name}}
+        </div>
+      </div>
+      <div>
+        <el-descriptions class="margin-top" :column="2" direction="vertical">
+          <el-descriptions-item label="入住时间">
+            <span style="font-weight: bold; font-size: 18px;">{{this.$store.state.order.startdate}}</span>
+          </el-descriptions-item>
+          <el-descriptions-item label="退房时间">
+            <span style="font-weight: bold; font-size: 18px;">{{this.$store.state.order.enddate}}</span>
+          </el-descriptions-item>
+          <el-descriptions-item label="入住总天数">
+            <span style="font-weight: bold; font-size: 18px;">{{this.$store.state.order.date_num}}晚</span>
+          </el-descriptions-item>
+        </el-descriptions>
+        <el-descriptions class="margin-top" :column="2" direction="vertical">
+          <el-descriptions-item label="已选择">
+            <span style="font-weight: bold; font-size: 18px;">{{this.$store.state.order.room_name}}*{{this.$store.state.order.num}}</span>
+          </el-descriptions-item>
+          <el-descriptions-item label="总价格">
+            <span style="font-weight: bold; font-size: 18px;">{{this.$store.state.order.money}}元</span>
+          </el-descriptions-item>
+          <el-descriptions-item label="预定人姓名">
+            <span style="font-weight: bold; font-size: 18px;">{{this.$store.state.user.name}}</span>
+          </el-descriptions-item>
+          <el-descriptions-item label="预订人邮箱">
+            <span style="font-weight: bold; font-size: 18px;">{{this.$store.state.user.postbox}}</span>
+          </el-descriptions-item>
+            <el-descriptions-item label="特殊要求">
+              <a v-if="notes!==null">
+              <span style="font-weight: bold; font-size: 18px;">{{this.notes}}</span>
+              </a>
+              <a v-else>
+                <span style="font-weight: bold; font-size: 18px;">无</span>
+              </a>
+            </el-descriptions-item>
+        </el-descriptions>
+      </div>
+      <div v-if="step!==3" style="text-align:right;margin-top: 5px;">
+        <el-button type="primary" @click="setconfirm()">我确认上述信息</el-button>
+      </div>
+    </el-card>
+  </el-dialog>
   </body>
 </template>
 
@@ -241,6 +291,50 @@ export default {
       if(this.$store.state.order.state!=='未付款'){
         this.step=3
       }
+    },
+    showconfirm(){
+      this.confirmVisible = true
+    },
+    setconfirm(){
+      this.confirmVisible = false
+      this.$axios
+        .post('/order/update', {
+          id: this.$store.state.order.id,
+          userid: this.$store.state.order.userid,
+          hotelid: this.$store.state.order.hotelid,
+          roomid: this.$store.state.order.roomid,
+          num: this.$store.state.order.num,
+          money: this.$store.state.order.money,
+          startdate: this.$store.state.order.startdate,
+          enddate: this.$store.state.order.enddate,
+          state: 1
+        })
+        .then(successResponse => {
+          if (successResponse.data.code ===200) {
+            // var data = this.registerForm
+            this.$message({
+              duration: 1000,
+              showClose: true,
+              message: '订单确认成功！',
+              type: 'success'
+            })
+            this.order=this.$store.state.order
+            this.order.state=1
+            this.$store.commit("order",this.order)
+            this.step=3
+            this.$router.push('/myorder');
+          }
+          else {
+            this.$message({
+              duration: 1000,
+              showClose: true,
+              message: '修改失败！',
+              type: 'error'
+            })
+          }
+        })
+        .catch(failResponse => {
+        })
     }
   },
   data() {
@@ -265,7 +359,8 @@ export default {
       }
     };
     return {
-      step: 1,
+      step: 2,
+      confirmVisible: false,
       star: 3.7,
       addresss: '两江西路',
       distance: 2,
@@ -276,6 +371,8 @@ export default {
         postbox: this.$store.state.user.postbox
       },
       notes: null,
+      order: null,
+      hotel: null,
       rules: {
         name: [
         { validator: checkname, trigger: 'blur' }
