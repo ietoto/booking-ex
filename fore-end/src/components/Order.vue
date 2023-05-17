@@ -68,7 +68,12 @@
       <el-main style="height: 1440px;width: 200px;margin-top: 0px;border: 1px solid rgb(222,27,79);">
         <el-card class="box-card"style="width: 700px;height: 300px" shadow="hover">
             <el-container style="border: 1px solid rgb(222,27,79);height: 250px;">
-              <el-aside width="200px" style="border: 1px solid rgb(222,27,79);">Aside</el-aside>
+              <el-aside width="200px" style="border: 1px solid rgb(222,27,79);">
+                <el-image
+                  style="width: 100px; height: 100px"
+                  :src="img"
+                  :fit="fit"></el-image>
+              </el-aside>
               <el-container>
                 <el-main style="border: 1px solid rgb(222,27,79);">
                   <div>
@@ -90,15 +95,18 @@
                   <div style="  margin-top: 10px;">
                     {{hotel.addresss}}
                   </div>
-                  <div v-if="hotel.distance<=3" style=" font-size: 16px;color: #007f58;   margin-top: 10px;">
+                  <div v-if="hotel.distance<=3&&hotel.distance>=0" style=" font-size: 16px;color: #007f58;   margin-top: 10px;">
                     位置很好
                   </div>
-
+                  <div v-if="hotel.distance>=0" style=" font-size: 16px;color: #007f58;   margin-top: 10px;">
+                    距离中心距离{{hotel.distance}}公里
+                  </div>
                   <div v-if="hotel.distance<=3" style=" font-size: 16px;color: #ffffff;  margin-top: 10px;">
                     <span style="font-size:15px;width:500px;height:40px;border:solid 2px rgba(128,128,128,0);margin-right: 30px;background-color: #00356e">{{hotel.score}}</span>
                     <a v-if="hotel.score>=9" style=" font-size: 16px;color: #000000;">好评如潮</a>
                     <a v-else-if="hotel.score>=8" style=" font-size: 16px;color: #000000;">好极了</a>
                     <a v-else-if="hotel.score>=7" style=" font-size: 16px;color: #000000;">不错</a>
+                    <a v-else-if="hotel.score===0" style=" font-size: 16px;color: #000000;">暂时没有评分</a>
                   </div>
                 </el-main>
               </el-container>
@@ -294,8 +302,8 @@ export default {
       }
     },
     gethotel(){
+      console.log('gethotel')
       var _this = this
-      this.hotelfacloading=true
       this.$axios
         .post('/hotel/searchByIdDetailed', {
           id: this.$store.state.order.hotelid
@@ -303,8 +311,21 @@ export default {
         .then(successResponse => {
           if (successResponse.data !=null) {
             this.hotel=successResponse.data
+            console.log(successResponse.data)
             this.$store.commit("hotel",this.hotel)
 
+          }
+          else {
+          }
+        })
+        .catch(failResponse => {
+        })
+      this.$axios
+        .get('/image/1/1.jpg', {
+        })
+        .then(successResponse => {
+          if (successResponse.data !=null) {
+            this.img= successResponse.data
           }
           else {
           }
@@ -381,6 +402,7 @@ export default {
     return {
       step: 2,
       confirmVisible: false,
+      img: 'http://localhost:8443/image/1/1.jpg',
       Travelmode: '1',
       nameAndpostbox: {
         name: this.$store.state.user.name,
