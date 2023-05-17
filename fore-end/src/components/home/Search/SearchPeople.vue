@@ -2,34 +2,30 @@
     <div class="search-bar-wrapper">
         <div class="input-group guests">
             <el-popover v-model="isGuestsOpen" placement="bottom" trigger="click" popper-class="guests-popover"
-                width="300px">
+                        width="300">
                 <div class="guests-popover-content">
                     <div class="input-group adults">
-                        <label class="input-label" for="adults">成人</label>
-                        <el-input-number v-model="adults" @change="handleAdultChange" :min="1"
-                            controls-position="right"></el-input-number>
+                      <el-row>
+                        <el-col :span="8"><label class="input-label" for="adults" style="font-size: 20px;transform: translateY(5px);">成人</label></el-col>
+                        <el-col :span="12"><el-input-number v-model="adults" @change="handleAdultChange" :min="1"></el-input-number></el-col>
+                      </el-row>
                     </div>
                     <div class="input-group children">
-                        <label class="input-label" for="children">儿童</label>
-                        <el-input-number v-model="children" @change="handleChildrenChange" :min="0"
-                            controls-position="right"></el-input-number>
-                        <div v-for="(age, index) in childAges" :key="index" class="age-select">
-                            <el-select v-model="childAges[index]" aria-label="儿童年龄" :key="'childAge' + index" size="mini">
-                                <el-option value="">需提供儿童年龄</el-option>
-                                <el-option v-for="i in 17" :value="i" :key="i">{{ i }}岁</el-option>
-                            </el-select>
-                        </div>
+                      <el-row>
+                        <el-col :span="8"><label class="input-label" for="children" style="font-size: 20px;transform: translateY(5px);">儿童</label></el-col>
+                        <el-col :span="12"><el-input-number v-model="children" @change="handleChildrenChange" :min="0"></el-input-number></el-col>
+                      </el-row>
                     </div>
                     <div class="input-group rooms">
-                        <label class="input-label" for="rooms">客房</label>
-                        <el-input-number v-model="rooms" @change="handleRoomChange" :min="1"
-                            controls-position="right"></el-input-number>
+                      <el-row>
+                        <el-col :span="8"><label class="input-label" for="rooms" style="font-size: 20px;transform: translateY(5px);">客房</label></el-col>
+                        <el-col :span="12"><el-input-number v-model="rooms" @change="handleRoomChange" :min="1"></el-input-number></el-col>
+                      </el-row>
                     </div>
                 </div>
                 <template slot="reference">
                     <button class="toggle-button" :aria-expanded="isGuestsOpen">
                         <i class="el-icon-user"></i>
-                        <span class="invisible-spoken">客房数量和入住人数</span>
                         <span class="guests-count">
                             <span>{{ adults }}位成人</span>
                             <span v-if="showChildren">&nbsp;
@@ -61,19 +57,22 @@ export default {
     },
     methods: {
         handleAdultChange(value) {
-            this.adults = value;
+          this.adults = value;
+          this.$emit('change', this.adults,this.children,this.rooms);
         },
         handleChildrenChange(value) {
-            if (value > this.children) {
-                this.$set(this.childAges, this.childAges.length, "");
-            } else {
-                this.childAges.pop();
-            }
-            this.children = value;
+          if (value > this.children) {
+              this.$set(this.childAges, this.childAges.length, "");
+          } else {
+              this.childAges.pop();
+          }
+          this.children = value;
+          this.$emit('change', this.adults,this.children,this.rooms);
         },
 
         handleRoomChange(value) {
-            this.rooms = value;
+          this.rooms = value;
+          this.$emit('change', this.adults,this.children,this.rooms);
         },
     },
 };
@@ -152,7 +151,7 @@ export default {
     margin-top: 10px;
 }
 .invisible-spoken{
-    
+
 }
 .guests-popover-content {
     display: flex;

@@ -98,8 +98,8 @@ public class RoomDAO {
             pstate.setInt(4,room.getSize());
             pstate.setInt(5,room.getPrice_r());
             pstate.setInt(6,room.getPrice_b());
-            pstate.setInt(7,room.isIfFreeCancle());
-            pstate.setInt(8,room.isIfNoRequire());
+            pstate.setInt(7,room.getIfFreeCancle());
+            pstate.setInt(8,room.getIfNoRequire());
             pstate.setInt(9,room.getNum_max());
             pstate.executeUpdate();
 
@@ -151,8 +151,8 @@ public class RoomDAO {
             pstate.setInt(2,room.getSize());
             pstate.setInt(3,room.getPrice_r());
             pstate.setInt(4,room.getPrice_b());
-            pstate.setInt(5,room.isIfFreeCancle());
-            pstate.setInt(6,room.isIfNoRequire());
+            pstate.setInt(5,room.getIfFreeCancle());
+            pstate.setInt(6,room.getIfNoRequire());
             pstate.setInt(7,room.getNum_max());
             pstate.setInt(8,room.getHotelid());
             pstate.setInt(9,room.getId());
