@@ -82,6 +82,7 @@ public class HotelController {
             List<Room> rooms = roomController.getRoomListWithFac(requestHotel);
             hotel.setRooms(rooms);
 
+
         }
 
         return hotel;
@@ -123,9 +124,8 @@ public class HotelController {
             hotel.setFacilities(facilities_hotel);
 
             //set rooms
-//            RoomController roomController = new RoomController();
-//            List<Room> rooms = roomController.getRoomListWithFac(requestHotel);
-//            hotel.setRooms(rooms);
+            List<Room> rooms = roomController.getRoomListWithFac(requestHotel);
+            hotel.setRooms(rooms);
 
         }
 

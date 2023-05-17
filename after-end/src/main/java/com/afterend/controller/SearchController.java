@@ -74,9 +74,6 @@ public class SearchController {
                 hotels.get(i).setImg("http://localhost:8443/image/1/"+hotels.get(i).getId()+".jpg");
             }
 
-            //计算价格以及推荐客房
-            recommend(searchDetailed);
-
             searchDetailed.setHotels(hotels);
 
         }
