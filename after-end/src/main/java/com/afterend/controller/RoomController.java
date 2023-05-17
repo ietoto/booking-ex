@@ -34,7 +34,7 @@ public class RoomController {
 
         //set room facilities
         for(int i=0;i<rooms.size();i++){
-            List<RoomFac> roomFacList = roomFacController.getOneRoomFac1(room);
+            List<RoomFac> roomFacList = roomFacController.getOneRoomFac1(rooms.get(i));
             List<String> facilities_room = new ArrayList<>();
             for (int j = 0; j < roomFacList.size(); j++) {
                 facilities_room.add(roomFacList.get(j).getName());
