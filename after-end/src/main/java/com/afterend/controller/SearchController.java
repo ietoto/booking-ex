@@ -73,11 +73,11 @@ public class SearchController {
             System.out.println("Hotel(0) id:"+hotels.get(0).getId());
             for(int i=0;i<hotels.size();i++){
                 hotels.get(i).setImg("http://localhost:8443/image/1/"+hotels.get(i).getId()+".jpg");
-                System.out.println("img:"+hotels.get(i).getId()+".jpg");
+//                System.out.println("img:"+hotels.get(i).getId()+".jpg");
             }
-
+            System.out.println("up: "+searchDetailed.getHotels().get(0).getId());
             searchDetailed.setHotels(hotels);
-
+            System.out.println("up: "+searchDetailed.getHotels().get(0).getId());
         }
 
         return searchDetailed;
