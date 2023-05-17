@@ -12,46 +12,39 @@
             style="display:block;font-weight:500;font-size:x-large">{{ points }}</el-checkbox>
         </el-checkbox-group>
       </el-card>
-
-
       <el-card class="card3" shadow="hover">
-        <el-row style="font-size: medium;font-weight:800">休闲乐活</el-row>
-        <el-checkbox-group v-model="checkedfun" style="margin-top:5px;" :min="0" :max="5">
-          <el-checkbox v-for="fun in choosefun" :label="fun" :key="fun"
-            style="display:block;font-weight:500;font-size:x-large">{{ fun }}</el-checkbox>
+        <el-row style="font-size: medium;font-weight:800">距离{{this.$store.state.search.location}}中心距离</el-row>
+        <el-checkbox-group v-model="checkedpoint" style="margin-top:5px;" :min="0" :max="5">
+          <el-checkbox v-for="points in choosepoints" :label="points" :key="points"
+                       style="display:block;font-weight:500;font-size:x-large">{{ points }}</el-checkbox>
         </el-checkbox-group>
       </el-card>
-
       <el-card class="card4" shadow="hover">
+        <el-row style="font-size: medium;font-weight:800">取消政策</el-row>
+        <el-checkbox-group v-model="checkedpoint" style="margin-top:5px;" :min="0" :max="5">
+          <el-checkbox v-for="points in choosepoints" :label="points" :key="points"
+                       style="display:block;font-weight:500;font-size:x-large">{{ points }}</el-checkbox>
+        </el-checkbox-group>
+      </el-card>
+      <el-card class="card5" shadow="hover">
+        <el-row style="font-size: medium;font-weight:800">评分</el-row>
+        <el-checkbox-group v-model="checkedpoint" style="margin-top:5px;" :min="0" :max="5">
+          <el-checkbox v-for="points in choosepoints" :label="points" :key="points"
+                       style="display:block;font-weight:500;font-size:x-large">{{ points }}</el-checkbox>
+        </el-checkbox-group>
+      </el-card>
+      <el-card class="card6" shadow="hover">
         <el-row style="font-size: medium;font-weight:800">设施</el-row>
         <el-checkbox-group v-model="checkedfacility" style="margin-top:5px;" :min="0" :max="14">
           <el-checkbox v-for="facility in choosefacility" :label="facility" :key="facility"
             style="display:block;font-weight:500;font-size:x-large">{{ facility }}</el-checkbox>
         </el-checkbox-group>
       </el-card>
-
-      <el-card class="card5" shadow="hover">
+      <el-card class="card7" shadow="hover">
         <el-row style="font-size: medium;font-weight:800">客房设施</el-row>
         <el-checkbox-group v-model="checkedroom" style="margin-top:5px;" :min="0" :max="25">
           <el-checkbox v-for="room in chooseroom" :label="room" :key="room"
             style="display:block;font-weight:500;font-size:x-large">{{ room }}</el-checkbox>
-        </el-checkbox-group>
-      </el-card>
-
-
-      <el-card class="card6" shadow="hover">
-        <el-row style="font-size: medium;font-weight:800">住宿无障碍设施</el-row>
-        <el-checkbox-group v-model="checkedstay" style="margin-top:5px;" :min="0" :max="8">
-          <el-checkbox v-for="stay in choosestay" :label="stay" :key="stay"
-            style="display:block;font-weight:500;font-size:x-large">{{ stay }}</el-checkbox>
-        </el-checkbox-group>
-      </el-card>
-
-      <el-card class="card7" shadow="hover">
-        <el-row style="font-size: medium;font-weight:800">客房无障碍设施</el-row>
-        <el-checkbox-group v-model="checkedlive" style="margin-top:5px;" :min="0" :max="10">
-          <el-checkbox v-for="live in chooselive" :label="live" :key="live"
-            style="display:block;font-weight:500;font-size:x-large">{{ live }}</el-checkbox>
         </el-checkbox-group>
       </el-card>
 
@@ -60,7 +53,7 @@
 
   </el-container>
 </template>
-  
+
 <script>
 const pointOptions = ['一星级', '二星级', '三星级', '四星级', '五星级'];
 const funOptions = ['按摩', '热水浴池/按摩浴缸', '自行车租赁', '公共浴池', '桑拿浴'];
