@@ -184,6 +184,7 @@ public class SearchController {
         hotel = hotelController.hotelInfo(hotel);
         List<Hotel> hotels = new ArrayList<>();
         hotels.add(hotel);
+        searchDetailed.setHotels(hotels);
         //可用房间以及价格
         recommend(searchDetailed);
 
