@@ -1,22 +1,22 @@
 <template>
         <div class="Menutitle">
           <h1 class="h1style1 h1style2">
-            {{ destination }}: 共{{ hotelCount }}家住宿
+            {{ hotel.city }}: 共{{this.$store.state.hotel_num.num}}家住宿
           </h1>
       </div>
   </template>
-  
+
   <script>
   export default {
-    data() {
-      return {
-        destination: "南京",
-        hotelCount: 170,
-      };
-    },
+    props: {
+      hotel: {
+        type: Object,
+        required: true
+      }
+    }
   };
   </script>
-  
+
   <style scoped>
   /* 在这里添加样式 */
 .Menutitle {
@@ -37,4 +37,3 @@
     margin-block-end: .67em;
 }
   </style>
-  

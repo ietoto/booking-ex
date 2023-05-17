@@ -33,7 +33,9 @@ export default new Vuex.Store({
       break_num: window.localStorage.getItem('search' || '[]') == null ? '' : JSON.parse(window.localStorage.getItem('search' || '[]')).break_num,
       select_break_num: window.localStorage.getItem('search' || '[]') == null ? '' : JSON.parse(window.localStorage.getItem('search' || '[]')).select_break_num,
       cancle_policy_num: window.localStorage.getItem('search' || '[]') == null ? '' : JSON.parse(window.localStorage.getItem('search' || '[]')).cancle_policy_num,
-      select_policy_num: window.localStorage.getItem('search' || '[]') == null ? '' : JSON.parse(window.localStorage.getItem('search' || '[]')).select_policy_num
+      select_policy_num: window.localStorage.getItem('search' || '[]') == null ? '' : JSON.parse(window.localStorage.getItem('search' || '[]')).select_policy_num,
+      date_num: window.localStorage.getItem('search' || '[]') == null ? '' : JSON.parse(window.localStorage.getItem('search' || '[]')).date_num
+
     },
     order: {
       id: window.localStorage.getItem('order' || '[]') == null ? '' : JSON.parse(window.localStorage.getItem('order' || '[]')).id,
@@ -64,6 +66,9 @@ export default new Vuex.Store({
       imgList: window.localStorage.getItem('hotel' || '[]') == null ? '' : JSON.parse(window.localStorage.getItem('hotel' || '[]')).imgList,
       rooms: window.localStorage.getItem('hotel' || '[]') == null ? '' : JSON.parse(window.localStorage.getItem('hotel' || '[]')).rooms,
       facilities: window.localStorage.getItem('hotel' || '[]') == null ? '' : JSON.parse(window.localStorage.getItem('hotel' || '[]')).facilities,
+    },
+    hotel_num: {
+      num: window.localStorage.getItem('hotel_num' || '[]') == null ? '' : JSON.parse(window.localStorage.getItem('hotel_num' || '[]')).num
     }
   },
   mutations: {
@@ -96,6 +101,10 @@ export default new Vuex.Store({
     hotel(state,hotel){
       state.hotel=hotel
       window.localStorage.setItem('hotel', JSON.stringify(hotel))
+    },
+    hotel_num(state,hotel_num){
+      state.hotel_num=hotel_num
+      window.localStorage.setItem('hotel_num', JSON.stringify(hotel_num))
     }
   }
 })

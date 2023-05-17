@@ -1,9 +1,9 @@
 <template>
     <div class="hotel-list">
-        <PropertyCard 
-        v-for="hotel in hotels" 
-        :key="hotel.hotel_name" 
-        :hotel="hotel" 
+        <PropertyCard
+        v-for="hotel in hotels"
+        :key="hotel.name"
+        :hotel="hotel"
         @navigate="handleNavigate"/>
     </div>
 </template>
@@ -21,136 +21,39 @@ export default {
   },
   data() {
       return {
-          hotels: [
-              {
-                hotel_name: "北京大酒店",
-                hotel_description: "北京大兴国际机场木棉花酒店坐落于北京，距离Temple of Heaven有46公里，配备健身中心、私人停车位、餐厅和酒吧。这家住宿距离前门大街约有48公里，距离大栅栏有49公里，距离王府井大街有49公里。这家酒店提供室内泳池、客房服务以及免费WiFi。",
-                hotel_city: "北京",
-                hotel_location: "昌平",
-                hotel_distance: 30,
-                hotel_score: 10,
-                hotel_star: 3.2,
-                hotel_image:'https://cf.bstatic.com/xdata/images/hotel/square600/292280419.webp?k=879f86776e037c46283a407918f09485e4578df79e161fd15156c50341c674ee&o='
-              },
-              {
-                hotel_name: "北京大酒店",
-                hotel_description: "北京大兴国际机场木棉花酒店坐落于北京，距离Temple of Heaven有46公里，配备健身中心、私人停车位、餐厅和酒吧。这家住宿距离前门大街约有48公里，距离大栅栏有49公里，距离王府井大街有49公里。这家酒店提供室内泳池、客房服务以及免费WiFi。",
-                hotel_city: "北京",
-                hotel_location: "昌平",
-                hotel_distance: 30,
-                hotel_score: 10,
-                hotel_star: 4.3,
-                hotel_image:'https://cf.bstatic.com/xdata/images/hotel/square600/292280419.webp?k=879f86776e037c46283a407918f09485e4578df79e161fd15156c50341c674ee&o='
-              },
-              {
-                  hotel_name: "北京大酒店",
-                hotel_description: "北京大兴国际机场木棉花酒店坐落于北京，距离Temple of Heaven有46公里，配备健身中心、私人停车位、餐厅和酒吧。这家住宿距离前门大街约有48公里，距离大栅栏有49公里，距离王府井大街有49公里。这家酒店提供室内泳池、客房服务以及免费WiFi。",
-                hotel_city: "北京",
-                hotel_location: "昌平",
-                hotel_distance: 30,
-                hotel_score: 10,
-                hotel_star: 5,
-                hotel_image:'https://cf.bstatic.com/xdata/images/hotel/square600/292280419.webp?k=879f86776e037c46283a407918f09485e4578df79e161fd15156c50341c674ee&o='
-              },
-              {
-                  hotel_name: "北京大酒店",
-                hotel_description: "北京大兴国际机场木棉花酒店坐落于北京，距离Temple of Heaven有46公里，配备健身中心、私人停车位、餐厅和酒吧。这家住宿距离前门大街约有48公里，距离大栅栏有49公里，距离王府井大街有49公里。这家酒店提供室内泳池、客房服务以及免费WiFi。",
-                hotel_city: "北京",
-                hotel_location: "昌平",
-                hotel_distance: 30,
-                hotel_score: 10,
-                hotel_star: 1.5,
-                hotel_image:'https://cf.bstatic.com/xdata/images/hotel/square600/292280419.webp?k=879f86776e037c46283a407918f09485e4578df79e161fd15156c50341c674ee&o='
-              },
-              {
-                  hotel_name: "北京大酒店",
-                hotel_description: "北京大兴国际机场木棉花酒店坐落于北京，距离Temple of Heaven有46公里，配备健身中心、私人停车位、餐厅和酒吧。这家住宿距离前门大街约有48公里，距离大栅栏有49公里，距离王府井大街有49公里。这家酒店提供室内泳池、客房服务以及免费WiFi。",
-                hotel_city: "北京",
-                hotel_location: "昌平",
-                hotel_distance: 30,
-                hotel_score: 10,
-                hotel_star: 5,
-                hotel_image:'https://cf.bstatic.com/xdata/images/hotel/square600/292280419.webp?k=879f86776e037c46283a407918f09485e4578df79e161fd15156c50341c674ee&o='
-              },
-              {
-                  hotel_name: "北京大酒店",
-                hotel_description: "北京大兴国际机场木棉花酒店坐落于北京，距离Temple of Heaven有46公里，配备健身中心、私人停车位、餐厅和酒吧。这家住宿距离前门大街约有48公里，距离大栅栏有49公里，距离王府井大街有49公里。这家酒店提供室内泳池、客房服务以及免费WiFi。",
-                hotel_city: "北京",
-                hotel_location: "昌平",
-                hotel_distance: 30,
-                hotel_score: 10,
-                hotel_star: 5,
-                hotel_image:'https://cf.bstatic.com/xdata/images/hotel/square600/292280419.webp?k=879f86776e037c46283a407918f09485e4578df79e161fd15156c50341c674ee&o='
-              },
-              {
-                  hotel_name: "北京大酒店",
-                hotel_description: "北京大兴国际机场木棉花酒店坐落于北京，距离Temple of Heaven有46公里，配备健身中心、私人停车位、餐厅和酒吧。这家住宿距离前门大街约有48公里，距离大栅栏有49公里，距离王府井大街有49公里。这家酒店提供室内泳池、客房服务以及免费WiFi。",
-                hotel_city: "北京",
-                hotel_location: "昌平",
-                hotel_distance: 30,
-                hotel_score: 10,
-                hotel_star: 5,
-                hotel_image:'https://cf.bstatic.com/xdata/images/hotel/square600/292280419.webp?k=879f86776e037c46283a407918f09485e4578df79e161fd15156c50341c674ee&o='
-              },
-              {
-                  hotel_name: "北京大酒店",
-                hotel_description: "北京大兴国际机场木棉花酒店坐落于北京，距离Temple of Heaven有46公里，配备健身中心、私人停车位、餐厅和酒吧。这家住宿距离前门大街约有48公里，距离大栅栏有49公里，距离王府井大街有49公里。这家酒店提供室内泳池、客房服务以及免费WiFi。",
-                hotel_city: "北京",
-                hotel_location: "昌平",
-                hotel_distance: 30,
-                hotel_score: 10,
-                hotel_star: 5,
-                hotel_image:'https://cf.bstatic.com/xdata/images/hotel/square600/292280419.webp?k=879f86776e037c46283a407918f09485e4578df79e161fd15156c50341c674ee&o='
-              },
-                            {
-                  hotel_name: "北京大酒店",
-                hotel_description: "北京大兴国际机场木棉花酒店坐落于北京，距离Temple of Heaven有46公里，配备健身中心、私人停车位、餐厅和酒吧。这家住宿距离前门大街约有48公里，距离大栅栏有49公里，距离王府井大街有49公里。这家酒店提供室内泳池、客房服务以及免费WiFi。",
-                hotel_city: "北京",
-                hotel_location: "昌平",
-                hotel_distance: 30,
-                hotel_score: 10,
-                hotel_star: 5,
-                hotel_image:'https://cf.bstatic.com/xdata/images/hotel/square600/292280419.webp?k=879f86776e037c46283a407918f09485e4578df79e161fd15156c50341c674ee&o='
-              },
-              {
-                  hotel_name: "北京大酒店",
-                hotel_description: "北京大兴国际机场木棉花酒店坐落于北京，距离Temple of Heaven有46公里，配备健身中心、私人停车位、餐厅和酒吧。这家住宿距离前门大街约有48公里，距离大栅栏有49公里，距离王府井大街有49公里。这家酒店提供室内泳池、客房服务以及免费WiFi。",
-                hotel_city: "北京",
-                hotel_location: "昌平",
-                hotel_distance: 30,
-                hotel_score: 10,
-                hotel_star: 5,
-                hotel_image:'https://cf.bstatic.com/xdata/images/hotel/square600/292280419.webp?k=879f86776e037c46283a407918f09485e4578df79e161fd15156c50341c674ee&o='
-              },
-          ]
+          hotels: []
       }
-  },
-  created() {
-    // 在这里获取你的酒店数据
-    console.log('根据现有条件查询酒店')
-    var _this = this
-    this.$axios
-      .post('/search/search', {
-        location: this.$store.state.search.location,
-        startdate: this.$store.state.search.startdate,
-        enddate: this.$store.state.search.startdate,
-        adult: this.$store.state.search.adult,
-        child: this.$store.state.search.child
-      })
-      .then(successResponse => {
-        if (successResponse.data != null) {
-          console.log(successResponse.data)
-          this.hotels=successResponse.data
-        }
-        else {
-        }
-      })
-      .catch(failResponse => {
-      })
   },
   methods: {
     handleNavigate(id) {
-      console.log(id);      }
+      console.log(id);
+    },
+    created() {
+      // 在这里获取你的酒店数据
+      console.log('根据现有条件查询酒店')
+      var _this = this
+      this.$axios
+        .post('/search/search', {
+          location: this.$store.state.search.location,
+          startdate: this.$store.state.search.startdate,
+          enddate: this.$store.state.search.startdate,
+          adult: this.$store.state.search.adult,
+          child: this.$store.state.search.child,
+          date_num: this.$store.state.search.date_num
+        })
+        .then(successResponse => {
+          if (successResponse.data != null) {
+            console.log(successResponse.data)
+            this.hotels=successResponse.data.hotels
+            console.log(successResponse.hotels)
+            this.$store.commit("hotel_num",this.hotels.getLength())
+          }
+          else {
+          }
+        })
+        .catch(failResponse => {
+        })
+    }
   }
 }
 </script>
