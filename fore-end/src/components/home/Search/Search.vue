@@ -41,6 +41,10 @@ export default {
   },
   methods: {
     goToPage() {
+      var date1 = new Date(this.date[1]);
+      var date2 = new Date(this.date[0]);
+      var diffTime = Math.abs(date2 - date1);
+      var diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
       let search;
       search=
         {location:this.destination,
@@ -48,7 +52,8 @@ export default {
           enddate:this.date[1],
           adult:this.adults,
           child:this.children,
-          room_num:this.rooms}
+          room_num:this.rooms,
+          date_num: diffDays}
       this.$store.commit("search",search)
       this.$router.push('/search'); // 这里的 '/path/to/page' 是你要跳转的页面的路由
     },

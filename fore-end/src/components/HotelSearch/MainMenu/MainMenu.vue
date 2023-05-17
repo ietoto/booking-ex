@@ -2,7 +2,7 @@
  <div class="rlt-right" role="main">
     <MenuTitle/>
     <HotelList/>
-    <ListFooter/>
+<!--    <ListFooter/>-->
  </div>
 </template>
 

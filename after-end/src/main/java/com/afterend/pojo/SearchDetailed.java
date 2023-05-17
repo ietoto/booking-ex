@@ -34,6 +34,7 @@ public class SearchDetailed {
     int num;    //总共找到的酒店数
     List<Integer> price;  //价格估计
     List<Hotel> room_rec;   //推荐客房列表
+    int date_num;   //入住天数
     
     public int getId() {
         return id;
@@ -257,5 +258,13 @@ public class SearchDetailed {
 
     public void setRoom_rec(List<Hotel> room_rec) {
         this.room_rec = room_rec;
+    }
+
+    public int getDate_num() {
+        return date_num;
+    }
+
+    public void setDate_num(int date_num) {
+        this.date_num = date_num;
     }
 }

@@ -64,7 +64,6 @@ public class HotelController {
 
 
             // set hotel facilities
-            HotelFacController hotelFacController = new HotelFacController();
             List<HotelFac> hotelFacList = hotelFacController.getHotelFac2(requestHotel);
 //            List<HotelFac> hotelFacList = hotelFacService.get(hotel);
 //            if(0==hotelFacList.size()){
@@ -82,6 +81,7 @@ public class HotelController {
             //set rooms
             List<Room> rooms = roomController.getRoomListWithFac(requestHotel);
             hotel.setRooms(rooms);
+
 
         }
 
@@ -124,9 +124,8 @@ public class HotelController {
             hotel.setFacilities(facilities_hotel);
 
             //set rooms
-//            RoomController roomController = new RoomController();
-//            List<Room> rooms = roomController.getRoomListWithFac(requestHotel);
-//            hotel.setRooms(rooms);
+            List<Room> rooms = roomController.getRoomListWithFac(requestHotel);
+            hotel.setRooms(rooms);
 
         }
 

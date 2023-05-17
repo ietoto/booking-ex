@@ -313,6 +313,7 @@ export default {
           if (successResponse.data !=null) {
             this.hotel=successResponse.data
             console.log(successResponse.data)
+            this.img=successResponse.data.img
             this.$store.commit("hotel",this.hotel)
 
           }
@@ -322,7 +323,7 @@ export default {
         .catch(failResponse => {
         })
       this.$axios
-        .get('/image/1/1.jpg', {
+        .get('img', {
         })
         .then(successResponse => {
           if (successResponse.data !=null) {
@@ -403,7 +404,7 @@ export default {
     return {
       step: 2,
       confirmVisible: false,
-      img: 'http://localhost:8443/image/1/1.jpg',
+      img: null,
       Travelmode: '1',
       nameAndpostbox: {
         name: this.$store.state.user.name,

@@ -58,6 +58,33 @@ public class SearchController {
         return searchDetailed;
     }
 
+    @CrossOrigin
+    @PostMapping(value = "/api/search/searchFirstLimit")
+    @ResponseBody
+    public SearchDetailed searchFL(@RequestBody SearchDetailed requestSearch, HttpSession session) {
+        System.out.println("Searching...");
+        SearchDetailed searchDetailed = searchService.SearchForFirstLimit(requestSearch);
+        if(null==searchDetailed){
+            System.out.println("No result find.");
+        }else {
+            System.out.println("Search success.");
+            //设置封面图片路径
+            List<Hotel> hotels = searchDetailed.getHotels();
+            System.out.println("Hotel(0) id:"+hotels.get(0).getId());
+            for(int i=0;i<hotels.size();i++){
+                hotels.get(i).setImg("http://localhost:8443/image/1/"+hotels.get(i).getId()+".jpg");
+//                System.out.println("img:"+hotels.get(i).getId()+".jpg");
+            }
+            System.out.println("up: "+searchDetailed.getHotels().get(0).getId());
+            searchDetailed.setHotels(hotels);
+            System.out.println("up: "+searchDetailed.getHotels().get(0).getId());
+        }
+
+        return searchDetailed;
+    }
+
+
+
     //filter
     //根据酒店地区、日期、人数，返回酒店各个信息 list和酒店设施、客房设施及其数量
     //地区会在酒店city和location里都判断
@@ -93,14 +120,12 @@ public class SearchController {
     }
     
         public void recommend(SearchDetailed requestSearch){
+        int temp = requestSearch.getDate_num();
         List<Hotel> hotels = requestSearch.getHotels();
         List<Hotel> room_rec = new ArrayList<>();
         //计算价格, 动态规划
         List<Integer> price = new ArrayList<>();
-        Dateutils dateutils = new Dateutils();
-        int start = dateutils.DatetoInt(requestSearch.getStartdate());
-        int end = dateutils.DatetoInt(requestSearch.getEnddate());
-        int time = end - start;
+        int time = requestSearch.getDate_num();
         for(int k=0;k<hotels.size();k++){
             Hotel hotel = hotels.get(k);
             hotel.setRooms(roomController.getRoomList2(hotel));
@@ -177,9 +202,9 @@ public class SearchController {
     //获取单个酒店详情
     //需要酒店id、地区、日期、人数
     @CrossOrigin
-    @PostMapping(value = "/api/search/Hotel_Info")
+    @PostMapping(value = "/api/search/Hotel_Info_rec")
     @ResponseBody
-    public SearchDetailed hotel_info(@RequestBody SearchDetailed requestSearch, HttpSession session) {
+    public SearchDetailed hotel_info_rec(@RequestBody SearchDetailed requestSearch, HttpSession session) {
         Hotel hotel = new Hotel();
         hotel.setId(requestSearch.getId());
         SearchDetailed searchDetailed = requestSearch;
@@ -191,6 +216,22 @@ public class SearchController {
         recommend(searchDetailed);
 
 
+
+        return searchDetailed;
+
+    }
+
+    @CrossOrigin
+    @PostMapping(value = "/api/search/Hotel_Info")
+    @ResponseBody
+    public SearchDetailed hotel_info(@RequestBody SearchDetailed requestSearch, HttpSession session) {
+        Hotel hotel = new Hotel();
+        hotel.setId(requestSearch.getId());
+        SearchDetailed searchDetailed = requestSearch;
+        hotel = hotelController.hotelInfo(hotel);
+        List<Hotel> hotels = new ArrayList<>();
+        hotels.add(hotel);
+        searchDetailed.setHotels(hotels);
 
         return searchDetailed;
 

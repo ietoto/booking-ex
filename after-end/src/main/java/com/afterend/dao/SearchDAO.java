@@ -580,6 +580,157 @@ public class SearchDAO {
         }
         return s;
     }
+    public static SearchDetailed SearchForFirstLimit(SearchDetailed search) {
+        Connection con=null;
+        SearchDetailed s= new SearchDetailed();
+        List<Integer> star_num=new ArrayList<>();
+        List<Integer> distance_num=new ArrayList<>();
+        List<Integer> score_num=new ArrayList<>();
+
+        List<Hotel> Hotellist=new ArrayList<>();
+        List<HotelFac> HotelFaclist=new ArrayList<>();
+        List<RoomFac> RoomFaclist=new ArrayList<>();
+
+        List<Integer> break_num=new ArrayList<>();
+        List<Integer> cancle_policy_num=new ArrayList<>();
+        try{
+            con= JDBCUtils.getConnect();
+            String sql00="DROP VIEW IF EXISTS hotellist;";
+            PreparedStatement pstate00 = con.prepareStatement(sql00);
+            pstate00.executeUpdate();
+            String sql1="CREATE VIEW hotellist AS select a.hotel_id,sum((ifnull(a.room_num-b.num,a.room_num)*a.room_size)) as num_hum from (select hotel_id,room_id,room_num,room_size from room where hotel_id IN(SELECT hotel_id FROM hotel where hotel_name Like ? OR hotel_city Like ? OR hotel_location Like ?)) as a LEFT join (select hotelid,roomid,count(*) num from `order` where  state=1 and startdate<=? and enddate >=? GROUP BY hotelid,roomid) as b on a.hotel_id=b.hotelid and a.room_id=b.roomid group by hotel_id HAVING num_hum > ? limit 50;";
+            PreparedStatement pstate1 = con.prepareStatement(sql1);
+            pstate1.setString(1,'%'+search.getLocation()+'%');
+            pstate1.setString(2,'%'+search.getLocation()+'%');
+            pstate1.setString(3,'%'+search.getLocation()+'%');
+            pstate1.setString(4,search.getEnddate());
+            pstate1.setString(5,search.getStartdate());
+            int num= (int) ((double)search.getAdult()+(double)search.getChild()/2);
+            pstate1.setInt(6,num);
+            pstate1.executeUpdate();
+
+            String sql2="SELECT * from hotel where hotel_id in (SELECT hotel_id FROM hotellist);";
+            PreparedStatement pstate2 = con.prepareStatement(sql2);
+            ResultSet resultSet2 = pstate2.executeQuery();
+            while (resultSet2.next()){
+                Hotel temp=new Hotel();
+                temp.setId(resultSet2.getInt("hotel_id"));
+                temp.setName(resultSet2.getString("hotel_name"));
+                temp.setDesciption(resultSet2.getString("hotel_description"));
+                temp.setScore(resultSet2.getDouble("hotel_score"));
+                temp.setLocation(resultSet2.getString("hotel_location"));
+                temp.setStar(resultSet2.getInt("hotel_star"));
+                temp.setDistance(resultSet2.getDouble("hotel_distance"));
+                temp.setImg_num(resultSet2.getInt("hotel_imgnum"));
+                temp.setCity(resultSet2.getString("hotel_city"));
+                temp.setAddress(resultSet2.getString("hotel_address"));
+                Hotellist.add(temp);
+            }
+            String sql3="SELECT count(*)num FROM hotellist;";
+            PreparedStatement pstate3 = con.prepareStatement(sql3);
+            ResultSet resultSet3 = pstate3.executeQuery();
+            while (resultSet3.next()){
+                s.setNum(resultSet3.getInt("num"));
+            }
+            String sql4="SELECT sum(star0)star_0,sum(star1)star_1,sum(star2)star_2,sum(star3)star_3,sum(star4)star_4,sum(star5)star_5 FROM(SELECT if(hotel_star=0,1,0)star0,if(hotel_star=1,1,0)star1,if(hotel_star=2,1,0)star2,if(hotel_star=3,1,0)star3,if(hotel_star=4,1,0)star4,if(hotel_star=5,1,0)star5 from hotel where hotel_id in (SELECT hotel_id FROM hotellist)) a;";
+            PreparedStatement pstate4 = con.prepareStatement(sql4);
+            ResultSet resultSet4 = pstate4.executeQuery();
+            while (resultSet4.next()){
+                star_num.add(resultSet4.getInt("star_0"));
+                star_num.add(resultSet4.getInt("star_1"));
+                star_num.add(resultSet4.getInt("star_2"));
+                star_num.add(resultSet4.getInt("star_3"));
+                star_num.add(resultSet4.getInt("star_4"));
+                star_num.add(resultSet4.getInt("star_5"));
+                s.setStar_num(star_num);
+            }
+            String sql01="DROP VIEW IF EXISTS distance;";
+            PreparedStatement pstate01 = con.prepareStatement(sql01);
+            pstate01.executeUpdate();
+            String sql5="CREATE VIEW distance AS SELECT hotel_distance,if(hotel_distance>0 and hotel_distance<=1,1,0) dis_1,if(hotel_distance>0 and hotel_distance<=3,1,0) dis_3,if(hotel_distance>0 and hotel_distance<=5,1,0) dis_5 from hotel where hotel_id in (SELECT hotel_id FROM hotellist);";
+            PreparedStatement pstate5 = con.prepareStatement(sql5);
+            pstate5.executeUpdate();
+            String sql6="SELECT sum(dis_1) dis1,sum(dis_3) dis3,sum(dis_5) dis5 FROM distance;";
+            PreparedStatement pstate6 = con.prepareStatement(sql6);
+            ResultSet resultSet6 = pstate6.executeQuery();
+            while (resultSet6.next()){
+                distance_num.add(resultSet6.getInt("dis1"));
+                distance_num.add(resultSet6.getInt("dis3"));
+                distance_num.add(resultSet6.getInt("dis5"));
+                s.setDistance_num(distance_num);
+            }
+            String sql7="drop view distance;";
+            PreparedStatement pstate7 = con.prepareStatement(sql7);
+            pstate7.executeUpdate();
+            String sql02="DROP VIEW IF EXISTS score;";
+            PreparedStatement pstate02 = con.prepareStatement(sql02);
+            pstate02.executeUpdate();
+            String sql8="CREATE VIEW score AS SELECT hotel_score,if(hotel_score>=9,1,0) sco_9,if(hotel_score>=8,1,0) dis_8,if(hotel_score>=7,1,0) dis_7,if(hotel_score>=6,1,0) dis_6 from hotel where hotel_id in (SELECT hotel_id FROM hotellist);";
+            PreparedStatement pstate8 = con.prepareStatement(sql8);
+            pstate8.executeUpdate();
+            String sql9="SELECT sum(sco_9) sco9,sum(dis_8) sco8,sum(dis_7) sco7,sum(dis_6) sco6 FROM score;";
+            PreparedStatement pstate9 = con.prepareStatement(sql9);
+            ResultSet resultSet9 = pstate9.executeQuery();
+            while (resultSet9.next()){
+                score_num.add(resultSet9.getInt("sco9"));
+                score_num.add(resultSet9.getInt("sco8"));
+                score_num.add(resultSet9.getInt("sco7"));
+                score_num.add(resultSet9.getInt("sco6"));
+                s.setScore_num(score_num);
+            }
+            String sql10="drop view score;";
+            PreparedStatement pstate10 = con.prepareStatement(sql10);
+            pstate10.executeUpdate();
+            String sql11="SELECT hotel_facname,count(*) num FROM fac_hotel WHERE hotel_id IN (SELECT hotel_id FROM hotellist)GROUP BY hotel_facname;";
+            PreparedStatement pstate11 = con.prepareStatement(sql11);
+            ResultSet resultSet11 = pstate11.executeQuery();
+            while (resultSet11.next()){
+                HotelFac temp=new HotelFac();
+                temp.setName(resultSet11.getString("hotel_facname"));
+                temp.setNum(resultSet11.getInt("num"));
+                HotelFaclist.add(temp);
+            }
+            String sql12="SELECT room_facname,COUNT(*) num FROM (SELECT hotel_id,room_facname FROM fac_room WHERE hotel_id IN (SELECT hotel_id FROM hotellist)GROUP BY room_facname,hotel_id)as a GROUP BY room_facname;";
+            PreparedStatement pstate12 = con.prepareStatement(sql12);
+            ResultSet resultSet12 = pstate12.executeQuery();
+            while (resultSet12.next()){
+                RoomFac temp=new RoomFac();
+                temp.setName(resultSet12.getString("room_facname"));
+                temp.setNum(resultSet12.getInt("num"));
+                RoomFaclist.add(temp);
+            }
+            String sql13="SELECT sum(under100)under_100,sum(up100)up_100,sum(freecancel)free_cancel,sum(norequire)no_require FROM (SELECT if(sum(if(room_breakfast<100,1,0))>0,1,0)under100,if(sum(if(room_breakfast>=100,1,0))>0,1,0)up100,if(sum(room_isfreecancel)>0,1,0)freecancel,if(sum(room_isnorequire)>0,1,0)norequire FROM room WHERE hotel_id IN (SELECT hotel_id FROM hotellist) GROUP BY hotel_id) a;";
+            PreparedStatement pstate13 = con.prepareStatement(sql13);
+            ResultSet resultSet13 = pstate13.executeQuery();
+            while (resultSet13.next()){
+                break_num.add(resultSet13.getInt("under_100"));
+                break_num.add(resultSet13.getInt("up_100"));
+                cancle_policy_num.add(resultSet13.getInt("free_cancel"));
+                cancle_policy_num.add(resultSet13.getInt("no_require"));
+                s.setBreak_num(break_num);
+                s.setCancle_policy_num(cancle_policy_num);
+            }
+            s.setHotels(Hotellist);
+            s.setHotelFacList(HotelFaclist);
+            s.setRoomFacList(RoomFaclist);
+
+            String sql14="drop view hotellist;";
+            PreparedStatement pstate14 = con.prepareStatement(sql14);
+            pstate14.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            try {
+                if(con==null){
+                    System.out.println("test");
+                }
+                con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return s;
+    }
     public static SearchDetailed SearchForSecond(SearchDetailed search) {
         Connection con=null;
         SearchDetailed s= new SearchDetailed();

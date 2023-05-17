@@ -1,12 +1,14 @@
 <template>
     <div>
         <Navbar />
+      <el-container style="height: 3500px;border: 1px solid rgba(222,27,79,0);width: 1500px;position: relative;left: -150px;">
         <div>
             <div id="basiclayout" style="position:relative;" class="">
                 <SearchAside />
                 <MainMenu />
             </div>
         </div>
+      </el-container>
         <FooterBlue />
     </div>
 </template>
