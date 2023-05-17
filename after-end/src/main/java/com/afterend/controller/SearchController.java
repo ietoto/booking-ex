@@ -58,6 +58,34 @@ public class SearchController {
         return searchDetailed;
     }
 
+    @CrossOrigin
+    @PostMapping(value = "/api/search/searchFirstLimit")
+    @ResponseBody
+    public SearchDetailed searchFL(@RequestBody SearchDetailed requestSearch, HttpSession session) {
+        System.out.println("Searching...");
+        SearchDetailed searchDetailed = searchService.SearchForFirstLimit(requestSearch);
+        if(null==searchDetailed){
+            System.out.println("No result find.");
+        }else {
+            System.out.println("Search success.");
+            //设置封面图片路径
+            List<Hotel> hotels = searchDetailed.getHotels();
+            for(int i=0;i<hotels.size();i++){
+                hotels.get(i).setImg("http://localhost:8443/image/1/"+hotels.get(i).getId()+".jpg");
+            }
+
+            //计算价格以及推荐客房
+            recommend(searchDetailed);
+
+            searchDetailed.setHotels(hotels);
+
+        }
+
+        return searchDetailed;
+    }
+
+
+
     //filter
     //根据酒店地区、日期、人数，返回酒店各个信息 list和酒店设施、客房设施及其数量
     //地区会在酒店city和location里都判断
