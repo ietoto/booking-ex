@@ -1,16 +1,16 @@
 <template>
   <body id="poster">
   <Navbar/>
-  <el-container style="height: 1500px;margin-top: 20px;border: 1px solid rgb(222,27,79);width: 1100px;position: relative;left: 200px;">
-    <el-header style="border: 1px solid rgb(222,27,79);">
+  <el-container style="height: 1500px;margin-top: 20px;border: 1px solid rgba(222,27,79,0);width: 1100px;position: relative;left: 200px;">
+    <el-header style="border: 1px solid rgba(222,27,79,0);">
       <el-steps :active="step" finish-status="success">
         <el-step title="已选住宿"></el-step>
         <el-step title="个人信息"></el-step>
         <el-step title="最后一步"></el-step>
       </el-steps>
     </el-header>
-    <el-container style="height: 1440px;border: 1px solid rgb(27,134,222);width: 1100px;">
-    <el-aside style="height: 1440px;width: 350px;margin-top: 0px;border: 1px solid rgb(222,27,79);">
+    <el-container style="height: 1440px;border: 1px solid rgba(27,134,222,0);width: 1100px;">
+    <el-aside style="height: 1440px;width: 350px;margin-top: 0px;border: 1px solid rgba(222,27,79,0);">
       <el-card class="box-card"style="width: 340px;height: 300px" shadow="hover">
         <div slot="header" style="font-size: 18px; font-weight: bold;">
           <span>订单详情</span>
@@ -65,17 +65,18 @@
         </div>
       </el-card>
     </el-aside>
-      <el-main style="height: 1440px;width: 200px;margin-top: 0px;border: 1px solid rgb(222,27,79);">
+      <el-main style="height: 1440px;width: 200px;margin-top: 0px;border: 1px solid rgba(222,27,79,0);">
         <el-card class="box-card"style="width: 700px;height: 300px" shadow="hover">
-            <el-container style="border: 1px solid rgb(222,27,79);height: 250px;">
-              <el-aside width="200px" style="border: 1px solid rgb(222,27,79);">
+            <el-container style="border: 1px solid rgba(222,27,79,0);height: 250px;">
+              <el-aside width="200px" style="border: 1px solid rgba(222,27,79,0);">
+                <el-container style="border: 1px solid rgba(222,27,79,0);height: 245px;">
                 <el-image
-                  style="width: 100px; height: 100px"
-                  :src="img"
-                  :fit="fit"></el-image>
+                  style="width: 100%; height: 100%;"
+                  :src="img"></el-image>
+                </el-container>
               </el-aside>
               <el-container>
-                <el-main style="border: 1px solid rgb(222,27,79);">
+                <el-main style="border: 1px solid rgba(222,27,79,0);">
                   <div>
                     <el-row>
                       <el-col :span="3"><div> 酒店</div></el-col>
