@@ -102,9 +102,14 @@
    margin-bottom: -4px;
  }
 
+.search-button:hover {
+  background-color: #409EFF;
+  color:#fff
+}
  .search-button {
    text-align: center;
-   color: #0D47A1;
+   background-color: #0D47A1;
+   color: #fff;
    margin-top: 6%;
    margin-left:5%;
    padding:15px 10px;

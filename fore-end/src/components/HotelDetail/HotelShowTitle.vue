@@ -1,5 +1,5 @@
 <template>
-        <div  class="header">
+    <div class="header">
         <div class="clearfix">
             <el-rate v-model="rating" disabled></el-rate>
             <div>
@@ -18,11 +18,11 @@
             </div>
             <el-button style="margin-left: 60%;" type="primary" class="float-right" @click="bookNow">現在就預訂</el-button>
         </div>
-            <span class="hotel-name">{{ hotelName }}</span>
-            <el-tooltip class="item" effect="dark" content="位置絕佳—获评 9.3/10！" placement="top-start">
+        <span class="hotel-name">{{ hotelName }}</span>
+        <el-tooltip class="item" effect="dark" content="位置絕佳—获评 9.3/10！" placement="top-start">
             <p>{{ address }}</p>
-            </el-tooltip>
-            </div>
+        </el-tooltip>
+    </div>
 </template>
   
 <script>
@@ -35,12 +35,12 @@ export default {
             locationScore: '9.3'
         };
     },
-//     props: {
-//     hotel: {
-//       type: Object,
-//       required: true
-//     }
-//   },
+    //     props: {
+    //     hotel: {
+    //       type: Object,
+    //       required: true
+    //     }
+    //   },
     methods: {
         bookNow() {
             // handle the booking logic here
@@ -50,21 +50,29 @@ export default {
 </script>
   
 <style scoped>
-.hotel-name{
-    font-family: Avenir Next,BlinkMacSystemFont,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+.hotel-name {
+    font-family: Avenir Next, BlinkMacSystemFont, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
     margin: 4px 0 0;
     padding: 0;
     font-size: 24px;
     line-height: 32px;
     font-weight: 600;
 }
+
 .clearfix {
-  display: flex;
-  align-items: center;
+    display: flex;
+    align-items: center;
 }
 
 .float-right {
     float: right;
+    background-color: #0d47a1;
+  color: #fff;
+}
+
+.float-right:hover {
+  background-color: #409EFF;
+  color:#fff
 }
 </style>
   

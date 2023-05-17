@@ -6,7 +6,7 @@
         <el-date-picker v-model="date" type="daterange" range-separator="至" start-placeholder="到店日期"
           end-placeholder="离店日期" :picker-options="pickerOptions" value-format="yyyy-MM-dd" />
         <SearchPeople @change="people"/>
-        <el-button type="primary" class="search-button"  @click="goToPage">搜索</el-button>
+        <el-button type="primary" class="search-button"  @click="goToPage">变更住宿日期</el-button>
       </div>
     </div>
   </div>
@@ -96,6 +96,11 @@ export default {
 }
 
 .search-button {
-
+  background-color: #0d47a1;
+  color: #fff;
+}
+.search-button:hover {
+  background-color: #409EFF;
+  color:#fff
 }
 </style>

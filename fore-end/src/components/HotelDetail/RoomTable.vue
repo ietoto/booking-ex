@@ -19,7 +19,10 @@
                     <i v-for="n in scope.row.size" :key="n" class="el-icon-user-solid"></i>
                 </template>
             </el-table-column>
-            <el-table-column prop="price_r" label="今日价格" width="90">
+            <el-table-column prop="price_r" width="90">
+                <template v-slot:header>
+                    <div >今日价格</div>
+                </template>
                 <template slot-scope="scope">
                     <span class="price">{{ 'CNY ' + scope.row.price_r }}</span>
                 </template>
@@ -28,14 +31,18 @@
                 <template slot-scope="scope">
                     <div class="content-container">
                         <el-row>
-                            <i v-if="scope.row.ifFreeCancle" class="el-icon-check"  :class="{'green-text': scope.row.ifFreeCancle}"></i>
+                            <i v-if="scope.row.ifFreeCancle" class="el-icon-check"
+                                :class="{ 'green-text': scope.row.ifFreeCancle }"></i>
                             <i v-else class="el-icon-close"></i>
-                            <span  :class="{'green-text': scope.row.ifFreeCancle}">{{ scope.row.ifFreeCancle ? '可免费取消' : '不可免费取消' }}</span>
+                            <span :class="{ 'green-text': scope.row.ifFreeCancle }">{{ scope.row.ifFreeCancle ? '可免费取消' :
+                                '不可免费取消' }}</span>
                         </el-row>
                         <el-row>
-                            <i v-if="scope.row.ifNoRequire" class="el-icon-check"  :class="{'green-text': scope.row.ifNoRequire}"></i>
+                            <i v-if="scope.row.ifNoRequire" class="el-icon-check"
+                                :class="{ 'green-text': scope.row.ifNoRequire }"></i>
                             <i v-else class="el-icon-close"></i>
-                            <span  :class="{'green-text': scope.row.ifNoRequire}">{{ scope.row.ifNoRequire ? '无需预付-到店付款' : '需预付' }}</span>
+                            <span :class="{ 'green-text': scope.row.ifNoRequire }">{{ scope.row.ifNoRequire ? '无需预付-到店付款' :
+                                '需预付' }}</span>
                         </el-row>
                         <el-row>
                             <i class="el-icon-coffee-cup green-text"></i>
@@ -88,8 +95,8 @@
             </el-table-column>
             <el-table-column label="选择客房" width="140">
                 <template slot-scope="scope">
-                    <el-select v-model="scope.row.choicenum">
-                        <el-option v-for="i in 5" :key="i" :label="i.toString()" :value="i">
+                    <el-select v-model="scope.row.num_rec">
+                        <el-option v-for="i in 6" :key="i" :label="(i-1).toString()" :value="i">
                         </el-option>
                     </el-select>
                 </template>
@@ -148,9 +155,17 @@ export default {
 }
 </script>
 <style scoped>
+.el-table .whole-header {
+    background-color: red; /* 你想要的颜色 */
+}
+.header-price {
+    background-color: #003580; /* 你需要的颜色 */
+}
+
 .green-text {
     color: green;
 }
+
 .content-container {
     display: flex;
     flex-direction: column;
@@ -207,8 +222,7 @@ export default {
 }
 
 .header-item {
-    font-size: large;
-    text-align: center;
+    color: #003580;
 }
 
 .price-header {
