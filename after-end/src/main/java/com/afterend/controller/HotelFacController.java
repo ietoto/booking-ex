@@ -30,6 +30,8 @@ public class HotelFacController {
         return hotelFacList;
     }
 
+    @CrossOrigin
+    @ResponseBody
     public List<HotelFac> getHotelFac2(Hotel hotel) {
         List<HotelFac> hotelFacList = hotelFacService.get(hotel);
         if(0==hotelFacList.size()){

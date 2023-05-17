@@ -58,14 +58,14 @@ public class HotelController {
 
 
             // set hotel facilities
-//            HotelFacController hotelFacController = new HotelFacController();
-//            List<HotelFac> hotelFacList = hotelFacController.getHotelFac2(requestHotel);
-            List<HotelFac> hotelFacList = hotelFacService.get(hotel);
-            if(0==hotelFacList.size()){
-                System.out.println("Get fac by hotelId failed!");
-            }else {
-                System.out.println("Get fac by hotelId success!");
-            }
+            HotelFacController hotelFacController = new HotelFacController();
+            List<HotelFac> hotelFacList = hotelFacController.getHotelFac2(requestHotel);
+//            List<HotelFac> hotelFacList = hotelFacService.get(hotel);
+//            if(0==hotelFacList.size()){
+//                System.out.println("Get fac by hotelId failed!");
+//            }else {
+//                System.out.println("Get fac by hotelId success!");
+//            }
 
             List<String> facilities_hotel = new ArrayList<>();
             for (int i = 0; i < hotelFacList.size(); i++) {
