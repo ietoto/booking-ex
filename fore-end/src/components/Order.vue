@@ -9,8 +9,8 @@
         <el-step title="最后一步"></el-step>
       </el-steps>
     </el-header>
-    <el-container style="height: 1500px;border: 1px solid rgb(27,134,222);width: 1100px;">
-    <el-aside style="height: 1500px;width: 350px;margin-top: 0px;border: 1px solid rgb(222,27,79);">
+    <el-container style="height: 1440px;border: 1px solid rgb(27,134,222);width: 1100px;">
+    <el-aside style="height: 1440px;width: 350px;margin-top: 0px;border: 1px solid rgb(222,27,79);">
       <el-card class="box-card"style="width: 340px;height: 300px" shadow="hover">
         <div slot="header" style="font-size: 18px; font-weight: bold;">
           <span>订单详情</span>
@@ -65,7 +65,7 @@
         </div>
       </el-card>
     </el-aside>
-      <el-main style="height: 1500px;width: 200px;margin-top: 0px;border: 1px solid rgb(222,27,79);">
+      <el-main style="height: 1440px;width: 200px;margin-top: 0px;border: 1px solid rgb(222,27,79);">
         <el-card class="box-card"style="width: 700px;height: 300px" shadow="hover">
             <el-container style="border: 1px solid rgb(222,27,79);height: 250px;">
               <el-aside width="200px" style="border: 1px solid rgb(222,27,79);">Aside</el-aside>
@@ -76,7 +76,7 @@
                       <el-col :span="3"><div> 酒店</div></el-col>
                       <el-col :span="12"><div>
                         <el-rate
-                          v-model="star"
+                          v-model="hotel.star"
                           disabled
                           text-color="#ff9900"
                           score-template="{value}">
@@ -88,17 +88,17 @@
                     {{this.$store.state.order.hotel_name}}
                   </div>
                   <div style="  margin-top: 10px;">
-                    {{addresss}}
+                    {{hotel.addresss}}
                   </div>
-                  <div v-if="distance<=3" style=" font-size: 16px;color: #007f58;   margin-top: 10px;">
+                  <div v-if="hotel.distance<=3" style=" font-size: 16px;color: #007f58;   margin-top: 10px;">
                     位置很好
                   </div>
 
-                  <div v-if="distance<=3" style=" font-size: 16px;color: #ffffff;  margin-top: 10px;">
-                    <span style="font-size:15px;width:500px;height:40px;border:solid 2px rgba(128,128,128,0);margin-right: 30px;background-color: #00356e">{{score}}</span>
-                    <a v-if="score>=9" style=" font-size: 16px;color: #000000;">好评如潮</a>
-                    <a v-else-if="score>=8" style=" font-size: 16px;color: #000000;">好极了</a>
-                    <a v-else-if="score>=7" style=" font-size: 16px;color: #000000;">不错</a>
+                  <div v-if="hotel.distance<=3" style=" font-size: 16px;color: #ffffff;  margin-top: 10px;">
+                    <span style="font-size:15px;width:500px;height:40px;border:solid 2px rgba(128,128,128,0);margin-right: 30px;background-color: #00356e">{{hotel.score}}</span>
+                    <a v-if="hotel.score>=9" style=" font-size: 16px;color: #000000;">好评如潮</a>
+                    <a v-else-if="hotel.score>=8" style=" font-size: 16px;color: #000000;">好极了</a>
+                    <a v-else-if="hotel.score>=7" style=" font-size: 16px;color: #000000;">不错</a>
                   </div>
                 </el-main>
               </el-container>
@@ -284,6 +284,7 @@ export default {
   mounted: function () {
     console.log('挂载开始')
     this.checkstep()
+    this.gethotel()
   },
   methods: {
     checkstep(){
@@ -291,6 +292,25 @@ export default {
       if(this.$store.state.order.state!=='未付款'){
         this.step=3
       }
+    },
+    gethotel(){
+      var _this = this
+      this.hotelfacloading=true
+      this.$axios
+        .post('/hotel/searchByIdDetailed', {
+          id: this.$store.state.order.hotelid
+        })
+        .then(successResponse => {
+          if (successResponse.data !=null) {
+            this.hotel=successResponse.data
+            this.$store.commit("hotel",this.hotel)
+
+          }
+          else {
+          }
+        })
+        .catch(failResponse => {
+        })
     },
     showconfirm(){
       this.confirmVisible = true
@@ -361,10 +381,6 @@ export default {
     return {
       step: 2,
       confirmVisible: false,
-      star: 3.7,
-      addresss: '两江西路',
-      distance: 2,
-      score: 9.7,
       Travelmode: '1',
       nameAndpostbox: {
         name: this.$store.state.user.name,
