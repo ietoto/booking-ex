@@ -35,12 +35,12 @@ export default {
             locationScore: '9.3'
         };
     },
-    props: {
-    hotel: {
-      type: Object,
-      required: true
-    }
-  },
+//     props: {
+//     hotel: {
+//       type: Object,
+//       required: true
+//     }
+//   },
     methods: {
         bookNow() {
             // handle the booking logic here

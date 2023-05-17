@@ -25,7 +25,7 @@
             <el-col :span="6">
                 <div>
                     <img class="image-4"
-                        src="https://img-v.veimg.cn/company_picture/000/087/105/photo/20201108155136b7q32t8wjcrq5.jpg"
+                        src="https://uimg.huixiaoer.net/86104452/79195b4f14b9f39a18a939025fad1ade.jpg"
                         alt="hotel image" />
                 </div>
             </el-col>
@@ -46,7 +46,7 @@
             <el-col :span="6">
                 <div >
                     <img class="image-4"
-                        src="https://img-v.veimg.cn/company_picture/000/087/105/photo/20201108155136b7q32t8wjcrq5.jpg"
+                        src="https://uimg.huixiaoer.net/86197282/3841877cdb5bef105945b89725de31c0.jpg"
                         alt="hotel image" />
                 </div>
             </el-col>
@@ -59,30 +59,33 @@
 
 export default {
     name: 'HotelShowImg',
-    props: {
-        hotel: {
-            type: Object,
-            required: true
-        }
-    },
+    // props: {
+    //     hotel: {
+    //         type: Object,
+    //         required: true
+    //     }
+    // },
 }
 </script>
 
 <style scoped>
 .image-1 {
     width: 220px;
-    height: 170px ;
+    height: 170px;
+    border-radius: 5px;
 }
 
 
 .image-3 {
     width: 450px;
     height: 344px;
+    border-radius: 5px;
 }
 
 .image-4 {
-    width: auto;
+    width: 164px;
     height: 110px;
+    border-radius: 5px;
 }
 .el-row {
     margin-bottom: 20px;

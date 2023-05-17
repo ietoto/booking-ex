@@ -36,14 +36,22 @@
             <el-main width="50%" class="hotel-booking-icon">
                 <div>
                     <h3 class="heading">住宿特色</h3>
-                    <div class="section1">
-                        <h4>1晚好去处</h4>
+                    <div>
+                        <h4 class="section1">1晚好去处！</h4>
+                        <div>
+                            <span class="span1"><i class="el-icon-location-outline"></i>这家酒店位于北京中心，位置评分非常高：9.3</span>
+                        </div>
+                        <div>
+                            <span class="span2"><i class="el-icon-moon"></i>想要一觉安睡到天亮？客人都说这家酒店的床很舒服</span>
+                        </div>
                     </div>
-                    <div class="section2">
-                        <h4>早餐信息</h4>
+                    <div>
+                        <h4 class="section1">早餐信息</h4>
+                        <span><i class="el-icon-dish"></i>早餐提供亚洲、美式</span>
                     </div>
-                    <div class="section3">
-                        <h4>住了又住</h4>
+                    <div>
+                        <h4 class="section1">住了又住</h4>
+                        <span><i class="el-icon-refresh-right"></i>这家住宿有超多的回头客</span>
                     </div>
                     <div>
                         <el-button class="bookingnow">现在就预定</el-button>
@@ -51,11 +59,16 @@
                 </div>
             </el-main>
         </el-container>
+        <hr width="70%">
+        <div>
+            <DetailSearch/>
+        </div>
         <FooterBlue />
     </div>
 </template>
 
 <script>
+import DetailSearch from './DetailSearch.vue'
 import HotelShow from './HotelShow.vue'
 import Searchbar from '../HotelSearch/SearchAside/Searchbar.vue'
 import Navbar from '../home/Navbar/Navbar.vue'
@@ -68,40 +81,55 @@ export default {
         FooterBlue,
         FooterWhite,
         Searchbar,
-        HotelShow
+        HotelShow,
+        DetailSearch
     }
 }
 </script>
 
 <style scoped>
-.bookingnow{
-    background-color: #0D47A1;
-    color:#fff;
-}
-.bookingnow:hover{
-    background-color: #409EFF;
-    color:#fff;
+.span1.span2 {
+    font-size: 5px;
+    line-height: 1;
+    font-family: BlinkMacSystemFont, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+
 }
 
-.section1{
-    margin-top: 20px;
-    margin-left: 20px;
-    margin-right: 20px;
-    border-bottom: 1px solid #e0e0e0;
-    padding-bottom: 20px;
+.section1 {
+    font-weight: bold;
+    font-size: 18px
 }
-.hotel-description-font{
-    font-size:14px;
+
+.heading {
+    font-weight: 600;
+}
+
+.bookingnow {
+    margin-top: 20px;
+    background-color: #0D47A1;
+    color: #fff;
+    width: 100%;
+}
+
+.bookingnow:hover {
+    background-color: #409EFF;
+    color: #fff;
+}
+
+.hotel-description-font {
+    font-size: 14px;
     line-height: 2;
 }
+
 .hotel-booking-icon {
     background-color: #f0f6ff;
     border-radius: 8px;
     margin: 0 auto;
     width: 50%;
-    height: 320px;
+    height: auto;
     margin-right: 15%;
-    margin-left:30px;
+    margin-left: 30px;
+
 }
 
 .hotel-description {
@@ -125,4 +153,5 @@ export default {
     font-style: normal;
     float: left;
     margin-left: 18%;
-}</style>
+}
+</style>
