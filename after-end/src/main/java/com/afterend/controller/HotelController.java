@@ -91,7 +91,7 @@ public class HotelController {
     @PostMapping(value = "/api/hotel/searchByIdDetailed")
     @ResponseBody
     public Hotel hotelInfoDetailed(@RequestBody Hotel requestHotel, HttpSession session) {
-        Hotel hotel = requestHotel;
+        Hotel hotel = hotelService.SearchbyID(requestHotel);
         if(null == hotel){
             System.out.println("Get hotel info failed!");
         }else {
