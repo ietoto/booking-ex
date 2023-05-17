@@ -70,6 +70,7 @@ public class SearchController {
             System.out.println("Search success.");
             //设置封面图片路径
             List<Hotel> hotels = searchDetailed.getHotels();
+            System.out.println("Hotel(0) id:"+hotels.get(0).getId());
             for(int i=0;i<hotels.size();i++){
                 hotels.get(i).setImg("http://localhost:8443/image/1/"+hotels.get(i).getId()+".jpg");
             }
@@ -118,11 +119,11 @@ public class SearchController {
     }
     
         public void recommend(SearchDetailed requestSearch){
+        int temp = requestSearch.getDate_num();
         List<Hotel> hotels = requestSearch.getHotels();
         List<Hotel> room_rec = new ArrayList<>();
         //计算价格, 动态规划
         List<Integer> price = new ArrayList<>();
-        Dateutils dateutils = new Dateutils();
         int time = requestSearch.getDate_num();
         for(int k=0;k<hotels.size();k++){
             Hotel hotel = hotels.get(k);
