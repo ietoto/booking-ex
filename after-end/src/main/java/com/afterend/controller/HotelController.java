@@ -22,6 +22,8 @@ public class HotelController {
     HotelService hotelService;
     @Autowired
     private HotelFacController hotelFacController;
+    @Autowired
+    private RoomController roomController;
 
 
     @CrossOrigin
@@ -47,7 +49,7 @@ public class HotelController {
     @CrossOrigin
     @ResponseBody
     public Hotel hotelInfo(Hotel requestHotel) {
-        Hotel hotel = requestHotel;
+        Hotel hotel = hotelService.SearchbyID(requestHotel);
         if(null == hotel){
             System.out.println("Get hotel info failed!");
         }else {
@@ -78,9 +80,8 @@ public class HotelController {
             hotel.setFacilities(facilities_hotel);
 
             //set rooms
-//            RoomController roomController = new RoomController();
-//            List<Room> rooms = roomController.getRoomListWithFac(requestHotel);
-//            hotel.setRooms(rooms);
+            List<Room> rooms = roomController.getRoomListWithFac(requestHotel);
+            hotel.setRooms(rooms);
 
         }
 
@@ -97,6 +98,8 @@ public class HotelController {
         }else {
             System.out.println("Get hotel info success");
             System.out.println("Setting hotel...");
+            //set img
+            hotel.setImg("..../after-end/picture/image_hotel/"+hotel.getId()+".jpg");
             //set imgList
             List<String> images = new ArrayList<>();
             for(int i=0;i<hotel.getImg_num();i++){
@@ -149,9 +152,6 @@ public class HotelController {
     @PostMapping(value = "/api/hotel/add")
     @ResponseBody
     public Result addHotel(@RequestBody Hotel requestHotel, HttpSession session) {
-        String name = requestHotel.getName();
-        name = HtmlUtils.htmlEscape(name);
-        System.out.println("Adding hotel: "+name+"...");
 
         Hotel hotel = hotelService.add(requestHotel);
         if(null ==hotel) {

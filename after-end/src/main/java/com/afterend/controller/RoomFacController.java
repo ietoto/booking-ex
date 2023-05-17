@@ -49,6 +49,8 @@ public class RoomFacController {
         return roomFacList;
     }
 
+    @CrossOrigin
+    @ResponseBody
     public List<RoomFac> getOneRoomFac1(Room room) {
         Room room1 =new Room();
         room1.setHotelid(room.getHotelid());
