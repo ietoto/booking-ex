@@ -203,9 +203,9 @@ public class SearchController {
     //获取单个酒店详情
     //需要酒店id、地区、日期、人数
     @CrossOrigin
-    @PostMapping(value = "/api/search/Hotel_Info")
+    @PostMapping(value = "/api/search/Hotel_Info_rec")
     @ResponseBody
-    public SearchDetailed hotel_info(@RequestBody SearchDetailed requestSearch, HttpSession session) {
+    public SearchDetailed hotel_info_rec(@RequestBody SearchDetailed requestSearch, HttpSession session) {
         Hotel hotel = new Hotel();
         hotel.setId(requestSearch.getId());
         SearchDetailed searchDetailed = requestSearch;
@@ -217,6 +217,22 @@ public class SearchController {
         recommend(searchDetailed);
 
 
+
+        return searchDetailed;
+
+    }
+
+    @CrossOrigin
+    @PostMapping(value = "/api/search/Hotel_Info")
+    @ResponseBody
+    public SearchDetailed hotel_info(@RequestBody SearchDetailed requestSearch, HttpSession session) {
+        Hotel hotel = new Hotel();
+        hotel.setId(requestSearch.getId());
+        SearchDetailed searchDetailed = requestSearch;
+        hotel = hotelController.hotelInfo(hotel);
+        List<Hotel> hotels = new ArrayList<>();
+        hotels.add(hotel);
+        searchDetailed.setHotels(hotels);
 
         return searchDetailed;
 
