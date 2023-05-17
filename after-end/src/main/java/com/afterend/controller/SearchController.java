@@ -41,7 +41,7 @@ public class SearchController {
             //设置封面图片路径
             List<Hotel> hotels = searchDetailed.getHotels();
             for(int i=0;i<hotels.size();i++){
-                hotels.get(i).setImg("..../after-end/picture/image_hotel/"+hotels.get(i).getId()+".jpg");
+                hotels.get(i).setImg("../../../after-end/picture/image_hotel/"+hotels.get(i).getId()+".jpg");
             }
             
             //计算价格以及推荐客房
@@ -75,7 +75,7 @@ public class SearchController {
             //设置封面图片路径
             List<Hotel> hotels = searchDetailed.getHotels();
             for(int i=0;i<hotels.size();i++){
-                hotels.get(i).setImg("..../after-end/picture/image_hotel/"+hotels.get(i).getId()+".jpg");
+                hotels.get(i).setImg("../../../after-end/picture/image_hotel/"+hotels.get(i).getId()+".jpg");
             }
             
             //计算价格以及推荐客房
