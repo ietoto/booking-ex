@@ -21,7 +21,7 @@ public class HotelController {
     @Autowired
     HotelService hotelService;
     @Autowired
-    HotelFacService hotelFacService;
+    private HotelFacController hotelFacController;
 
 
     @CrossOrigin
@@ -106,7 +106,6 @@ public class HotelController {
 
 
             // set hotel facilities
-            HotelFacController hotelFacController = new HotelFacController();
             List<HotelFac> hotelFacList = hotelFacController.getHotelFac2(requestHotel);
 //            List<HotelFac> hotelFacList = hotelFacService.get(hotel);
 //            if(0==hotelFacList.size()){
