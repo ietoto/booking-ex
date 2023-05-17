@@ -26,7 +26,7 @@
           <a class="small-text"
             >{{ hotel.city }}{{ hotel.location }}</a
           >
-          <div class="hotel-description" style="font-size: 11px;">{{ hotel.desciption }}</div>
+          <div class="hotel-description" style="font-size: 16px;">{{ hotel.desciption }}</div>
           <div class="hotel-location">
             <span class="small-text">{{ hotel.address }}</span>
             <span class="small-text separator">·</span>
@@ -36,7 +36,7 @@
       <el-main>
         <div class="right">
           <span class="score">
-            <div class="extra-info">{{ scoreText }}</div>
+            <div class="extra-info" style="width: 80px">{{ scoreText }}</div>
             <div class="hotel-score">{{ hotel.score }}</div>
           </span>
           <!-- 大于等于9分优异的、好极了、理想随机选 7-8分好  低于7分不尽人意 -->
@@ -55,7 +55,10 @@
 <script>
 export default {
   data() {
-    return {colors: ['#99A9BF', '#F7BA2A', '#FF9900'] };
+    return {
+      colors: ['#99A9BF', '#F7BA2A', '#FF9900'],
+      Hotel: null
+    };
   },
   props: {
     hotel: {
@@ -66,18 +69,35 @@ export default {
   computed: {
     scoreText() {
       if (this.hotel.score >= 9) {
-        const options = ["优异的", "好极了", "理想"];
+        const options = ["优异的", "好极了", "好评如潮"];
         const randomIndex = Math.floor(Math.random() * options.length);
         return options[randomIndex];
       } else if (this.hotel.score >= 7) {
-        return "好";
-      } else {
+        return "特别好评";
+      } else if (this.hotel.score <= 4){
         return "不尽人意";
+      } else {
+        return "平平无奇";
       }
     }
   },
   methods: {
     navigateToHotelDetail(id) {
+      this.$axios
+        .post('/search/Hotel_Info', {
+          id: id
+        })
+        .then(successResponse => {
+          if (successResponse.data !=null) {
+            this.Hotel=successResponse.data.hotels[0]
+            console.log(this.Hotel)
+            this.$store.commit("hotel",this.Hotel)
+          }
+          else {
+          }
+        })
+        .catch(failResponse => {
+        })
       this.$router.push({ name: "HotelDetail", params: { id } });
       this.$emit("navigate", id);
     }

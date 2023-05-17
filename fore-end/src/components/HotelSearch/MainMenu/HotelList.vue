@@ -21,7 +21,10 @@ export default {
   },
   data() {
       return {
-          hotels: []
+        hotels: [],
+        hotel_num:{
+          num: null
+        }
       }
   },
   methods: {
@@ -33,7 +36,7 @@ export default {
       console.log('根据现有条件查询酒店')
       var _this = this
       this.$axios
-        .post('/search/search', {
+        .post('/search/searchFirstLimit', {
           location: this.$store.state.search.location,
           startdate: this.$store.state.search.startdate,
           enddate: this.$store.state.search.startdate,
@@ -44,10 +47,9 @@ export default {
         .then(successResponse => {
           if (successResponse.data != null) {
             console.log(successResponse.data)
+            this.hotel_num.num=successResponse.data.hotels.length
+            this.$store.commit("hotel_num",this.hotel_num.num)
             this.hotels=successResponse.data.hotels
-            console.log(successResponse.hotels)
-            console.log(this.hotels.getLength())
-            this.$store.commit("hotel_num",this.hotels.getLength())
           }
           else {
           }
