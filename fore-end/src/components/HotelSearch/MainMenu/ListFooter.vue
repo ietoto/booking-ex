@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-pagination
+    <el-pagination class="pagination"
       background
       layout="prev, pager, next"
       :total="1000"
@@ -17,5 +17,7 @@ export default {
 </script>
 
 <style>
-
+.pagination {
+  width:100%;
+}
 </style>

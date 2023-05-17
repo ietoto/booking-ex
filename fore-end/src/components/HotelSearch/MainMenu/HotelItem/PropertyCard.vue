@@ -11,10 +11,19 @@
           <div class="title">
             <div class="hotel-name">
               {{ hotel.hotel_name }}
-              <el-rate v-model="hotel.hotel_star" disabled></el-rate>
+            </div>
+            <div class="hotel-rating">
+              <el-rate v-model="hotel.hotel_star" disabled 
+              :colors="colors"
+              text-color="#ff9900"
+              show-score
+              void-color="003366"
+             ></el-rate>
             </div>
           </div>
-          <a href="" class="small-text">{{ hotel.hotel_city }}{{ hotel.hotel_location }}</a>
+          <a href="" class="small-text"
+            >{{ hotel.hotel_city }}{{ hotel.hotel_location }}</a
+          >
           <div class="hotel-description">{{ hotel.hotel_description }}</div>
           <div class="hotel-location">
             <span class="small-text">{{ hotel.hotel_area }}</span>
@@ -29,7 +38,12 @@
             <div class="hotel-score">{{ hotel.hotel_score }}</div>
           </span>
           <!-- 大于等于9分优异的、好极了、理想随机选 7-8分好  低于7分不尽人意 -->
-          <el-button class="price-button" type="primary" @click="navigateToHotelDetail(hotel.hotel_id)">显示价格</el-button>
+          <el-button
+            class="price-button"
+            type="primary"
+            @click="navigateToHotelDetail(hotel.hotel_id)"
+            >显示价格</el-button
+          >
         </div>
       </el-main>
     </el-container>
@@ -38,6 +52,9 @@
 
 <script>
 export default {
+  data() {
+    return {colors: ['#99A9BF', '#F7BA2A', '#FF9900'] };
+  },
   props: {
     hotel: {
       type: Object,
@@ -59,8 +76,8 @@ export default {
   },
   methods: {
     navigateToHotelDetail(id) {
-      this.$router.push({ name: 'HotelDetail', params: { id } });
-      this.$emit('navigate', id);
+      this.$router.push({ name: "HotelDetail", params: { id } });
+      this.$emit("navigate", id);
     }
   }
 };
@@ -89,7 +106,6 @@ export default {
   margin-right: 16px;
 }
 
-
 .middle {
   flex-grow: 1;
   flex-shrink: 1;
@@ -105,7 +121,6 @@ export default {
   flex-direction: column;
   align-items: flex-end;
 }
-
 
 .image-container {
   border-radius: 8px;
@@ -128,12 +143,9 @@ export default {
   object-fit: cover;
 }
 
-.hotel-name {
-  font-family: BlinkMacSystemFont, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
-  font-size: 18px;
-  font-weight: bold;
-  margin-bottom: 8px;
-  color: #006ce4;
+
+.hotel-rating {
+  margin-left: 10px;
 }
 
 .hotel-description {
@@ -158,7 +170,7 @@ export default {
 
 .hotel-score {
   padding: 8px;
-  background-color: #003B95;
+  background-color: #003b95;
   color: white;
   margin-bottom: 8px;
 }
@@ -166,10 +178,9 @@ export default {
 .price-button {
   margin-top: 8px;
 }
-.title{
+.title {
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  align-items: center;
   height: 100%;
 }
 </style>

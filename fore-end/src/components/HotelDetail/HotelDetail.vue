@@ -2,9 +2,12 @@
     <div>
         <Navbar />
         <el-container>
-            <el-aside >
-                <SearchBar />
+            <el-aside width="20%" class="searchbar">
+                <Searchbar />
             </el-aside>
+            <el-main>
+                
+            </el-main>
         </el-container>
         <FooterBlue />
     </div>
@@ -12,7 +15,6 @@
 
 <script>
 import Searchbar from '../HotelSearch/SearchAside/Searchbar.vue'
-import SearchBar from '../home/Search/SearchPeople.vue';
 import Navbar from '../home/Navbar/Navbar.vue'
 import FooterBlue from '../home/Footer/FooterBlue.vue'
 import FooterWhite from '../home/Footer/FooterWhite.vue';
@@ -23,9 +25,19 @@ export default {
         FooterBlue,
         FooterWhite,
         Searchbar,
-        SearchBar
     }
 }
 </script>
 
-<style></style>
+<style scoped>
+.searchbar {
+    width: 20% !important;
+    padding: 0 !important;
+    margin-top: 0;
+    font-size: 88%;
+    margin-bottom: 1em;
+    font-style: normal;
+    float: left;
+    margin-left: 18%;
+}
+</style>

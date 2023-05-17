@@ -29,7 +29,7 @@ export default {
                 hotel_location: "昌平",
                 hotel_distance: 30,
                 hotel_score: 10,
-                hotel_star: 5,
+                hotel_star: 3.2,
                 hotel_image:'https://cf.bstatic.com/xdata/images/hotel/square600/292280419.webp?k=879f86776e037c46283a407918f09485e4578df79e161fd15156c50341c674ee&o='
               },
               {
@@ -39,7 +39,7 @@ export default {
                 hotel_location: "昌平",
                 hotel_distance: 30,
                 hotel_score: 10,
-                hotel_star: 5,
+                hotel_star: 4.3,
                 hotel_image:'https://cf.bstatic.com/xdata/images/hotel/square600/292280419.webp?k=879f86776e037c46283a407918f09485e4578df79e161fd15156c50341c674ee&o='
               },
               {
@@ -59,7 +59,7 @@ export default {
                 hotel_location: "昌平",
                 hotel_distance: 30,
                 hotel_score: 10,
-                hotel_star: 5,
+                hotel_star: 1.5,
                 hotel_image:'https://cf.bstatic.com/xdata/images/hotel/square600/292280419.webp?k=879f86776e037c46283a407918f09485e4578df79e161fd15156c50341c674ee&o='
               },
               {
