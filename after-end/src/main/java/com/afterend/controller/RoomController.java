@@ -18,6 +18,8 @@ public class RoomController {
     @Autowired
     RoomService roomService;
 
+    @CrossOrigin
+    @ResponseBody
     public List<Room> getRoomListWithFac(Hotel hotel) {
         Room room =new Room();
         room.setHotelid(hotel.getId());

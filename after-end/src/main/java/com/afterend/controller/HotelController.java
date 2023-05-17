@@ -24,6 +24,8 @@ public class HotelController {
     HotelFacService hotelFacService;
 
 
+    @CrossOrigin
+    @ResponseBody
     public List<Hotel> showall(HttpSession session) {
         return (hotelService.showall());
     }
@@ -42,6 +44,8 @@ public class HotelController {
     }
 
     //获取单个酒店详细信息
+    @CrossOrigin
+    @ResponseBody
     public Hotel hotelInfo(Hotel requestHotel) {
         Hotel hotel = requestHotel;
         if(null == hotel){
@@ -102,14 +106,14 @@ public class HotelController {
 
 
             // set hotel facilities
-//            HotelFacController hotelFacController = new HotelFacController();
-//            List<HotelFac> hotelFacList = hotelFacController.getHotelFac2(requestHotel);
-            List<HotelFac> hotelFacList = hotelFacService.get(hotel);
-            if(0==hotelFacList.size()){
-                System.out.println("Get fac by hotelId failed!");
-            }else {
-                System.out.println("Get fac by hotelId success!");
-            }
+            HotelFacController hotelFacController = new HotelFacController();
+            List<HotelFac> hotelFacList = hotelFacController.getHotelFac2(requestHotel);
+//            List<HotelFac> hotelFacList = hotelFacService.get(hotel);
+//            if(0==hotelFacList.size()){
+//                System.out.println("Get fac by hotelId failed!");
+//            }else {
+//                System.out.println("Get fac by hotelId success!");
+//            }
 
             List<String> facilities_hotel = new ArrayList<>();
             for (int i = 0; i < hotelFacList.size(); i++) {
