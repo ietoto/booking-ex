@@ -45,6 +45,31 @@ public class RoomController {
     }
 
     @CrossOrigin
+    @PostMapping(value = "/api/room/getRoomsWithFac")
+    @ResponseBody
+    public List<Room> getRoomListWithFac2(@RequestBody Hotel hotel, HttpSession session) {
+        Room room =new Room();
+        room.setHotelid(hotel.getId());
+        List<Room> rooms = roomService.getRoomList(room);
+        if(0 == rooms.size()){
+            System.out.println("Get room and fac:roomList failed");
+        }else{
+            System.out.println("Get room and fac:roomList success");
+        }
+
+        //set room facilities
+        for(int i=0;i<rooms.size();i++){
+            List<RoomFac> roomFacList = roomFacController.getOneRoomFac1(room);
+            List<String> facilities_room = new ArrayList<>();
+            for (int j = 0; j < roomFacList.size(); j++) {
+                facilities_room.add(roomFacList.get(j).getName());
+            }
+            rooms.get(i).setFacilities(facilities_room);
+        }
+        return rooms;
+    }
+
+    @CrossOrigin
     @PostMapping(value = "/api/room/getRooms")
     @ResponseBody
     public  List<Room> getRoomList(@RequestBody Hotel hotel,HttpSession session){
