@@ -2,6 +2,7 @@ package com.afterend.controller;
 
 import com.afterend.pojo.*;
 import com.afterend.result.Result;
+import com.afterend.service.HotelFacService;
 import com.afterend.service.HotelService;
 import com.afterend.service.RoomService;
 import jakarta.servlet.http.HttpSession;
@@ -19,6 +20,7 @@ public class HotelController {
 
     @Autowired
     HotelService hotelService;
+    HotelFacService hotelFacService;
 
 
     public List<Hotel> showall(HttpSession session) {
@@ -55,8 +57,15 @@ public class HotelController {
 
 
             // set hotel facilities
-            HotelFacController hotelFacController = new HotelFacController();
-            List<HotelFac> hotelFacList = hotelFacController.getHotelFac2(requestHotel);
+//            HotelFacController hotelFacController = new HotelFacController();
+//            List<HotelFac> hotelFacList = hotelFacController.getHotelFac2(requestHotel);
+            List<HotelFac> hotelFacList = hotelFacService.get(hotel);
+            if(0==hotelFacList.size()){
+                System.out.println("Get fac by hotelId failed!");
+            }else {
+                System.out.println("Get fac by hotelId success!");
+            }
+
             List<String> facilities_hotel = new ArrayList<>();
             for (int i = 0; i < hotelFacList.size(); i++) {
                 facilities_hotel.add(hotelFacList.get(i).getName());
@@ -64,9 +73,9 @@ public class HotelController {
             hotel.setFacilities(facilities_hotel);
 
             //set rooms
-            RoomController roomController = new RoomController();
-            List<Room> rooms = roomController.getRoomListWithFac(requestHotel);
-            hotel.setRooms(rooms);
+//            RoomController roomController = new RoomController();
+//            List<Room> rooms = roomController.getRoomListWithFac(requestHotel);
+//            hotel.setRooms(rooms);
 
         }
 
