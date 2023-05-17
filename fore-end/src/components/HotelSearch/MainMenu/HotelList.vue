@@ -46,6 +46,7 @@ export default {
             console.log(successResponse.data)
             this.hotels=successResponse.data.hotels
             console.log(successResponse.hotels)
+            console.log(this.hotels.getLength())
             this.$store.commit("hotel_num",this.hotels.getLength())
           }
           else {

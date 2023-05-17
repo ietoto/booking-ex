@@ -60,6 +60,9 @@ public class SearchService {
     public SearchDetailed SearchForFirst(SearchDetailed search){
         return searchDAO.SearchForFirst(search);
     }
+    public SearchDetailed SearchForFirstLimit(SearchDetailed search){
+        return searchDAO.SearchForFirstLimit(search);
+    }
     //根据酒店地区、日期、人数，返回酒店各个信息 list和酒店设施、客房设施及其数量
     //嘟嘟嘟！注意，酒店的地区里的值会在酒店name、city、location里都判断，实现了地区/名称查询
     //地区会在酒店city和location里都判断
