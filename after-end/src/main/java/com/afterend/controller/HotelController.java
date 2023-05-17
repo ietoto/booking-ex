@@ -2,6 +2,7 @@ package com.afterend.controller;
 
 import com.afterend.pojo.*;
 import com.afterend.result.Result;
+import com.afterend.service.HotelFacService;
 import com.afterend.service.HotelService;
 import com.afterend.service.RoomService;
 import jakarta.servlet.http.HttpSession;
@@ -19,12 +20,18 @@ public class HotelController {
 
     @Autowired
     HotelService hotelService;
+    @Autowired
+    private HotelFacController hotelFacController;
+    @Autowired
+    private RoomController roomController;
 
 
+    @CrossOrigin
+    @ResponseBody
     public List<Hotel> showall(HttpSession session) {
         return (hotelService.showall());
     }
-    
+
     @CrossOrigin
     @PostMapping(value = "/api/hotel/showLimit")
     @ResponseBody
@@ -39,8 +46,10 @@ public class HotelController {
     }
 
     //获取单个酒店详细信息
+    @CrossOrigin
+    @ResponseBody
     public Hotel hotelInfo(Hotel requestHotel) {
-        Hotel hotel = requestHotel;
+        Hotel hotel = hotelService.SearchbyID(requestHotel);
         if(null == hotel){
             System.out.println("Get hotel info failed!");
         }else {
@@ -49,7 +58,7 @@ public class HotelController {
             //set imgList
             List<String> images = new ArrayList<>();
             for(int i=0;i<hotel.getImg_num();i++){
-                images.add("..../after-end/picture/image_hotel_info/"+hotel.getId()+"_"+i+".jpg");
+                images.add("http://localhost:8443/image/1/"+i+".jpg");
             }
             hotel.setImgList(images);
 
@@ -57,6 +66,13 @@ public class HotelController {
             // set hotel facilities
             HotelFacController hotelFacController = new HotelFacController();
             List<HotelFac> hotelFacList = hotelFacController.getHotelFac2(requestHotel);
+//            List<HotelFac> hotelFacList = hotelFacService.get(hotel);
+//            if(0==hotelFacList.size()){
+//                System.out.println("Get fac by hotelId failed!");
+//            }else {
+//                System.out.println("Get fac by hotelId success!");
+//            }
+
             List<String> facilities_hotel = new ArrayList<>();
             for (int i = 0; i < hotelFacList.size(); i++) {
                 facilities_hotel.add(hotelFacList.get(i).getName());
@@ -64,9 +80,53 @@ public class HotelController {
             hotel.setFacilities(facilities_hotel);
 
             //set rooms
-            RoomController roomController = new RoomController();
             List<Room> rooms = roomController.getRoomListWithFac(requestHotel);
             hotel.setRooms(rooms);
+
+        }
+
+        return hotel;
+    }
+
+    @CrossOrigin
+    @PostMapping(value = "/api/hotel/searchByIdDetailed")
+    @ResponseBody
+    public Hotel hotelInfoDetailed(@RequestBody Hotel requestHotel, HttpSession session) {
+        Hotel hotel = hotelService.SearchbyID(requestHotel);
+        if(null == hotel){
+            System.out.println("Get hotel info failed!");
+        }else {
+            System.out.println("Get hotel info success");
+            System.out.println("Setting hotel...");
+            //set img
+            hotel.setImg("http://localhost:8443/image/1/"+hotel.getId()+".jpg");
+            //set imgList
+            List<String> images = new ArrayList<>();
+            for(int i=0;i<hotel.getImg_num();i++){
+                images.add("http://localhost:8443/image/0/"+i+".jpg");
+            }
+            hotel.setImgList(images);
+
+
+            // set hotel facilities
+            List<HotelFac> hotelFacList = hotelFacController.getHotelFac2(requestHotel);
+//            List<HotelFac> hotelFacList = hotelFacService.get(hotel);
+//            if(0==hotelFacList.size()){
+//                System.out.println("Get fac by hotelId failed!");
+//            }else {
+//                System.out.println("Get fac by hotelId success!");
+//            }
+
+            List<String> facilities_hotel = new ArrayList<>();
+            for (int i = 0; i < hotelFacList.size(); i++) {
+                facilities_hotel.add(hotelFacList.get(i).getName());
+            }
+            hotel.setFacilities(facilities_hotel);
+
+            //set rooms
+//            RoomController roomController = new RoomController();
+//            List<Room> rooms = roomController.getRoomListWithFac(requestHotel);
+//            hotel.setRooms(rooms);
 
         }
 
@@ -92,9 +152,6 @@ public class HotelController {
     @PostMapping(value = "/api/hotel/add")
     @ResponseBody
     public Result addHotel(@RequestBody Hotel requestHotel, HttpSession session) {
-        String name = requestHotel.getName();
-        name = HtmlUtils.htmlEscape(name);
-        System.out.println("Adding hotel: "+name+"...");
 
         Hotel hotel = hotelService.add(requestHotel);
         if(null ==hotel) {

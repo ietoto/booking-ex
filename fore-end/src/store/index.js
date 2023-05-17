@@ -49,6 +49,21 @@ export default new Vuex.Store({
       username: window.localStorage.getItem('order' || '[]') == null ? '' : JSON.parse(window.localStorage.getItem('order' || '[]')).username,
       userid: window.localStorage.getItem('order' || '[]') == null ? '' : JSON.parse(window.localStorage.getItem('order' || '[]')).userid,
       date_num: window.localStorage.getItem('order' || '[]') == null ? '' : JSON.parse(window.localStorage.getItem('order' || '[]')).date_num
+    },
+    hotel: {
+      id: window.localStorage.getItem('hotel' || '[]') == null ? '' : JSON.parse(window.localStorage.getItem('hotel' || '[]')).id,
+      name: window.localStorage.getItem('hotel' || '[]') == null ? '' : JSON.parse(window.localStorage.getItem('hotel' || '[]')).name,
+      desciption: window.localStorage.getItem('hotel' || '[]') == null ? '' : JSON.parse(window.localStorage.getItem('hotel' || '[]')).desciption,
+      distance: window.localStorage.getItem('hotel' || '[]') == null ? '' : JSON.parse(window.localStorage.getItem('hotel' || '[]')).distance,
+      city: window.localStorage.getItem('hotel' || '[]') == null ? '' : JSON.parse(window.localStorage.getItem('hotel' || '[]')).city,
+      location: window.localStorage.getItem('hotel' || '[]') == null ? '' : JSON.parse(window.localStorage.getItem('hotel' || '[]')).location,
+      address: window.localStorage.getItem('hotel' || '[]') == null ? '' : JSON.parse(window.localStorage.getItem('hotel' || '[]')).address,
+      score: window.localStorage.getItem('hotel' || '[]') == null ? '' : JSON.parse(window.localStorage.getItem('hotel' || '[]')).score,
+      star: window.localStorage.getItem('hotel' || '[]') == null ? '' : JSON.parse(window.localStorage.getItem('hotel' || '[]')).star,
+      img: window.localStorage.getItem('hotel' || '[]') == null ? '' : JSON.parse(window.localStorage.getItem('hotel' || '[]')).img,
+      imgList: window.localStorage.getItem('hotel' || '[]') == null ? '' : JSON.parse(window.localStorage.getItem('hotel' || '[]')).imgList,
+      rooms: window.localStorage.getItem('hotel' || '[]') == null ? '' : JSON.parse(window.localStorage.getItem('hotel' || '[]')).rooms,
+      facilities: window.localStorage.getItem('hotel' || '[]') == null ? '' : JSON.parse(window.localStorage.getItem('hotel' || '[]')).facilities,
     }
   },
   mutations: {
@@ -77,6 +92,10 @@ export default new Vuex.Store({
     order(state,order){
       state.order=order
       window.localStorage.setItem('order', JSON.stringify(order))
+    },
+    hotel(state,hotel){
+      state.hotel=hotel
+      window.localStorage.setItem('hotel', JSON.stringify(hotel))
     }
   }
 })

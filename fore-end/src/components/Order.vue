@@ -1,16 +1,16 @@
 <template>
   <body id="poster">
   <Navbar/>
-  <el-container style="height: 1500px;margin-top: 20px;border: 1px solid rgb(222,27,79);width: 1100px;position: relative;left: 200px;">
-    <el-header style="border: 1px solid rgb(222,27,79);">
+  <el-container style="height: 1500px;margin-top: 20px;border: 1px solid rgba(222,27,79,0);width: 1100px;position: relative;left: 200px;">
+    <el-header style="border: 1px solid rgba(222,27,79,0);">
       <el-steps :active="step" finish-status="success">
         <el-step title="已选住宿"></el-step>
         <el-step title="个人信息"></el-step>
         <el-step title="最后一步"></el-step>
       </el-steps>
     </el-header>
-    <el-container style="height: 1500px;border: 1px solid rgb(27,134,222);width: 1100px;">
-    <el-aside style="height: 1500px;width: 350px;margin-top: 0px;border: 1px solid rgb(222,27,79);">
+    <el-container style="height: 1440px;border: 1px solid rgba(27,134,222,0);width: 1100px;">
+    <el-aside style="height: 1440px;width: 350px;margin-top: 0px;border: 1px solid rgba(222,27,79,0);">
       <el-card class="box-card"style="width: 340px;height: 300px" shadow="hover">
         <div slot="header" style="font-size: 18px; font-weight: bold;">
           <span>订单详情</span>
@@ -65,18 +65,24 @@
         </div>
       </el-card>
     </el-aside>
-      <el-main style="height: 1500px;width: 200px;margin-top: 0px;border: 1px solid rgb(222,27,79);">
+      <el-main style="height: 1440px;width: 200px;margin-top: 0px;border: 1px solid rgba(222,27,79,0);">
         <el-card class="box-card"style="width: 700px;height: 300px" shadow="hover">
-            <el-container style="border: 1px solid rgb(222,27,79);height: 250px;">
-              <el-aside width="200px" style="border: 1px solid rgb(222,27,79);">Aside</el-aside>
+            <el-container style="border: 1px solid rgba(222,27,79,0);height: 250px;">
+              <el-aside width="200px" style="border: 1px solid rgba(222,27,79,0);">
+                <el-container style="border: 1px solid rgba(222,27,79,0);height: 245px;">
+                <el-image
+                  style="width: 100%; height: 100%;"
+                  :src="img"></el-image>
+                </el-container>
+              </el-aside>
               <el-container>
-                <el-main style="border: 1px solid rgb(222,27,79);">
+                <el-main style="border: 1px solid rgba(222,27,79,0);">
                   <div>
                     <el-row>
                       <el-col :span="3"><div> 酒店</div></el-col>
                       <el-col :span="12"><div>
                         <el-rate
-                          v-model="star"
+                          v-model="hotel.star"
                           disabled
                           text-color="#ff9900"
                           score-template="{value}">
@@ -88,17 +94,20 @@
                     {{this.$store.state.order.hotel_name}}
                   </div>
                   <div style="  margin-top: 10px;">
-                    {{addresss}}
+                    {{hotel.addresss}}
                   </div>
-                  <div v-if="distance<=3" style=" font-size: 16px;color: #007f58;   margin-top: 10px;">
+                  <div v-if="hotel.distance<=3&&hotel.distance>=0" style=" font-size: 16px;color: #007f58;   margin-top: 10px;">
                     位置很好
                   </div>
-
-                  <div v-if="distance<=3" style=" font-size: 16px;color: #ffffff;  margin-top: 10px;">
-                    <span style="font-size:15px;width:500px;height:40px;border:solid 2px rgba(128,128,128,0);margin-right: 30px;background-color: #00356e">{{score}}</span>
-                    <a v-if="score>=9" style=" font-size: 16px;color: #000000;">好评如潮</a>
-                    <a v-else-if="score>=8" style=" font-size: 16px;color: #000000;">好极了</a>
-                    <a v-else-if="score>=7" style=" font-size: 16px;color: #000000;">不错</a>
+                  <div v-if="hotel.distance>=0" style=" font-size: 16px;color: #007f58;   margin-top: 10px;">
+                    距离中心距离{{hotel.distance}}公里
+                  </div>
+                  <div v-if="hotel.distance<=3" style=" font-size: 16px;color: #ffffff;  margin-top: 10px;">
+                    <span style="font-size:15px;width:500px;height:40px;border:solid 2px rgba(128,128,128,0);margin-right: 30px;background-color: #00356e">{{hotel.score}}</span>
+                    <a v-if="hotel.score>=9" style=" font-size: 16px;color: #000000;">好评如潮</a>
+                    <a v-else-if="hotel.score>=8" style=" font-size: 16px;color: #000000;">好极了</a>
+                    <a v-else-if="hotel.score>=7" style=" font-size: 16px;color: #000000;">不错</a>
+                    <a v-else-if="hotel.score===0" style=" font-size: 16px;color: #000000;">暂时没有评分</a>
                   </div>
                 </el-main>
               </el-container>
@@ -215,12 +224,62 @@
           </span>
           </div>
         </el-card>
-        <div style="text-align:right;margin-top: 25px;">
-          <el-button type="primary">下一步：最终信息</el-button>
+        <div v-if="step!==3" style="text-align:right;margin-top: 25px;">
+          <el-button type="primary" @click="showconfirm()">下一步：最终信息</el-button>
         </div>
       </el-main>
     </el-container>
   </el-container>
+  <el-dialog  :visible.sync="confirmVisible">
+    <el-card class="box-card"style="width: 720px;height: 550px" shadow="never">
+      <div slot="header" style="font-size: 18px; font-weight: bold;">
+        <div style="font-weight: bold; font-size: 22px;   margin-top: 10px;">
+          {{this.$store.state.order.hotel_name}}
+        </div>
+        <div style="  margin-top: 10px;">
+          {{this.$store.state.order.room_name}}
+        </div>
+      </div>
+      <div>
+        <el-descriptions class="margin-top" :column="2" direction="vertical">
+          <el-descriptions-item label="入住时间">
+            <span style="font-weight: bold; font-size: 18px;">{{this.$store.state.order.startdate}}</span>
+          </el-descriptions-item>
+          <el-descriptions-item label="退房时间">
+            <span style="font-weight: bold; font-size: 18px;">{{this.$store.state.order.enddate}}</span>
+          </el-descriptions-item>
+          <el-descriptions-item label="入住总天数">
+            <span style="font-weight: bold; font-size: 18px;">{{this.$store.state.order.date_num}}晚</span>
+          </el-descriptions-item>
+        </el-descriptions>
+        <el-descriptions class="margin-top" :column="2" direction="vertical">
+          <el-descriptions-item label="已选择">
+            <span style="font-weight: bold; font-size: 18px;">{{this.$store.state.order.room_name}}*{{this.$store.state.order.num}}</span>
+          </el-descriptions-item>
+          <el-descriptions-item label="总价格">
+            <span style="font-weight: bold; font-size: 18px;">{{this.$store.state.order.money}}元</span>
+          </el-descriptions-item>
+          <el-descriptions-item label="预定人姓名">
+            <span style="font-weight: bold; font-size: 18px;">{{this.$store.state.user.name}}</span>
+          </el-descriptions-item>
+          <el-descriptions-item label="预订人邮箱">
+            <span style="font-weight: bold; font-size: 18px;">{{this.$store.state.user.postbox}}</span>
+          </el-descriptions-item>
+            <el-descriptions-item label="特殊要求">
+              <a v-if="notes!==null">
+              <span style="font-weight: bold; font-size: 18px;">{{this.notes}}</span>
+              </a>
+              <a v-else>
+                <span style="font-weight: bold; font-size: 18px;">无</span>
+              </a>
+            </el-descriptions-item>
+        </el-descriptions>
+      </div>
+      <div v-if="step!==3" style="text-align:right;margin-top: 5px;">
+        <el-button type="primary" @click="setconfirm()">我确认上述信息</el-button>
+      </div>
+    </el-card>
+  </el-dialog>
   </body>
 </template>
 
@@ -234,6 +293,7 @@ export default {
   mounted: function () {
     console.log('挂载开始')
     this.checkstep()
+    this.gethotel()
   },
   methods: {
     checkstep(){
@@ -241,6 +301,82 @@ export default {
       if(this.$store.state.order.state!=='未付款'){
         this.step=3
       }
+    },
+    gethotel(){
+      console.log('gethotel')
+      var _this = this
+      this.$axios
+        .post('/hotel/searchByIdDetailed', {
+          id: this.$store.state.order.hotelid
+        })
+        .then(successResponse => {
+          if (successResponse.data !=null) {
+            this.hotel=successResponse.data
+            console.log(successResponse.data)
+            this.$store.commit("hotel",this.hotel)
+
+          }
+          else {
+          }
+        })
+        .catch(failResponse => {
+        })
+      this.$axios
+        .get('/image/1/1.jpg', {
+        })
+        .then(successResponse => {
+          if (successResponse.data !=null) {
+            this.img= successResponse.data
+          }
+          else {
+          }
+        })
+        .catch(failResponse => {
+        })
+    },
+    showconfirm(){
+      this.confirmVisible = true
+    },
+    setconfirm(){
+      this.confirmVisible = false
+      this.$axios
+        .post('/order/update', {
+          id: this.$store.state.order.id,
+          userid: this.$store.state.order.userid,
+          hotelid: this.$store.state.order.hotelid,
+          roomid: this.$store.state.order.roomid,
+          num: this.$store.state.order.num,
+          money: this.$store.state.order.money,
+          startdate: this.$store.state.order.startdate,
+          enddate: this.$store.state.order.enddate,
+          state: 1
+        })
+        .then(successResponse => {
+          if (successResponse.data.code ===200) {
+            // var data = this.registerForm
+            this.$message({
+              duration: 1000,
+              showClose: true,
+              message: '订单确认成功！',
+              type: 'success'
+            })
+            this.order=this.$store.state.order
+            this.order.state=1
+            this.$store.commit("order",this.order)
+            this.step=3
+            this.$router.push('/myorder');
+          }
+          else {
+            this.$message({
+              duration: 1000,
+              showClose: true,
+              message: '修改失败！',
+              type: 'error'
+            })
+          }
+        })
+        .catch(failResponse => {
+        })
     }
   },
   data() {
@@ -265,17 +401,17 @@ export default {
       }
     };
     return {
-      step: 1,
-      star: 3.7,
-      addresss: '两江西路',
-      distance: 2,
-      score: 9.7,
+      step: 2,
+      confirmVisible: false,
+      img: 'http://localhost:8443/image/1/1.jpg',
       Travelmode: '1',
       nameAndpostbox: {
         name: this.$store.state.user.name,
         postbox: this.$store.state.user.postbox
       },
       notes: null,
+      order: null,
+      hotel: null,
       rules: {
         name: [
         { validator: checkname, trigger: 'blur' }

@@ -17,7 +17,11 @@ import java.util.List;
 public class RoomController {
     @Autowired
     RoomService roomService;
+    @Autowired
+    private RoomFacController roomFacController;
 
+    @CrossOrigin
+    @ResponseBody
     public List<Room> getRoomListWithFac(Hotel hotel) {
         Room room =new Room();
         room.setHotelid(hotel.getId());
@@ -29,7 +33,6 @@ public class RoomController {
         }
 
         //set room facilities
-        RoomFacController roomFacController = new RoomFacController();
         for(int i=0;i<rooms.size();i++){
             List<RoomFac> roomFacList = roomFacController.getOneRoomFac1(room);
             List<String> facilities_room = new ArrayList<>();

@@ -22,6 +22,10 @@ import java.util.List;
 public class SearchController {
     @Autowired
     SearchService searchService;
+    @Autowired
+    private HotelController hotelController;
+    @Autowired
+    private RoomController roomController;
 
     //初次搜索, 根据位置, 日期, 人数
     //返回(可以参考pojo.SearchDetailed)：满足条件的酒店信息（不包括其客房和酒店设施的信息）
@@ -41,7 +45,7 @@ public class SearchController {
             //设置封面图片路径
             List<Hotel> hotels = searchDetailed.getHotels();
             for(int i=0;i<hotels.size();i++){
-                hotels.get(i).setImg("..../after-end/picture/image_hotel/"+hotels.get(i).getId()+".jpg");
+                hotels.get(i).setImg("http://localhost:8443/image/1/"+hotels.get(i).getId()+".jpg");
             }
             
             //计算价格以及推荐客房
@@ -75,7 +79,7 @@ public class SearchController {
             //设置封面图片路径
             List<Hotel> hotels = searchDetailed.getHotels();
             for(int i=0;i<hotels.size();i++){
-                hotels.get(i).setImg("..../after-end/picture/image_hotel/"+hotels.get(i).getId()+".jpg");
+                hotels.get(i).setImg("http://localhost:8443/image/1/"+hotels.get(i).getId()+".jpg");
             }
             
             //计算价格以及推荐客房
@@ -97,7 +101,6 @@ public class SearchController {
         int start = dateutils.DatetoInt(requestSearch.getStartdate());
         int end = dateutils.DatetoInt(requestSearch.getEnddate());
         int time = end - start;
-        RoomController roomController = new RoomController();
         for(int k=0;k<hotels.size();k++){
             Hotel hotel = hotels.get(k);
             hotel.setRooms(roomController.getRoomList2(hotel));
@@ -179,11 +182,11 @@ public class SearchController {
     public SearchDetailed hotel_info(@RequestBody SearchDetailed requestSearch, HttpSession session) {
         Hotel hotel = new Hotel();
         hotel.setId(requestSearch.getId());
-        HotelController hotelController = new HotelController();
         SearchDetailed searchDetailed = requestSearch;
         hotel = hotelController.hotelInfo(hotel);
         List<Hotel> hotels = new ArrayList<>();
         hotels.add(hotel);
+        searchDetailed.setHotels(hotels);
         //可用房间以及价格
         recommend(searchDetailed);
 
