@@ -35,7 +35,10 @@ export default new Vuex.Store({
       cancle_policy_num: window.localStorage.getItem('search' || '[]') == null ? '' : JSON.parse(window.localStorage.getItem('search' || '[]')).cancle_policy_num,
       select_policy_num: window.localStorage.getItem('search' || '[]') == null ? '' : JSON.parse(window.localStorage.getItem('search' || '[]')).select_policy_num,
       date_num: window.localStorage.getItem('search' || '[]') == null ? '' : JSON.parse(window.localStorage.getItem('search' || '[]')).date_num
-
+    },
+    searchtype:{
+      //为0表示是第一次搜索，为1为第二次搜索
+      type: window.localStorage.getItem('searchtype' || '[]') == null ? '' : JSON.parse(window.localStorage.getItem('searchtype' || '[]')).type
     },
     order: {
       id: window.localStorage.getItem('order' || '[]') == null ? '' : JSON.parse(window.localStorage.getItem('order' || '[]')).id,
@@ -102,6 +105,10 @@ export default new Vuex.Store({
       state.search.select_break_num=[]
       state.search.cancle_policy_num=[]
       state.search.select_policy_num=[]
+    },
+    searchtype(state,searchtype){
+      state.searchtype=searchtype
+      window.localStorage.setItem('searchtype', JSON.stringify(searchtype))
     },
     order(state,order){
       state.order=order

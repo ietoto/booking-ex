@@ -1054,4 +1054,258 @@ public class SearchDAO {
         }
         return s;
     }
+    public static SearchDetailed SearchForSecondLimit(SearchDetailed search) {
+        Connection con=null;
+        SearchDetailed s= new SearchDetailed();
+        List<Integer> star_num=new ArrayList<>();
+        List<Integer> distance_num=new ArrayList<>();
+        List<Integer> score_num=new ArrayList<>();
+
+        List<Hotel> Hotellist=new ArrayList<>();
+        List<HotelFac> HotelFaclist=new ArrayList<>();
+        List<RoomFac> RoomFaclist=new ArrayList<>();
+
+        List<Integer> break_num=new ArrayList<>();
+        List<Integer> cancle_policy_num=new ArrayList<>();
+        try{
+            con= JDBCUtils.getConnect();
+            String sql00="DROP VIEW IF EXISTS hotellist;";
+            PreparedStatement pstate00 = con.prepareStatement(sql00);
+            pstate00.executeUpdate();
+            String sql1="CREATE VIEW hotellist AS select a.hotel_id,sum((ifnull(a.room_num-b.num,a.room_num)*a.room_size)) as num_hum from (select hotel_id,room_id,room_num,room_size from room where hotel_id IN(SELECT hotel_id FROM hotel where (hotel_name Like ? OR hotel_city Like ? OR hotel_location Like ?) ";
+
+            int i=-1;
+            if(search.getSelect_distance_num()!=null){
+                for(int j=0;j<search.getSelect_distance_num().size();j++){
+                    if(search.getSelect_distance_num().get(j))i=j;
+                    break;
+                }
+            }
+            if(search.getSelect_distance_num()!=null&&i!=-1){
+                for(int j=0;j<search.getSelect_distance_num().size();j++){
+                    if(search.getSelect_distance_num().get(j))i=j;
+                }
+            }
+            switch (i){
+                case 0:{
+                    sql1+="AND hotel_distance<=1 AND hotel_distance>0 ";
+                    break;
+                }
+                case 1:{
+                    sql1+="AND hotel_distance<=3 AND hotel_distance>0 ";
+                    break;
+                }
+                case 2:{
+                    sql1+="AND hotel_distance<=5 AND hotel_distance>0 ";
+                    break;
+                }
+            }
+            i=-1;
+            if(search.getSelect_score_num()!=null){
+                for(int j=0;j<search.getSelect_score_num().size();j++){
+                    if(search.getSelect_score_num().get(j))i=j;
+                    break;
+                }
+            }
+            if(search.getSelect_score_num()!=null&&i!=-1){
+                for(int j=0;j<search.getSelect_score_num().size();j++){
+                    if(search.getSelect_score_num().get(j))i=j;
+                }
+            }
+            switch (i){
+                case 0:{
+                    sql1+="AND hotel_score>=9 ";
+                    break;
+                }
+                case 1:{
+                    sql1+="AND hotel_score>=8 ";
+                    break;
+                }
+                case 2:{
+                    sql1+="AND hotel_score>=7 ";
+                    break;
+                }
+                case 3:{
+                    sql1+="AND hotel_score>=6 ";
+                    break;
+                }
+            }
+            i=-1;
+            if(search.getSelect_star_num()!=null){
+                for(int j=0;j<search.getSelect_star_num().size();j++){
+                    if(search.getSelect_star_num().get(j)){
+                        i=j;
+                        break;
+                    }
+                }
+            }
+            if(i!=-1){
+                sql1+="AND (";
+                for(int j=0;j<search.getSelect_star_num().size();j++){
+                    if(search.getSelect_star_num().get(j)){
+                        if(i==j){
+                            sql1+=" hotel_star="+Integer.toString(i);
+                        }
+                        else{
+                            sql1+=" OR hotel_star="+Integer.toString(i);
+                        }
+                    }
+                }
+                sql1+=" )";
+            }
+
+            sql1+=")";
+            i=-1;
+            if(search.getSelect_policy_num()!=null){
+                for(int j=0;j<search.getSelect_policy_num().size();j++){
+                    if(search.getSelect_policy_num().get(j)){
+                        i=j;
+                        break;
+                    }
+                }
+            }
+            if(i!=-1){
+                if(search.getSelect_policy_num().get(0)){
+                    sql1+=" AND room_isfreecancel= 1";
+                }
+                if(search.getSelect_policy_num().get(1)){
+                    sql1+=" AND room_isnorequire= 1";
+                }
+            }
+
+            i=-1;
+            if(search.getSelect_break_num()!=null){
+                for(int j=0;j<search.getSelect_break_num().size();j++){
+                    if(search.getSelect_break_num().get(j)){
+                        i=j;
+                        break;
+                    }
+                }
+            }
+            if(i!=-1){
+                sql1+="AND (";
+                for(int j=0;j<search.getSelect_break_num().size();j++){
+                    if(search.getSelect_break_num().get(j)){
+                        if(i==j){
+                            if (j == 0) {
+                                sql1+=" room_breakfast<100";
+                            }
+                            else{
+                                sql1+=" room_breakfast>=100";
+                            }
+                        }
+                        else{
+                            if (j == 0) {
+                                sql1+=" OR room_breakfast<100";
+                            }
+                            else{
+                                sql1+=" OR room_breakfast>=100";
+                            }
+                        }
+                    }
+                }
+                sql1+=" )";
+            }
+
+            i=-1;
+            if(search.getSelect_hotelFacList()!=null){
+                for(int j=0;j<search.getSelect_hotelFacList().size();j++){
+                    if(search.getSelect_hotelFacList().get(j).getNum()>0){
+                        i=j;
+                        break;
+                    }
+                }
+            }
+            if(i!=-1){
+                sql1+=" AND hotel_id IN(SELECT hotel_id FROM fac_hotel where ";
+                for(int j=0;j<search.getSelect_hotelFacList().size();j++){
+                    if(search.getSelect_hotelFacList().get(j).getNum()>0){
+                        if(i==j){
+                            sql1+="hotel_facname="+"'"+search.getSelect_hotelFacList().get(j).getName()+"'";
+                        }
+                        else{
+                            sql1+=" OR hotel_facname="+"'"+search.getSelect_hotelFacList().get(j).getName()+"'";
+                        }
+                    }
+                }
+                sql1+=" )";
+            }
+
+            i=-1;
+            if(search.getSelect_roomFacList()!=null){
+                for(int j=0;j<search.getSelect_roomFacList().size();j++){
+                    if(search.getSelect_roomFacList().get(j).getNum()>0){
+                        i=j;
+                        break;
+                    }
+                }
+            }
+            if(i!=-1){
+                sql1+=" AND hotel_id IN(SELECT hotel_id FROM fac_room where ";
+                for(int j=0;j<search.getSelect_roomFacList().size();j++){
+                    if(search.getSelect_roomFacList().get(j).getNum()>0){
+                        if(i==j){
+                            sql1+="room_facname="+"'"+search.getSelect_roomFacList().get(j).getName()+"'";
+                        }
+                        else{
+                            sql1+=" OR room_facname="+"'"+search.getSelect_roomFacList().get(j).getName()+"'";
+                        }
+                    }
+                }
+                sql1+=" )";
+            }
+
+            sql1+=") as a LEFT join (select hotelid,roomid,count(*) num from `order` where  state=1 and startdate<=? and enddate >=? GROUP BY hotelid,roomid) as b on a.hotel_id=b.hotelid and a.room_id=b.roomid group by hotel_id HAVING num_hum > ?;";
+            System.out.println(sql1);
+            PreparedStatement pstate1 = con.prepareStatement(sql1);
+            pstate1.setString(1,'%'+search.getLocation()+'%');
+            pstate1.setString(2,'%'+search.getLocation()+'%');
+            pstate1.setString(3,'%'+search.getLocation()+'%');
+            pstate1.setString(4,search.getEnddate());
+            pstate1.setString(5,search.getStartdate());
+            int num= (int) ((double)search.getAdult()+(double)search.getChild()/2);
+            pstate1.setInt(6,num);
+            pstate1.executeUpdate();
+
+            String sql2="SELECT * from hotel where hotel_id in (SELECT hotel_id FROM hotellist);";
+            PreparedStatement pstate2 = con.prepareStatement(sql2);
+            ResultSet resultSet2 = pstate2.executeQuery();
+            while (resultSet2.next()){
+                Hotel temp=new Hotel();
+                temp.setId(resultSet2.getInt("hotel_id"));
+                temp.setName(resultSet2.getString("hotel_name"));
+                temp.setDesciption(resultSet2.getString("hotel_description"));
+                temp.setScore(resultSet2.getDouble("hotel_score"));
+                temp.setLocation(resultSet2.getString("hotel_location"));
+                temp.setStar(resultSet2.getInt("hotel_star"));
+                temp.setDistance(resultSet2.getDouble("hotel_distance"));
+                temp.setImg_num(resultSet2.getInt("hotel_imgnum"));
+                temp.setCity(resultSet2.getString("hotel_city"));
+                temp.setAddress(resultSet2.getString("hotel_address"));
+                Hotellist.add(temp);
+            }
+            String sql3="SELECT count(*)num FROM hotellist;";
+            PreparedStatement pstate3 = con.prepareStatement(sql3);
+            ResultSet resultSet3 = pstate3.executeQuery();
+            while (resultSet3.next()){
+                s.setNum(resultSet3.getInt("num"));
+            }
+            String sql14="drop view hotellist;";
+            PreparedStatement pstate14 = con.prepareStatement(sql14);
+            pstate14.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            try {
+                if(con==null){
+                    System.out.println("test");
+                }
+                con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        s.setHotels(Hotellist);
+        return s;
+    }
 }

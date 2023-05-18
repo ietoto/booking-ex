@@ -74,5 +74,9 @@ public class SearchService {
     public SearchDetailed SearchForSecond(SearchDetailed search){
         return searchDAO.SearchForSecond(search);
     }
+    //只返回酒店信息，不返回设施数量
+    public SearchDetailed SearchForSecondLimit(SearchDetailed search){
+        return searchDAO.SearchForSecondLimit(search);
+    }
 
 }

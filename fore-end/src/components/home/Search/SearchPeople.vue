@@ -41,6 +41,10 @@
 <script>
 export default {
     name: 'SearchBar',
+  mounted: function () {
+    console.log('挂载开始')
+    this.checkpeople()
+  },
     data() {
         return {
             adults: 2,
@@ -56,6 +60,12 @@ export default {
         },
     },
     methods: {
+      checkpeople(){
+        console.log('checkpeople')
+        if(this.$store.state.search.adult!==null)this.adults=this.$store.state.search.adult
+        if(this.$store.state.search.child!==null)this.children=this.$store.state.search.child
+        if(this.$store.state.search.room_num!==null)this.rooms=this.$store.state.search.room_num
+      },
         handleAdultChange(value) {
           this.adults = value;
           this.$emit('change', this.adults,this.children,this.rooms);

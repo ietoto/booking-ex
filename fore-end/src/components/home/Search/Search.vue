@@ -16,6 +16,10 @@
 import SearchPeople from './SearchPeople.vue'
 export default {
   name: 'Search',
+  mounted: function () {
+    console.log('挂载开始')
+    this.checksearch()
+  },
   data() {
     return {
       date: '',
@@ -55,6 +59,10 @@ export default {
           room_num:this.rooms,
           date_num: diffDays}
       this.$store.commit("search",search)
+      let searchtype;
+      searchtype=
+        {type:0}
+      this.$store.commit("searchtype",searchtype)
       this.$router.push('/search'); // 这里的 '/path/to/page' 是你要跳转的页面的路由
     },
     // 事件处理函数
@@ -62,6 +70,11 @@ export default {
       this.adults=adults
       this.children=children
       this.rooms=rooms
+    },
+    checksearch(){
+      console.log('checksearch')
+      if(this.$store.state.search.location!==null)this.destination=this.$store.state.search.location
+      if(this.$store.state.search.startdate!==null&&this.$store.state.search.enddate!==null)this.date=[this.$store.state.search.startdate,this.$store.state.search.enddate]
     }
 }
 

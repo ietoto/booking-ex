@@ -25,7 +25,7 @@
      <div class="search-bar-wrapper">
        <SearchPeople style="margin-left: 3px; margin-top: -5px;" @change="people"/>
      </div>
-     <el-button type="primary" class="search-button">搜索</el-button>
+     <el-button type="primary" class="search-button" @click="Gohere">搜索</el-button>
    </div>
  </template>
 
@@ -43,6 +43,13 @@
        this.adults=adults
        this.children=children
        this.rooms=rooms
+     },
+     Gohere(){
+       let searchtype;
+       searchtype=
+         {type:1}
+       this.$store.commit("searchtype",searchtype)
+       this.$forceUpdate();
      }
    },
    data() {

@@ -47,12 +47,12 @@ public class SearchController {
             for(int i=0;i<hotels.size();i++){
                 hotels.get(i).setImg("http://localhost:8443/image/1/"+hotels.get(i).getId()+".jpg");
             }
-            
+
             //计算价格以及推荐客房
             recommend(searchDetailed);
-            
+
             searchDetailed.setHotels(hotels);
-            
+
         }
 
         return searchDetailed;
@@ -108,17 +108,40 @@ public class SearchController {
             for(int i=0;i<hotels.size();i++){
                 hotels.get(i).setImg("http://localhost:8443/image/1/"+hotels.get(i).getId()+".jpg");
             }
-            
+
             //计算价格以及推荐客房
             recommend(searchDetailed);
-            
+
             searchDetailed.setHotels(hotels);
 //            System.out.println("total hotel number: "+searchDetailed.getNum());
         }
 
         return searchDetailed;
     }
-    
+    @CrossOrigin
+    @PostMapping(value = "/api/search/SearchForSecondLimit")
+    @ResponseBody
+    public SearchDetailed SearchForSecondLimit(@RequestBody SearchDetailed requestSearch, HttpSession session) {
+        System.out.println("SearchForSecondLimit...");
+        SearchDetailed searchDetailed = searchService.SearchForSecondLimit(requestSearch);
+        if(null==searchDetailed){
+            System.out.println("No result find.");
+        }else {
+            System.out.println("Search success.");
+            for(int i=0;i<searchDetailed.getHotels().size();i++){
+                System.out.println(searchDetailed.getHotels().get(i).getName());
+            }
+            System.out.println("setting filter result.");
+            //设置封面图片路径
+            List<Hotel> hotels = searchDetailed.getHotels();
+            for(int i=0;i<hotels.size();i++){
+                hotels.get(i).setImg("http://localhost:8443/image/1/"+hotels.get(i).getId()+".jpg");
+            }
+        }
+
+        return searchDetailed;
+    }
+
         public void recommend(SearchDetailed requestSearch){
         int temp = requestSearch.getDate_num();
         List<Hotel> hotels = requestSearch.getHotels();

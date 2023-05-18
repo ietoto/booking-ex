@@ -3,6 +3,9 @@
           <h1 class="h1style1 h1style2">
             {{ this.$store.state.search.location }}: 共{{this.$store.state.hotel_num}}家住宿
           </h1>
+          <h1 class="h1style1 h1style2">
+            <el-button type="primary" class="search-button" @click="clear">清除筛选条件</el-button>
+          </h1>
       </div>
   </template>
 
@@ -12,6 +15,24 @@
       hotel: {
         type: Object,
         required: true
+      }
+    },
+    methods:{
+      clear(){
+        let search=null
+        search=this.$store.state.search
+        search.select_star_num=[]
+        search.select_distance_num=[]
+        search.select_policy_num=[]
+        search.select_score_num=[]
+        search.select_hotelFacList=[]
+        search.select_roomFacList=[]
+        let searchtype;
+        searchtype=
+          {type:0}
+        this.$store.commit("search",search)
+        this.$store.commit("searchtype",searchtype)
+        this.$forceUpdate();
       }
     }
   };
