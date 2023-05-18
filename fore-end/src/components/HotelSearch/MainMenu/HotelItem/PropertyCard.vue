@@ -26,7 +26,9 @@
           <a class="small-text"
             >{{ hotel.city }}{{ hotel.location }}</a
           >
-          <div class="hotel-description" style="font-size: 16px;">{{ hotel.desciption }}</div>
+          <el-container style="height: 140px;border: 1px solid rgba(222,27,79,0);width: 380px; overflow: hidden; text-overflow: ellipsis;">
+            {{ hotel.desciption }}
+          </el-container>
           <div class="hotel-location">
             <span class="small-text">{{ hotel.address }}</span>
             <span class="small-text separator">·</span>

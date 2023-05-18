@@ -53,30 +53,30 @@
           </el-checkbox>
         </el-checkbox-group>
       </el-card>
-<!--      <el-card class="card6" shadow="hover">-->
-<!--        <el-row style="font-size: medium;font-weight:800">酒店设施</el-row>-->
-<!--        <el-checkbox-group v-model="checkedpointfacility" style="margin-top:5px;" :min="0" :max="5">-->
-<!--          <el-checkbox v-for="(points, index) in choosefacility" :label="points" :key="points"-->
-<!--                       style="display:block;font-weight:500;font-size:x-large">-->
-<!--            <el-row>-->
-<!--              <el-col :span="22"><div>{{points.name}}</div></el-col>-->
-<!--              <el-col :span="2"><div>{{points.num}}</div></el-col>-->
-<!--            </el-row>-->
-<!--          </el-checkbox>-->
-<!--        </el-checkbox-group>-->
-<!--      </el-card>-->
-<!--      <el-card class="card7" shadow="hover">-->
-<!--        <el-row style="font-size: medium;font-weight:800">客房设施</el-row>-->
-<!--        <el-checkbox-group v-model="checkedpointroom" style="margin-top:5px;" :min="0" :max="5">-->
-<!--          <el-checkbox v-for="(points, index) in chooseroom" :label="points" :key="points"-->
-<!--                       style="display:block;font-weight:500;font-size:x-large">-->
-<!--            <el-row>-->
-<!--              <el-col :span="22"><div>{{points.name}}</div></el-col>-->
-<!--              <el-col :span="2"><div>{{points.num}}</div></el-col>-->
-<!--            </el-row>-->
-<!--          </el-checkbox>-->
-<!--        </el-checkbox-group>-->
-<!--      </el-card>-->
+      <el-card class="card6" shadow="hover">
+        <el-row style="font-size: medium;font-weight:800">酒店设施</el-row>
+        <el-checkbox-group v-model="checkedpointfacility" style="margin-top:5px;" :min="0" :max="5">
+          <el-checkbox v-for="(points, index) in facilityOptions.slice(0, 10)" :label="points" :key="points"
+                       style="display:block;font-weight:500;font-size:x-large">
+            <el-row>
+              <el-col :span="22"><div>{{points.name}}</div></el-col>
+              <el-col :span="2"><div>{{points.num}}</div></el-col>
+            </el-row>
+          </el-checkbox>
+        </el-checkbox-group>
+      </el-card>
+      <el-card class="card7" shadow="hover">
+        <el-row style="font-size: medium;font-weight:800">客房设施</el-row>
+        <el-checkbox-group v-model="checkedpointroom" style="margin-top:5px;" :min="0" :max="5">
+          <el-checkbox v-for="(points, index) in roomOptions.slice(0, 10)" :label="points" :key="points"
+                       style="display:block;font-weight:500;font-size:x-large">
+            <el-row>
+              <el-col :span="22"><div>{{points.name}}</div></el-col>
+              <el-col :span="2"><div>{{points.num}}</div></el-col>
+            </el-row>
+          </el-checkbox>
+        </el-checkbox-group>
+      </el-card>
 
     </el-row>
 
@@ -105,16 +105,14 @@ export default {
       choosecancle: cancleOptions,
       checkedpointscore: [],
       choosescore: scoreOptions,
-      // checkedpointfacility: [],
-      // choosefacility: facilityOptions,
-      // checkedpointroom: [],
-      // chooseroom: roomOptions,
+      checkedpointfacility: [],
+      checkedpointroom: [],
       pointsnum: [],
       distancenum: [],
       canclenum: [],
       scorenum: [],
-      // facilityOptions: [],
-      // roomOptions: []
+      facilityOptions: [],
+      roomOptions: []
     };
   },
   methods: {
@@ -124,8 +122,8 @@ export default {
       this.distancenum= this.$store.state.searchshow.distance_num
       this.canclenum= this.$store.state.searchshow.cancle_policy_num
       this.scorenum= this.$store.state.searchshow.score_num
-      // this.facilityOptions= this.$store.state.searchshow.hotelFacList
-      // this.roomOptions= this.$store.state.searchshow.roomFacList
+      this.facilityOptions= this.$store.state.searchshow.hotelFacList
+      this.roomOptions= this.$store.state.searchshow.roomFacList
       // console.log(this.facilityOptions)
     }
   }

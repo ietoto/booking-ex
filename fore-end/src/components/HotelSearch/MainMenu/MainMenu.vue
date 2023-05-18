@@ -2,20 +2,17 @@
  <div class="rlt-right" role="main">
     <MenuTitle/>
     <HotelList/>
-<!--    <ListFooter/>-->
  </div>
 </template>
 
 <script>
-import ListFooter from './ListFooter.vue';
 import HotelList from './HotelList.vue';
 import MenuTitle from './MenuTitle.vue';
 export default {
    name: 'MainMenu',
    components: {
          MenuTitle,
-          HotelList,
-            ListFooter
+          HotelList
    }
 }
 </script>
