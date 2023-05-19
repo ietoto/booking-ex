@@ -27,10 +27,10 @@ public class ImageController {
             String path="";
             if(id!=0)
             {
-                path="D:\\Study\\课程资料\\大三下\\软件工程\\实验\\Booking\\after-end\\picture\\image_hotel\\"+ filename;
+                path="D:\\Study\\课程资料\\大三下\\软件工程\\实验\\image\\"+ filename;
             }else
             {
-                path="D:\\Study\\课程资料\\大三下\\软件工程\\实验\\Booking\\after-end\\picture\\image_hotel_info\\"+ filename;
+                path="D:\\Study\\课程资料\\大三下\\软件工程\\实验\\images\\"+ filename;
             }
             File file = new File(path);
             InputStream in = new FileInputStream(file);
