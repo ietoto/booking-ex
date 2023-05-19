@@ -51,7 +51,7 @@ public class SearchController {
             //计算价格以及推荐客房
 //            recommend(searchDetailed);
 //
-//            searchDetailed.setHotels(hotels);
+            searchDetailed.setHotels(hotels);
 
         }
 
