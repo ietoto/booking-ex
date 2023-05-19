@@ -49,7 +49,7 @@
        searchtype=
          {type:1}
        this.$store.commit("searchtype",searchtype)
-       this.$forceUpdate();
+       this.$router.go(0);
      }
    },
    data() {

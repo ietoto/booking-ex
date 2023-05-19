@@ -57,7 +57,7 @@ export default {
       console.log('根据现有条件查询酒店')
       var _this = this
       this.$axios
-        .post('/search/searchFirstLimit', {
+        .post('/search/search', {
           location: this.$store.state.search.location,
           startdate: this.$store.state.search.startdate,
           enddate: this.$store.state.search.startdate,

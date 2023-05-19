@@ -32,7 +32,7 @@
           {type:0}
         this.$store.commit("search",search)
         this.$store.commit("searchtype",searchtype)
-        this.$forceUpdate();
+        this.$router.go(0);
       }
     }
   };

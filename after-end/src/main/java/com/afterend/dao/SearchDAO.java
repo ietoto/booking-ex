@@ -1144,10 +1144,10 @@ public class SearchDAO {
                 for(int j=0;j<search.getSelect_star_num().size();j++){
                     if(search.getSelect_star_num().get(j)){
                         if(i==j){
-                            sql1+=" hotel_star="+Integer.toString(i);
+                            sql1+=" hotel_star="+Integer.toString(j);
                         }
                         else{
-                            sql1+=" OR hotel_star="+Integer.toString(i);
+                            sql1+=" OR hotel_star="+Integer.toString(j);
                         }
                     }
                 }
