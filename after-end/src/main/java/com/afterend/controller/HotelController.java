@@ -58,7 +58,7 @@ public class HotelController {
             //set imgList
             List<String> images = new ArrayList<>();
             for(int i=0;i<hotel.getImg_num();i++){
-                images.add("http://localhost:8443/image/1/"+i+".jpg");
+                images.add("http://localhost:8443/image/-1/"+i+".jpg");
             }
             hotel.setImgList(images);
 
@@ -99,7 +99,7 @@ public class HotelController {
             System.out.println("Get hotel info success");
             System.out.println("Setting hotel...");
             //set img
-            hotel.setImg("http://localhost:8443/image/1/"+hotel.getId()+".jpg");
+            hotel.setImg("http://localhost:8443/image/-1/"+hotel.getId()+".jpg");
             //set imgList
             List<String> images = new ArrayList<>();
             for(int i=0;i<hotel.getImg_num();i++){

@@ -45,7 +45,7 @@ public class SearchController {
             //设置封面图片路径
             List<Hotel> hotels = searchDetailed.getHotels();
             for(int i=0;i<hotels.size();i++){
-                hotels.get(i).setImg("http://localhost:8443/image/1/"+hotels.get(i).getId()+".jpg");
+                hotels.get(i).setImg("http://localhost:8443/image/-1/"+hotels.get(i).getId()+".jpg");
             }
 
             //计算价格以及推荐客房
@@ -72,7 +72,7 @@ public class SearchController {
             List<Hotel> hotels = searchDetailed.getHotels();
             System.out.println("Hotel(0) id:"+hotels.get(0).getId());
             for(int i=0;i<hotels.size();i++){
-                hotels.get(i).setImg("http://localhost:8443/image/1/"+hotels.get(i).getId()+".jpg");
+                hotels.get(i).setImg("http://localhost:8443/image/-1/"+hotels.get(i).getId()+".jpg");
 //                System.out.println("img:"+hotels.get(i).getId()+".jpg");
             }
             searchDetailed.setHotels(hotels);
@@ -104,7 +104,7 @@ public class SearchController {
             //设置封面图片路径
             List<Hotel> hotels = searchDetailed.getHotels();
             for(int i=0;i<hotels.size();i++){
-                hotels.get(i).setImg("http://localhost:8443/image/1/"+hotels.get(i).getId()+".jpg");
+                hotels.get(i).setImg("http://localhost:8443/image/-1/"+hotels.get(i).getId()+".jpg");
             }
 
             //计算价格以及推荐客房
@@ -133,7 +133,7 @@ public class SearchController {
             //设置封面图片路径
             List<Hotel> hotels = searchDetailed.getHotels();
             for(int i=0;i<hotels.size();i++){
-                hotels.get(i).setImg("http://localhost:8443/image/1/"+hotels.get(i).getId()+".jpg");
+                hotels.get(i).setImg("http://localhost:8443/image/-1/"+hotels.get(i).getId()+".jpg");
             }
         }
 
