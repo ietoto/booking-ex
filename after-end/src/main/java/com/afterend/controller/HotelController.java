@@ -145,7 +145,30 @@ public class HotelController {
         }
         return hotel;
     }
-
+    @CrossOrigin
+    @PostMapping(value = "/api/hotel/searchByName")
+    @ResponseBody
+    public List<Hotel> searchByName(@RequestBody Hotel hotel,HttpSession session) {
+        return hotelService.searchByName(hotel);
+    }
+    @CrossOrigin
+    @PostMapping(value = "/api/hotel/searchByLocation")
+    @ResponseBody
+    public List<Hotel> searchByLocation(@RequestBody Hotel hotel,HttpSession session) {
+        return hotelService.searchByLocation(hotel);
+    }
+    @CrossOrigin
+    @PostMapping(value = "/api/hotel/searchByScore")
+    @ResponseBody
+    public List<Hotel> searchByScore(@RequestBody Hotel hotel,HttpSession session) {
+        return hotelService.searchByScore(hotel);
+    }
+    @CrossOrigin
+    @PostMapping(value = "/api/hotel/searchByStar")
+    @ResponseBody
+    public List<Hotel> searchByStar(@RequestBody Hotel hotel,HttpSession session) {
+        return hotelService.searchByStar(hotel);
+    }
     //管理员添加酒店
     @CrossOrigin
     @PostMapping(value = "/api/hotel/add")

@@ -50,6 +50,42 @@ public class OrderController {
         }
         return orders;
     }
+    @CrossOrigin
+    @PostMapping(value = "/api/order/showByUserName")
+    @ResponseBody
+    public List<Order> showByUserName(@RequestBody User requestUser, HttpSession session) {
+        List<Order> orders = orderService.showByUserName(requestUser);
+        if(0 == orders.size()){
+            System.out.println("Show orders failed!");
+        }else {
+            System.out.println("Show orders success!");
+        }
+        return orders;
+    }
+    @CrossOrigin
+    @PostMapping(value = "/api/order/showByHotelIDNew")
+    @ResponseBody
+    public List<Order> showByHotelIDNew(@RequestBody Hotel hotel, HttpSession session) {
+        List<Order> orders = orderService.showByHotelIDNew(hotel);
+        if(0 == orders.size()){
+            System.out.println("Show orders failed!");
+        }else {
+            System.out.println("Show orders success!");
+        }
+        return orders;
+    }
+    @CrossOrigin
+    @PostMapping(value = "/api/order/showByHotelName")
+    @ResponseBody
+    public List<Order> showByHotelName(@RequestBody Hotel hotel, HttpSession session) {
+        List<Order> orders = orderService.showByHotelName(hotel);
+        if(0 == orders.size()){
+            System.out.println("Show orders failed!");
+        }else {
+            System.out.println("Show orders success!");
+        }
+        return orders;
+    }
 
     //酒店经理查订单-根据酒店id
     @CrossOrigin

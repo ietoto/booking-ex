@@ -57,6 +57,7 @@ public class UserController {
     public User update(@RequestBody User requestUser, HttpSession session) {
         String Username = requestUser.getUsername();
         Username = HtmlUtils.htmlEscape(Username);
+        System.out.println(requestUser.getPhone());
 
         User user = userService.update(requestUser);
         if (null == user) {
@@ -80,6 +81,13 @@ public class UserController {
     @ResponseBody
     public List<User> showbyusername(@RequestBody User requestUser,HttpSession session) {
         return userService.showbyusername(requestUser);
+    }
+    //    显示用户信息根据用户名
+    @CrossOrigin
+    @PostMapping(value = "/api/user/showbyname")
+    @ResponseBody
+    public List<User> showbyname(@RequestBody User requestUser,HttpSession session) {
+        return userService.showbyname(requestUser);
     }
     //    删除用户信息
     @CrossOrigin

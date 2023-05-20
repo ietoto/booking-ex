@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import SearchPeople from '../home/Search/SearchPeople.vue'
+import SearchPeople from '../../home/Search/SearchPeople.vue'
 export default {
   name: 'SearchHotel',
   data() {

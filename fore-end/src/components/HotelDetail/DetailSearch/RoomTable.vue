@@ -160,13 +160,12 @@ export default {
 }
 </script>
 <style scoped>
-.check{
 
-}
+
 .container2 {
     display: flex;
     flex-direction: column;
-    margin-left:25%;
+    margin-left: 25%;
 }
 
 .container {

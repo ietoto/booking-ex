@@ -1069,21 +1069,17 @@ public class SearchDAO {
         List<Integer> cancle_policy_num=new ArrayList<>();
         try{
             con= JDBCUtils.getConnect();
-            String sql00="DROP VIEW IF EXISTS hotellist;";
+            String sql00="DROP VIEW IF EXISTS hotellist1;";
             PreparedStatement pstate00 = con.prepareStatement(sql00);
             pstate00.executeUpdate();
-            String sql1="CREATE VIEW hotellist AS select a.hotel_id,sum((ifnull(a.room_num-b.num,a.room_num)*a.room_size)) as num_hum from (select hotel_id,room_id,room_num,room_size from room where hotel_id IN(SELECT hotel_id FROM hotel where (hotel_name Like ? OR hotel_city Like ? OR hotel_location Like ?) ";
+            String sql1="CREATE VIEW hotellist1 AS select a.hotel_id,sum((ifnull(a.room_num-b.num,a.room_num)*a.room_size)) as num_hum from (select hotel_id,room_id,room_num,room_size from room where hotel_id IN(SELECT hotel_id FROM hotel where (hotel_name Like ? OR hotel_city Like ? OR hotel_location Like ?) ";
 
             int i=-1;
             if(search.getSelect_distance_num()!=null){
                 for(int j=0;j<search.getSelect_distance_num().size();j++){
-                    if(search.getSelect_distance_num().get(j))i=j;
-                    break;
-                }
-            }
-            if(search.getSelect_distance_num()!=null&&i!=-1){
-                for(int j=0;j<search.getSelect_distance_num().size();j++){
-                    if(search.getSelect_distance_num().get(j))i=j;
+                    if(search.getSelect_distance_num().get(j)){
+                        i=j;
+                    }
                 }
             }
             switch (i){
@@ -1103,13 +1099,9 @@ public class SearchDAO {
             i=-1;
             if(search.getSelect_score_num()!=null){
                 for(int j=0;j<search.getSelect_score_num().size();j++){
-                    if(search.getSelect_score_num().get(j))i=j;
-                    break;
-                }
-            }
-            if(search.getSelect_score_num()!=null&&i!=-1){
-                for(int j=0;j<search.getSelect_score_num().size();j++){
-                    if(search.getSelect_score_num().get(j))i=j;
+                    if(search.getSelect_score_num().get(j)){
+                        i=j;
+                    }
                 }
             }
             switch (i){
@@ -1267,7 +1259,7 @@ public class SearchDAO {
             pstate1.setInt(6,num);
             pstate1.executeUpdate();
 
-            String sql2="SELECT * from hotel where hotel_id in (SELECT hotel_id FROM hotellist);";
+            String sql2="SELECT * from hotel where hotel_id in (SELECT hotel_id FROM hotellist1);";
             PreparedStatement pstate2 = con.prepareStatement(sql2);
             ResultSet resultSet2 = pstate2.executeQuery();
             while (resultSet2.next()){
@@ -1284,13 +1276,13 @@ public class SearchDAO {
                 temp.setAddress(resultSet2.getString("hotel_address"));
                 Hotellist.add(temp);
             }
-            String sql3="SELECT count(*)num FROM hotellist;";
+            String sql3="SELECT count(*)num FROM hotellist1;";
             PreparedStatement pstate3 = con.prepareStatement(sql3);
             ResultSet resultSet3 = pstate3.executeQuery();
             while (resultSet3.next()){
                 s.setNum(resultSet3.getInt("num"));
             }
-            String sql14="drop view hotellist;";
+            String sql14="drop view hotellist1;";
             PreparedStatement pstate14 = con.prepareStatement(sql14);
             pstate14.executeUpdate();
         } catch (SQLException e) {

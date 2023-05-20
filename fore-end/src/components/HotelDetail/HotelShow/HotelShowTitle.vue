@@ -14,7 +14,7 @@
                     </svg>
                 </el-tooltip>
             </div>
-            <el-button style="margin-left: 60%;" type="primary" class="float-right" @click="bookNow">現在就預訂</el-button>
+            <el-button style="margin-left: 60%;" type="primary" class="float-right" @click="scrollToRoomTable" >現在就預訂</el-button>
         </div>
         <span class="hotel-name">{{ hotel.name }}</span>
         <el-tooltip class="item" effect="dark" v-bind:content="locationRating" placement="top-start">
@@ -60,7 +60,13 @@ export default {
     methods: {
         bookNow() {
             // handle the booking logic here
-        }
+        },
+        scrollToRoomTable() {
+            const roomTableElement = document.querySelector('.roomtable');
+            if (roomTableElement) {
+                roomTableElement.scrollIntoView({ behavior: 'smooth' });
+            }
+        },
     }
 };
 </script>

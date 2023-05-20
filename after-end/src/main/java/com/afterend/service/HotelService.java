@@ -25,6 +25,18 @@ public class HotelService {
     public Hotel SearchbyID(Hotel hotel){
         return hotelDAO.SearchbyID(hotel);
     }
+    public List<Hotel> searchByName(Hotel hotel){
+        return hotelDAO.searchByName(hotel);
+    }
+    public List<Hotel> searchByLocation(Hotel hotel){
+        return hotelDAO.searchByLocation(hotel);
+    }
+    public List<Hotel> searchByScore(Hotel hotel){
+        return hotelDAO.searchByScore(hotel);
+    }
+    public List<Hotel> searchByStar(Hotel hotel){
+        return hotelDAO.searchByStar(hotel);
+    }
     //添加酒店，如果存在酒店id则失败
     public Hotel add(Hotel hotel){
         if(SearchbyID(hotel)!=null)return null;

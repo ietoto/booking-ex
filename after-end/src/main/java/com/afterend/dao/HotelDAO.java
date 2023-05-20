@@ -3,6 +3,7 @@ package com.afterend.dao;
 import com.afterend.dao.utils.JDBCUtils;
 import com.afterend.pojo.Hotel;
 import com.afterend.pojo.Order;
+import com.afterend.pojo.User;
 import org.springframework.stereotype.Service;
 
 import java.sql.Connection;
@@ -120,6 +121,160 @@ public class HotelDAO {
             }
         }
         return s;
+    }
+    public static List<Hotel> searchByName(Hotel hotel) {
+        Connection con=null;
+        List<Hotel> list=new ArrayList<>();
+
+        try{
+            con= JDBCUtils.getConnect();
+            String sql="select * from hotel where hotel_name like ?";
+            PreparedStatement pstate = con.prepareStatement(sql);
+            pstate.setString(1,'%'+hotel.getName()+'%');
+            System.out.println(pstate);
+            ResultSet resultSet = pstate.executeQuery();
+            while (resultSet.next()){
+                Hotel s=  new Hotel();
+                s.setId(resultSet.getInt("hotel_id"));
+                s.setName(resultSet.getString("hotel_name"));
+                s.setDesciption(resultSet.getString("hotel_description"));
+                s.setScore(resultSet.getDouble("hotel_score"));
+                s.setLocation(resultSet.getString("hotel_location"));
+                s.setStar(resultSet.getInt("hotel_star"));
+                s.setDistance(resultSet.getDouble("hotel_distance"));
+                s.setImg_num(resultSet.getInt("hotel_imgnum"));
+                s.setCity(resultSet.getString("hotel_city"));
+                s.setAddress(resultSet.getString("hotel_address"));
+                list.add(s);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            try {
+                if(con==null){
+                    System.out.println("test");
+                }
+                con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return list;
+    }
+    public static List<Hotel> searchByLocation(Hotel hotel) {
+        Connection con=null;
+        List<Hotel> list=new ArrayList<>();
+
+        try{
+            con= JDBCUtils.getConnect();
+            String sql="select * from hotel where hotel.hotel_city like ? or hotel.hotel_location  like ? ";
+            PreparedStatement pstate = con.prepareStatement(sql);
+            pstate.setString(1,'%'+hotel.getLocation()+'%');
+            pstate.setString(2,'%'+hotel.getLocation()+'%');
+            ResultSet resultSet = pstate.executeQuery();
+            while (resultSet.next()){
+                Hotel s=  new Hotel();
+                s.setId(resultSet.getInt("hotel_id"));
+                s.setName(resultSet.getString("hotel_name"));
+                s.setDesciption(resultSet.getString("hotel_description"));
+                s.setScore(resultSet.getDouble("hotel_score"));
+                s.setLocation(resultSet.getString("hotel_location"));
+                s.setStar(resultSet.getInt("hotel_star"));
+                s.setDistance(resultSet.getDouble("hotel_distance"));
+                s.setImg_num(resultSet.getInt("hotel_imgnum"));
+                s.setCity(resultSet.getString("hotel_city"));
+                s.setAddress(resultSet.getString("hotel_address"));
+                list.add(s);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            try {
+                if(con==null){
+                    System.out.println("test");
+                }
+                con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return list;
+    }
+    public static List<Hotel> searchByScore(Hotel hotel) {
+        Connection con=null;
+        List<Hotel> list=new ArrayList<>();
+
+        try{
+            con= JDBCUtils.getConnect();
+            String sql="select * from hotel where hotel.hotel_score = ?";
+            PreparedStatement pstate = con.prepareStatement(sql);
+            pstate.setDouble(1,hotel.getScore());
+            ResultSet resultSet = pstate.executeQuery();
+            while (resultSet.next()){
+                Hotel s=  new Hotel();
+                s.setId(resultSet.getInt("hotel_id"));
+                s.setName(resultSet.getString("hotel_name"));
+                s.setDesciption(resultSet.getString("hotel_description"));
+                s.setScore(resultSet.getDouble("hotel_score"));
+                s.setLocation(resultSet.getString("hotel_location"));
+                s.setStar(resultSet.getInt("hotel_star"));
+                s.setDistance(resultSet.getDouble("hotel_distance"));
+                s.setImg_num(resultSet.getInt("hotel_imgnum"));
+                s.setCity(resultSet.getString("hotel_city"));
+                s.setAddress(resultSet.getString("hotel_address"));
+                list.add(s);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            try {
+                if(con==null){
+                    System.out.println("test");
+                }
+                con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return list;
+    }
+    public static List<Hotel> searchByStar(Hotel hotel) {
+        Connection con=null;
+        List<Hotel> list=new ArrayList<>();
+
+        try{
+            con= JDBCUtils.getConnect();
+            String sql="select * from hotel where hotel.hotel_star = ?";
+            PreparedStatement pstate = con.prepareStatement(sql);
+            pstate.setDouble(1,hotel.getStar());
+            ResultSet resultSet = pstate.executeQuery();
+            while (resultSet.next()){
+                Hotel s=  new Hotel();
+                s.setId(resultSet.getInt("hotel_id"));
+                s.setName(resultSet.getString("hotel_name"));
+                s.setDesciption(resultSet.getString("hotel_description"));
+                s.setScore(resultSet.getDouble("hotel_score"));
+                s.setLocation(resultSet.getString("hotel_location"));
+                s.setStar(resultSet.getInt("hotel_star"));
+                s.setDistance(resultSet.getDouble("hotel_distance"));
+                s.setImg_num(resultSet.getInt("hotel_imgnum"));
+                s.setCity(resultSet.getString("hotel_city"));
+                s.setAddress(resultSet.getString("hotel_address"));
+                list.add(s);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            try {
+                if(con==null){
+                    System.out.println("test");
+                }
+                con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return list;
     }
     public static Hotel add(Hotel hotel) {
         Connection con=null;
