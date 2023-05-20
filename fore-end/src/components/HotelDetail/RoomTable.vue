@@ -2,7 +2,7 @@
     <div>
         <el-table class="RoomTable hovertable" :data="hotel.rooms"
             :header-cell-style="{ background: '#4c76b2', color: '#fff' }" :height="500" :span-method="spanMethod" border>
-            <el-table-column prop="name" label="客房类型" width="400">
+            <el-table-column prop="name" label="客房类型" width="300">
                 <template slot-scope="scope">
                     <div class="name">{{ scope.row.name }}</div>
                     <hr>
@@ -19,12 +19,13 @@
                     <i v-for="n in scope.row.size" :key="n" class="el-icon-user-solid"></i>
                 </template>
             </el-table-column>
-            <el-table-column prop="price_r" width="90">
+            <el-table-column prop="price_r" width="120">
                 <template v-slot:header>
-                    <div >今日价格</div>
+                    <div>今日价格</div>
                 </template>
                 <template slot-scope="scope">
                     <span class="price">{{ 'CNY ' + scope.row.price_r }}</span>
+                    <p>不包含: 6%增值税、 10%住宿方服务费</p>
                 </template>
             </el-table-column>
             <el-table-column label="预定须知" width="270">
@@ -95,15 +96,27 @@
             </el-table-column>
             <el-table-column label="选择客房" width="140">
                 <template slot-scope="scope">
-                    <el-select v-model="scope.row.num_rec">
-                        <el-option v-for="i in 6" :key="i" :label="(i-1).toString()" :value="i">
+                    <el-select v-model="scope.row.num_rec" @change="handleRoomSelection(scope.row)">
+                        <el-option v-for="i in 6" :key="i" :label="(i - 1).toString()" :value="i">
                         </el-option>
                     </el-select>
                 </template>
             </el-table-column>
             <el-table-column>
                 <template>
-                    <el-button class="fixed-button">确认预定</el-button>
+                    <div class="container">
+                        <el-button class="fixed-button">确认预定</el-button>
+                    </div>
+                    <div class="container2">
+                        <div class="check">
+                            <i class="el-icon-check green-text"></i>
+                            <span class="green-text">立即确认</span>
+                        </div>
+                        <div class="check">
+                            <i class="el-icon-check green-text"></i>
+                            <span class="green-text">不收任何手续费或信用卡手续费</span>
+                        </div>
+                    </div>
                 </template>
             </el-table-column>
         </el-table>
@@ -116,9 +129,9 @@ export default {
         return {
             hotel: {
                 rooms: [
-                    { "id": 1, "name": "豪华双床房", "hotelid": 5, "num_max": 20, "num_rec": 0, "num_ava": 0, "size": 2, "price_r": 733, "price_b": 119, "ifFreeCancle": 1, "ifNoRequire": 1, "facilities": ["保险箱", "冰箱", "地毯", "客厅角", "床头插座", "收音机", "无线网络", "无障碍通道", "晾衣架", "更衣室", "有线频道", "沙发", "洗手液", "清洁用品", "热水浴缸", "熨斗", "熨衣设备", "电烧水壶", "电视", "衣架", "衣柜/衣橱", "迷你吧", "隔音"] },
+                    { "id": 1, "name": "豪华双床房", "hotelid": 5, "num_max": 20, "num_rec": 0, "num_ava": 0, "size": 2, "price_r": 733, "price_b": 119, "ifFreeCancle": 0, "ifNoRequire": 1, "facilities": ["保险箱", "冰箱", "地毯", "客厅角", "床头插座", "收音机", "无线网络", "无障碍通道", "晾衣架", "更衣室", "有线频道", "沙发", "洗手液", "清洁用品", "热水浴缸", "熨斗", "熨衣设备", "电烧水壶", "电视", "衣架", "衣柜/衣橱", "迷你吧", "隔音"] },
                     { "id": 2, "name": "双人间 - 带共用浴室", "hotelid": 5, "num_max": 20, "num_rec": 0, "num_ava": 0, "size": 2, "price_r": 752, "price_b": 119, "ifFreeCancle": 1, "ifNoRequire": 1, "facilities": ["唤醒服务/闹钟", "床头插座", "收音机", "无障碍通道", "晾衣架", "有线频道", "沏茶/咖啡设备", "洗手液", "清洁用品", "熨斗", "熨衣设备", "用餐区", "电烧水壶", "电视", "电话", "空调", "衣架", "连通间", "隔音", "餐桌"] },
-                    { "id": 3, "name": "4床混合宿舍间的床位", "hotelid": 5, "num_max": 20, "num_rec": 0, "num_ava": 0, "size": 3, "price_r": 811, "price_b": 119, "ifFreeCancle": 1, "ifNoRequire": 1, "facilities": ["保险箱", "卫星频道", "唤醒服务/闹钟", "地毯", "客厅角", "床单", "床头插座", "收音机", "无线网络", "晾衣架", "沏茶/咖啡设备", "沙发", "清洁用品", "熨斗", "用餐区", "电梯直达", "电烧水壶", "电视", "电话", "空调", "隔音", "餐桌"] },
+                    { "id": 3, "name": "4床混合宿舍间的床位", "hotelid": 5, "num_max": 20, "num_rec": 0, "num_ava": 0, "size": 3, "price_r": 811, "price_b": 119, "ifFreeCancle": 1, "ifNoRequire": 0, "facilities": ["保险箱", "卫星频道", "唤醒服务/闹钟", "地毯", "客厅角", "床单", "床头插座", "收音机", "无线网络", "晾衣架", "沏茶/咖啡设备", "沙发", "清洁用品", "熨斗", "用餐区", "电梯直达", "电烧水壶", "电视", "电话", "空调", "隔音", "餐桌"] },
                     { "id": 4, "name": "4床混合宿舍间", "hotelid": 5, "num_max": 20, "num_rec": 0, "num_ava": 0, "size": 4, "price_r": 829, "price_b": 119, "ifFreeCancle": 0, "ifNoRequire": 1, "facilities": ["书桌", "保险箱", "冰箱", "床单", "床头插座", "收音机", "无障碍通道", "晾衣架", "更衣室", "有线频道", "沏茶/咖啡设备", "清洁用品", "熨斗", "熨衣设备", "用餐区", "电梯直达", "电烧水壶", "电视", "电话", "衣架", "连通间", "迷你吧", "餐桌"] },
                     { "id": 5, "name": "家庭间 - 带共用浴室", "hotelid": 5, "num_max": 20, "num_rec": 0, "num_ava": 0, "size": 3, "price_r": 719, "price_b": 119, "ifFreeCancle": 1, "ifNoRequire": 1, "facilities": ["保险箱", "冰箱", "卫星频道", "床单", "收音机", "无线网络", "有线频道", "沙发", "洗手液", "清洁用品", "熨斗", "熨衣设备", "用餐区", "电视", "电话", "衣架", "衣柜/衣橱", "迷你吧", "隔音", "餐桌"] },
                     { "id": 6, "name": "山景四人间", "hotelid": 5, "num_max": 20, "num_rec": 0, "num_ava": 0, "size": 4, "price_r": 732, "price_b": 119, "ifFreeCancle": 0, "ifNoRequire": 1, "facilities": ["书桌", "保险箱", "冰箱", "卫星频道", "地毯", "床单", "收音机", "无障碍通道", "有线频道", "沏茶/咖啡设备", "洗手液", "热水浴缸", "熨衣设备", "用餐区", "电烧水壶", "电视", "电话", "空调", "衣柜/衣橱", "迷你吧", "餐桌"] }],
@@ -142,24 +155,36 @@ export default {
                 }
                 return [rowspan, 1];
             }
-            if (columnIndex === 5) {
-                if (rowIndex === 1) {
-                    return [this.hotel.rooms.length - 1, 1]
-                }
-                else {
-                    return [0, 0];
-                }
-            }
         },
     },
 }
 </script>
 <style scoped>
-.el-table .whole-header {
-    background-color: red; /* 你想要的颜色 */
+.check{
+
 }
+.container2 {
+    display: flex;
+    flex-direction: column;
+    margin-left:25%;
+}
+
+.container {
+    display: grid;
+    justify-items: center;
+    /* 水平居中 */
+    align-items: center;
+    /* 垂直居中 */
+}
+
+.el-table .whole-header {
+    background-color: red;
+    /* 你想要的颜色 */
+}
+
 .header-price {
-    background-color: #003580; /* 你需要的颜色 */
+    background-color: #003580;
+    /* 你需要的颜色 */
 }
 
 .green-text {
@@ -197,7 +222,7 @@ export default {
     bottom: 0;
     background-color: #0D47A1;
     margin: 0 10px 10px 0;
-    width: 100%;
+    width: 50%;
     color: #fff;
 }
 
