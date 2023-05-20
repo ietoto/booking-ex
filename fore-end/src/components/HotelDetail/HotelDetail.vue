@@ -55,11 +55,15 @@
         <div>
             <HotelFacility/>
         </div>
+        <div>
+            <HotelRegistration/>
+        </div>
         <FooterBlue />
     </div>
 </template>
 
 <script>
+import HotelRegistration from './HotelRegistration/HotelRegistration.vue'
 import HotelFacility from './HotelFacility/HotelFacility.vue'
 import DetailSearch from './DetailSearch/DetailSearch.vue'
 import HotelShow from './HotelShow/HotelShow.vue'
@@ -93,7 +97,8 @@ export default {
         Searchbar,
         HotelShow,
         DetailSearch,
-        HotelFacility
+        HotelFacility,
+        HotelRegistration
     },
     methods: {
     scrollToRoomTable() {

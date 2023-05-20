@@ -3,8 +3,8 @@
         <el-row>
             <el-col :span="18">
                 <header>
-                    <div class="facility-title">设施及服务</div>
-                    <div class="facility-score">设施上佳！评分：{{ hotel.score }}</div>
+                    <div class="facility-title">住宿规定</div>
+                    <div class="facility-score">{{ hotel.name }}可接受特别要求，别忘了在下一步填写哦！</div>
                 </header>
             </el-col>
             <el-col :span="6" class="button">
@@ -19,7 +19,7 @@
 <script>
 
 export default {
-    name: 'FacilityTitle',
+    name: 'RegistrationTitle',
     data() {
         return {
             hotel: {
