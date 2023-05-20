@@ -47,6 +47,8 @@ public class ImageController {
                 path="D:\\Study\\课程资料\\大三下\\软件工程\\实验\\images\\9000\\"+ filename;
             }else if (id == 10){
                 path="D:\\Study\\课程资料\\大三下\\软件工程\\实验\\images\\10000\\"+ filename;
+            }else if(id == -1){
+                path="D:\\Study\\课程资料\\大三下\\软件工程\\实验\\image\\"+ filename;
             }
 
 //            if(id!=0)
