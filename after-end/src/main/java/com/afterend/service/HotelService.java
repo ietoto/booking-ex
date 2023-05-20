@@ -21,6 +21,10 @@ public class HotelService {
     public List<Hotel> showalllimit(){
         return hotelDAO.showalllimit();
     }
+    //根据酒店id查询酒店 最详细
+    public Hotel SearchbyIDDetailed(Hotel hotel){
+        return hotelDAO.SearchbyIDDetailed(hotel);
+    }
     //根据酒店id查询酒店
     public Hotel SearchbyID(Hotel hotel){
         return hotelDAO.SearchbyID(hotel);

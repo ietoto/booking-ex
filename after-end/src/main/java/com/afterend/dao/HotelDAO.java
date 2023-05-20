@@ -87,6 +87,42 @@ public class HotelDAO {
         }
         return list;
     }
+    public static Hotel SearchbyIDDetailed(Hotel hotel) {
+        Connection con=null;
+        Hotel s=  new Hotel();
+        try{
+            con= JDBCUtils.getConnect();
+            String sql1="select * from hotel where hotel_id=?";
+            PreparedStatement pstate1 = con.prepareStatement(sql1);
+            pstate1.setInt(1,hotel.getId());
+            ResultSet resultSet1 = pstate1.executeQuery();
+            while (resultSet1.next()){
+                s.setId(resultSet1.getInt("hotel_id"));
+                s.setName(resultSet1.getString("hotel_name"));
+                s.setDesciption(resultSet1.getString("hotel_description"));
+                s.setScore(resultSet1.getDouble("hotel_score"));
+                s.setLocation(resultSet1.getString("hotel_location"));
+                s.setStar(resultSet1.getInt("hotel_star"));
+                s.setDistance(resultSet1.getDouble("hotel_distance"));
+                s.setImg_num(resultSet1.getInt("hotel_imgnum"));
+                s.setCity(resultSet1.getString("hotel_city"));
+                s.setAddress(resultSet1.getString("hotel_address"));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            try {
+                if(con==null){
+                    System.out.println("test");
+                }
+                con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return s;
+    }
     public static Hotel SearchbyID(Hotel hotel) {
         Connection con=null;
         Hotel s=  new Hotel();
