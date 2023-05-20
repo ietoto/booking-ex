@@ -1,9 +1,7 @@
 package com.afterend.dao;
 
 import com.afterend.dao.utils.JDBCUtils;
-import com.afterend.pojo.Hotel;
-import com.afterend.pojo.Order;
-import com.afterend.pojo.User;
+import com.afterend.pojo.*;
 import org.springframework.stereotype.Service;
 
 import java.sql.Connection;
@@ -87,14 +85,15 @@ public class HotelDAO {
         }
         return list;
     }
-    public static Hotel SearchbyIDDetailed(Hotel hotel) {
+    public static Hotel SearchbyIDDetailed(SearchDetailed searchDetailed) {
         Connection con=null;
         Hotel s=  new Hotel();
+        List<Room> list=new ArrayList<>();
         try{
             con= JDBCUtils.getConnect();
             String sql1="select * from hotel where hotel_id=?";
             PreparedStatement pstate1 = con.prepareStatement(sql1);
-            pstate1.setInt(1,hotel.getId());
+            pstate1.setInt(1,searchDetailed.getId());
             ResultSet resultSet1 = pstate1.executeQuery();
             while (resultSet1.next()){
                 s.setId(resultSet1.getInt("hotel_id"));
@@ -108,7 +107,27 @@ public class HotelDAO {
                 s.setCity(resultSet1.getString("hotel_city"));
                 s.setAddress(resultSet1.getString("hotel_address"));
             }
-
+            String sql2="SELECT a.hotel_id,a.room_id,a.room_name,a.room_size,a.room_price,a.room_breakfast,a.room_isfreecancel,a.room_isnorequire,a.room_num,a.room_num-COALESCE(b.num, 0) num FROM ( SELECT * FROM room WHERE hotel_id=? ) as a LEFT join (select hotelid,roomid,count(*) num from `order` where  hotelid=? and state=1 and startdate<=? and enddate >=? GROUP BY hotelid,roomid) as b on a.hotel_id=b.hotelid and a.room_id=b.roomid";
+            PreparedStatement pstate2 = con.prepareStatement(sql2);
+            pstate2.setInt(1,searchDetailed.getId());
+            pstate2.setInt(2,searchDetailed.getId());
+            pstate2.setString(1,searchDetailed.getStartdate());
+            pstate2.setString(2,searchDetailed.getEnddate());
+            ResultSet resultSet2 = pstate2.executeQuery();
+            while (resultSet2.next()){
+                Room s1=new Room();
+                s1.setId(resultSet2.getInt("room_id"));
+                s1.setHotelid(resultSet2.getInt("hotel_id"));
+                s1.setName(resultSet2.getString("room_name"));
+                s1.setSize(resultSet2.getInt("room_size"));
+                s1.setPrice_b(resultSet2.getInt("room_breakfast"));
+                s1.setPrice_r(resultSet2.getInt("room_price"));
+                s1.setIfFreeCancle(resultSet2.getInt("room_isfreecancel"));
+                s1.setIfNoRequire(resultSet2.getInt("room_isnorequire"));
+                s1.setNum_max(resultSet2.getInt("room_num"));
+                s1.setNum_ava(resultSet2.getInt("num"));
+                list.add(s1);
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }finally {

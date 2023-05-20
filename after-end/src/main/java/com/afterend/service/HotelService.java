@@ -4,6 +4,7 @@ import com.afterend.dao.HotelDAO;
 import com.afterend.dao.OrderDAO;
 import com.afterend.pojo.Hotel;
 import com.afterend.pojo.Order;
+import com.afterend.pojo.SearchDetailed;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,8 +23,8 @@ public class HotelService {
         return hotelDAO.showalllimit();
     }
     //根据酒店id查询酒店 最详细
-    public Hotel SearchbyIDDetailed(Hotel hotel){
-        return hotelDAO.SearchbyIDDetailed(hotel);
+    public Hotel SearchbyIDDetailed(SearchDetailed searchDetailed){
+        return hotelDAO.SearchbyIDDetailed(searchDetailed);
     }
     //根据酒店id查询酒店
     public Hotel SearchbyID(Hotel hotel){
