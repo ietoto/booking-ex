@@ -5,13 +5,23 @@
   <el-container style="height: 625px; width: 1500px;">
     <el-aside style="width: 250px;margin-top: 50px;">
     </el-aside>
-    <el-container style="height: 590px;margin-top: 20px;border: 1px solid #de1b4f;width: 1200px;position: relative;left: 20px;">
+    <el-container style="height: 590px;margin-top: 20px;border: 1px solid rgba(222,27,79,0);width: 1200px;position: relative;left: 20px;">
       <el-header>
       <el-form  :inline="true">
         <el-row>
           <el-col :span="60" :offset="100">
-            <el-form-item label="用户名：">
-              <el-input v-model="username" placeholder="请输入用户名" clearable/>
+          <el-select v-model="value" placeholder="请选择" style="width: 100px;">
+            <el-option
+              v-for="item in options"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value">
+            </el-option>
+          </el-select>
+          </el-col>
+          <el-col :span="60" :offset="100">
+            <el-form-item>
+              <el-input v-model="username" placeholder="请输入" clearable/>
             </el-form-item>
           </el-col>
           <el-col :span="50">
@@ -98,7 +108,7 @@
         </el-form>
       </el-dialog>
       <el-main>
-        <el-container style="height: 460px;margin-top: -15px;border: 1px solid #de1b4f;width: 1200px;position: relative;left: 0px;">
+        <el-container style="height: 460px;margin-top: -15px;border: 1px solid rgba(222,27,79,0);width: 1200px;position: relative;left: 0px;">
           <el-table
             border
             height="450"
@@ -172,40 +182,85 @@ export default {
       this.page.currentPage = val
     },
     getByUserName(){
-      var _this = this
-      if(this.username===null){
-        this.getall()
-        return
-      }
-      this.loading=true
-      this.$axios
-        .post('/user/showbyusername', {
-          username: this.username
-        })
-        .then(successResponse => {
-          if (successResponse.data !=null) {
-            console.log('查询成功')
-            this.userList=successResponse.data
-            for (let i = 0; i < this.userList.length; i++) {
-              switch (this.userList[i].state){
-                case 0:
-                  this.userList[i].state='用户'
-                  break
-                case 1:
-                  this.userList[i].state='系统管理员'
-                  break
-                case 2:
-                  this.userList[i].state='酒店管理员'
-                  break
+      console.log(this.value)
+      if(this.value==='2'){
+        console.log(this.username)
+        var _this = this
+        if(this.username===null){
+          this.getall()
+          return
+        }
+        if(this.username===''){
+          this.getall()
+          return
+        }
+        this.loading=true
+        this.$axios
+          .post('/user/showbyname', {
+            name: this.username
+          })
+          .then(successResponse => {
+            if (successResponse.data !=null) {
+              console.log('查询成功')
+              this.userList=successResponse.data
+              for (let i = 0; i < this.userList.length; i++) {
+                switch (this.userList[i].state){
+                  case 0:
+                    this.userList[i].state='用户'
+                    break
+                  case 1:
+                    this.userList[i].state='系统管理员'
+                    break
+                  case 2:
+                    this.userList[i].state='酒店管理员'
+                    break
+                }
               }
+              this.loading=false
             }
-            this.loading=false
-          }
-          else {
-          }
-        })
-        .catch(failResponse => {
-        })
+            else {
+            }
+          })
+          .catch(failResponse => {
+          })
+      }
+      else{
+        var _this = this
+        if(this.username===null){
+          this.getall()
+          return
+        }
+        this.loading=true
+        this.$axios
+          .post('/user/showbyusername', {
+            username: this.username
+          })
+          .then(successResponse => {
+            if (successResponse.data !=null) {
+              console.log('查询成功')
+              this.userList=successResponse.data
+              for (let i = 0; i < this.userList.length; i++) {
+                switch (this.userList[i].state){
+                  case 0:
+                    this.userList[i].state='用户'
+                    break
+                  case 1:
+                    this.userList[i].state='系统管理员'
+                    break
+                  case 2:
+                    this.userList[i].state='酒店管理员'
+                    break
+                }
+              }
+              this.loading=false
+            }
+            else {
+            }
+          })
+          .catch(failResponse => {
+          })
+      }
+
     },
     SetAddInformationVisible(){
       this.AddInformationVisible=true
@@ -431,7 +486,15 @@ export default {
       page: {
         currentPage: 1, // 当前页
         pageSize: 6, // 每页条数
-      }
+      },
+      options: [{
+        value: '1',
+        label: '用户名'
+      }, {
+        value: '2',
+        label: '姓名'
+      }],
+      value: '1'
     }
   }
 }

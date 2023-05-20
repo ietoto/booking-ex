@@ -36,5 +36,8 @@ public class UserService {
     public List<User> showbyusername(User user){
         return userDAO.showbyusername(user);
     }
+    public List<User> showbyname(User user){
+        return userDAO.showbyname(user);
+    }
 }
 

@@ -25,10 +25,18 @@ public class ImageController {
             System.out.println(id);
             System.out.println(filename);
             String path="";
-            if (id == 0) {
+//            if (id == -1) {
+//                path="D:\\Study\\课程资料\\大三下\\软件工程\\实验\\image\\"+ filename;
+//            }else {
+//                path="D:\\Study\\课程资料\\大三下\\软件工程\\实验\\image\\"+id+"\\"+ filename;
+//            }
+
+            if (id == -1) {
+                path="D:\\Study\\课程资料\\大三下\\软件工程\\实验\\image\\"+ filename;
+            }else  if (id == 0) {
                 path="D:\\Study\\课程资料\\大三下\\软件工程\\实验\\images\\0\\"+ filename;
             }else if(id == 1){
-                path="D:\\Study\\课程资料\\大三下\\软件工程\\实验\\image\\1000\\"+ filename;
+                path="D:\\Study\\课程资料\\大三下\\软件工程\\实验\\images\\1000\\"+ filename;
             }else if (id == 2){
                 path="D:\\Study\\课程资料\\大三下\\软件工程\\实验\\images\\2000\\"+ filename;
             }else if (id == 3){
@@ -47,6 +55,8 @@ public class ImageController {
                 path="D:\\Study\\课程资料\\大三下\\软件工程\\实验\\images\\9000\\"+ filename;
             }else if (id == 10){
                 path="D:\\Study\\课程资料\\大三下\\软件工程\\实验\\images\\10000\\"+ filename;
+            }else if(id == -1){
+                path="D:\\Study\\课程资料\\大三下\\软件工程\\实验\\image\\"+ filename;
             }
 
 //            if(id!=0)
@@ -56,6 +66,7 @@ public class ImageController {
 //            {
 //                path="D:\\Study\\课程资料\\大三下\\软件工程\\实验\\images\\"+ filename;
 //            }
+            System.out.println(path);
             File file = new File(path);
             InputStream in = new FileInputStream(file);
             byte[] bytes = IOUtils.toByteArray(in);

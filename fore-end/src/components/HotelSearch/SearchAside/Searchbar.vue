@@ -37,7 +37,17 @@
    components: {
      SearchPeople,
    },
+   mounted: function () {
+     console.log('挂载开始')
+     this.checkpeople()
+   },
    methods: {
+     checkpeople(){
+       console.log('checkpeople')
+       if(this.$store.state.search.adult!==null)this.adults=this.$store.state.search.adult
+       if(this.$store.state.search.child!==null)this.children=this.$store.state.search.child
+       if(this.$store.state.search.room_num!==null)this.rooms=this.$store.state.search.room_num
+     },
      // 事件处理函数
      async people(adults,children,rooms) {
        this.adults=adults
@@ -48,6 +58,14 @@
        let searchtype;
        searchtype=
          {type:1}
+       let search=this.$store.state.search
+       search.adult=this.adults
+       search.child=this.children
+       search.room_num=this.rooms
+       search.location=this.destination
+       search.startdate=this.value[0]
+       search.enddate=this.value[1]
+       this.$store.commit("search",search)
        this.$store.commit("searchtype",searchtype)
        this.$router.go(0);
      }

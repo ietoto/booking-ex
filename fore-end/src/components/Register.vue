@@ -204,14 +204,15 @@ export default {
       });
     },
     register(formName) {
+      let valid1=true
       this.$refs[formName].validate((valid) => {
         if (valid) {
-          alert('submit!');
         } else {
           console.log('error submit!!');
-          return false;
+          valid1=valid
         }
       });
+      if(!valid1)return
       var _this = this
       console.log(this.$store.state)
       if (this.registerForm.username === ''||this.registerForm.password === ''){
