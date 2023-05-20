@@ -92,6 +92,123 @@ public class OrderDAO {
         }
         return list;
     }
+    public static List<Order> showByUserName(User user) {
+        Connection con=null;
+        List<Order> list=new ArrayList<>();
+        try{
+            con= JDBCUtils.getConnect();
+            String sql="SELECT orderid,userid,name,hotelid,hotel_name,roomid,room_name,num,money,startdate,enddate,`order`.state FROM `order`,hotel,`user`,room WHERE name like ? AND`order`.userid=`user`.id AND `order`.hotelid=hotel.hotel_id AND `order`.hotelid=room.hotel_id AND `order`.roomid=room.room_id";
+            PreparedStatement pstate = con.prepareStatement(sql);
+            pstate.setString(1,'%'+user.getName()+'%');
+            ResultSet resultSet = pstate.executeQuery();
+            while (resultSet.next()){
+                Order s=new Order();
+                s.setId(resultSet.getInt("orderid"));
+                s.setUserid(resultSet.getInt("userid"));
+                s.setHotelid(resultSet.getInt("hotelid"));
+                s.setRoomid(resultSet.getInt("roomid"));
+                s.setNum(resultSet.getInt("num"));
+                s.setMoney(resultSet.getInt("money"));
+                s.setStartdate(resultSet.getString("startdate"));
+                s.setEnddate(resultSet.getString("enddate"));
+                s.setState(resultSet.getInt("state"));
+                s.setUsername(resultSet.getString("name"));
+                s.setHotel_name(resultSet.getString("hotel_name"));
+                s.setRoom_name(resultSet.getString("room_name"));
+                list.add(s);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            try {
+                if(con==null){
+                    System.out.println("test ");
+                }
+                con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return list;
+    }
+    public static List<Order> showByHotelIDNew(Hotel hotel) {
+        Connection con=null;
+        List<Order> list=new ArrayList<>();
+        try{
+            con= JDBCUtils.getConnect();
+            String sql="SELECT orderid,userid,name,hotelid,hotel_name,roomid,room_name,num,money,startdate,enddate,`order`.state FROM `order`,hotel,`user`,room WHERE hotelid = ? AND`order`.userid=`user`.id AND `order`.hotelid=hotel.hotel_id AND `order`.hotelid=room.hotel_id AND `order`.roomid=room.room_id";
+            PreparedStatement pstate = con.prepareStatement(sql);
+            pstate.setInt(1,hotel.getId());
+            ResultSet resultSet = pstate.executeQuery();
+            while (resultSet.next()){
+                Order s=new Order();
+                s.setId(resultSet.getInt("orderid"));
+                s.setUserid(resultSet.getInt("userid"));
+                s.setHotelid(resultSet.getInt("hotelid"));
+                s.setRoomid(resultSet.getInt("roomid"));
+                s.setNum(resultSet.getInt("num"));
+                s.setMoney(resultSet.getInt("money"));
+                s.setStartdate(resultSet.getString("startdate"));
+                s.setEnddate(resultSet.getString("enddate"));
+                s.setState(resultSet.getInt("state"));
+                s.setUsername(resultSet.getString("name"));
+                s.setHotel_name(resultSet.getString("hotel_name"));
+                s.setRoom_name(resultSet.getString("room_name"));
+                list.add(s);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            try {
+                if(con==null){
+                    System.out.println("test ");
+                }
+                con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return list;
+    }
+    public static List<Order> showByHotelName(Hotel hotel) {
+        Connection con=null;
+        List<Order> list=new ArrayList<>();
+        try{
+            con= JDBCUtils.getConnect();
+            String sql="SELECT orderid,userid,name,hotelid,hotel_name,roomid,room_name,num,money,startdate,enddate,`order`.state FROM `order`,hotel,`user`,room WHERE hotel_name like ? AND`order`.userid=`user`.id AND `order`.hotelid=hotel.hotel_id AND `order`.hotelid=room.hotel_id AND `order`.roomid=room.room_id";
+            PreparedStatement pstate = con.prepareStatement(sql);
+            pstate.setString(1,'%'+hotel.getName()+'%');
+            ResultSet resultSet = pstate.executeQuery();
+            while (resultSet.next()){
+                Order s=new Order();
+                s.setId(resultSet.getInt("orderid"));
+                s.setUserid(resultSet.getInt("userid"));
+                s.setHotelid(resultSet.getInt("hotelid"));
+                s.setRoomid(resultSet.getInt("roomid"));
+                s.setNum(resultSet.getInt("num"));
+                s.setMoney(resultSet.getInt("money"));
+                s.setStartdate(resultSet.getString("startdate"));
+                s.setEnddate(resultSet.getString("enddate"));
+                s.setState(resultSet.getInt("state"));
+                s.setUsername(resultSet.getString("name"));
+                s.setHotel_name(resultSet.getString("hotel_name"));
+                s.setRoom_name(resultSet.getString("room_name"));
+                list.add(s);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            try {
+                if(con==null){
+                    System.out.println("test ");
+                }
+                con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return list;
+    }
     public static List<Order> showByHotelID(Order order) {
         Connection con=null;
         List<Order> list=new ArrayList<>();

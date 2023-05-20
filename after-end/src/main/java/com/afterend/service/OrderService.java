@@ -23,6 +23,18 @@ public class OrderService {
     public List<Order> showByUserID(Order order){
         return orderDAO.showByUserID(order);
     }
+    //根据用户姓名查询所有订单
+    public List<Order> showByUserName(User user){
+        return orderDAO.showByUserName(user);
+    }
+    //根据酒店id查询所有订单
+    public List<Order> showByHotelIDNew(Hotel hotel){
+        return orderDAO.showByHotelIDNew(hotel);
+    }
+    //根据酒店名查询所有订单
+    public List<Order> showByHotelName(Hotel hotel){
+        return orderDAO.showByHotelName(hotel);
+    }
     //根据酒店id查询所有订单
     public List<Order> showByHotelID(Order order){
         return orderDAO.showByHotelID(order);

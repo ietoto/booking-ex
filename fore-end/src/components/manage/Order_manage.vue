@@ -10,7 +10,7 @@
         <el-form  :inline="true">
           <el-row>
             <el-col :span="60" :offset="100">
-              <el-select v-model="value" placeholder="请选择" style="width: 100px;">
+              <el-select v-model="value" placeholder="请选择" style="width: 120px;">
                 <el-option
                   v-for="item in options"
                   :key="item.value"
@@ -232,8 +232,8 @@ export default {
         case '2':
           this.loading=true
           this.$axios
-            .post('/order/user_showall', {
-              id: this.id
+            .post('/order/showByUserName', {
+              name: this.id
             })
             .then(successResponse => {
               if (successResponse.data !=null) {
@@ -263,7 +263,7 @@ export default {
         case '3':
           this.loading=true
           this.$axios
-            .post('/order/user_showall', {
+            .post('/order/showByHotelIDNew', {
               id: this.id
             })
             .then(successResponse => {
@@ -294,8 +294,8 @@ export default {
         case '4':
           this.loading=true
           this.$axios
-            .post('/order/user_showall', {
-              id: this.id
+            .post('/order/showByHotelName', {
+              name: this.id
             })
             .then(successResponse => {
               if (successResponse.data !=null) {

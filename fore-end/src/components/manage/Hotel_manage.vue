@@ -5,13 +5,23 @@
   <el-container style="height: 625px; width: 1500px;">
     <el-aside style="width: 250px;margin-top: 50px;">
     </el-aside>
-    <el-container style="height: 590px;margin-top: 20px;border: 1px solid #de1b4f;width: 1200px;position: relative;left: 20px;">
+    <el-container style="height: 590px;margin-top: 20px;border: 1px solid rgba(222,27,79,0);width: 1200px;position: relative;left: 20px;">
       <el-header>
         <el-form  :inline="true">
           <el-row>
             <el-col :span="60" :offset="100">
-              <el-form-item label="酒店id：">
-                <el-input v-model="id" placeholder="请输入酒店id" clearable/>
+              <el-select v-model="value" placeholder="请选择" style="width: 120px;">
+                <el-option
+                  v-for="item in options"
+                  :key="item.value"
+                  :label="item.label"
+                  :value="item.value">
+                </el-option>
+              </el-select>
+            </el-col>
+            <el-col :span="60" :offset="100">
+              <el-form-item>
+                <el-input v-model="id" placeholder="请输入" clearable/>
               </el-form-item>
             </el-col>
             <el-col :span="50">
@@ -96,7 +106,7 @@
         <span slot="title" class="title">
           <el-button @click="SetAddHotelFacVisible">添加</el-button>
         </span>
-        <el-container style="height: 460px;margin-top: -15px;border: 1px solid #de1b4f;width: 725px;position: relative;left: 0px;">
+        <el-container style="height: 460px;margin-top: -15px;border: 1px solid rgba(222,27,79,0);width: 725px;position: relative;left: 0px;">
           <el-table
             border
             height="460"
@@ -166,7 +176,7 @@
         <span slot="title" class="title">
           <el-button @click="SetAddRoomVisible">添加</el-button>
         </span>
-        <el-container style="height: 540px;margin-top: -15px;border: 1px solid #de1b4f;width: 725px;position: relative;left: 0px;">          <el-table
+        <el-container style="height: 540px;margin-top: -15px;border: 1px solid rgba(222,27,79,0);width: 725px;position: relative;left: 0px;">          <el-table
             border
             height="540"
             v-loading="roomloading"
@@ -283,7 +293,7 @@
         <span slot="title" class="title">
           <el-button @click="SetAddRoomFacVisible">添加</el-button>
         </span>
-        <el-container style="height: 460px;margin-top: -15px;border: 1px solid #de1b4f;width: 725px;position: relative;left: 0px;">          <el-table
+        <el-container style="height: 460px;margin-top: -15px;border: 1px solid rgba(222,27,79,0);width: 725px;position: relative;left: 0px;">          <el-table
           border
           height="450"
           v-loading="roomfacloading"
@@ -349,7 +359,7 @@
         </el-form>
       </el-dialog>
       <el-main>
-        <el-container style="height: 460px;margin-top: -15px;border: 1px solid #de1b4f;width: 1200px;position: relative;left: 0px;">
+        <el-container style="height: 460px;margin-top: -15px;border: 1px solid rgba(222,27,79,0);width: 1200px;position: relative;left: 0px;">
           <el-table
             border
             height="450"
@@ -439,23 +449,108 @@ export default {
         this.getall()
         return
       }
-      this.loading=true
-      this.$axios
-        .post('/hotel/searchById', {
-          id: this.id
-        })
-        .then(successResponse => {
-          if (successResponse.data.id !=null) {
-            console.log('查询成功')
-            this.hotelList=[]
-            this.hotelList.push(successResponse.data)
-            this.loading=false
-          }
-          else {
-          }
-        })
-        .catch(failResponse => {
-        })
+      if(this.id===''){
+        this.getall()
+        return
+      }
+      switch (this.value){
+        case '1':
+          this.loading=true
+          this.$axios
+            .post('/hotel/searchById', {
+              id: this.id
+            })
+            .then(successResponse => {
+              if (successResponse.data.id !=null) {
+                console.log('查询成功')
+                this.hotelList=[]
+                this.hotelList.push(successResponse.data)
+                this.loading=false
+              }
+              else {
+              }
+            })
+            .catch(failResponse => {
+            })
+          break
+        case '2':
+          this.loading=true
+          this.$axios
+            .post('/hotel/searchByName', {
+              name: this.id
+            })
+            .then(successResponse => {
+              if (successResponse.data !=null) {
+                console.log('查询成功')
+                this.hotelList=[]
+                this.hotelList=successResponse.data
+                this.loading=false
+              }
+              else {
+              }
+            })
+            .catch(failResponse => {
+            })
+          break
+        case '3':
+          this.loading=true
+          this.$axios
+            .post('/hotel/searchByLocation', {
+              location: this.id
+            })
+            .then(successResponse => {
+              if (successResponse.data!=null) {
+                console.log('查询成功')
+                this.hotelList=[]
+                this.hotelList=successResponse.data
+                this.loading=false
+              }
+              else {
+              }
+            })
+            .catch(failResponse => {
+            })
+          break
+        case '4':
+          this.loading=true
+          this.$axios
+            .post('/hotel/searchByScore', {
+              score: this.id
+            })
+            .then(successResponse => {
+              if (successResponse.data!=null) {
+                console.log('查询成功')
+                this.hotelList=[]
+                this.hotelList=successResponse.data
+                this.loading=false
+              }
+              else {
+              }
+            })
+            .catch(failResponse => {
+            })
+          break
+        case '5':
+          this.loading=true
+          this.$axios
+            .post('/hotel/searchByStar', {
+              star: this.id
+            })
+            .then(successResponse => {
+              if (successResponse.data !=null) {
+                console.log('查询成功')
+                this.hotelList=[]
+                this.hotelList=successResponse.data
+                this.loading=false
+              }
+              else {
+              }
+            })
+            .catch(failResponse => {
+            })
+          break
+      }
+
     },
     SetAddInformationVisible(){
       this.AddInformationVisible=true
@@ -1230,7 +1325,24 @@ export default {
       roomfacpage: {
         currentPage: 1, // 当前页
         pageSize: 6, // 每页条数
-      }
+      },
+      options: [{
+        value: '1',
+        label: '酒店id'
+      }, {
+        value: '2',
+        label: '酒店名'
+      }, {
+        value: '3',
+        label: '地区'
+      }, {
+        value: '4',
+        label: '评分'
+      }, {
+        value: '5',
+        label: '星级'
+      }],
+      value: '1'
     }
   }
 }
