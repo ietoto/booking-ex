@@ -25,7 +25,9 @@ public class ImageController {
             System.out.println(id);
             System.out.println(filename);
             String path="";
-            if (id == 0) {
+            if (id == -1) {
+                path="D:\\Study\\课程资料\\大三下\\软件工程\\实验\\image\\"+ filename;
+            }else  if (id == 0) {
                 path="D:\\Study\\课程资料\\大三下\\软件工程\\实验\\images\\0\\"+ filename;
             }else if(id == 1){
                 path="D:\\Study\\课程资料\\大三下\\软件工程\\实验\\image\\1000\\"+ filename;
