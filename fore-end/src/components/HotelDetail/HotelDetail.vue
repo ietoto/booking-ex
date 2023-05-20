@@ -10,7 +10,7 @@
             </el-main>
         </el-container>
         <div class="hotel-detail-block">
-            <img src="./hoteldetail.jpg" alt="hotel-detail" width="80%">
+            <img src="./img/hoteldetail.jpg" alt="hotel-detail" width="80%">
         </div>
         <el-container>
             <el-aside width="45%" class="hotel-description">
@@ -20,7 +20,7 @@
                 <p class="hotel-description-font">
                     {{ hotel.desciption }}
                 </p>
-                <img src="./hoteldescription.jpg" alt="hoteldescription" width="100%">
+                <img src="./img/hoteldescription.jpg" alt="hoteldescription" width="100%">
             </el-aside>
             <el-main width="50%" class="hotel-booking-icon">
                 <div>
@@ -43,7 +43,7 @@
                         <span><i class="el-icon-refresh-right"></i>这家住宿有超多的回头客</span>
                     </div>
                     <div>
-                        <el-button class="bookingnow">现在就预定</el-button>
+                        <el-button class="bookingnow" @click="scrollToRoomTable" >现在就预定</el-button>
                     </div>
                 </div>
             </el-main>
@@ -52,13 +52,17 @@
         <div>
             <DetailSearch/>
         </div>
+        <div>
+            <HotelFacility/>
+        </div>
         <FooterBlue />
     </div>
 </template>
 
 <script>
-import DetailSearch from './DetailSearch.vue'
-import HotelShow from './HotelShow.vue'
+import HotelFacility from './HotelFacility/HotelFacility.vue'
+import DetailSearch from './DetailSearch/DetailSearch.vue'
+import HotelShow from './HotelShow/HotelShow.vue'
 import Searchbar from '../HotelSearch/SearchAside/Searchbar.vue'
 import Navbar from '../home/Navbar/Navbar.vue'
 import FooterBlue from '../home/Footer/FooterBlue.vue'
@@ -88,8 +92,17 @@ export default {
         FooterWhite,
         Searchbar,
         HotelShow,
-        DetailSearch
-    }
+        DetailSearch,
+        HotelFacility
+    },
+    methods: {
+    scrollToRoomTable() {
+            const roomTableElement = document.querySelector('.roomtable');
+            if (roomTableElement) {
+                roomTableElement.scrollIntoView({ behavior: 'smooth' });
+            }
+        },
+        }
 }
 </script>
 

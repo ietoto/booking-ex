@@ -24,7 +24,7 @@
                 </el-alert>
             </div>
             <div class="review">
-                <HotelReview />
+                <HotelReview ref="hotelReviewComponent"/>
             </div>
         </div>
     </div>
@@ -46,6 +46,9 @@ export default {
 
 
 <style>
+.review{
+    width: 95%;
+}
 .custom-alert {
   margin-top: 30px;
   /* 这里调整整个弹窗的样式，如背景色，边框等 */
