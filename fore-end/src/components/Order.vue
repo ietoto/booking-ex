@@ -54,7 +54,7 @@
           </span>
         </div>
       </el-card>
-      <el-card class="box-card"style="width: 340px;height: 120px;margin-top: 15px;" shadow="hover">
+      <el-card class="box-card" style="width: 340px;height: 120px;margin-top: 15px;" shadow="hover">
         <div slot="header" style="font-size: 18px; font-weight: bold;">
           <span>付款安排</span>
         </div>
@@ -66,7 +66,7 @@
       </el-card>
     </el-aside>
       <el-main style="height: 1440px;width: 200px;margin-top: 0px;border: 1px solid rgba(222,27,79,0);">
-        <el-card class="box-card"style="width: 700px;height: 300px" shadow="hover">
+        <el-card class="box-card" style="width: 700px;height: 300px" shadow="hover">
             <el-container style="border: 1px solid rgba(222,27,79,0);height: 250px;">
               <el-aside width="200px" style="border: 1px solid rgba(222,27,79,0);">
                 <el-container style="border: 1px solid rgba(222,27,79,0);height: 245px;">
@@ -231,7 +231,7 @@
     </el-container>
   </el-container>
   <el-dialog  :visible.sync="confirmVisible">
-    <el-card class="box-card"style="width: 720px;height: 550px" shadow="never">
+    <el-card class="box-card" style="width: 720px;height: 550px" shadow="never">
       <div slot="header" style="font-size: 18px; font-weight: bold;">
         <div style="font-weight: bold; font-size: 22px;   margin-top: 10px;">
           {{this.$store.state.order.hotel_name}}
