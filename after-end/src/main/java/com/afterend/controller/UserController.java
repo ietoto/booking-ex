@@ -57,6 +57,7 @@ public class UserController {
     public User update(@RequestBody User requestUser, HttpSession session) {
         String Username = requestUser.getUsername();
         Username = HtmlUtils.htmlEscape(Username);
+        System.out.println(requestUser.getPhone());
 
         User user = userService.update(requestUser);
         if (null == user) {

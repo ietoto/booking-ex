@@ -20,31 +20,31 @@
         </el-header>
         <el-main>
           <el-dialog title="密码修改" :visible.sync="SetPasswordVisible">
-            <el-form label-width="100px" style="text-align: center;">
+            <el-form label-width="100px" style="text-align: center;" :model="newpassword" status-icon :rules="rules" ref="newpassword">
               <el-form-item label="原始密码" prop="pass" style="width: 80%;display: inline-block;position: relative;left: -50px;">
                 <a v-if="$store.state.user"><el-input v-model="$store.state.user.password" :disabled=true></el-input></a>
               </el-form-item>
-              <el-form-item label="新密码" prop="pass" style="width: 80%;display: inline-block;position: relative;left: -50px;">
-                <a v-if="newpassword"><el-input v-model="newpassword"></el-input></a>
+              <el-form-item label="新密码" prop="newpassword" style="width: 80%;display: inline-block;position: relative;left: -50px;">
+                <el-input v-model="newpassword"></el-input>
               </el-form-item>
               <el-form-item style="width: 60%;display: inline-block;position: relative;left: -50px;">
-                <el-button type="primary" @click="updatePassword()" style="width: 80%;">提交</el-button>
+                <el-button type="primary" @click="updatePassword('newpassword')" style="width: 80%;">提交</el-button>
               </el-form-item>
             </el-form>
           </el-dialog>
           <el-dialog title="信息" :visible.sync="SetInformationVisible">
-            <el-form label-width="100px" style="text-align: center;">
-              <el-form-item label="姓名" prop="pass" style="width: 80%;display: inline-block;position: relative;left: -50px;">
-                <a v-if="newname"><el-input v-model="newname"></el-input></a>
+            <el-form label-width="100px" style="text-align: center;" :model="newinformation" status-icon :rules="rules" ref="newinformation">
+              <el-form-item label="姓名" prop="name" style="width: 80%;display: inline-block;position: relative;left: -50px;">
+                <el-input v-model="newinformation.newname"></el-input>
               </el-form-item>
-              <el-form-item label="电话" prop="pass" style="width: 80%;display: inline-block;position: relative;left: -50px;">
-                <a v-if="newphone"><el-input v-model="newphone"></el-input></a>
+              <el-form-item label="电话" prop="phone" style="width: 80%;display: inline-block;position: relative;left: -50px;">
+                <el-input v-model="newinformation.newphone"></el-input>
               </el-form-item>
-              <el-form-item label="邮箱" prop="pass" style="width: 80%;display: inline-block;position: relative;left: -50px;">
-                <a v-if="newpostbox"><el-input v-model="newpostbox"></el-input></a>
+              <el-form-item label="邮箱" prop="postbox" style="width: 80%;display: inline-block;position: relative;left: -50px;">
+                <el-input v-model="newinformation.newpostbox"></el-input>
               </el-form-item>
               <el-form-item style="width: 60%;display: inline-block;position: relative;left: -50px;">
-                <el-button type="primary" @click="updateInformation()" style="width: 80%;">提交</el-button>
+                <el-button type="primary" @click="updateInformation('newinformation')" style="width: 80%;">提交</el-button>
               </el-form-item>
             </el-form>
           </el-dialog>
@@ -186,13 +186,13 @@ export default {
           if (successResponse.data.username != null) {
             this.user = successResponse.data
             this.newpassword = successResponse.data.password
-            this.newname = successResponse.data.name
-            this.newphone = successResponse.data.phone
-            this.newpostbox = successResponse.data.postbox
+            this.newinformation.newname = successResponse.data.name
+            this.newinformation.newphone = successResponse.data.phone
+            this.newinformation.newpostbox = successResponse.data.postbox
             if(!this.newpassword)this.newpassword=' '
-            if(!this.newname)this.newname=' '
-            if(!this.newphone)this.newphone=' '
-            if(!this.newpostbox)this.newpostbox=' '
+            if(!this.newinformation.newname)this.newinformation.newname=''
+            if(!this.newinformation.newphone)this.newinformation.newphone=''
+            if(!this.newinformation.newpostbox)this.newinformation.newpostbox=''
             this.$store.commit("login",this.user)
           }
           else {
@@ -203,8 +203,17 @@ export default {
         .catch(failResponse => {
         })
     },
-    updatePassword(){
+    updatePassword(formName){
       console.log('updatePassword')
+      let valid1=true
+      this.$refs[formName].validate((valid) => {
+        if (valid) {
+        } else {
+          console.log('error submit!!');
+          valid1=valid
+        }
+      });
+      if(!valid1)return
       var _this = this
       if(this.newpassword===''){
         this.updatePassworderror1();
@@ -240,26 +249,35 @@ export default {
         .catch(failResponse => {
         })
     },
-    updateInformation(){
+    updateInformation(formName){
       console.log('updateInformation')
+      let valid1=true
+      this.$refs[formName].validate((valid) => {
+        if (valid) {
+        } else {
+          console.log('error submit!!');
+          valid1=valid
+        }
+      });
+      if(!valid1)return
       var _this = this
       this.$axios
         .post('/user/update', {
           username: this.$store.state.user.username,
           password: this.$store.state.user.password,
           id: this.$store.state.user.id,
-          phone: this.newphone,
-          name: this.newname,
+          phone: this.newinformation.newphone,
+          name: this.newinformation.newname,
           state: this.user.state,
-          postbox: this.newpostbox,
+          postbox: this.newinformation.newpostbox,
           hotel_id: this.user.hotel_id
         })
         .then(successResponse => {
           if (successResponse.data.username != null) {
             this.user = successResponse.data
-            this.newphone = successResponse.data.phone
-            this.newname = successResponse.data.name
-            this.newpostbox = successResponse.data.postbox
+            this.newinformation.newphone = successResponse.data.phone
+            this.newinformation.newname = successResponse.data.name
+            this.newinformation.newpostbox = successResponse.data.postbox
             _this.$store.commit('login', successResponse.data)
             this.updateInformationright()
             this.SetInformationVisible = false
@@ -272,14 +290,122 @@ export default {
     }
   },
   data() {
+    var valpassword = (rule, value, callback) => {
+      var passwordreg = /(?=.*\d)(?=.*[a-zA-Z]).{6,16}/;
+      value=this.newpassword
+      if (value === '') {
+        this.$message({
+          duration: 1000,
+          showClose: true,
+          message: '请输入新密码！',
+          type: 'error'
+        });
+        callback(new Error('请输入新密码'));
+      } else if (!passwordreg.test(value)) {
+        this.$message({
+          duration: 3000,
+          showClose: true,
+          message: '密码必须包含数字和字母，长度在6到16个字符之间。',
+          type: 'error'
+        });
+        callback(new Error('密码必须包含数字和字母，长度在6到16个字符之间。'));
+      } else {
+        callback();
+      }
+    };
+    var valname = (rule, value, callback) => {
+      var namereg = /^[\u4e00-\u9fa5]{2,5}$/;
+      value=this.newinformation.newname
+      if (value === '') {
+        this.$message({
+          duration: 1000,
+          showClose: true,
+          message: '请输入姓名！',
+          type: 'error'
+        });
+        callback(new Error('请输入姓名'));
+      } else if (!namereg.test(value)) {
+        this.$message({
+          duration: 3000,
+          showClose: true,
+          message: '姓名必须全为中文且长度在二到五之间',
+          type: 'error'
+        });
+        callback(new Error('姓名必须全为中文且长度在二到五之间'));
+      } else {
+        callback();
+      }
+    };
+    var valpostbox = (rule, value, callback) => {
+      var postboxreg = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+$/;
+      value=this.newinformation.newpostbox
+      if (value === '') {
+        this.$message({
+          duration: 1000,
+          showClose: true,
+          message: '请输入邮箱！',
+          type: 'error'
+        });
+        callback(new Error('请输入邮箱'));
+      } else if (!postboxreg.test(value)) {
+        this.$message({
+          duration: 3000,
+          showClose: true,
+          message: '请满足邮箱的格式！',
+          type: 'error'
+        });
+        callback(new Error('请满足邮箱的格式！'));
+      } else {
+        callback();
+      }
+    };
+    var valphone = (rule, value, callback) => {
+      var phonereg = /^1[3456789]\d{9}$/;
+      value=this.newinformation.newphone
+      if (value === '') {
+        this.$message({
+          duration: 1000,
+          showClose: true,
+          message: '请输入电话号码！',
+          type: 'error'
+        });
+        callback(new Error('请输入电话号码'));
+      } else if (!phonereg.test(value)) {
+        this.$message({
+          duration: 3000,
+          showClose: true,
+          message: '请满足电话号码的格式',
+          type: 'error'
+        });
+        callback(new Error('请满足电话号码的格式'));
+      } else {
+        callback();
+      }
+    };
     return {
       user: null,
       SetPasswordVisible: false,
       SetInformationVisible: false,
+      newinformation: {
+        newpostbox: ' ',
+        newphone: ' ',
+        newname: ' '
+      },
       newpassword: ' ',
-      newpostbox: ' ',
-      newphone: ' ',
-      newname: ' '
+      rules: {
+        newpassword: [
+          { validator: valpassword, trigger: 'blur' }
+        ],
+        name: [
+          { validator: valname, trigger: 'blur' }
+        ],
+        postbox: [
+          { validator: valpostbox, trigger: 'blur' }
+        ],
+        phone: [
+          { validator: valphone, trigger: 'blur' }
+        ]
+      }
     }
   }
 }
