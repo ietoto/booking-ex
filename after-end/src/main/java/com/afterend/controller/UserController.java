@@ -82,6 +82,13 @@ public class UserController {
     public List<User> showbyusername(@RequestBody User requestUser,HttpSession session) {
         return userService.showbyusername(requestUser);
     }
+    //    显示用户信息根据用户名
+    @CrossOrigin
+    @PostMapping(value = "/api/user/showbyname")
+    @ResponseBody
+    public List<User> showbyname(@RequestBody User requestUser,HttpSession session) {
+        return userService.showbyname(requestUser);
+    }
     //    删除用户信息
     @CrossOrigin
     @PostMapping(value = "/api/user/delete")

@@ -5,13 +5,23 @@
   <el-container style="height: 625px; width: 1500px;">
     <el-aside style="width: 250px;margin-top: 50px;">
     </el-aside>
-    <el-container style="height: 590px;margin-top: 20px;border: 1px solid #de1b4f;width: 1200px;position: relative;left: 20px;">
+    <el-container style="height: 590px;margin-top: 20px;border: 1px solid rgba(222,27,79,0);width: 1200px;position: relative;left: 20px;">
       <el-header>
         <el-form  :inline="true">
           <el-row>
             <el-col :span="60" :offset="100">
-              <el-form-item label="用户id：">
-                <el-input v-model="id" placeholder="请输入用户id" clearable/>
+              <el-select v-model="value" placeholder="请选择" style="width: 100px;">
+                <el-option
+                  v-for="item in options"
+                  :key="item.value"
+                  :label="item.label"
+                  :value="item.value">
+                </el-option>
+              </el-select>
+            </el-col>
+            <el-col :span="60" :offset="100">
+              <el-form-item>
+                <el-input v-model="id" placeholder="请输入" clearable/>
               </el-form-item>
             </el-col>
             <el-col :span="50">
@@ -100,7 +110,7 @@
         </el-form>
       </el-dialog>
       <el-main>
-        <el-container style="height: 460px;margin-top: -15px;border: 1px solid #de1b4f;width: 1200px;position: relative;left: 0px;">
+        <el-container style="height: 460px;margin-top: -15px;border: 1px solid rgba(222,27,79,0);width: 1200px;position: relative;left: 0px;">
           <el-table
             border
             height="450"
@@ -183,35 +193,136 @@ export default {
         this.getall()
         return
       }
-      this.loading=true
-      this.$axios
-        .post('/order/user_showall', {
-          id: this.id
-        })
-        .then(successResponse => {
-          if (successResponse.data !=null) {
-            console.log('查询成功')
-            this.orderList=successResponse.data
-            for (let i = 0; i < this.orderList.length; i++) {
-              switch (this.orderList[i].state){
-                case 0:
-                  this.orderList[i].state='未付款'
-                  break
-                case 1:
-                  this.orderList[i].state='已付款'
-                  break
-                case 2:
-                  this.orderList[i].state='已取消'
-                  break
+      if(this.id===''){
+        this.getall()
+        return
+      }
+      switch (this.value){
+        case '1':
+          this.loading=true
+          this.$axios
+            .post('/order/user_showall', {
+              id: this.id
+            })
+            .then(successResponse => {
+              if (successResponse.data !=null) {
+                console.log('查询成功')
+                this.orderList=successResponse.data
+                for (let i = 0; i < this.orderList.length; i++) {
+                  switch (this.orderList[i].state){
+                    case 0:
+                      this.orderList[i].state='未付款'
+                      break
+                    case 1:
+                      this.orderList[i].state='已付款'
+                      break
+                    case 2:
+                      this.orderList[i].state='已取消'
+                      break
+                  }
+                }
+                this.loading=false
               }
-            }
-            this.loading=false
-          }
-          else {
-          }
-        })
-        .catch(failResponse => {
-        })
+              else {
+              }
+            })
+            .catch(failResponse => {
+            })
+          break
+        case '2':
+          this.loading=true
+          this.$axios
+            .post('/order/user_showall', {
+              id: this.id
+            })
+            .then(successResponse => {
+              if (successResponse.data !=null) {
+                console.log('查询成功')
+                this.orderList=successResponse.data
+                for (let i = 0; i < this.orderList.length; i++) {
+                  switch (this.orderList[i].state){
+                    case 0:
+                      this.orderList[i].state='未付款'
+                      break
+                    case 1:
+                      this.orderList[i].state='已付款'
+                      break
+                    case 2:
+                      this.orderList[i].state='已取消'
+                      break
+                  }
+                }
+                this.loading=false
+              }
+              else {
+              }
+            })
+            .catch(failResponse => {
+            })
+          break
+        case '3':
+          this.loading=true
+          this.$axios
+            .post('/order/user_showall', {
+              id: this.id
+            })
+            .then(successResponse => {
+              if (successResponse.data !=null) {
+                console.log('查询成功')
+                this.orderList=successResponse.data
+                for (let i = 0; i < this.orderList.length; i++) {
+                  switch (this.orderList[i].state){
+                    case 0:
+                      this.orderList[i].state='未付款'
+                      break
+                    case 1:
+                      this.orderList[i].state='已付款'
+                      break
+                    case 2:
+                      this.orderList[i].state='已取消'
+                      break
+                  }
+                }
+                this.loading=false
+              }
+              else {
+              }
+            })
+            .catch(failResponse => {
+            })
+          break
+        case '4':
+          this.loading=true
+          this.$axios
+            .post('/order/user_showall', {
+              id: this.id
+            })
+            .then(successResponse => {
+              if (successResponse.data !=null) {
+                console.log('查询成功')
+                this.orderList=successResponse.data
+                for (let i = 0; i < this.orderList.length; i++) {
+                  switch (this.orderList[i].state){
+                    case 0:
+                      this.orderList[i].state='未付款'
+                      break
+                    case 1:
+                      this.orderList[i].state='已付款'
+                      break
+                    case 2:
+                      this.orderList[i].state='已取消'
+                      break
+                  }
+                }
+                this.loading=false
+              }
+              else {
+              }
+            })
+            .catch(failResponse => {
+            })
+          break
+      }
     },
     SetAddInformationVisible(){
       this.AddInformationVisible=true
@@ -442,7 +553,21 @@ export default {
       page: {
         currentPage: 1, // 当前页
         pageSize: 5, // 每页条数
-      }
+      },
+      options: [{
+        value: '1',
+        label: '用户id'
+      }, {
+        value: '2',
+        label: '用户姓名'
+      }, {
+        value: '3',
+        label: '酒店id'
+      }, {
+        value: '4',
+        label: '酒店名'
+      }],
+      value: '1'
     }
   }
 }
