@@ -89,6 +89,26 @@ public class HotelController {
     }
 
     @CrossOrigin
+    @ResponseBody
+    public Hotel hotelInfo(SearchDetailed searchDetailed) {
+        Hotel hotel = hotelService.SearchbyIDDetailed(searchDetailed);
+        if(null == hotel){
+            System.out.println("Get hotel info failed!");
+        }else {
+            System.out.println("Get hotel info success");
+            System.out.println("Setting hotel...");
+            //set imgList
+            List<String> images = new ArrayList<>();
+            for(int i=0;i<hotel.getImg_num();i++){
+                images.add("http://localhost:8443/image/"+1000*((hotel.getId())%1000)+"/"+hotel.getId()+"_"+i+".jpg");
+            }
+            hotel.setImgList(images);
+        }
+
+        return hotel;
+    }
+
+    @CrossOrigin
     @PostMapping(value = "/api/hotel/searchByIdDetailed")
     @ResponseBody
     public Hotel hotelInfoDetailed(@RequestBody Hotel requestHotel, HttpSession session) {
@@ -145,6 +165,7 @@ public class HotelController {
         }
         return hotel;
     }
+
     @CrossOrigin
     @PostMapping(value = "/api/hotel/searchByName")
     @ResponseBody

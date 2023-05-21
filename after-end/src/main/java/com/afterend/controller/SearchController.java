@@ -249,7 +249,7 @@ public class SearchController {
         Hotel hotel = new Hotel();
         hotel.setId(requestSearch.getId());
         SearchDetailed searchDetailed = requestSearch;
-        hotel = hotelController.hotelInfo(hotel);
+        hotel = hotelController.hotelInfo(searchDetailed);
         List<Hotel> hotels = new ArrayList<>();
         hotels.add(hotel);
         searchDetailed.setHotels(hotels);
