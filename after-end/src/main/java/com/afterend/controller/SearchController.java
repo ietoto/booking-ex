@@ -125,6 +125,8 @@ public class SearchController {
         if(null==searchDetailed){
             System.out.println("No result find.");
         }else {
+            System.out.println("result find.");
+            System.out.println( searchDetailed.getHotels());
 //            System.out.println("Search success.");
 //            for(int i=0;i<searchDetailed.getHotels().size();i++){
 //                System.out.println(searchDetailed.getHotels().get(i).getName());

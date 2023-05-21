@@ -91,7 +91,7 @@ export default {
         })
         .then(successResponse => {
           if (successResponse.data !=null) {
-            this.Hotel=successResponse.data.hotels[0]
+            this.Hotel=successResponse.data
             console.log(this.Hotel)
             this.$store.commit("hotel",this.Hotel)
           }
@@ -100,8 +100,8 @@ export default {
         })
         .catch(failResponse => {
         })
-      this.$router.push({ name: "HotelDetail", params: { id } });
-      this.$emit("navigate", id);
+      // this.$router.push({ name: "HotelDetail", params: { id } });
+      // this.$emit("navigate", id);
     }
   }
 };
