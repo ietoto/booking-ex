@@ -103,6 +103,25 @@ public class HotelController {
                 images.add("http://localhost:8443/image/"+1000*((hotel.getId())%1000)+"/"+hotel.getId()+"_"+i+".jpg");
             }
             hotel.setImgList(images);
+            // set hotel facilities
+            List<HotelFac> hotelFacList = hotelFacController.getHotelFac2(hotel);
+//            List<HotelFac> hotelFacList = hotelFacService.get(hotel);
+//            if(0==hotelFacList.size()){
+//                System.out.println("Get fac by hotelId failed!");
+//            }else {
+//                System.out.println("Get fac by hotelId success!");
+//            }
+
+            List<String> facilities_hotel = new ArrayList<>();
+            for (int i = 0; i < hotelFacList.size(); i++) {
+                facilities_hotel.add(hotelFacList.get(i).getName());
+            }
+            hotel.setFacilities(facilities_hotel);
+
+            //set rooms
+            List<Room> rooms = roomController.getRoomListWithFac(hotel);
+            hotel.setRooms(rooms);
+
         }
 
         return hotel;

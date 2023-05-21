@@ -245,16 +245,13 @@ public class SearchController {
     @CrossOrigin
     @PostMapping(value = "/api/search/Hotel_Info")
     @ResponseBody
-    public SearchDetailed hotel_info(@RequestBody SearchDetailed requestSearch, HttpSession session) {
+    public Hotel hotel_info(@RequestBody SearchDetailed requestSearch, HttpSession session) {
         Hotel hotel = new Hotel();
         hotel.setId(requestSearch.getId());
         SearchDetailed searchDetailed = requestSearch;
         hotel = hotelController.hotelInfo(searchDetailed);
-        List<Hotel> hotels = new ArrayList<>();
-        hotels.add(hotel);
-        searchDetailed.setHotels(hotels);
 
-        return searchDetailed;
+        return hotel;
 
     }
 
