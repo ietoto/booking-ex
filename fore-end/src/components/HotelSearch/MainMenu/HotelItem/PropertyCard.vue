@@ -100,8 +100,8 @@ export default {
         })
         .catch(failResponse => {
         })
-      // this.$router.push({ name: "HotelDetail", params: { id } });
-      // this.$emit("navigate", id);
+      this.$router.push({ name: "HotelDetail", params: { id } });
+      this.$emit("navigate", id);
     }
   }
 };
