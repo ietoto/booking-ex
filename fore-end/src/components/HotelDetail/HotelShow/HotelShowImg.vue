@@ -30,21 +30,30 @@
 
 export default {
     name: 'HotelShowImg',
+  mounted: function () {
+    console.log('挂载开始')
+    this.gethotel()
+  },
     data() {
         return {
             hotel: {
-                imgList: [
-                    "https://img-v.veimg.cn/company_picture/000/087/105/photo/20201108155136b7q32t8wjcrq5.jpg",
-                    "https://img-v.veimg.cn/company_picture/000/087/105/photo/20201108155136b7q32t8wjcrq5.jpg",
-                    "https://img-v.veimg.cn/company_picture/000/087/105/photo/20201108155136b7q32t8wjcrq5.jpg",
-                    "https://uimg.huixiaoer.net/86104452/79195b4f14b9f39a18a939025fad1ade.jpg",
-                    "https://img-v.veimg.cn/company_picture/000/087/105/photo/20201108155136b7q32t8wjcrq5.jpg",
-                    "https://img-v.veimg.cn/company_picture/000/087/105/photo/20201108155136b7q32t8wjcrq5.jpg",
-                    "https://uimg.huixiaoer.net/86197282/3841877cdb5bef105945b89725de31c0.jpg",
-                ],
+                imgList: this.$store.state.hotel.imgList,
             }
         };
     },
+  methods: {
+    gethotel(){
+      this.hotel=this.$store.state.hotel
+      // if(this.$store.state.hotel_state.id!==this.$store.state.hotel.id){
+      //   let hotel_state={
+      //     id:this.$store.state.hotel.id
+      //   }
+      //   this.$store.commit("hotel_state",hotel_state)
+      //   this.$router.go(0);
+      //   console.log('刷新')
+      // }
+    }
+  }
 }
 </script>
 

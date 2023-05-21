@@ -1257,10 +1257,12 @@ public class SearchDAO {
             pstate1.setString(5,search.getStartdate());
             int num= (int) ((double)search.getAdult()+(double)search.getChild()/2);
             pstate1.setInt(6,num);
+            System.out.println(pstate1);
             pstate1.executeUpdate();
 
             String sql2="SELECT * from hotel where hotel_id in (SELECT hotel_id FROM hotellist1);";
             PreparedStatement pstate2 = con.prepareStatement(sql2);
+            System.out.println(pstate2);
             ResultSet resultSet2 = pstate2.executeQuery();
             while (resultSet2.next()){
                 Hotel temp=new Hotel();

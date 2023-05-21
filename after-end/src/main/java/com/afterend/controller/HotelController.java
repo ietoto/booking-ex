@@ -100,7 +100,8 @@ public class HotelController {
             //set imgList
             List<String> images = new ArrayList<>();
             for(int i=0;i<hotel.getImg_num();i++){
-                images.add("http://localhost:8443/image/"+1000*((hotel.getId())%1000)+"/"+hotel.getId()+"_"+i+".jpg");
+                int j=i+1;
+                images.add("http://localhost:8443/image/"+(hotel.getId())/1000+"/"+hotel.getId()+"_"+j+".jpg");
             }
             hotel.setImgList(images);
             // set hotel facilities

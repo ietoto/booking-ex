@@ -111,8 +111,8 @@ public class HotelDAO {
             PreparedStatement pstate2 = con.prepareStatement(sql2);
             pstate2.setInt(1,searchDetailed.getId());
             pstate2.setInt(2,searchDetailed.getId());
-            pstate2.setString(1,searchDetailed.getStartdate());
-            pstate2.setString(2,searchDetailed.getEnddate());
+            pstate2.setString(3,searchDetailed.getStartdate());
+            pstate2.setString(4,searchDetailed.getEnddate());
             ResultSet resultSet2 = pstate2.executeQuery();
             while (resultSet2.next()){
                 Room s1=new Room();
@@ -140,6 +140,7 @@ public class HotelDAO {
                 e.printStackTrace();
             }
         }
+        s.setRooms(list);
         return s;
     }
     public static Hotel SearchbyID(Hotel hotel) {

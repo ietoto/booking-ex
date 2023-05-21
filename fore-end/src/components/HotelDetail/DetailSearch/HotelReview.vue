@@ -59,19 +59,7 @@
 export default {
     data() {
         return {
-            hotel: {
-                id: 5,
-                name: "北京古北口长城团园客栈",
-                desciption: "你可以享受北京古北口长城团园客栈的Genius优惠！只需即可省钱。暖气客房均设有石墙和木质家具，享有长城的景致。庭院设有共用浴室和带暖气的卫生间设施。私人客房均提供iPod基座、电热水壶和连接浴室。北京古北口长城团园客栈在庭院设有一个户外休息区，还设有一个公共用餐区。夏季，客人可以在周边地区徒步旅行，并进行野餐。客人可以在温暖的壁炉周围阅读书籍。业主每日以天然食材烹制当地中式菜肴，也供应自制素食。北京古北口长城团园客栈距离古北口火车站3公里，距离北京国际机场100公里。 ",
-                distance: -1,
-                city: "北京",
-                location: "密云",
-                address: "密云古北口镇西队主街甲18号",
-                score: 9,
-                star: 2,
-                img: null,
-                imgList: ["http://localhost:8443/image/1/0.jpg", "http://localhost:8443/image/1/1.jpg", "http://localhost:8443/image/1/2.jpg", "http://localhost:8443/image/1/3.jpg", "http://localhost:8443/image/1/4.jpg", "http://localhost:8443/image/1/5.jpg", "http://localhost:8443/image/1/6.jpg", "http://localhost:8443/image/1/7.jpg"],
-            },
+            hotel: this.$store.state.hotel,
             scores: []
         }
     },
@@ -185,4 +173,3 @@ export default {
     /* 根据需要添加样式 */
 }
 </style>
-  
