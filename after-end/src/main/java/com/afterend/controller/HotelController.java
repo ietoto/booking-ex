@@ -182,6 +182,14 @@ public class HotelController {
             System.out.println("Can't find hotel by id!");
         }else {
             System.out.println("Successfully find hotel by id!");
+            //set img
+            hotel.setImg("http://localhost:8443/image/-1/"+hotel.getId()+".jpg");
+            //set imgList
+            List<String> images = new ArrayList<>();
+            for(int i=0;i<hotel.getImg_num();i++){
+                images.add("http://localhost:8443/image/"+1000*((hotel.getId())%1000)+"/"+hotel.getId()+"_"+i+".jpg");
+            }
+            hotel.setImgList(images);
         }
         return hotel;
     }
