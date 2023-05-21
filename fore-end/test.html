@@ -4,7 +4,10 @@
   data-et-view="eWfaQDSFcFPIWWXVXeLaBVAVKCYO:1"
 >
   <div data-et-view="eWfaQDSWSGUQHMQOFfOBfC:1"></div>
-  <div class="description js-timebar-parent" id="checkin_policy">
+  <div
+    class="description js-timebar-parent timebar-wrapper"
+    id="checkin_policy"
+  >
     <p class="policy_name">
       <span class="policy_name_icon">
         <svg
@@ -26,10 +29,43 @@
       </span>
     </p>
     <p>
-      14:00后
+      <span
+        data-component="prc/timebar"
+        class="u-display-block"
+        data-from="12:00"
+        data-from-label="12:00"
+        data-caption="
+  12:00之后
+  "
+      >
+        <span class="timebar   ">
+          <span class="timebar__core">
+            <span class="timebar__base">
+              <span class="timebar__bar" style="left:50%; width:50%"></span>
+            </span>
+
+            <span
+              class="timebar__label"
+              style="left: 50%; margin-left: -15.5px;"
+              >12:00</span
+            >
+
+            <span
+              class="timebar__caption"
+              style="left: 75%; margin-left: -38.5px;"
+            >
+              12:00之后
+              <span class="timebar__caption-pointer"></span
+            ></span>
+          </span>
+        </span>
+      </span>
     </p>
   </div>
-  <div class="description js-timebar-parent" id="checkout_policy">
+  <div
+    class="description js-timebar-parent timebar-wrapper"
+    id="checkout_policy"
+  >
     <p class="policy_name">
       <span class="policy_name_icon">
         <svg
@@ -51,64 +87,44 @@
       </span>
     </p>
     <p>
-      12:00前
+      <span
+        data-component="prc/timebar"
+        class="u-display-block"
+        data-until="14:00"
+        data-until-label="14:00"
+        data-caption="
+  14:00之前
+  "
+      >
+        <span class="timebar   ">
+          <span class="timebar__core">
+            <span class="timebar__base">
+              <span
+                class="timebar__bar"
+                style="left:0%; width:58.333333333333336%"
+              ></span>
+            </span>
+
+            <span
+              class="timebar__label"
+              style="left: 58.3333%; margin-left: -16px;"
+              >14:00</span
+            >
+
+            <span
+              class="timebar__caption"
+              style="left: 29.1667%; margin-left: -39px;"
+            >
+              14:00之前
+              <span class="timebar__caption-pointer"></span
+            ></span>
+          </span>
+        </span>
+      </span>
     </p>
     <div style="clear:both">&nbsp;</div>
   </div>
-  <div id="cancellation_policy" class="description tracked">
-    <a name="hotel_cancellation_policy"></a>
-    <p class="policy_name">
-      <span class="policy_name_icon">
-        <svg
-          class="bk-icon -streamline-info_sign"
-          height="20"
-          width="20"
-          viewBox="0 0 24 24"
-          role="presentation"
-          aria-hidden="true"
-          focusable="false"
-        >
-          <path
-            d="M14.25 15.75h-.75a.75.75 0 0 1-.75-.75v-3.75a1.5 1.5 0 0 0-1.5-1.5h-.75a.75.75 0 0 0 0 1.5h.75V15a2.25 2.25 0 0 0 2.25 2.25h.75a.75.75 0 0 0 0-1.5zM11.625 6a1.125 1.125 0 1 0 0 2.25 1.125 1.125 0 0 0 0-2.25.75.75 0 0 0 0 1.5.375.375 0 1 1 0-.75.375.375 0 0 1 0 .75.75.75 0 0 0 0-1.5zM22.5 12c0 5.799-4.701 10.5-10.5 10.5S1.5 17.799 1.5 12 6.201 1.5 12 1.5 22.5 6.201 22.5 12zm1.5 0c0-6.627-5.373-12-12-12S0 5.373 0 12s5.373 12 12 12 12-5.373 12-12z"
-          ></path>
-        </svg>
-      </span>
-      <span>
-        预订取消/<br />
-        预付政策
-      </span>
-    </p>
-    <p>
-      取消和预付款政策根据住宿类型而有所不同。 选择时请查看每个选项的
-      <a href="#availability_target" id="rm_cond_link"> 预订须知</a>。
-    </p>
-    <div style="clear:both"></div>
-  </div>
-  <div
-    class="description description_smp-children-policy"
-    id="smp_children_policy"
-    data-et-view=""
-  >
-    <p class="policy_name">
-      <span class="policy_name_icon">
-        <svg
-          class="bk-icon -streamline-family"
-          height="20"
-          width="20"
-          viewBox="0 0 24 24"
-          role="presentation"
-          aria-hidden="true"
-          focusable="false"
-        >
-          <path
-            d="M21.75 5.25a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0zm1.5 0a3.75 3.75 0 1 0-7.5 0 3.75 3.75 0 0 0 7.5 0zm-6.182 15.093l.188 1.5A.75.75 0 0 0 18 22.5h3a.75.75 0 0 0 .744-.657l.75-6-.744.657h1.5a.75.75 0 0 0 .75-.75V13.5a4.5 4.5 0 0 0-7.2-3.6.75.75 0 1 0 .9 1.2 3 3 0 0 1 4.8 2.4v2.25l.75-.75h-1.5a.75.75 0 0 0-.744.657l-.75 6L21 21h-3l.744.657-.188-1.5a.75.75 0 0 0-1.488.186zM6.75 5.25a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0zm1.5 0a3.75 3.75 0 1 0-7.5 0 3.75 3.75 0 0 0 7.5 0zM5.444 20.157l-.188 1.5L6 21H3l.744.657-.75-6A.75.75 0 0 0 2.25 15H.75l.75.75V13.5a3 3 0 0 1 4.8-2.4.75.75 0 1 0 .9-1.2A4.5 4.5 0 0 0 0 13.5v2.25c0 .414.336.75.75.75h1.5l-.744-.657.75 6A.75.75 0 0 0 3 22.5h3a.75.75 0 0 0 .744-.657l.188-1.5a.75.75 0 0 0-1.488-.186zM13.5 9a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zM15 9a3 3 0 1 0-6 0 3 3 0 0 0 6 0zm-3 3a4.5 4.5 0 0 0-4.5 4.5v.75c0 .414.336.75.75.75h1.5l-.74-.627.75 4.5a.75.75 0 0 0 .74.627H12a.75.75 0 0 0 0-1.5h-1.5l.74.627-.75-4.5a.75.75 0 0 0-.74-.627h-1.5l.75.75v-.75a3 3 0 0 1 3-3 .75.75 0 0 0 0-1.5zm0 1.5a3 3 0 0 1 3 3v.75l.75-.75h-1.5a.75.75 0 0 0-.74.627l-.75 4.5.74-.627H12a.75.75 0 0 0 0 1.5h1.5a.75.75 0 0 0 .74-.627l.75-4.5-.74.627h1.5a.75.75 0 0 0 .75-.75v-.75A4.5 4.5 0 0 0 12 12a.75.75 0 0 0 0 1.5z"
-          ></path>
-        </svg>
-      </span>
-      <span>儿童及加床政策</span>
-    </p>
 
-  </div>
   <div class="description" id="age_restriction_policy">
     <p class="policy_name">
       <span class="policy_name_icon">
@@ -127,17 +143,17 @@
         </svg>
       </span>
       <span>
-        年龄限制
+        无年龄限制
       </span>
     </p>
-    <p>入住办理人需年满18岁</p>
+    <p>入住客人无年龄限制要求</p>
   </div>
 
-  <div class="description">
-    <p class="policy_name">
+  <div class="description hp_bp_payment_method">
+    <p class="policy_name" aria-hidden="true">
       <span class="policy_name_icon">
         <svg
-          class="bk-icon -streamline-group"
+          class="bk-icon -streamline-credit_card_back"
           height="20"
           width="20"
           viewBox="0 0 24 24"
@@ -146,14 +162,76 @@
           focusable="false"
         >
           <path
-            d="M6 6a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm1.5 0a3 3 0 1 0-6 0 3 3 0 0 0 6 0zm-3 3A4.5 4.5 0 0 0 0 13.5v2.25c0 .414.336.75.75.75h1.5l-.744-.657.75 6A.75.75 0 0 0 3 22.5h3A.75.75 0 0 0 6 21H3l.744.657-.75-6A.75.75 0 0 0 2.25 15H.75l.75.75V13.5a3 3 0 0 1 3-3 .75.75 0 0 0 0-1.5zM21 6a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm1.5 0a3 3 0 1 0-6 0 3 3 0 0 0 6 0zm-3 4.5a3 3 0 0 1 3 3v2.25l.75-.75h-1.5a.75.75 0 0 0-.744.657l-.75 6L21 21h-3a.75.75 0 0 0 0 1.5h3a.75.75 0 0 0 .744-.657l.75-6-.744.657h1.5a.75.75 0 0 0 .75-.75V13.5A4.5 4.5 0 0 0 19.5 9a.75.75 0 0 0 0 1.5zm-5.25-6.75a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0zm1.5 0a3.75 3.75 0 1 0-7.5 0 3.75 3.75 0 0 0 7.5 0zM18 13.5a6 6 0 0 0-12 0v2.25c0 .414.336.75.75.75H9l-.746-.675.75 7.5A.75.75 0 0 0 9.75 24h4.5a.75.75 0 0 0 .746-.675l.75-7.5L15 16.5h2.25a.75.75 0 0 0 .75-.75V13.5zm-1.5 0v2.25l.75-.75H15a.75.75 0 0 0-.746.675l-.75 7.5.746-.675h-4.5l.746.675-.75-7.5A.75.75 0 0 0 9 15H6.75l.75.75V13.5a4.5 4.5 0 1 1 9 0z"
+            d="M22.5 12v6.75a.75.75 0 0 1-.75.75H2.25a.75.75 0 0 1-.75-.75V5.25a.75.75 0 0 1 .75-.75h19.5a.75.75 0 0 1 .75.75V12zm1.5 0V5.25A2.25 2.25 0 0 0 21.75 3H2.25A2.25 2.25 0 0 0 0 5.25v13.5A2.25 2.25 0 0 0 2.25 21h19.5A2.25 2.25 0 0 0 24 18.75V12zM.75 9h22.5a.75.75 0 0 0 0-1.5H.75a.75.75 0 0 0 0 1.5zm4.5 4.5h8.25a.75.75 0 0 0 0-1.5H5.25a.75.75 0 0 0 0 1.5zm0 3h5.25a.75.75 0 0 0 0-1.5H5.25a.75.75 0 0 0 0 1.5z"
           ></path>
         </svg>
       </span>
-      <span>团体</span>
+      <span>
+        酒店接受的银行卡类型
+      </span>
     </p>
-    <p>
-      如果预订客房数超过6间，住宿方将采用不同的政策和额外补充规定 。
+    <p
+      aria-label="支持的付款方式和付款条件"
+      data-et-view="
+  TeCOeJIUWUHcKKSTLGPAcADDbddRBQSCEDXFZSCZC:2
+  TeCOeJIUWUHcKKSTLGPAcTPSUGADDbddRBQSCEDXFZSCZC:2
+  "
+      class="payment_methods_overall"
+      rel="300"
+    >
+      <img
+        src="https://cf.bstatic.com/static/img/transparent/8e09e5757781bf4c0f42228d45f422e5e800ae64.gif"
+        class="payment_methods_readability ppd_payment_methods_readability creditcard maestro"
+        alt="Maestro卡"
+        title="Maestro卡"
+      />
+      <img
+        src="https://cf.bstatic.com/static/img/transparent/8e09e5757781bf4c0f42228d45f422e5e800ae64.gif"
+        class="payment_methods_readability ppd_payment_methods_readability creditcard euromastercard"
+        alt="Mastercard万事达卡"
+        title="Mastercard万事达卡"
+      />
+      <img
+        src="https://cf.bstatic.com/static/img/transparent/8e09e5757781bf4c0f42228d45f422e5e800ae64.gif"
+        class="payment_methods_readability ppd_payment_methods_readability creditcard visa"
+        alt="Visa维萨卡"
+        title="Visa维萨卡"
+      />
+      <img
+        src="https://cf.bstatic.com/static/img/transparent/8e09e5757781bf4c0f42228d45f422e5e800ae64.gif"
+        class="payment_methods_readability ppd_payment_methods_readability creditcard unionpaycreditcard"
+        alt="银联信用卡"
+        title="银联信用卡"
+      />
+      <img
+        src="https://cf.bstatic.com/static/img/transparent/8e09e5757781bf4c0f42228d45f422e5e800ae64.gif"
+        class="payment_methods_readability ppd_payment_methods_readability creditcard jcb"
+        alt="JCB卡"
+        title="JCB卡"
+      />
+      <img
+        src="https://cf.bstatic.com/static/img/transparent/8e09e5757781bf4c0f42228d45f422e5e800ae64.gif"
+        class="payment_methods_readability ppd_payment_methods_readability creditcard dinersclub"
+        alt="大莱卡"
+        title="大莱卡"
+      />
+      <img
+        src="https://cf.bstatic.com/static/img/transparent/8e09e5757781bf4c0f42228d45f422e5e800ae64.gif"
+        class="payment_methods_readability ppd_payment_methods_readability creditcard americanexpress"
+        alt="美国运通卡"
+        title="美国运通卡"
+      />
+      <span class="creditcard_noimg no-image-payment">金卡</span>
+      <span class="creditcard_noimg no-image-payment">太平洋卡</span>
+      <span class="creditcard_noimg no-image-payment">龙卡</span>
+      <span class="creditcard_noimg no-image-payment">牡丹卡</span>
+      <span class="creditcard_noimg no-image-payment">长城卡</span>
+      <span class="invisible_spoken" tabindex="0"
+        >义乌银都酒店接受上述银行卡付款并有权在您抵达之前进行预授权。</span
+      >
+    </p>
+    <p class="cc_disclaimer" style="clear:both" aria-hidden="true">
+      义乌银都酒店接受上述银行卡付款并有权在您抵达之前进行预授权。
     </p>
     <div style="clear:both"></div>
   </div>

@@ -1,181 +1,283 @@
 <template>
+  <div>
+    <Navbar />
+    <el-container>
+      <el-aside width="10%" class="searchbar">
+        <Searchbar />
+      </el-aside>
+      <el-main width="80%">
+        <HotelShow />
+      </el-main>
+    </el-container>
+    <el-container>
+      <el-aside width="45%" class="hotel-description">
+        <h2>
+          {{ hotel.name }}
+        </h2>
+        <p class="hotel-description-font">
+          {{ hotel.desciption }}
+        </p>
+        <h2>热门设施</h2>
+        <el-row :gutter="20" width="">
+          <el-col :span="24">
+            <el-row :gutter="20" class="facilityboard">
+              <el-col
+                :span="5"
+                v-for="(facility, index) in randomFacilities"
+                :key="index"
+              >
+                <facility-card
+                  :icon-path="facility.iconPath"
+                  :facility-name="facility.facilityName"
+                >
+                </facility-card>
+              </el-col>
+            </el-row>
+          </el-col>
+        </el-row>
+      </el-aside>
+      <el-main width="50%" class="hotel-booking-icon">
+        <div>
+          <h3 class="heading">住宿特色</h3>
+          <div>
+            <h4 class="section1">1晚好去处！</h4>
+            <div>
+              <span class="span1"
+                ><i class="el-icon-location-outline"></i>这家酒店位于{{
+                  hotel.city
+                }}中心，位置评分非常高：{{ hotel.score }}</span
+              >
+            </div>
+            <div>
+              <span class="span2"
+                ><i class="el-icon-moon"></i
+                >想要一觉安睡到天亮？客人都说这家酒店的床很舒服</span
+              >
+            </div>
+          </div>
+          <div>
+            <h4 class="section1">早餐信息</h4>
+            <span><i class="el-icon-dish"></i>早餐提供亚洲、美式</span>
+          </div>
+          <div>
+            <h4 class="section1">住了又住</h4>
+            <span
+              ><i class="el-icon-refresh-right"></i>这家住宿有超多的回头客</span
+            >
+          </div>
+          <div>
+            <el-button class="bookingnow" @click="scrollToRoomTable"
+              >现在就预定</el-button
+            >
+          </div>
+        </div>
+      </el-main>
+    </el-container>
+    <hr width="70%" />
     <div>
-        <Navbar />
-        <el-container>
-            <el-aside width="10%" class="searchbar">
-                <Searchbar />
-            </el-aside>
-            <el-main width="80%">
-                <HotelShow />
-            </el-main>
-        </el-container>
-        <div class="hotel-detail-block">
-            <img src="./img/hoteldetail.jpg" alt="hotel-detail" width="80%">
-        </div>
-        <el-container>
-            <el-aside width="45%" class="hotel-description">
-                <h2>
-                    {{ hotel.name  }}
-                </h2>
-                <p class="hotel-description-font">
-                    {{ hotel.desciption }}
-                </p>
-                <img src="./img/hoteldescription.jpg" alt="hoteldescription" width="100%">
-            </el-aside>
-            <el-main width="50%" class="hotel-booking-icon">
-                <div>
-                    <h3 class="heading">住宿特色</h3>
-                    <div>
-                        <h4 class="section1">1晚好去处！</h4>
-                        <div>
-                            <span class="span1"><i class="el-icon-location-outline"></i>这家酒店位于{{ hotel.city }}中心，位置评分非常高：{{ hotel.score  }}</span>
-                        </div>
-                        <div>
-                            <span class="span2"><i class="el-icon-moon"></i>想要一觉安睡到天亮？客人都说这家酒店的床很舒服</span>
-                        </div>
-                    </div>
-                    <div>
-                        <h4 class="section1">早餐信息</h4>
-                        <span><i class="el-icon-dish"></i>早餐提供亚洲、美式</span>
-                    </div>
-                    <div>
-                        <h4 class="section1">住了又住</h4>
-                        <span><i class="el-icon-refresh-right"></i>这家住宿有超多的回头客</span>
-                    </div>
-                    <div>
-                        <el-button class="bookingnow" @click="scrollToRoomTable" >现在就预定</el-button>
-                    </div>
-                </div>
-            </el-main>
-        </el-container>
-        <hr width="70%">
-        <div>
-            <DetailSearch/>
-        </div>
-        <div>
-            <HotelFacility/>
-        </div>
-        <div>
-            <HotelRegistration/>
-        </div>
-        <FooterBlue />
+      <DetailSearch />
     </div>
+    <div>
+      <HotelFacility />
+    </div>
+    <div>
+      <HotelRegistration />
+    </div>
+    <FooterBlue />
+  </div>
 </template>
 
 <script>
-import HotelRegistration from './HotelRegistration/HotelRegistration.vue'
-import HotelFacility from './HotelFacility/HotelFacility.vue'
-import DetailSearch from './DetailSearch/DetailSearch.vue'
-import HotelShow from './HotelShow/HotelShow.vue'
-import Searchbar from '../HotelSearch/SearchAside/Searchbar.vue'
-import Navbar from '../home/Navbar/Navbar.vue'
-import FooterBlue from '../home/Footer/FooterBlue.vue'
-import FooterWhite from '../home/Footer/FooterWhite.vue';
+import FacilityCard from "./HotelFacility/FacilityCard.vue";
+import HotelRegistration from "./HotelRegistration/HotelRegistration.vue";
+import HotelFacility from "./HotelFacility/HotelFacility.vue";
+import DetailSearch from "./DetailSearch/DetailSearch.vue";
+import HotelShow from "./HotelShow/HotelShow.vue";
+import Searchbar from "../HotelSearch/SearchAside/Searchbar.vue";
+import Navbar from "../home/Navbar/Navbar.vue";
+import FooterBlue from "../home/Footer/FooterBlue.vue";
+import FooterWhite from "../home/Footer/FooterWhite.vue";
 export default {
-    name: 'HotelDetail',
-    data() {
-        return {
-            hotel: {
-                id: 5,
-                name: "北京古北口长城团园客栈",
-                desciption: "你可以享受北京古北口长城团园客栈的Genius优惠！只需即可省钱。暖气客房均设有石墙和木质家具，享有长城的景致。庭院设有共用浴室和带暖气的卫生间设施。私人客房均提供iPod基座、电热水壶和连接浴室。北京古北口长城团园客栈在庭院设有一个户外休息区，还设有一个公共用餐区。夏季，客人可以在周边地区徒步旅行，并进行野餐。客人可以在温暖的壁炉周围阅读书籍。业主每日以天然食材烹制当地中式菜肴，也供应自制素食。北京古北口长城团园客栈距离古北口火车站3公里，距离北京国际机场100公里。 ",
-                distance: -1,
-                city: "北京",
-                location: "密云",
-                address: "密云古北口镇西队主街甲18号",
-                score: 9,
-                star: 2,
-                img: null,
-                imgList: ["http://localhost:8443/image/1/0.jpg", "http://localhost:8443/image/1/1.jpg", "http://localhost:8443/image/1/2.jpg", "http://localhost:8443/image/1/3.jpg", "http://localhost:8443/image/1/4.jpg", "http://localhost:8443/image/1/5.jpg", "http://localhost:8443/image/1/6.jpg", "http://localhost:8443/image/1/7.jpg"],
-            }
-        };
-    },
-    components: {
-        Navbar,
-        FooterBlue,
-        FooterWhite,
-        Searchbar,
-        HotelShow,
-        DetailSearch,
-        HotelFacility,
-        HotelRegistration
-    },
-    methods: {
-    scrollToRoomTable() {
-            const roomTableElement = document.querySelector('.roomtable');
-            if (roomTableElement) {
-                roomTableElement.scrollIntoView({ behavior: 'smooth' });
-            }
+  name: "HotelDetail",
+  data() {
+    return {
+      hotel: {
+        id: 5,
+        name: "北京古北口长城团园客栈",
+        desciption:
+          "你可以享受北京古北口长城团园客栈的Genius优惠！只需即可省钱。暖气客房均设有石墙和木质家具，享有长城的景致。庭院设有共用浴室和带暖气的卫生间设施。私人客房均提供iPod基座、电热水壶和连接浴室。北京古北口长城团园客栈在庭院设有一个户外休息区，还设有一个公共用餐区。夏季，客人可以在周边地区徒步旅行，并进行野餐。客人可以在温暖的壁炉周围阅读书籍。业主每日以天然食材烹制当地中式菜肴，也供应自制素食。北京古北口长城团园客栈距离古北口火车站3公里，距离北京国际机场100公里。 ",
+        distance: -1,
+        city: "北京",
+        location: "密云",
+        address: "密云古北口镇西队主街甲18号",
+        score: 9,
+        star: 2,
+        img: null,
+        imgList: [
+          "http://localhost:8443/image/1/0.jpg",
+          "http://localhost:8443/image/1/1.jpg",
+          "http://localhost:8443/image/1/2.jpg",
+          "http://localhost:8443/image/1/3.jpg",
+          "http://localhost:8443/image/1/4.jpg",
+          "http://localhost:8443/image/1/5.jpg",
+          "http://localhost:8443/image/1/6.jpg",
+          "http://localhost:8443/image/1/7.jpg"
+        ]
+      },
+      facilities: [
+        {
+          iconPath:
+            "M23.097 21.71c-.896.187-1.71-.114-2.442-.76a4.629 4.629 0 0 1-.74-.837.75.75 0 0 0-1.272-.004 3.557 3.557 0 0 1-2.925 1.661 2.98 2.98 0 0 1-2.559-1.608.75.75 0 0 0-1.26-.11 4.418 4.418 0 0 1-3.286 1.719c-1.121-.058-2.216-.68-2.876-1.677a.75.75 0 0 0-1.214-.05 6.17 6.17 0 0 1-1.125 1.033c-.833.588-1.677.85-2.49.675a.75.75 0 1 0-.315 1.466c1.285.276 2.526-.107 3.67-.915a7.084 7.084 0 0 0 1.438-1.33l-1.214-.05a5.257 5.257 0 0 0 4.126 2.346c1.807-.084 3.417-.926 4.476-2.303l-1.26-.11a4.49 4.49 0 0 0 3.892 2.414 5.07 5.07 0 0 0 4.192-2.361l-1.272-.004c.192.308.533.739 1.022 1.17 1.057.931 2.32 1.4 3.74 1.104a.75.75 0 0 0-.306-1.468zm0-4.5c-.896.187-1.71-.114-2.442-.76a4.629 4.629 0 0 1-.74-.837.75.75 0 0 0-1.272-.004 3.557 3.557 0 0 1-2.925 1.661 2.98 2.98 0 0 1-2.559-1.608.75.75 0 0 0-1.26-.11 4.418 4.418 0 0 1-3.286 1.719c-1.121-.058-2.216-.68-2.876-1.677a.75.75 0 0 0-1.214-.05 6.17 6.17 0 0 1-1.125 1.033c-.833.588-1.677.85-2.49.675a.75.75 0 1 0-.315 1.466c1.285.276 2.526-.107 3.67-.915a7.084 7.084 0 0 0 1.438-1.33l-1.214-.05a5.257 5.257 0 0 0 4.126 2.346c1.807-.084 3.417-.926 4.476-2.303l-1.26-.11a4.49 4.49 0 0 0 3.892 2.414 5.07 5.07 0 0 0 4.192-2.361l-1.272-.004c.192.308.533.739 1.022 1.17 1.057.931 2.32 1.4 3.74 1.104a.75.75 0 0 0-.306-1.468zm-1.722-8.64a1.875 1.875 0 1 1-3.75 0 1.875 1.875 0 0 1 3.75 0zm1.5 0a3.375 3.375 0 1 0-6.75 0 3.375 3.375 0 0 0 6.75 0zM7.777 14.636l3.831-2.4a.75.75 0 0 0 .166-1.13L8.964 7.9a2.25 2.25 0 0 1 .687-3.494l4.264-2.135a.751.751 0 1 1 .686 1.333l-.01.006-3.405 1.702a1.502 1.502 0 0 0-.448 2.334l5.375 6.142a.75.75 0 1 0 1.128-.988l-5.377-6.145-.002-.003v-.001l3.394-1.697.027-.013A2.25 2.25 0 0 0 13.238.93L8.98 3.065a3.749 3.749 0 0 0-1.144 5.824l2.81 3.206.166-1.13-3.831 2.4a.75.75 0 0 0 .796 1.272z",
+          facilityName: "室内泳池"
         },
+        {
+          iconPath:
+            "M3.75 4.5h12a.75.75 0 0 1 .75.75v7.5a6.75 6.75 0 0 1-13.5 0v-7.5a.75.75 0 0 1 .75-.75zm0-1.5A2.25 2.25 0 0 0 1.5 5.25v7.5a8.25 8.25 0 0 0 16.5 0v-7.5A2.25 2.25 0 0 0 15.75 3h-12zm-3 18h22.5a.75.75 0 0 0 0-1.5H.75a.75.75 0 0 0 0 1.5zm16.5-15h1.5a3.763 3.763 0 0 1 3.75 3.752 3.762 3.762 0 0 1-3.752 3.748H17.1a.75.75 0 0 0 0 1.5h1.65A5.263 5.263 0 0 0 24 9.752 5.264 5.264 0 0 0 18.752 4.5H17.25a.75.75 0 0 0 0 1.5z",
+          facilityName: "早餐"
+        },
+        {
+          iconPath:
+            "M19.5 9h2.25a.75.75 0 0 1 .75.75v3a.75.75 0 0 1-.75.75h-7.5a.75.75 0 0 0 0 1.5h7.5A2.25 2.25 0 0 0 24 12.75v-3a2.25 2.25 0 0 0-2.25-2.25H19.5a.75.75 0 0 0 0 1.5zM5.25 13.5h-1.5l.75.75v-6L3.75 9h7.5a.75.75 0 0 0 0-1.5h-7.5a.75.75 0 0 0-.75.75v6c0 .414.336.75.75.75h1.5a.75.75 0 0 0 0-1.5zM15 12v2.25a.75.75 0 0 0 1.5 0V12a.75.75 0 0 0-1.5 0zM0 8.25v6a.75.75 0 0 0 1.5 0v-6a.75.75 0 0 0-1.5 0zm1.28 15.53l22.5-22.5A.75.75 0 0 0 22.72.22L.22 22.72a.75.75 0 1 0 1.06 1.06zM4.5.75A2.25 2.25 0 0 1 2.25 3 2.25 2.25 0 0 0 0 5.25a.75.75 0 0 0 1.5 0 .75.75 0 0 1 .75-.75A3.75 3.75 0 0 0 6 .75a.75.75 0 0 0-1.5 0z",
+          facilityName: "禁烟客房"
+        },
+        {
+          iconPath:
+            "M15.788.659a2.25 2.25 0 0 0 0 3.181l4.37 4.371a2.25 2.25 0 0 0 3.183-3.181L18.97.659a2.25 2.25 0 0 0-3.181 0zm1.06 1.06a.75.75 0 0 1 1.06 0l4.373 4.371a.75.75 0 0 1-1.061 1.06l-4.372-4.37a.75.75 0 0 1 0-1.06zM11.545.657a2.25 2.25 0 0 0-.001 3.182v.002l8.616 8.614a2.251 2.251 0 1 0 3.18-3.186L14.73.658a2.25 2.25 0 0 0-3.18-.005l-.006.006zm1.061 1.06l.002-.001a.75.75 0 0 1 1.06.001l8.613 8.613a.751.751 0 1 1-1.061 1.064L12.605 2.78a.75.75 0 0 1 0-1.061zM1.72 16.848a.75.75 0 0 1 1.06 0l4.372 4.371a.75.75 0 0 1-1.07 1.051L1.719 17.91a.75.75 0 0 1 0-1.06zm-1.061-1.06a2.25 2.25 0 0 0 0 3.181L5.03 23.34a2.25 2.25 0 0 0 3.19-3.172l-4.38-4.38v-.001a2.25 2.25 0 0 0-3.183 0zm1.06-3.184a.75.75 0 0 1 1.06 0l8.616 8.615a.751.751 0 0 1-1.064 1.062L1.719 13.67a.75.75 0 0 1-.003-1.062l.002-.003zM.66 11.543l-.006.007A2.25 2.25 0 0 0 .66 14.73l8.61 8.61a2.251 2.251 0 0 0 3.186-3.182L3.84 11.544a2.25 2.25 0 0 0-3.181 0zm6.428 4.309l8.765-8.765H14.79l2.121 2.121v-1.06l-8.764 8.764h1.06l-2.121-2.121v1.06zm-1.06-1.061a.75.75 0 0 0 0 1.06l2.12 2.122a.75.75 0 0 0 1.061 0l8.765-8.765a.75.75 0 0 0 0-1.06l-2.121-2.122a.75.75 0 0 0-1.061 0l-8.765 8.765z",
+          facilityName: "健身中心"
+        },
+        {
+          iconPath:
+            "M22.5 12c0 5.799-4.701 10.5-10.5 10.5S1.5 17.799 1.5 12 6.201 1.5 12 1.5 22.5 6.201 22.5 12zm1.5 0c0-6.627-5.373-12-12-12S0 5.373 0 12s5.373 12 12 12 12-5.373 12-12zm-9.75-1.5a1.5 1.5 0 0 1-1.5 1.5H10.5l.75.75v-4.5L10.5 9h2.25a1.5 1.5 0 0 1 1.5 1.5zm1.5 0a3 3 0 0 0-3-3H10.5a.75.75 0 0 0-.75.75v4.5c0 .414.336.75.75.75h2.25a3 3 0 0 0 3-3zm-4.5 6.75v-4.5a.75.75 0 0 0-1.5 0v4.5a.75.75 0 0 0 1.5 0z",
+          facilityName: "免费停车"
+        },
+        {
+          iconPath:
+            "M8.252 24h6a.75.75 0 0 0 0-1.5h-6a.75.75 0 0 0 0 1.5zm3.75-.75v-9a.75.75 0 0 0-1.5 0v9a.75.75 0 0 0 1.5 0zm7.5-16.19a1.5 1.5 0 0 0-1.06-2.56H4.062a1.5 1.5 0 0 0-1.06 2.56l7.72 7.72a.75.75 0 0 0 1.06 0l7.72-7.72zM18.44 6l-7.72 7.72h1.061L4.062 6h14.379zM.752 1.5h2.822a.75.75 0 0 1 .671.415l1.836 3.67a.75.75 0 1 0 1.342-.67L5.587 1.244A2.25 2.25 0 0 0 3.574 0H.752a.75.75 0 1 0 0 1.5zm15.81 3.603a2.997 2.997 0 1 1 1.511 2.038.75.75 0 0 0-.713 1.319 4.497 4.497 0 1 0-2.268-3.06.75.75 0 1 0 1.47-.297z",
+          facilityName: "酒吧"
+        },
+        {
+          iconPath:
+            "M11.72 14.295A7.35 7.35 0 0 1 8.997 8.85a7.148 7.148 0 0 1 2.25-4.972c.005-.005-.004-.005-.01-.01a7.173 7.173 0 0 1 2.261 5.03 7.332 7.332 0 0 1-2.722 5.397h.944zm-.944 1.166a.75.75 0 0 0 .944 0 8.85 8.85 0 0 0 3.277-6.555 8.683 8.683 0 0 0-2.72-6.12 1.482 1.482 0 0 0-2.069.01 8.658 8.658 0 0 0-2.71 6.062 8.869 8.869 0 0 0 3.278 6.603zm3.813-7.013A7.807 7.807 0 0 1 19.023 7.1l.003-.001a7.17 7.17 0 0 1-1.959 5.142 7.332 7.332 0 0 1-5.74 1.891.75.75 0 0 0-.158 1.492 8.85 8.85 0 0 0 6.953-2.318 8.68 8.68 0 0 0 2.404-6.233A1.495 1.495 0 0 0 19.029 5.6a9.304 9.304 0 0 0-5.282 1.608.75.75 0 1 0 .842 1.24zM8.75 7.221A9.239 9.239 0 0 0 3.417 5.6c-.815-.001-1.484.664-1.49 1.488a8.652 8.652 0 0 0 2.37 6.184 8.95 8.95 0 0 0 7.031 2.35.75.75 0 1 0-.158-1.49 7.431 7.431 0 0 1-5.82-1.927 7.142 7.142 0 0 1-1.923-5.091L3.426 7.1a7.746 7.746 0 0 1 4.476 1.357.75.75 0 0 0 .848-1.236zm-4.944 3.966c-2.223.948-3.808 2.716-3.808 4.441 0 3.47 5.422 6 12 6a22.404 22.404 0 0 0 6.977-1.047.75.75 0 0 0 .523-.715v-3.488l-.75.75h4.383a.75.75 0 0 0 .715-.524c.1-.315.15-.643.152-.973 0-2.068-1.986-3.858-5.079-4.944a.75.75 0 1 0-.497 1.416c2.56.898 4.076 2.265 4.076 3.525 0 .176-.028.354-.082.524l.715.226v-.75h-4.383a.75.75 0 0 0-.75.75v3.488l.523-.715a20.922 20.922 0 0 1-6.516.977c-5.856 0-10.507-2.17-10.507-4.5 0-1.02 1.17-2.325 2.896-3.061a.75.75 0 0 0-.588-1.38z",
+          facilityName: "Spa及健康中心"
+        },
+        {
+          iconPath:
+            "M14.25 18.75a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0zm1.5 0a3.75 3.75 0 1 0-7.5 0 3.75 3.75 0 0 0 7.5 0zm2.08-5.833a8.25 8.25 0 0 0-11.666 0 .75.75 0 0 0 1.06 1.06 6.75 6.75 0 0 1 9.546 0 .75.75 0 0 0 1.06-1.06zm3.185-3.182c-4.979-4.98-13.051-4.98-18.03 0a.75.75 0 1 0 1.06 1.06c4.394-4.393 11.516-4.393 15.91 0a.75.75 0 1 0 1.06-1.06zm2.746-3.603C17.136-.043 6.864-.043.24 6.132A.75.75 0 1 0 1.26 7.23c6.05-5.638 15.429-5.638 21.478 0a.75.75 0 0 0 1.022-1.098z",
+          facilityName: "免费WiFi"
+        },
+        {
+          iconPath:
+            "M21.75 5.25a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0zm1.5 0a3.75 3.75 0 1 0-7.5 0 3.75 3.75 0 0 0 7.5 0zm-6.182 15.093l.188 1.5A.75.75 0 0 0 18 22.5h3a.75.75 0 0 0 .744-.657l.75-6-.744.657h1.5a.75.75 0 0 0 .75-.75V13.5a4.5 4.5 0 0 0-7.2-3.6.75.75 0 1 0 .9 1.2 3 3 0 0 1 4.8 2.4v2.25l.75-.75h-1.5a.75.75 0 0 0-.744.657l-.75 6L21 21h-3l.744.657-.188-1.5a.75.75 0 0 0-1.488.186zM6.75 5.25a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0zm1.5 0a3.75 3.75 0 1 0-7.5 0 3.75 3.75 0 0 0 7.5 0zM5.444 20.157l-.188 1.5L6 21H3l.744.657-.75-6A.75.75 0 0 0 2.25 15H.75l.75.75V13.5a3 3 0 0 1 4.8-2.4.75.75 0 1 0 .9-1.2A4.5 4.5 0 0 0 0 13.5v2.25c0 .414.336.75.75.75h1.5l-.744-.657.75 6A.75.75 0 0 0 3 22.5h3a.75.75 0 0 0 .744-.657l.188-1.5a.75.75 0 0 0-1.488-.186zM13.5 9a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zM15 9a3 3 0 1 0-6 0 3 3 0 0 0 6 0zm-3 3a4.5 4.5 0 0 0-4.5 4.5v.75c0 .414.336.75.75.75h1.5l-.74-.627.75 4.5a.75.75 0 0 0 .74.627H12a.75.75 0 0 0 0-1.5h-1.5l.74.627-.75-4.5a.75.75 0 0 0-.74-.627h-1.5l.75.75v-.75a3 3 0 0 1 3-3 .75.75 0 0 0 0-1.5zm0 1.5a3 3 0 0 1 3 3v.75l.75-.75h-1.5a.75.75 0 0 0-.74.627l-.75 4.5.74-.627H12a.75.75 0 0 0 0 1.5h1.5a.75.75 0 0 0 .74-.627l.75-4.5-.74.627h1.5a.75.75 0 0 0 .75-.75v-.75A4.5 4.5 0 0 0 12 12a.75.75 0 0 0 0 1.5z",
+          facilityName: "家庭间"
+        },
+        {
+          iconPath:
+            "M13.125 3.56a1.875 1.875 0 1 1-3.75 0 1.875 1.875 0 0 1 3.75 0zm1.5 0a3.375 3.375 0 1 0-6.75 0 3.375 3.375 0 0 0 6.75 0zm3.454 18.335l-1.836-3.67a.75.75 0 0 0-.671-.415H11.25a.75.75 0 0 1-.75-.75v-7.5a.75.75 0 0 1 1.5 0v6c0 .414.336.75.75.75h3.75a.75.75 0 0 1 .671.415l2.25 4.5a.75.75 0 0 1-1.342.67zm-1.342.671a2.25 2.25 0 1 0 4.026-2.012l-2.25-4.5A2.25 2.25 0 0 0 16.5 14.81h-3.75l.75.75v-6a2.25 2.25 0 0 0-4.5 0v7.5a2.25 2.25 0 0 0 2.25 2.25h4.322l-.67-.415 1.835 3.672zm-4.362-.958a5.25 5.25 0 0 1-5.25-9.096.75.75 0 1 0-.75-1.299 6.75 6.75 0 1 0 6.75 11.694.75.75 0 1 0-.75-1.3z",
+          facilityName: "无障碍设施"
         }
-}
+      ]
+    };
+  },
+  computed: {
+    randomFacilities() {
+      let facilitiesCopy = [...this.facilities]; // 复制数组
+      facilitiesCopy.sort(() => Math.random() - 0.5); // 随机排序
+      let randomCount = Math.floor(Math.random() * 4) + 5; // 生成一个5到8的随机数
+      return facilitiesCopy.slice(0, randomCount); // 获取数组的一部分
+    }
+  },
+  components: {
+    Navbar,
+    FooterBlue,
+    FooterWhite,
+    Searchbar,
+    HotelShow,
+    DetailSearch,
+    HotelFacility,
+    HotelRegistration,
+    FacilityCard
+  },
+  methods: {
+    scrollToRoomTable() {
+      const roomTableElement = document.querySelector(".roomtable");
+      if (roomTableElement) {
+        roomTableElement.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  }
+};
 </script>
 
 <style scoped>
-.span1.span2 {
-    font-size: 5px;
-    line-height: 1;
-    font-family: BlinkMacSystemFont, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+.facilityboard {
+    margin-top: 20px;
+    width: 95%;
+}
 
+.span1.span2 {
+  font-size: 5px;
+  line-height: 1;
+  font-family: BlinkMacSystemFont, -apple-system, "Segoe UI", Roboto, Helvetica,
+    Arial, sans-serif;
 }
 
 .section1 {
-    font-weight: bold;
-    font-size: 18px
+  font-weight: bold;
+  font-size: 18px;
 }
 
 .heading {
-    font-weight: 600;
+  font-weight: 600;
 }
 
 .bookingnow {
-    margin-top: 20px;
-    background-color: #0D47A1;
-    color: #fff;
-    width: 100%;
+  margin-top: 20px;
+  background-color: #0d47a1;
+  color: #fff;
+  width: 100%;
 }
 
 .bookingnow:hover {
-    background-color: #409EFF;
-    color: #fff;
+  background-color: #409eff;
+  color: #fff;
 }
 
 .hotel-description-font {
-    font-size: 18px;
-    line-height: 2;
+  font-size: 18px;
+  line-height: 2;
 }
 
 .hotel-booking-icon {
-    background-color: #f0f6ff;
-    border-radius: 8px;
-    margin: 0 auto;
-    width: 50%;
-    height: auto;
-    margin-right: 15%;
-    margin-left: 30px;
-
+  background-color: #f0f6ff;
+  border-radius: 8px;
+  margin: 0 auto;
+  width: 50%;
+  height: auto;
+  margin-right: 15%;
+  margin-left: 30px;
 }
 
+
 .hotel-description {
-    margin: 0 auto;
-    width: 80%;
-    margin-left: 20%;
+  margin: 0 auto;
+  width: 80%;
+  margin-left: 20%;
 }
 
 .hotel-detail-block {
-    margin: 0 auto;
-    width: 80%;
-    margin-left: 20%;
+  margin: 0 auto;
+  width: 80%;
+  margin-left: 20%;
 }
 
 .searchbar {
-    width: 20% !important;
-    padding: 0 !important;
-    margin-top: 0;
-    font-size: 88%;
-    margin-bottom: 1em;
-    font-style: normal;
-    float: left;
-    margin-left: 18%;
+  width: 20% !important;
+  padding: 0 !important;
+  margin-top: 0;
+  font-size: 88%;
+  margin-bottom: 1em;
+  font-style: normal;
+  float: left;
+  margin-left: 18%;
 }
 </style>
