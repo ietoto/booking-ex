@@ -119,9 +119,9 @@ public class HotelController {
             }
             hotel.setFacilities(facilities_hotel);
 
-//            //set rooms
-//            List<Room> rooms = roomController.getRoomListWithFac(hotel);
-//            hotel.setRooms(rooms);
+            //set rooms
+            List<Room> rooms = roomController.getRoomListWithFac(hotel);
+            hotel.setRooms(rooms);
 
         }
 

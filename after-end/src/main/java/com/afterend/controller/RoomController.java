@@ -23,9 +23,7 @@ public class RoomController {
     @CrossOrigin
     @ResponseBody
     public List<Room> getRoomListWithFac(Hotel hotel) {
-        Room room =new Room();
-        room.setHotelid(hotel.getId());
-        List<Room> rooms = roomService.getRoomList(room);
+        List<Room> rooms = hotel.getRooms();
         if(0 == rooms.size()){
             System.out.println("Get room and fac:roomList failed");
         }else{
