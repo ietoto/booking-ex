@@ -11,7 +11,7 @@
     </el-header>
     <el-container style="height: 1440px;border: 1px solid rgba(27,134,222,0);width: 1100px;">
     <el-aside style="height: 1440px;width: 350px;margin-top: 0px;border: 1px solid rgba(222,27,79,0);">
-      <el-card class="box-card"style="width: 340px;height: 300px" shadow="hover">
+      <el-card class="box-card"style="width: 340px;height: 350px" shadow="hover">
         <div slot="header" style="font-size: 18px; font-weight: bold;">
           <span>订单详情</span>
         </div>
@@ -231,7 +231,7 @@
     </el-container>
   </el-container>
   <el-dialog  :visible.sync="confirmVisible">
-    <el-card class="box-card" style="width: 720px;height: 550px" shadow="never">
+    <el-card class="box-card" style="width: 720px;height: 580px" shadow="never">
       <div slot="header" style="font-size: 18px; font-weight: bold;">
         <div style="font-weight: bold; font-size: 22px;   margin-top: 10px;">
           {{this.$store.state.order.hotel_name}}
@@ -306,7 +306,7 @@ export default {
       console.log('gethotel')
       var _this = this
       this.$axios
-        .post('/hotel/searchByIdDetailed', {
+        .post('/hotel/searchById', {
           id: this.$store.state.order.hotelid
         })
         .then(successResponse => {

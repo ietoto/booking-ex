@@ -1,6 +1,6 @@
 <template>
     <div>
-        <el-table class="RoomTable hovertable" :data="hotel.rooms"
+        <el-table class="RoomTable hovertable" :data="hotel.rooms" @cell-mouse-enter="mouseEnter"
             :header-cell-style="{ background: '#4c76b2', color: '#fff' }" :height="500" :span-method="spanMethod" border>
             <el-table-column prop="name" label="客房类型" width="300">
                 <template slot-scope="scope">
@@ -97,7 +97,7 @@
             <el-table-column label="选择客房" width="140">
                 <template slot-scope="scope">
                     <el-select v-model="scope.row.num_rec" @change="handleRoomSelection(scope.row)">
-                        <el-option v-for="i in 6" :key="i" :label="(i - 1).toString()" :value="i">
+                        <el-option v-for="i in 6" :key="i" :label="(i - 1).toString()" :value="(i - 1)">
                         </el-option>
                     </el-select>
                 </template>
@@ -105,7 +105,7 @@
             <el-table-column>
                 <template>
                     <div class="container">
-                        <el-button class="fixed-button">确认预定</el-button>
+                        <el-button class="fixed-button" @click="goOrder">确认预定</el-button>
                     </div>
                     <div class="container2">
                         <div class="check">
@@ -127,7 +127,8 @@
 export default {
     data() {
         return {
-            hotel: this.$store.state.hotel
+          hotel: this.$store.state.hotel,
+          chooseRoom: null
         }
     },
     created() {
@@ -135,6 +136,44 @@ export default {
         this.hotel.rooms.forEach(room => room.choicenum = 1);
     },
     methods: {
+      goOrder(){
+        this.$axios
+          .post('/order/req', {
+            userid: this.$store.state.user.id,
+            hotelid: this.$store.state.hotel.id,
+            roomid: this.chooseRoom.id,
+            num: this.chooseRoom.num_rec,
+            money: this.chooseRoom.price_r+this.chooseRoom.price_b,
+            startdate: this.$store.state.search.startdate,
+            enddate: this.$store.state.search.enddate,
+            state: 0
+          })
+          .then(successResponse => {
+            if (successResponse.data.code===200) {
+              // var data = this.registerForm
+              this.$message({
+                duration: 1000,
+                showClose: true,
+                message: '添加成功！',
+                type: 'success'
+              })
+              this.$router.push('/myorder');
+            }
+            else {
+              this.$message({
+                duration: 1000,
+                showClose: true,
+                message: '添加失败！',
+                type: 'error'
+              })
+            }
+          })
+          .catch(failResponse => {
+          })
+      },
+      mouseEnter(data) {
+        this.chooseRoom = Object.assign({}, data)
+      },
         spanMethod({ row, column, rowIndex, columnIndex }) {
             if (columnIndex === 0) {
                 if (rowIndex > 0 && this.hotel.rooms[rowIndex].name === this.hotel.rooms[rowIndex - 1].name) {

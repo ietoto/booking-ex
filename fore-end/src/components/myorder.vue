@@ -49,7 +49,7 @@
           @current-change="handleCurrentChange"
           background
           layout="total,prev, pager, next, jumper"
-          :page-size="5"
+          :page-size="6"
           :total="orderList.length">
         </el-pagination>
       </div>
