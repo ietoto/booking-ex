@@ -70,6 +70,9 @@ export default new Vuex.Store({
       rooms: window.localStorage.getItem('hotel' || '[]') == null ? '' : JSON.parse(window.localStorage.getItem('hotel' || '[]')).rooms,
       facilities: window.localStorage.getItem('hotel' || '[]') == null ? '' : JSON.parse(window.localStorage.getItem('hotel' || '[]')).facilities,
     },
+    //记录上一次记得的hotel的id
+    hotel_state: {
+      id: window.localStorage.getItem('hotel_state' || '[]') == null ? '' : JSON.parse(window.localStorage.getItem('hotel_state' || '[]')).id,    },
     hotel_num: {
       num: window.localStorage.getItem('hotel_num' || '[]') == null ? '' : JSON.parse(window.localStorage.getItem('hotel_num' || '[]')).num
     },
@@ -125,6 +128,10 @@ export default new Vuex.Store({
     searchshow(state,searchshow){
       state.searchshow=searchshow
       window.localStorage.setItem('searchshow', JSON.stringify(searchshow))
+    },
+    hotel_state(state,hotel_state){
+      state.hotel_state=hotel_state
+      window.localStorage.setItem('hotel_state', JSON.stringify(hotel_state))
     }
   }
 })

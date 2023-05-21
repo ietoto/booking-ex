@@ -44,6 +44,14 @@ export default {
   methods: {
     gethotel(){
       this.hotel=this.$store.state.hotel
+      // if(this.$store.state.hotel_state.id!==this.$store.state.hotel.id){
+      //   let hotel_state={
+      //     id:this.$store.state.hotel.id
+      //   }
+      //   this.$store.commit("hotel_state",hotel_state)
+      //   this.$router.go(0);
+      //   console.log('刷新')
+      // }
     }
   }
 }
