@@ -1,7 +1,7 @@
 <template>
   <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" background-color="#0D47A1"
     text-color="#fff" active-text-color="#409EFF" @select="handleSelect">
-    <router-link to="/index" class="logo-link">
+    <router-link to="/" class="logo-link">
     <Bookingicon></Bookingicon>
      </router-link>
     <div class="menu-right">
