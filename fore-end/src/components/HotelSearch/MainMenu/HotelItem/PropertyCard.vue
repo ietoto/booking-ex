@@ -206,10 +206,10 @@ export default {
 }
 
 .hotel-score {
-  padding: 8px;
+  padding: 10px;
   background-color: #003b95;
   color: white;
-  border-radius: 8px;
+  border-radius: 7px;
   margin-bottom: 8px;
 }
 

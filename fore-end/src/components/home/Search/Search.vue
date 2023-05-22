@@ -60,8 +60,7 @@ export default {
           date_num: diffDays}
       this.$store.commit("search",search)
       let searchtype;
-      searchtype=
-        {type:0}
+      searchtype= {type:0}
       this.$store.commit("searchtype",searchtype)
       this.$router.push('/search'); // 这里的 '/path/to/page' 是你要跳转的页面的路由
     },

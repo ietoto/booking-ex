@@ -24,7 +24,7 @@ export default new Router({
       component: Login
     },
     {
-      path: '/index',
+      path: '/',
       name: 'AppIndex',
       component: AppIndex,
       // meta: {

@@ -36,6 +36,7 @@
   import Spotitem from './Spotitem.vue'
   export default {
     name: 'HotSpot',
+    
     components: {
       Spotitem
     }
