@@ -67,7 +67,9 @@
        search.enddate=this.value[1]
        this.$store.commit("search",search)
        this.$store.commit("searchtype",searchtype)
+       this.$router.push('/search');
        this.$router.go(0);
+
      }
    },
    data() {
