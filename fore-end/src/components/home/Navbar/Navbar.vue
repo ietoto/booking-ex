@@ -36,8 +36,8 @@
             <el-dropdown-item command="order_manage" icon="el-icon-edit" style="font-size: 20px;padding: 8px 50px;">订单管理</el-dropdown-item>
             </p>
             <p v-if= "this.$store.state.user.state === 2">
-            <el-dropdown-item command="order" icon="el-icon-school" style="font-size: 20px;padding: 8px 50px;">我的酒店</el-dropdown-item>
-              <el-dropdown-item command="user" icon="el-icon-s-check" style="font-size: 20px;padding: 8px 50px;">酒店订单</el-dropdown-item>
+            <el-dropdown-item command="hotel_manage_my" icon="el-icon-school" style="font-size: 20px;padding: 8px 50px;">我的酒店</el-dropdown-item>
+              <el-dropdown-item command="order_manage_my" icon="el-icon-s-check" style="font-size: 20px;padding: 8px 50px;">酒店订单</el-dropdown-item>
             </p>
             <el-dropdown-item command="quit" icon="el-icon-switch-button" style="font-size: 20px;padding: 8px 50px;">退出登录</el-dropdown-item>
       </el-dropdown-menu>
@@ -50,7 +50,6 @@
 <script>
 import Bookingicon from './Bookingicon.vue'
 export default {
-  components: { Bookingicon },
   name: 'Navbar',
   components: {
     Bookingicon
@@ -93,6 +92,12 @@ export default {
           break
         case 'order_manage' :
           this.$router.push("/order_manage")
+          break
+        case 'hotel_manage_my' :
+          this.$router.push("/hotel_manage_my")
+          break
+        case 'order_manage_my' :
+          this.$router.push("/order_manage_my")
           break
       }
       // this.$message('click on item ' + command);

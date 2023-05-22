@@ -12,6 +12,8 @@ import OrderHotel from '@/components/OrderHotel'
 import Hotel_manage from '@/components/manage/Hotel_manage'
 import User_manage from '@/components/manage/User_manage'
 import Order_manage from '@/components/manage/Order_manage'
+import Hotel_manage_my from '@/components/manage/Hotel_manage_My'
+import Order_manage_my from '@/components/manage/Order_manage_My'
 import HotelDetail from '@/components/HotelDetail/HotelDetail'
 Vue.use(Router)
 
@@ -76,6 +78,16 @@ export default new Router({
       name:'HotelDetail',
       component:HotelDetail
     ,},
+    {
+      path:'/hotel_manage_my',
+      name:'Hotel_manage_my',
+      component:Hotel_manage_my
+      ,},
+    {
+      path:'/order_manage_my',
+      name:'Order_manage_my',
+      component:Order_manage_my
+      ,},
     {
       path: '/order',
       name: 'Order',
