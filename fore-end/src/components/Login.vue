@@ -55,6 +55,12 @@ export default {
             // var data = this.loginForm
             _this.$store.commit('login', successResponse.data)
             var path = this.$route.query.redirect
+            this.$message({
+              duration: 2000,
+              showClose: true,
+              message: '登录成功！',
+              type: 'success'
+            });
             this.$router.replace({ path: path === '/' || path === undefined ? '/index' : path })
           }
           else {
@@ -69,7 +75,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 #poster {
   background: url("../assets/login1.jpg") no-repeat;
   background-position: center;

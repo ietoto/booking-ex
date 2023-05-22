@@ -8,6 +8,7 @@ import Register from '@/components/Register'
 import User from '@/components/User'
 import Myorder from '@/components/myorder'
 import Order from '@/components/Order'
+import OrderHotel from '@/components/OrderHotel'
 import Hotel_manage from '@/components/manage/Hotel_manage'
 import User_manage from '@/components/manage/User_manage'
 import Order_manage from '@/components/manage/Order_manage'
@@ -79,6 +80,11 @@ export default new Router({
       path: '/order',
       name: 'Order',
       component: Order
+    },
+    {
+      path: '/orderhotel',
+      name: 'OrderHotel',
+      component: OrderHotel
     }
   ]
 })

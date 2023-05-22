@@ -6,7 +6,7 @@
             :collapse="collapse"
             background-color="rgba(82,156,235,0.6)"
             text-color="black"
-            active-text-color="rgba(255,255,0)"
+            active-text-color="#fff"
             unique-opened
             router
         >

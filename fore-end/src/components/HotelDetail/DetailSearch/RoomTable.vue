@@ -137,39 +137,59 @@ export default {
     },
     methods: {
       goOrder(){
-        this.$axios
-          .post('/order/req', {
-            userid: this.$store.state.user.id,
-            hotelid: this.$store.state.hotel.id,
-            roomid: this.chooseRoom.id,
-            num: this.chooseRoom.num_rec,
-            money: this.chooseRoom.price_r+this.chooseRoom.price_b,
-            startdate: this.$store.state.search.startdate,
-            enddate: this.$store.state.search.enddate,
-            state: 0
-          })
-          .then(successResponse => {
-            if (successResponse.data.code===200) {
-              // var data = this.registerForm
-              this.$message({
-                duration: 1000,
-                showClose: true,
-                message: '添加成功！',
-                type: 'success'
-              })
-              this.$router.push('/myorder');
-            }
-            else {
-              this.$message({
-                duration: 1000,
-                showClose: true,
-                message: '添加失败！',
-                type: 'error'
-              })
-            }
-          })
-          .catch(failResponse => {
-          })
+        var date1 = new Date(this.$store.state.search.enddate);
+        var date2 = new Date(this.$store.state.search.startdate);
+        var diffTime = Math.abs(date2 - date1);
+        var diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+        let order={
+          userid: this.$store.state.user.id,
+          hotelid: this.$store.state.hotel.id,
+          roomid: this.chooseRoom.id,
+          num: this.chooseRoom.num_rec,
+          money: (this.chooseRoom.price_r+this.chooseRoom.price_b)*this.chooseRoom.num_rec*diffDays,
+          startdate: this.$store.state.search.startdate,
+          enddate: this.$store.state.search.enddate,
+          state: 0,
+          username: this.$store.state.user.name,
+          hotel_name: this.$store.state.hotel.name,
+          room_name: this.chooseRoom.name,
+          date_num: diffDays
+        }
+        this.$store.commit("order",order)
+        this.$router.push('/orderhotel');
+        // this.$axios
+        //   .post('/order/req', {
+        //     userid: this.$store.state.user.id,
+        //     hotelid: this.$store.state.hotel.id,
+        //     roomid: this.chooseRoom.id,
+        //     num: this.chooseRoom.num_rec,
+        //     money: this.chooseRoom.price_r+this.chooseRoom.price_b,
+        //     startdate: this.$store.state.search.startdate,
+        //     enddate: this.$store.state.search.enddate,
+        //     state: 0
+        //   })
+        //   .then(successResponse => {
+        //     if (successResponse.data.code===200) {
+        //       // var data = this.registerForm
+        //       this.$message({
+        //         duration: 1000,
+        //         showClose: true,
+        //         message: '添加成功！',
+        //         type: 'success'
+        //       })
+        //       this.$router.push('/myorder');
+        //     }
+        //     else {
+        //       this.$message({
+        //         duration: 1000,
+        //         showClose: true,
+        //         message: '添加失败！',
+        //         type: 'error'
+        //       })
+        //     }
+        //   })
+        //   .catch(failResponse => {
+        //   })
       },
       mouseEnter(data) {
         this.chooseRoom = Object.assign({}, data)
