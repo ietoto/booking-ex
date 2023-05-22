@@ -99,8 +99,12 @@ export default {
         })
         .catch(failResponse => {
         })
-      this.$router.push({ name: "HotelDetail", params: { id } });
+
       this.$emit("navigate", id);
+      setTimeout(() => {
+        this.$router.push({ name: "HotelDetail", params: { id } });
+      }, 2000); // 2秒的延迟
+      // this.$router.push({ name: "HotelDetail", params: { id } });
     }
   }
 };
