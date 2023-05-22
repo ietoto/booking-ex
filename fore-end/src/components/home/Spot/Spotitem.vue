@@ -90,6 +90,13 @@ export default {
   background-size: cover;
   background-position: center center;
   border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  overflow: hidden;
+}
+.image-container:hover {
+  transform: scale(1.05, 1.05);
+  transition: all 0.3s ease-in-out;
 }
 
 .city-name {
