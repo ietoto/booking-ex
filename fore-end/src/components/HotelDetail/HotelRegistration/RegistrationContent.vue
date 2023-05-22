@@ -118,7 +118,7 @@
                         d="M116 20a4 4 0 0 0-4 4v8H16v-8a4 4 0 0 0-8 0v80a4 4 0 0 0 8 0V88h96v16a4 4 0 0 0 8 0V24a4 4 0 0 0-4-4zM42 40h18v32H42zm26 32V40h18v32zM16 40h18v32H16zm96 32H94V40h18z">
                       </path>
                     </svg></span><span class="b88443e8cb">婴儿床（按需提供）</span></span><span class="e7d0c52fc6">
-                  <div class="ee746850b6 de4eca8390">免费</div>
+                  <div class="greentext">免费</div>
                 </span></div>
             </div>
             <div class="e33d47e1e7">
@@ -203,6 +203,9 @@ export default {
 </script>
   
 <style scoped>
+.greentext{
+  color: green;
+}
 .a5b29265cd{
   width:300px
 }
