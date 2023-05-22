@@ -13,7 +13,6 @@
               <el-row>
                 <el-col :span="24"><div class="grid-content bg-purple-dark">{{ hotel.name }}</div></el-col>
               </el-row>
-
             </div>
             <div class="hotel-rating">
               <el-rate v-model="hotel.star" disabled
@@ -26,7 +25,7 @@
           <a class="small-text"
             >{{ hotel.city }}{{ hotel.location }}</a
           >
-          <el-container style="height: 140px;border: 1px solid rgba(222,27,79,0);width: 380px; overflow: hidden; text-overflow: ellipsis;">
+          <el-container style="height: auto;border: 1px solid rgba(222,27,79,0);width: 380px; overflow: hidden; text-overflow: ellipsis;">
             {{ hotel.desciption }}
           </el-container>
           <div class="hotel-location">
@@ -125,7 +124,7 @@ export default {
 .property-card {
   display: flex;
   align-items: stretch;
-  max-height: 250px;
+  max-height: auto;
   padding: 16px;
   font-style: normal !important;
   background: #f0f6ff;

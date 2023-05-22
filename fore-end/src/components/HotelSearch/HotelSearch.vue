@@ -1,7 +1,7 @@
 <template>
     <div>
         <Navbar />
-      <el-container style="height: 2000px;border: 1px solid rgba(222,27,79,0);width: 1500px;position: relative;left: -150px;">
+      <el-container style="height: auto;border: 1px solid rgba(222,27,79,0);width: 1500px;position: relative;left: -150px;">
         <div>
             <div id="basiclayout" style="position:relative;" class="">
                 <SearchAside />
