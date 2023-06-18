@@ -471,7 +471,8 @@ export default {
         phone:null,
         postbox:null,
         state:null,
-        hotel_id:null
+        hotel_id:null,
+        name: null
       },
       state:[{
         value: 0,
